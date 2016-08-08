@@ -1,3 +1,16 @@
 <template name="editProfile">
-  
+    <div class="container">
+    {{#autoForm schema=editProfileSchema doc=this id="editProfile" type="update" }}
+  <fieldset>
+    <legend>Editar Perfil</legend>
+    {{> afQuickField name="name"}}
+    {{> afQuickField name="email"}}
+    {{> afQuickField name="locality"}}
+    <div>
+      <button type="submit" class="btn btn-success">Guardar</button>
+      <button type="return" class="btn btn-primary">Cancelar</button>
+    </div>
+  </fieldset>
+  {{/autoForm}}
+  </div>
 </template>
