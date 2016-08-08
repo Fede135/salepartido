@@ -1,6 +1,6 @@
 <template name="editProfile">
     <div class="container">
-    {{#autoForm schema=editProfileSchema doc=this id="editProfile" type="update" }}
+    {{#autoForm schema=editProfileSchema id="editProfile" type="method" meteormethod="sendEmail"}}
   <fieldset>
     <legend>Editar Perfil</legend>
     {{> afQuickField name="name"}}
@@ -8,8 +8,7 @@
     {{> afQuickField name="locality"}}
     <div>
       <button type="submit" class="btn btn-success">Guardar</button>
-      <button type="return" class="btn btn-primary">Cancelar</button>
-    </div>
+   </div>
   </fieldset>
   {{/autoForm}}
   </div>
