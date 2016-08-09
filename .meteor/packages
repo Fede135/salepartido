@@ -25,3 +25,6 @@ aldeed:autoform
 aldeed:simple-schema
 aldeed:collection2
 accounts-facebook
+underscore
+audit-argument-checks
+check
