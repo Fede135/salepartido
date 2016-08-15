@@ -4,9 +4,18 @@
     {{#autoForm schema=editProfileSchema id="editProfile" type="method" meteormethod="completeProfile"}}
   <fieldset>
     <legend>Editar Perfil</legend>
-    {{> afQuickField name="name"}}
+    {{> afQuickField name="username"}}
+    {{> afQuickField name="profile.firstName"}}
+    {{> afQuickField name="profile.lastName"}}
+    {{> afQuickField name="profile.birthday"}} 
+    {{> afQuickField name="profile.gender"}}
     {{> afQuickField name="email"}}
-    {{> afQuickField name="locality"}}
+    {{> afQuickField name="profile.country.country"}}
+    {{> afQuickField name="profile.country.province"}}
+    {{> afQuickField name="profile.country.locality"}}
+    {{> afQuickField name="profile.country.neighborhood"}}
+    
+
     <div>
       <button type="submit" class="btn btn-success">Guardar</button>
    </div>
