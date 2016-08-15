@@ -9,11 +9,18 @@
       </button>
       <a class="navbar-brand" href="{{pathFor 'index'}}'" >Sale Partido</a>
     </div>
+    
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="nav navbar-nav">
       </ul>
       <ul class="nav navbar-nav navbar-right">
         {{> loginButtons}}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}" >Confirmar Partido</a>
       </ul>
     </div>
   </nav>
