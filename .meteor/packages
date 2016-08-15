@@ -28,3 +28,5 @@ accounts-facebook
 underscore
 audit-argument-checks
 check
+cfs:standard-packages
+cfs:gridfs
