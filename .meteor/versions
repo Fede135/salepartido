@@ -31,7 +31,9 @@ ejson@1.0.7
 email@1.0.7
 es5-shim@4.1.13
 fastclick@1.0.7
+fullcalendar:fullcalendar@2.6.1
 geojson-utils@1.0.4
+gquemart:meteor-reactive-fullcalendar@1.0.1
 hot-code-push@1.0.0
 html-tools@1.0.5
 htmljs@1.0.5
@@ -61,6 +63,8 @@ mobile-status-bar@1.0.6
 momentjs:moment@2.10.6
 mongo@1.1.1
 mongo-id@1.0.1
+mrt:jquery-ui@1.9.2
+mrt:moment@2.8.1
 npm-bcrypt@0.7.8_2
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7

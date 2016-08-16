@@ -24,3 +24,5 @@ accounts-password
 aldeed:autoform
 aldeed:simple-schema
 aldeed:collection2
+fullcalendar:fullcalendar
+gquemart:meteor-reactive-fullcalendar
