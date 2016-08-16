@@ -1,0 +1,29 @@
+<template name="uploadImages">
+	<div class="container">
+		<!-- <input type="file" class="myFileInput"/> 
+  		
+    	{{#each images}}
+    		
+    		 URL: {{this.url}}
+    		
+  			<img src="{{this.url store='thumbnail'}}" alt="thumbnail">
+      		
+    	{{/each}} -->
+
+
+      <input type="file" id="file">
+      <input type="submit" value="Upload">
+      <div>
+        {{#each images}} 
+          <div>   
+            <img src="{{this.url store='images'}}" alt="Imagen :{{this.name }}" height="420" width="420" >
+          </div>  
+          <br>
+        {{/each}}
+       </div> 
+	</div>
+
+ </template>
+
+
+ 
