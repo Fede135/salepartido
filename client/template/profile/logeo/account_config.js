@@ -4,23 +4,27 @@ Accounts.ui.config({
   requestPermissions: {}, 
   extraSignupFields: [
     {
-    fieldName: 'firts_name',
+    fieldName: 'profile.firtsName',
     fieldLabel: 'Nombre',
     inputType: 'text',
     visible: true,
-    validate: function(value, errorFunction) {
+    /*validate: function(value, errorFunction) {
           if (!value) {
             errorFunction("Ingrese su nombre");
             return false;
           } else {
-            return true;
+           return true;
           }
-    }
+    }*/
   },
   {
-    fieldName: 'last_name',
+    fieldName: 'profile.lastName',
     fieldLabel: 'Apellido',
     inputType: 'text',
     visible: true,
   }]
 });
+
+Meteor.loginWithFacebook({
+    requestPermissions: ['public_profile','user_birthday','email' ]
+}, function(error){loginCallBack(error);});
