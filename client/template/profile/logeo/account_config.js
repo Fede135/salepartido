@@ -27,4 +27,4 @@ Accounts.ui.config({
 
 Meteor.loginWithFacebook({
     requestPermissions: ['public_profile','user_birthday','email' ]
-}, function(error){loginCallBack(error);});
+});//, function(error){loginCallBack(error);});
