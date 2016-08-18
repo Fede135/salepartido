@@ -13,6 +13,8 @@
         {{#each images}} 
           <div>   
             <img src="{{this.url store='images'}}" alt="Imagen :{{this.name }}" height="420" width="600" class="avatar">
+            <br>
+            Eliminar {{this.name}}: {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
           </div>  
 
           <br>
