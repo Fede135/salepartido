@@ -14,7 +14,14 @@
           <div>   
             <img src="{{this.url store='images'}}" alt="Imagen :{{this.name }}" height="420" width="600" class="avatar">
             <br>
-            Eliminar {{this.name}}: {{> FS.DeleteButton class="btn btn-danger btn-xs"}}
+            Eliminar {{this.name}}: 
+            {{#FS.DeleteButton class="btn btn-danger btn-xs"}}Eliminar imagen{{/FS.DeleteButton}}
+            <!-- {{> FS.DeleteButton class="btn btn-danger btn-xs"}}, es lo mismo nada mas que el boton dice DELETE -->
+
+            {{#unless this.isUploaded}}
+                {{> FS.UploadProgressBar bootstrap=true class='progress-bar-success progress-bar-striped active' showPercent=true}}
+                <!--agrega una barra de progreso, al ser imagenes de hasta 2Mb, casi no se ve -->
+            {{/unless}}
           </div>  
 
           <br>
