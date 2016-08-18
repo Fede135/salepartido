@@ -1,23 +1,20 @@
 <template name="uploadImages">
 	<div class="container">
-		<!-- <input type="file" class="myFileInput"/> 
-  		
-    	{{#each images}}
-    		
-    		 URL: {{this.url}}
-    		
-  			<img src="{{this.url store='thumbnail'}}" alt="thumbnail">
-      		
-    	{{/each}} -->
-
-
+		  <h1>Imagenes Establecimiento</h1>
+      <!--{{#if countImages < 5 }} -->
       <input type="file" id="file">
       <input type="submit" value="Upload">
+      <!--{{/if}}-->
+      <div>
+       Cantidad de imagenes subidas: {{countImages}}
+      </div>
+      
       <div>
         {{#each images}} 
           <div>   
             <img src="{{this.url store='images'}}" alt="Imagen :{{this.name }}" height="420" width="600" class="avatar">
           </div>  
+
           <br>
         {{/each}}
        </div> 
