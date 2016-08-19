@@ -1,5 +1,5 @@
 //Probando gravatar
-
+/*
 Template.gravatar.helpers({
 
   imagengravatar : function(){
@@ -15,5 +15,5 @@ Template.gravatar.helpers({
     });  
 
   }
-});
+});*/
 

@@ -1,6 +1,7 @@
+//No se si va en el cliente o en el server
 //probando onCreateUser para almacenar firstName y lastName al momento de registrarse del usuario
 //no se si va en el server o en el cliente
-var options = {
+/*var options = {
        
     profile: {
         firstName: $('input#firstName'),
@@ -8,7 +9,7 @@ var options = {
     },
 };
 
-Accounts.Meteor.onCreateUser(function(options, user) { 
+Accounts.onCreateUser(function(options, user) { 
    user.profile.firstName = options.profile.firstName;
    user.profile.lastName = options.profile.lastName;
    user.profile.name = options.profile.firstName +" "+ options.profile.lastName ;
@@ -18,4 +19,4 @@ Accounts.Meteor.onCreateUser(function(options, user) {
 
 Meteor.loginWithFacebook({
     requestPermissions: ['public_profile','user_birthday','email' ]
-});//, function(error){loginCallBack(error);});
+});//, function(error){loginCallBack(error);});*/
