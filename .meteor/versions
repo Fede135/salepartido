@@ -52,6 +52,9 @@ iron:location@1.0.11
 iron:middleware-stack@1.1.0
 iron:router@1.0.13
 iron:url@1.0.11
+jparker:crypto-core@0.1.0
+jparker:crypto-md5@0.1.1
+jparker:gravatar@0.5.1
 jquery@1.11.4
 launch-screen@1.0.4
 livedata@1.0.15
@@ -80,6 +83,7 @@ reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
+sacha:spin@2.3.1
 service-configuration@1.0.5
 session@1.1.1
 sha@1.0.4

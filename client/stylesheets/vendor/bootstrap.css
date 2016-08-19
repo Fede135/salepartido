@@ -6956,3 +6956,13 @@ button.close {
 .panel-primary .panel-title {
   color: #fff;
 }
+
+#spinner {
+height: 300px; }
+
+
+.jumbotron h2{
+font-size: 60px;
+font-weight: 100;
+
+}
