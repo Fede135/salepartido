@@ -1,0 +1,13 @@
+<template name="eliminarCancha">
+	<div class="container">
+	{{#each canchas}}
+		<div>
+		¿ Eliminar cancha numero :{{this.numero}} ?  
+		{{#quickRemoveButton collection="Canchas" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn btn-danger"}}Eliminar{{/quickRemoveButton}}
+			<br>
+			<br>
+		</div>
+		
+	{{/each}}	
+	</div>
+</template>

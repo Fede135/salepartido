@@ -31,3 +31,4 @@ cfs:filesystem
 autopublish
 insecure
 cfs:ui
+aldeed:delete-button
