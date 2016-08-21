@@ -1,0 +1,29 @@
+<template name="cargarCancha">
+	
+	<div class = "container">		
+	
+	<!--
+	{{> quickForm collection="Canchas" id="cargarCancha" type="insert"}}
+	-->	
+  {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
+    <fieldset>
+      <legend><h2>Crear cancha</h2></legend>
+      {{> afQuickField name='numero'}}
+
+      {{> afQuickField name='jugadores.cantidad_de_jugadores' options="allowed" noselect=true}} 
+
+      {{> afQuickField name='tipo_cancha.tipo_de_cancha' options="allowed" noselect=true}}
+
+      {{> afQuickField name='estado_cancha.estado_de_cancha' options="allowed" noselect=true}}
+
+     
+      {{> afQuickField name='descripcion' rows=3}}
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Crear</button>
+  {{/autoForm}}
+
+	</div>
+
+
+
+</template>
