@@ -1,0 +1,33 @@
+<template name="modificarCancha">
+	<div class="container">
+		 <h2>Modificar canchas</h2>
+
+		 <h3>Actualmente el recinto cuenta con {{countCanchas}} canchas cargadas.</h3>
+		 <br>
+		 <!--
+		{{#each canchas}}
+		{{> quickForm collection="Canchas" doc=this id="modificarCancha" type="update"}}
+		{{/each}}
+		-->
+		{{#each canchas}}
+			<div class="form-offline">
+            {{#autoForm collection="Canchas" doc=this id=updateFormName type="update" }}
+                    	<h4>Numero de cancha</h4>
+                        {{> afFieldInput name='numero'}}
+                        <h4>Cantidad de jugadores</h4>
+                        {{> afFieldInput name='jugadores.cantidad_de_jugadores' options=cantJugadores}}
+                        <h4>Tipo de cancha</h4>
+                        {{> afFieldInput name='tipo_cancha.tipo_de_cancha' options=tipoCancha}}
+                        <h4>Estado cancha</h4>
+                        {{> afFieldInput name='estado_cancha.estado_de_cancha' options=estadoCancha}}
+                        <h4>Descripcion</h4>
+                        {{> afFieldInput name='descripcion'}}
+                        <br>                        
+                        <button type="submit" class="btn btn-primary">Actualizar</button>
+                        
+                    
+                {{/autoForm}}
+            </div>
+            {{/each}}
+	</div>
+</template>
