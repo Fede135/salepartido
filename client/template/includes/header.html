@@ -9,23 +9,28 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="{{pathFor 'index'}}" >Sale Partido</a>
-    </div>
+
+    </div>   
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="nav navbar-nav navbar-right">
            
       
-        <li><a href="{{pathFor 'uploadImages'}}">IMAGEN</a></li>
+        <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
       
-      
-        <li><a href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a></li>
+        <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a>
 
+        <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}" >Confirmar Partido</a>      
+      
+        <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
+      
         {{> loginButtons}}
-      </ul> 
+    </ul> 
       <!-- Probando gravatar
         <ul class ="nav navbar-nav navbar-right">
           {{> gravatar}}
       </ul>
+<<<<<<< HEAD
        --> 
-     </div>
+     </div>   
   </nav>
 </template>

@@ -1,0 +1,78 @@
+<template name = "organizarPartido">
+	<div class="container">
+    <div class="navbar">
+  		<h2 align="center">
+	     	Organizar Partido
+		  </h2>
+    </div>  
+		<div class="form-group">
+       		  <div>
+                <label class="control-label" for="title">Elegi un dia y una horario para jugar
+                </label>
+            </div>
+            <br>
+              
+
+            <div >
+                <button type="button" id = "seleccionarDia" class="btn btn-success">Seleccionar dia
+                </button>     
+            </div>
+            <br>
+            <div>
+                <input name="title" id="title" type="text" value="{{title}}" placeholder="Dia seleccionado para jugar" class="form-control"/>
+            </div>
+            <br>            
+            <div>
+                <button type="button" class="btn btn-success">Seleccionar horario
+                </button>     
+            </div>
+            <br>
+            <div>
+                <input name="title" id="title" type="text" value="{{title}}" placeholder="Hora seleccionada para jugar" class="form-control"/>
+            </div>
+            <br>
+            <div>
+      		    	<label class="control-label" for="title">Selecciona una cancha
+      			    </label>
+      		  </div>
+            <br>
+       		  <div>
+       		 	   <button type="button" class="btn btn-success">Seleccionar cancha
+       		 	   </button>  		
+         	  </div>
+         	  <br>	
+         	  <div class="controls">
+         		   <input name="title" id="title" type="text" value="{{title}}" placeholder="Cancha a jugar" class="form-control"/>
+           	   <br>
+           	</div>     		
+          	<div>
+      			   <label class="control-label" for="title">Invitar amigos
+      			   </label>
+      			<br>
+      		  </div>
+      		  <div>	
+      			   <button type="button" class="btn btn-success">Agregar amigos
+      			   </button>
+ 			      </div>     
+ 			      <br>
+    	 	    <div class="controls">
+              	<input name="title" id="title" type="text" value="{{title}}" placeholder="Lista de amigos" class="form-control"/>
+            	  <br>
+       	 	  </div>
+       	 	  <div>
+      	 		    <button type="button" class="btn btn-success">¿Querés que algún amigo pueda agregar a sus amigos? 	 		
+      	 		    </button>
+      	 	  </div>
+      	 	  <br>
+       	 	  <div>
+      	 		    <button type="button" class="btn btn-success">Enviar notificación      	 		
+      	 		    </button>
+      	 	  </div>
+            <br>
+            <div>
+                <button type="button" id = "crearCancha" class="btn btn-success">Crear cancha          
+                </button>
+            </div>
+ 		</div>
+  </div>
+</template>

@@ -1,0 +1,16 @@
+<template name="crearCancha">
+  	<div class="container">
+  	{{#autoForm collection="cancha" id="crearCanchaForm" type="insert"}}
+  		<div>
+    		<p>
+    			Crear Cancha
+    		</p>  
+    	{{> afQuickField name='numeroDeCancha'}}
+    	{{> afQuickField name='luces'}}
+    	</div>
+    	<button type="submit" class="btn btn-primary">
+    		Crear
+    	</button>
+  		{{/autoForm}}
+  	</div>
+</template>
