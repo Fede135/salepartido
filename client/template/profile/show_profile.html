@@ -1,0 +1,12 @@
+<template name = "showProfile"> 
+  <div class="container">
+    <div class="row">{{user.profile.name}}</div>
+    <div class="row">{{age}}</div>
+    <div class="row">{{user.profile.country.locality}}, {{user.profile.country.province}}, {{user.profile.country.country}}</div>
+    <div class="row">{{today}}</div>
+    <div class="row">{{user.profile.birthday}}</div>
+  </div>
+  <div>
+    <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
+  </div>
+</template>

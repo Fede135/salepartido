@@ -1,6 +1,10 @@
 <!-- pagina de inicio de la aplicación -->
 <template name="index">
   <div class="container">
-    HAY QUE VER QUE PONER EN EL INICIO
+    {{#if currentUser}}
+      {{> showProfile}}
+    {{else}}
+    <a href="#">Bajate la aplicación</a>
+    {{/if}}
   </div>
 </template>

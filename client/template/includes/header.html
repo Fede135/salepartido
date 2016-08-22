@@ -14,15 +14,17 @@
       <ul class="nav navbar-nav navbar-right">
         {{> loginButtons}}
       </ul>
-      <ul class ="nav navbar-nav navbar-right">
-       <!-- {{#if currentUser}}     
-       <li><a href="{{pathFor 'editProfile'}}">Perfil</a></li>      Hicimos esto antes de utilizar la configuración de accounts-ui
-        {{/if}} -->
+      <ul>
         <li><a href="{{pathFor 'uploadImages'}}">IMAGEN</a></li>
-        </ul>
-        <ul class ="nav navbar-nav navbar-right">
+      </ul>
+      <ul>
         <li><a href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a></li>
       </ul> 
+      <!-- Probando gravatar
+        <ul class ="nav navbar-nav navbar-right">
+          {{> gravatar}}
+      </ul>
+       --> 
      </div>
   </nav>
 </template>

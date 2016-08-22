@@ -1,0 +1,19 @@
+<!-- Renderizado de formulario definido en el simpleSchema para editProfile -->
+ <template name="editProfile">
+     <div class="container">
+     {{#autoForm schema="Schema.users" id="editProfile" type="method" meteormethod="completeProfile"}}
+   <fieldset>
+     <legend>Editar Perfil</legend>
+    {{> afQuickField name="profile.birthday"}} 
+    {{> afQuickField name="profile.gender" options = "allowed"}}
+    {{> afQuickField name="profile.country.country"}}
+    {{> afQuickField name="profile.country.province"}}
+    {{> afQuickField name="profile.country.locality"}}
+    {{> afQuickField name="profile.country.neighborhood"}}
+    <div>
+       <button id="successEditProfile" type="submit" class="btn btn-success">Guardar</button>
+    </div>
+   </fieldset>
+   {{/autoForm}}
+   </div>
+</template>
