@@ -25,4 +25,4 @@ aldeed:autoform
 aldeed:simple-schema
 aldeed:collection2
 fullcalendar:fullcalendar
-gquemart:meteor-reactive-fullcalendar
+rajit:bootstrap3-datepicker
