@@ -11,9 +11,12 @@
     {{> afQuickField name="profile.country.locality"}}
     {{> afQuickField name="profile.country.neighborhood"}}
     <div>
-       <button id="successEditProfile" type="submit" class="btn btn-success">Guardar</button>
+       <button type="submit" class="btn btn-success">Guardar</button>
     </div>
    </fieldset>
    {{/autoForm}}
+   <a href="{{pathFor 'uploadImages'}}">{{> gravatar100px}}</a>
+   
+
    </div>
 </template>

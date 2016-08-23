@@ -2,11 +2,11 @@
 //Solicitamos Nombre y Apellido para obtener los mismos datos que se obtienen por defecto desde Facebook, asi utilizamos solo una plantilla de editar perfil y no pedir esos datos.
 Accounts.ui.config({ 
   requestPermissions: {
-    facebook: ['public_profile','user_birthday','email']
+    facebook: ['public_profile','email','user_friends']
   }, 
   extraSignupFields: [
     {
-    fieldName: 'firtsName',
+    fieldName: 'firstName',
     fieldLabel: 'Nombre',
     inputType: 'text',
     visible: true,
@@ -33,8 +33,24 @@ Accounts.ui.config({
           }
     }
   }]
+    
+  
+
 });
 
+
 //setear a castellano lo de logeo
- accountsUIBootstrap3.setLanguage('es');
+accountsUIBootstrap3.setLanguage('es');
+// como hago para mandar los 2 campos extras a la bd??!!
+ /*firstName = $('#firstName').val();
+ lastName = $('#lastName').val();
+
+
+Accounts.createUser(
+  {
+    firstName: firstName,
+    lastName: lastName
+  }, function(error){});
+*/
+
 
