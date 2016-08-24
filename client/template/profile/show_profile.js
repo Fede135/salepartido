@@ -15,7 +15,7 @@ Template.showProfile.helpers({
 		 var today = new Date();
 		 var diffMs = Math.abs (today.getTime() - birth.getTime());
 		 var diffDays = Math.ceil(diffMs / (1000*3600*24));
-		 var age = "Edad:" + Math.floor(diffDays / 361);
+		 var age = "Edad: " + Math.floor(diffDays / 361);
 		return age;
 	},
 

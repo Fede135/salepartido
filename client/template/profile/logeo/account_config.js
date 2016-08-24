@@ -31,26 +31,44 @@ Accounts.ui.config({
           } else {
            return true;
           }
-    }
-  }]
+    },
     
+  }]
   
-
 });
 
 
 //setear a castellano lo de logeo
 accountsUIBootstrap3.setLanguage('es');
 // como hago para mandar los 2 campos extras a la bd??!!
- /*firstName = $('#firstName').val();
- lastName = $('#lastName').val();
+ 
+var options = {
+      profile:{
+        firstName: $('input#firstName').val(),
+        lastName : $('input#lastName').val()       
+     }
+};
 
 
-Accounts.createUser(
-  {
-    firstName: firstName,
-    lastName: lastName
-  }, function(error){});
-*/
+
+   
+ Accounts.CreateUser({profile:{firstName: firstName, lastName: lastName} }, function(error){});
+
+
+ /* var fb = user.services.facebook;
+  if (! fb) {
+    user.profile.firstName = options.firstName;
+    user.profile.lastName = options.lastName;
+    user.profile.name = options.firstName +" "+ options.lastName ;
+    //user._id = Random.id();
+  } else {
+    user.profile.firstName = fb.firstName;
+    user.profile.lastName = fb.lastName;
+    user.profile.name = fb.profile.firstName +" "+ fb.profile.lastName ;
+  };
+  
+  return user;*/
+
+
 
 
