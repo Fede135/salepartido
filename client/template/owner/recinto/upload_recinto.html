@@ -1,0 +1,43 @@
+<template name="uploadRecinto">
+	<div class="container">
+		{{#autoForm collection="Recintos" id="uploadRecinto" type="insert" }}
+	<fieldset>
+      <legend><h2>Cargar Recinto</h2></legend>
+
+      	{{> afQuickField name='nombre_recinto'}}
+
+      	{{> afQuickField name='direccion_recinto'}}
+
+      	{{> afQuickField name='telefono_recinto.fijo'}} 
+
+      	{{> afQuickField name='telefono_recinto.celular_1'}}
+
+      	{{> afQuickField name='telefono_recinto.celular_2'}}
+
+      	{{> afQuickField name='servicios.estacionamiento' options="allowed" noselect=true}}
+
+      	{{> afQuickField name='servicios.baños' options="allowed" noselect=true}}
+
+      	{{> afQuickField name='servicios.camarines' options="allowed" noselect=true}}
+
+      	{{> afQuickField name='servicios.cantina' options="allowed" noselect=true}}
+
+      	<h3>Subir imagenes del recinto</h3>
+
+      	{{> afQuickField name='imagenes_id' type="cfs-file" collection="Images"}}
+     
+      
+    </fieldset>
+    <button type="submit" class="btn btn-primary">Cargar</button>
+  {{/autoForm}}
+  		<!--{{#each imagenes}}
+  			<img alt=”{{this.name}}” src=”{{this.url}}”>
+  		{{/each}}
+  	
+    <div>
+     {{imagenes}}
+       
+    </div>
+    --> 
+	</div>
+</template>
