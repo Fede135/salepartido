@@ -20,7 +20,9 @@
         <li><a href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a></li>
 
         {{> loginButtons}}
-        {{> gravatar}}
+        {{#if currentUser}}
+          {{> gravatar}}
+        {{/if}}  
       </ul> 
      
         

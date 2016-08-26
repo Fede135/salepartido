@@ -42,17 +42,27 @@ Accounts.ui.config({
 accountsUIBootstrap3.setLanguage('es');
 // como hago para mandar los 2 campos extras a la bd??!!
  
-var options = {
+/*var options = {
       profile:{
         firstName: $('input#firstName').val(),
         lastName : $('input#lastName').val()       
      }
-};
+};*/
 
 
+/*Accounts.onCreateUser(function(options, user){ 
+  var options = {
+      profile:{
+        firstName: $('input#firstName').val(),
+        lastName : $('input#lastName').val()       
+     }
+  };
+  console.log(firstName);
+  return options;
+});*/
 
    
- Accounts.CreateUser({profile:{firstName: firstName, lastName: lastName} }, function(error){});
+// Accounts.CreateUser({profile:{firstName: $('input#firstName').val(), lastName: ('input#lastName').val() } }, function(error){});
 
 
  /* var fb = user.services.facebook;
