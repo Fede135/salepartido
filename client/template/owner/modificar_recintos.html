@@ -1,0 +1,29 @@
+<template name="modificarRecinto">
+	<div class="container">
+		 <div class="navbar">
+            <h2 align="center">
+            Modificar recintos
+            </h2>
+            <h3>Actualmente cuenta con {{countRecintos}} recinto/s cargado/s.</h3>
+         </div> 
+         <br>
+		 
+		{{#each recinto}}
+			<div class="form-offline">
+            {{#autoForm collection="Recinto" doc=this id=updateFormName type="update" }}
+                    	<h4>Nombre del recinto</h4>
+                       {{> afFieldInput name='nombreRecinto'}}
+                        <h4>Dirección del recinto</h4>
+                        {{> afFieldInput name='direccion'}}
+                        <h4>Numeración de la calle</h4>
+                         {{> afFieldInput name='altura'}}
+                        <h4>Fecha de inaguración del recinto</h4>
+                         {{> afFieldInput name='fechaDeApertura'}}
+                        <br>                        
+                        <button type="submit" class="btn btn-success">Actualizar</button>                 
+            {{/autoForm}}
+            </div>
+        {{/each}}
+
+	</div>
+</template>
