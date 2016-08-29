@@ -13,11 +13,15 @@
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="nav navbar-nav navbar-right">
            
+          <!-- <li><a href="{{pathFor 'uploadImages'}}">IMAGEN</a></li> -->
       
-        <!-- <li><a href="{{pathFor 'uploadImages'}}">IMAGEN</a></li> -->
+        <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
       
+        <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a>
+
+        <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}" >Confirmar Partido</a>      
       
-        <li><a href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a></li>
+        <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
 
         {{> loginButtons}}
         {{#if currentUser}}

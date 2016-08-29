@@ -1,9 +1,12 @@
 <template name="modificarCancha">
 	<div class="container">
-		 <h2>Modificar canchas</h2>
-
-		 <h3>Actualmente el recinto cuenta con {{countCanchas}} canchas cargadas.</h3>
-		 <br>
+		 <div class="navbar">
+            <h2 align="center">
+            Modificar cancha
+            </h2>
+            <h3>Actualmente el recinto cuenta con {{countCanchas}} cancha/s cargada/s.</h3>
+         </div> 
+         <br>
 		 <!--
 		{{#each canchas}}
 		{{> quickForm collection="Canchas" doc=this id="modificarCancha" type="update"}}

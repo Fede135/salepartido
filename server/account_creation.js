@@ -8,7 +8,7 @@ Accounts.onCreateUser(function(options, user) {
 });
 
 */
-
+/*
  Accounts.onCreateUser(function (options, user) {
   var fb = user.services.facebook;
   if (! fb) {
@@ -24,3 +24,4 @@ Accounts.onCreateUser(function(options, user) {
   
   return user;
 });
+*/

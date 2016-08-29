@@ -1,15 +1,20 @@
 <template name="gestionRecinto">
 	<div class= "container">
-		<h2>Gestionar recinto</h2>
-		<br>
-		<h3>Crear una nueva cancha</h3>
-			<p>Para agregar una cancha al recinto click <a href="{{pathFor 'cargarCancha'}}">aqui</a>.</p>
-
-		<h3>Modificar una cancha</h3>
-			<p>Para modificar alguna cancha, click <a href="{{pathFor 'modificarCancha'}}">aqui</a>.</p>
-
-		<h3>Eliminar una cancha</h3>
-			<p>Para eliminar una cancha haga click <a href="{{pathFor 'eliminarCancha'}}">aqui</a>. </p>
-		
+		<div class="navbar">
+	  		<h2 align="center">
+			Gestionar recinto
+		  	</h2>
+    	</div> 
+		<div class="well">
+		  <div class="btn-group" role="group">
+    		<a href="{{pathFor 'cargarCancha'}}" type="button" class="btn btn-success">Agregar una cancha</a>
+  			</div>
+		  <div class="btn-group" role="group">
+    		<a href="{{pathFor 'modificarCancha'}}" type="button" class="btn btn-success">Modificar canchas</a>
+  		  </div>
+  		  <div class="btn-group" role="group">
+    		<a href="{{pathFor 'eliminarCancha'}}" type="button" class="btn btn-success">Eliminar canchas</a>
+  		  </div>
+  	    </div>
 	</div>
 </template>
