@@ -4,15 +4,15 @@ Template.deleteRecinto.helpers({
 	},
 
 	  onError: function () {
-      return function (error) { alert("BOO!"); console.log(error); };
+      return function (error) { alert("Se produjo un error"); console.log(error); };
     },
     onSuccess: function () {
-      return function (result) { alert("YAY!"); console.log(result); };
+      return function (result) { alert("Se ha eliminado correctamente"); console.log(result); };
     },
     beforeRemove: function () {
       return function (collection, id) {
         var doc = Recintos.findOne(id);
-        if (confirm('Realmente quiere eliminar la cancha numero  "' + doc.numero + '"?')) {
+        if (confirm('Realmente quiere eliminar el recinto  "' + doc.nombre_recinto + '"?')) {
           this.remove();
         }
       };
