@@ -15,14 +15,19 @@ Template.organizarPartido.onRendered(function () {
 });
 
 Template.organizarPartido.events({
-  
-        
+
+          
 });
 Template.organizarPartido.helpers({
-	canchas: function () {
+	
+  canchas: function () {
     return Canchas.find();
   },
+  
   recinto: function () {
     return Recinto.find();
   }
-  });
+
+  nombreRecinto: document.getElementsByName("getNombreRecinto")[0].value;
+
+});

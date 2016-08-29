@@ -7,6 +7,7 @@
     </div>  
 		<div class="form-group">
         <div class="well">        
+
               <div class="row">
                   
                  <div class="span5 col-md-5">
@@ -47,13 +48,13 @@
           <div class="input-group">
             <div class="input-group-btn">
               <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu" id="select">
                 {{#each recinto}}
-                <li>{{this.nombreRecinto}}</li>
+                <li href="#">{{this.nombreRecinto}}</li>
                 {{/each}}
               </ul>
             </div><!-- /btn-group -->
-            <input type="text" class="form-control" aria-label="...">
+            <input type="button" class="form-control" aria-label="..." value="{{this.nombreRecinto}}">
           </div>
           <br>
           <div>
@@ -70,7 +71,7 @@
                 {{/each}}
               </ul>
             </div><!-- /btn-group -->
-            <input type="text" class="form-control" aria-label="...">
+            <input type="text" class="form-control" aria-label="..." value="">
           </div>
                               
           <br>
