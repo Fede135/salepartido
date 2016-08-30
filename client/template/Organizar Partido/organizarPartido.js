@@ -9,13 +9,17 @@ Template.organizarPartido.onRendered(function () {
   this.$('#datetimepicker3').datetimepicker({
     locale: 'es',
     format:'H',
-    disabledTimeIntervals: [[moment({ h: 1 }), moment({ h: 9 })]],
+    disabledHours: [ 2 , 3 , 4 , 5 , 6 , 7 , 8 ],
     showClear: true,
   });
 });
 
 Template.organizarPartido.events({
 
+  'click [data-picker-handle]': function (event) {
+   var datetimepicker = $(event.currentTarget).data('pickerHandle');
+   $(datetimepicker).data('DateTimePicker').toggle();
+ }
           
 });
 Template.organizarPartido.helpers({
@@ -26,8 +30,9 @@ Template.organizarPartido.helpers({
   
   recinto: function () {
     return Recinto.find();
-  }
+  }/*,
 
-  nombreRecinto: document.getElementsByName("getNombreRecinto")[0].value;
-
+  nombreRecinto: function(){
+    return document.getElementsByName("getNombreRecinto")[0].value;
+  }*/
 });
