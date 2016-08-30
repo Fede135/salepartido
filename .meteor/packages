@@ -27,7 +27,6 @@ underscore
 audit-argument-checks
 check
 cfs:standard-packages
-cfs:filesystem
 autopublish
 insecure
 cfs:ui
@@ -37,6 +36,6 @@ jparker:gravatar
 sacha:spin
 
 cfs:autoform
-yogiben:autoform-file
 meteortoys:allthings
 dburles:google-maps
+cfs:gridfs
