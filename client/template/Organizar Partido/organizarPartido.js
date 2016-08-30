@@ -10,18 +10,18 @@ Template.organizarPartido.onRendered(function () {
     locale: 'es',
     format:'H',
     disabledHours: [ 2 , 3 , 4 , 5 , 6 , 7 , 8 ],
-    showClear: true,
+    showClear: true
   });
 });
 
 Template.organizarPartido.events({
-
   'click [data-picker-handle]': function (event) {
-   var datetimepicker = $(event.currentTarget).data('pickerHandle');
-   $(datetimepicker).data('DateTimePicker').toggle();
- }
-          
+    var datetimepicker = $(event.currentTarget).data('pickerHandle');
+
+    $(datetimepicker).data('DateTimePicker').toggle();
+  }
 });
+
 Template.organizarPartido.helpers({
 	
   canchas: function () {
@@ -30,9 +30,5 @@ Template.organizarPartido.helpers({
   
   recinto: function () {
     return Recinto.find();
-  }/*,
-
-  nombreRecinto: function(){
-    return document.getElementsByName("getNombreRecinto")[0].value;
-  }*/
+  }
 });
