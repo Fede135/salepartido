@@ -19,12 +19,14 @@ Template.showProfile.helpers({
 		return age;
 	},
 
-	/*today : function (){
-		return new Date(); 
-	},
 	ownProfile: function () {
 		return this.userId === Meteor.userId();
 	},
+	
+	/*today : function (){
+		return new Date(); 
+	},
+	
 	comments: function () {
 		return commentsForPlayers.find();
 	}*/
