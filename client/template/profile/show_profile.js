@@ -24,14 +24,18 @@ Template.showProfile.helpers({
     var age = diffDays && ("Edad: " + Math.floor(diffDays / 361));
 
     return age;
-  }
+  },
+
+  /*ownProfile: function () {
+    console.log("this.userId", this.userId, "Meteor.userId", Meteor.userId());
+    return this.userId === Meteor.userId();
+    
+  },*/
 
   /*today : function (){
     return new Date(); 
   },
-  ownProfile: function () {
-    return this.userId === Meteor.userId();
-  },
+  
   comments: function () {
     return commentsForPlayers.find();
   }*/
