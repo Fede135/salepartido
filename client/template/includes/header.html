@@ -14,6 +14,7 @@
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="nav navbar-nav navbar-right">
            
+          <!-- <li><a href="{{pathFor 'uploadImages'}}">IMAGEN</a></li> -->
       
         <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
       
@@ -23,14 +24,13 @@
       
         <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
       
-        {{> loginButtons}}
-    </ul> 
-      <!-- Probando gravatar
-        <ul class ="nav navbar-nav navbar-right">
+        {{> loginButtons}} 
+       
+
+        {{#if currentUser}}
           {{> gravatar}}
-      </ul>
-<<<<<<< HEAD
-       --> 
-     </div>   
+        {{/if}}  
+    </ul> 
+    </div> 
   </nav>
 </template>

@@ -35,5 +35,7 @@ aldeed:delete-button
 alanning:roles
 jparker:gravatar
 sacha:spin
-fullcalendar:fullcalendar
-rajit:bootstrap3-datepicker
+rzymek:moment-locale-es
+tsega:bootstrap3-datetimepicker
+momentjs:moment
+twbs:bootstrap

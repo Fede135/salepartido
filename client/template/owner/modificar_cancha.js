@@ -8,7 +8,7 @@ Template.modificarCancha.helpers({
 	},
 
 	tipoCancha : function(){
-		return ["Cesped Sintetico","Cesped Natural","Valdoza","Tierra"].map((al) => ({label: al, value: al}));
+		return ["Cesped Sintetico","Cesped Natural","Baldosa","Tierra"].map((al) => ({label: al, value: al}));
 	},
 
 	estadoCancha : function(){

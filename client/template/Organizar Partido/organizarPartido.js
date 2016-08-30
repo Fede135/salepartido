@@ -4,12 +4,40 @@ Template.organizarPartido.events({
 	},	
 	'click #seleccionarDia': function(event) {
 		Router.go('calendario');
-	},
-	'click #my_hidden_input': function(event) {
-		
-		$('#datepicker').datepicker();
-		$('#datepicker').on("changeDate", function() {
-    		$('#my_hidden_input').val($('#datepicker').datepicker('getFormattedDate'));
-		});
-	}	
+	}
+});
+
+Template.organizarPartido.onRendered(function () {
+  this.$('#datetimepicker').datetimepicker({
+    locale: 'es',
+    format: 'L',
+    minDate: moment(),
+    showClear: true
+  });
+
+  this.$('#datetimepicker3').datetimepicker({
+    locale: 'es',
+    format:'H',
+    disabledHours: [ 2 , 3 , 4 , 5 , 6 , 7 , 8 ],
+    showClear: true
+  });
+});
+
+Template.organizarPartido.events({
+  'click [data-picker-handle]': function (event) {
+    var datetimepicker = $(event.currentTarget).data('pickerHandle');
+
+    $(datetimepicker).data('DateTimePicker').toggle();
+  }
+});
+
+Template.organizarPartido.helpers({
+	
+  canchas: function () {
+    return Canchas.find();
+  },
+  
+  recinto: function () {
+    return Recinto.find();
+  }
 });
