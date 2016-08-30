@@ -19,11 +19,14 @@
       
         <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
       
+
         <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a>
 
         <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}" >Confirmar Partido</a>      
       
         <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
+
+        <a class="navbar-brand" href="{{pathFor 'pruebaCalificar'}}">CALIFICAR</a>
       
         {{> loginButtons}} 
        
@@ -35,7 +38,7 @@
     </div> 
 
     <!--    <li><a href="{{pathFor 'uploadImages'}}">IMAGEN</a></li> -->
-        <li><a href="{{pathFor 'pruebaCalificar'}}">CALIFICAR</a></li>
+       
       <!-- menu desplegable para GESTIONAR CANCHAS -->
  <!--       <li class ="dropdown-menu">
            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Gestionar Canchas <span class="caret"></span></a>
@@ -61,15 +64,17 @@
 
          <li><a href="{{pathFor 'uploadRecinto'}}">Cargar Recinto</a></li>
 
+
         {{> loginButtons}}
       </ul>--> 
+
+       
       <!-- Probando gravatar
         <ul class ="nav navbar-nav navbar-right">
           {{> gravatar}}
       </ul>
        --> 
      </div>
-     
-
   </nav>
+  
 </template>
