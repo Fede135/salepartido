@@ -8,4 +8,19 @@ AutoForm.addHooks(
         Router.go('/');
     }
   }
-})
+},
+/*['enterCommentsForPlayers'],
+ {
+    onSubmit: function(currentDoc) {
+      if(customHandler(currentDoc)){
+        var comment = (doc,{
+          fromUserId: Meteor.userId(),
+          commentToPlayer : doc.commentToPlayer,
+          date: new Date(),
+        });
+          var commentId = commentsForPlayers.insert(comment);
+          this.done();
+        }
+      }
+    }*/
+); 

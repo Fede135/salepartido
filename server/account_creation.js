@@ -9,7 +9,7 @@ Accounts.onCreateUser(function(options, user) {
 
 */
 
- Accounts.onCreateUser(function (options, user) {
+ /*Accounts.onCreateUser(function (options, user) {
   var fb = user.services.facebook;
   if (! fb) {
     user.profile.firstName = options.profile.firstName;
@@ -23,4 +23,4 @@ Accounts.onCreateUser(function(options, user) {
   };
   
   return user;
-});
+});*/

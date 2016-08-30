@@ -2,9 +2,9 @@
 <template name="index">
   <div class="container">
     {{#if currentUser}}
-      {{> showProfile}}
+      {{redirect}}
     {{else}}
-    <a href="#">Bajate la aplicación</a>
+     <a href="#">Bajate la aplicación</a>
     {{/if}}
   </div>
 </template>

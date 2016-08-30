@@ -1,0 +1,6 @@
+dudas semana 29 de agosto
+
+onCreate user,
+comentarios autoform,
+showComments
+metodo update editProfile

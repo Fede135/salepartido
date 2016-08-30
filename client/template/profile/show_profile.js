@@ -19,9 +19,15 @@ Template.showProfile.helpers({
 		return age;
 	},
 
-	today : function (){
+	/*today : function (){
 		return new Date(); 
 	},
+	ownProfile: function () {
+		return this.userId === Meteor.userId();
+	},
+	comments: function () {
+		return commentsForPlayers.find();
+	}*/
 
 });
 
