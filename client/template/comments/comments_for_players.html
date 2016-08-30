@@ -3,8 +3,8 @@
   <!--{{#autoForm schema=Schema.CommentsForPlayers id="commentsPlayers" type="method" meteormethod="sendComment"}}-->
   <fieldset>
     <legend>Comentarios</legend>
-    
       {{> afQuickField name="commentToPlayer" rows=5}}
+      {{> afFieldInput name="toUserId" value=_id}}
     <div>
       <button type="submit" class="btn btn-primary">Enviar</button>
     </div>
