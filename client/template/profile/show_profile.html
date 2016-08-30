@@ -6,7 +6,17 @@
    <!-- <div class="row">{{today}}</div>
     <div class="row">{{user.profile.birthday}}</div> -->
   </div>
-  <div>
+  <div class="container">
+    <!--{{#if ownProfile}}
+      <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
+    {{else}}
+      {{> enterCommentsForPlayers}}
+    {{/if}}-->
     <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
+    {{> enterCommentsForPlayers}}
+
+   <!--{{#each comments}}
+      {{> showCommentsPlayers}}
+    {{/each}}-->  
   </div>
 </template>
