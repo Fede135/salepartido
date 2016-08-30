@@ -1,6 +1,0 @@
-dudas primer semana de septiembre
-
-
-
-showComments
-metodo update editProfile
