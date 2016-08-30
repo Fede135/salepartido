@@ -27,7 +27,6 @@ underscore
 audit-argument-checks
 check
 cfs:standard-packages
-cfs:filesystem
 autopublish
 insecure
 cfs:ui
@@ -35,7 +34,15 @@ aldeed:delete-button
 alanning:roles
 jparker:gravatar
 sacha:spin
+
 rzymek:moment-locale-es
 tsega:bootstrap3-datetimepicker
 momentjs:moment
 twbs:bootstrap
+
+
+cfs:autoform
+meteortoys:allthings
+dburles:google-maps
+cfs:gridfs
+

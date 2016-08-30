@@ -12,7 +12,7 @@
       <div>
         {{#each images}} 
           <div>   
-            <img src="{{this.url store='images'}}" alt="Imagen :{{this.name }}" height="420" width="600" class="avatar">
+            <img src="{{this.url store='images'}}" alt="Imagen :{{this.name }}" height="420" width="600" class="img-responsive">
             <br>
             Eliminar {{this.name}}: 
             {{#FS.DeleteButton class="btn btn-danger btn-xs"}}Eliminar imagen{{/FS.DeleteButton}}
@@ -27,6 +27,8 @@
           <br>
         {{/each}}
        </div> 
+
+     
 	</div>
 
  </template>

@@ -1,6 +1,7 @@
 <!--Template que muestra la barra de navegador y el boton de logeo -->
 <template name="header">
   <nav class="navbar navbar-default" role="navigation">
+   <div class="container-fluid"> 
     <div class="navbar-header">
       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
         <span class="sr-only">Toggle navigation</span>
@@ -18,6 +19,7 @@
       
         <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
       
+<<<<<<< HEAD
         <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a>
 
         <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}" >Confirmar Partido</a>      
@@ -32,5 +34,43 @@
         {{/if}}  
     </ul> 
     </div> 
+
+    <!--    <li><a href="{{pathFor 'uploadImages'}}">IMAGEN</a></li> -->
+        <li><a href="{{pathFor 'pruebaCalificar'}}">CALIFICAR</a></li>
+      <!-- menu desplegable para GESTIONAR CANCHAS -->
+ <!--       <li class ="dropdown-menu">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">Gestionar Canchas <span class="caret"></span></a>
+           <ul class="dropdown-menu">
+              <li><a href="{{pathFor 'cargarCancha'}}">Cargar Cancha</a></li>
+              <li><a href="{{pathFor 'modificarCancha'}}">Actualizar Cancha</a></li>
+              <li><a href="{{pathFor 'eliminarCancha'}}">Eliminar Cancha</a></li>
+           </ul>
+        </li>
+  -->
+        <!-- menu desplegable para GESTIONAR RECINTOS -->
+   <!--     <li class ="dropdown-menu">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestionar Recintos <span class="caret"></span></a>
+           <ul class="dropdown-menu">
+              <li><a href="{{pathFor 'uploadRecinto'}}">Cargar Recinto</a></li>
+              <li><a href="{{pathFor 'updateRecinto'}}">Actualizar Recinto</a></li>
+              <li><a href="{{pathFor 'deleteRecinto'}}">Eliminar Recinto</a></li>
+           </ul>
+        </li>
+    -->
+<!--
+        <li><a href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a></li>
+
+         <li><a href="{{pathFor 'uploadRecinto'}}">Cargar Recinto</a></li>
+-->
+        {{> loginButtons}}
+      </ul> 
+      <!-- Probando gravatar
+        <ul class ="nav navbar-nav navbar-right">
+          {{> gravatar}}
+      </ul>
+       --> 
+     </div>
+   </div>  
+
   </nav>
 </template>
