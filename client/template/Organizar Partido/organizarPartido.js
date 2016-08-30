@@ -26,8 +26,9 @@ Template.organizarPartido.helpers({
   
   recinto: function () {
     return Recinto.find();
+  },
+
+  nombreRecinto: function () {
+    return document.getElementsByName("getNombreRecinto")[0].value;
   }
-
-  nombreRecinto: document.getElementsByName("getNombreRecinto")[0].value;
-
 });
