@@ -1,7 +1,8 @@
 Template.gravatar.helpers({
   url: function () {
     var user = Meteor.user();
-    return Gravatar.imageUrl(_.first(user.emails).address);
+    var grav = user.emails && Gravatar.imageUrl(_.first(user.emails).address);
+    return grav;
   }
 
 })

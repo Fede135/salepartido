@@ -5,7 +5,7 @@ AutoForm.addHooks(
     method: function (error, result) {
       if (! error)
         alert("Su perfil ha sido actualizado");
-        Router.go('/');
+        Router.go('/showProfile');
     }
   }
 },
