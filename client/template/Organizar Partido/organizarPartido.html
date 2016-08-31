@@ -45,13 +45,13 @@
               <div class="input-group">
                 <div class="input-group-btn">
                   <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
-                 <!--<ul class="dropdown-menu" id="select">
-                    {{#each recinto}}
-                    <li href="#">{{this.nombreRecinto}}</li>
+                 <ul class="dropdown-menu">
+                    {{#each recintos}}
+                    <li id="nombreRecinto">{{this.nombre_recinto}}</li>
                     {{/each}}
-                  </ul>-->
+                  </ul>
                 </div><!-- /btn-group -->
-                <input type="button" class="form-control" aria-label="..." value="{{this.nombreRecinto}}">
+                <input type="button" class="form-control" aria-label="..." name="bb" value="{{nomRecinto}}">
               </div>
               <br>
               <div>

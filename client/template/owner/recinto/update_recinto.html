@@ -1,47 +1,48 @@
 <template name="updateRecinto">
 	<div class="container">
-		<h2>Actualizar Recintos </h2>
-		<h3>Actualmente administra {{countRecintos}} recinto/s</h3>
+		<div class="well">
+                  <h2 align="center">Actualizar Recintos </h2>
+      		<h3>Actualmente administra {{countRecintos}} recinto/s</h3>
 
-		{{#each recintos}}
-			<div class="form-offline">
-            {{#autoForm collection="Recintos" doc=this id=updateFormName type="update" }}
+      		{{#each recintos}}
+      			<div class="form-offline">
+                  {{#autoForm collection="Recintos" doc=this id=updateFormName type="update" }}
 
-                    	<h4>Nombre recinto</h4>
-                        {{> afFieldInput name='nombre_recinto'}}
+                          	<h4>Nombre recinto</h4>
+                              {{> afFieldInput name='nombre_recinto'}}
 
-                        <h4>Direccion</h4>
-                        {{> afFieldInput name='direccion_recinto'}}
+                              <h4>Direccion</h4>
+                              {{> afFieldInput name='direccion_recinto'}}
 
-                        <h4>Telefono fijo</h4>
-                        {{> afFieldInput name='telefono_recinto.fijo'}}
+                              <h4>Telefono fijo</h4>
+                              {{> afFieldInput name='telefono_recinto.numero_fijo'}}
 
-                        <h4>Telefono celular 1</h4>
-                        {{> afFieldInput name='telefono_recinto.celular_1'}}
+                              <h4>Telefono celular 1</h4>
+                              {{> afFieldInput name='telefono_recinto.celular_1'}}
 
-                        <h4>Telefono celular 2</h4>
-                        {{> afFieldInput name='telefono_recinto.celular_2'}}
+                              <h4>Telefono celular 2</h4>
+                              {{> afFieldInput name='telefono_recinto.celular_2'}}
 
-                        <h4>Estacionamiento</h4>
-                        {{> afFieldInput name='servicios.estacionamiento' options=servEstacionamiento}}
+                              <h4>Estacionamiento</h4>
+                              {{> afFieldInput name='servicios.estacionamiento' options=servEstacionamiento}}
 
-                        <h4>Baños</h4>
-                        {{> afFieldInput name='servicios.baños' options=servBaños}}
+                              <h4>Baños</h4>
+                              {{> afFieldInput name='servicios.baños' options=servBaños}}
 
-                        <h4>Camarines</h4>
-                        {{> afFieldInput name='servicios.camarines' options=servCamarines}}
+                              <h4>Camarines</h4>
+                              {{> afFieldInput name='servicios.camarines' options=servCamarines}}
 
-                        <h4>Cantina</h4>
-                        {{> afFieldInput name='servicios.cantina' options=servCantina}}
+                              <h4>Cantina</h4>
+                              {{> afFieldInput name='servicios.cantina' options=servCantina}}
 
-                       
+                             
 
-                        <br>                        
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        
-                    
-                {{/autoForm}}
+                              <br>                        
+                              <button type="submit" class="btn btn-primary">Actualizar</button>
+                              
+                  {{/autoForm}}
             </div>
             {{/each}}
+            </div>
 	</div>
 </template>

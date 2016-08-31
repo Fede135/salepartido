@@ -1,12 +1,3 @@
-Template.organizarPartido.events({
-	'click #crearCancha': function(event) {
-		Router.go('crearCancha');
-	},	
-	'click #seleccionarDia': function(event) {
-		Router.go('calendario');
-	}
-});
-
 Template.organizarPartido.onRendered(function () {
   this.$('#datetimepicker').datetimepicker({
     locale: 'es',
@@ -28,6 +19,10 @@ Template.organizarPartido.events({
     var datetimepicker = $(event.currentTarget).data('pickerHandle');
 
     $(datetimepicker).data('DateTimePicker').toggle();
+  },
+
+  'click aa': function(event){
+    var nomRecinto = document.getElementById("nombreRecinto");
   }
 });
 
