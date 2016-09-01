@@ -33,9 +33,9 @@ Template.showProfile.helpers({
 
   /*today : function (){
     return new Date(); 
-  },
+  },*/
   
-  comments: function () {
+  /*comments: function () {
     return commentsForPlayers.find();
   }*/
 
