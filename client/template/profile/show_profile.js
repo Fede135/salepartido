@@ -26,11 +26,10 @@ Template.showProfile.helpers({
     return age;
   },
 
-  /*ownProfile: function () {
-    console.log("this.userId", this.userId, "Meteor.userId", Meteor.userId());
-    return this.userId === Meteor.userId();
+  ownProfile: function () {
+    return this._id === Meteor.userId();
     
-  },*/
+  },
 
   /*today : function (){
     return new Date(); 
