@@ -35,7 +35,7 @@
                           </div>
                       </div>
                   </div>  
-              </div>           
+              </div>   
               <br>
               <div>
                   <label class="control-label" for="title">Selecciona un recinto
@@ -43,34 +43,16 @@
               </div>
               <br>
               <div class="input-group">
-                <div class="input-group-btn">
+                <div class="input-group-btn" id="obtenerNombre">
                   <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
-                 <!--<ul class="dropdown-menu" id="select">
+                 <ul class="dropdown-menu">
                     {{#each recinto}}
-                    <li href="#">{{this.nombreRecinto}}</li>
+                    <li>{{this.nombre_recinto}}</li>
                     {{/each}}
-                  </ul>-->
-                </div><!-- /btn-group -->
-                <input type="button" class="form-control" aria-label="..." value="{{this.nombreRecinto}}">
-              </div>
-              <br>
-              <div>
-                  <label class="control-label" for="title">Selecciona una cancha
-                  </label>
-              </div>
-              <br>
-              <div class="input-group">
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar una cancha <span class="caret"></span></button>
-                  <!--<ul class="dropdown-menu">
-                    {{#each canchas}}
-                    <li>{{this.numero}}</li>
-                    {{/each}}
-                  </ul>-->
-                </div><!-- /btn-group -->
-                <input type="text" class="form-control" aria-label="..." value="">
-              </div>
-                              
+                  </ul>
+                </div>
+                <input type="text" class="form-control" aria-label="..." id = "nombreRecinto" value="">
+              </div>                      
               <br>
                 <div>
                    <label class="control-label" for="title">Invitar amigos

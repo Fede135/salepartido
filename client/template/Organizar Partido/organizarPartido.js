@@ -33,11 +33,7 @@ Template.organizarPartido.events({
 
 Template.organizarPartido.helpers({
 	
-  canchas: function () {
-    return Canchas.find();
-  },
-  
   recinto: function () {
-    return Recinto.find();
+    return Recintos.find();
   }
 });
