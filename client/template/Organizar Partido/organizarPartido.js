@@ -19,10 +19,9 @@ Template.organizarPartido.events({
     var datetimepicker = $(event.currentTarget).data('pickerHandle');
 
     $(datetimepicker).data('DateTimePicker').toggle();
-  },
-
-  'click aa': function(event){
-    var nomRecinto = document.getElementById("nombreRecinto");
+  }, 
+    'click obtenerNombre': function(event) {
+    nombreRecinto= this.nombre_recinto;
   }
 });
 
@@ -33,6 +32,6 @@ Template.organizarPartido.helpers({
   },
   
   recinto: function () {
-    return Recinto.find();
+    return Recintos.find();
   }
 });

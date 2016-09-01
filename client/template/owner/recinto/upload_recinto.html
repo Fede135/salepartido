@@ -9,6 +9,8 @@
 
           	{{> afQuickField name='direccion_recinto'}}
 
+            {{> afQuickField name='altura_recinto'}}
+
           	{{> afQuickField name='telefono_recinto.numero_fijo'}} 
 
           	{{> afQuickField name='telefono_recinto.celular_1'}}
@@ -33,7 +35,7 @@
             
             {{> afQuickField name='imagen4_id' }}
 
-            <h3>Cargar canchas del recinto</h3>
+          <!--  <h3>Cargar canchas del recinto</h3>
             {{> afQuickField name='canchas_recinto.numero' }}
 
             {{> afQuickField name='canchas_recinto.jugadores.cantidad_de_jugadores' options="allowed" noselect=true}} 
@@ -41,7 +43,7 @@
             {{> afQuickField name='canchas_recinto.tipo_cancha.tipo_de_cancha' options="allowed" noselect=true}}
 
             {{> afQuickField name='canchas_recinto.estado_cancha.estado_de_cancha' options="allowed" noselect=true}}
-          
+          -->
         </fieldset>
         <button type="submit" class="btn btn-primary">Cargar</button>
       {{/autoForm}}
