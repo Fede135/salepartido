@@ -1,6 +1,10 @@
-/*Template.showCommentsPlayers.helpers({
-  comment: function() { 
-    var onecommment = CommentsForPlayers.findOne();
-    return onecomment.commentsToPlayer;
+Template.showCommentsPlayers.helpers({
+  
+  /*comments: function () {
+    return CommentsForPlayers.find();
+  },*/
+  comment: function() {    
+    return CommentsForPlayers.findOne().commentToPlayer;
   }
-});*/
+});
+
