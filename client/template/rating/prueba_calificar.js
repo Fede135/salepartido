@@ -2,10 +2,34 @@ Template.pruebaCalificar.events({
   'click .reset': function() {
     $('#rating').trigger('reset');
   },
+  'click #estrella1': function() {
+    var calificacion =  1;
+    console.log(calificacion);
+  },
 
-  'click .rating': function() {
-  	var rating = $('#rating').data('userrating');
-  }
+  'click #estrella2': function() {
+    var calificacion =  2;
+    console.log(calificacion);
+  },
+
+  'click #estrella3': function() {
+    var calificacion =  3;
+    console.log(calificacion);
+  },
+
+  'click #estrella4': function() {
+    var calificacion =  4;
+    console.log(calificacion);
+  },
+
+  'click #estrella5': function() {
+    var calificacion =  5;
+    console.log(calificacion);
+  },
+  'click #rating': function(){
+    var rating = $('#rating').data('userrating');
+    console.log(rating);
+  },
 
 });
 
@@ -14,12 +38,3 @@ Template.pruebaCalificar.events({
 
 
 
-
-
-Template.pruebaCalificar.helpers({
-
-	rati: function(){
-		
-		return rating;
-	},
-});

@@ -1,1 +1,11 @@
 /* CSS declarations go here */
+
+
+.estrella .current-rating {
+  color: #4f4658;
+}
+
+
+.estrella .active {
+  color: #776884;
+}
