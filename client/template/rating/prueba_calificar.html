@@ -1,8 +1,9 @@
 <template name="pruebaCalificar">
 	<div class="survey-builder container">
-      <h2>Bootstrap rating</h2>
+      
       <hr/>
-      <h3>Default rating</h3>
+      <h3>Rating</h3>
+      <input type="hidden" class="rating"/>
       <span style = "cursor:default;">
       	<div class="rating-symbol" style="display: inline-block; position: relative;">
       		<div class="rating-symbol-backround glyphicon glyphicon-star-empty" style="visibility: hidden;">
@@ -25,9 +26,9 @@
 
       		<div class="rating-symbol-foreground" style="display: inline-block; position: absolute;overflow: hidden;left: 0px;right: 0px;width: auto;">
 
-      		<span class="glyphicon glyphicon-star" aria-hidden="true">
-      			
-      		</span>
+            		<span class="glyphicon glyphicon-star" aria-hidden="true">
+            			
+            		</span>
 
       		</div>
       		</div>
@@ -38,9 +39,9 @@
 
       		<div class="rating-symbol-foreground" style="display: inline-block; position: absolute;overflow: hidden;left: 0px;right: 0px;width: auto;">
 
-      		<span class="glyphicon glyphicon-star" aria-hidden="true">
+      		    <span class="glyphicon glyphicon-star" aria-hidden="true">
       			
-      		</span>
+      		    </span>
 
       		</div>
       		</div>
@@ -51,9 +52,9 @@
 
       		<div class="rating-symbol-foreground" style="display: inline-block; position: absolute;overflow: hidden;left: 0px;right: 0px;width: auto;">
 
-      		<span class="glyphicon glyphicon-star" aria-hidden="true">
+      		    <span class="glyphicon glyphicon-star" aria-hidden="true">
       			
-      		</span>
+      		    </span>
 
       		</div>
       		</div>
@@ -64,9 +65,9 @@
 
       		<div class="rating-symbol-foreground" style="display: inline-block; position: absolute;overflow: hidden;left: 0px;right: 0px;width: auto;">
 
-      		<span class="glyphicon glyphicon-star" aria-hidden="true">
+      		    <span class="glyphicon glyphicon-star" aria-hidden="true">
       			
-      		</span>
+      		    </span>
 
       		</div>
       		</div>
@@ -77,19 +78,30 @@
 
       		<div class="rating-symbol-foreground" style="display: inline-block; position: absolute;overflow: hidden;left: 0px;right: 0px;width: auto;">
 
-      		<span class="glyphicon glyphicon-star" aria-hidden="true">
+      		    <span class="glyphicon glyphicon-star" aria-hidden="true">
       			
-      		</span>
+      		    </span>
 
       		</div>
       		</div>
-      		</span>
+      </span>
  			
       		<!-- probandooooooooooooooooooooooooooo -->
 
-      		
+       <div style="padding:10px">
+      <div>
+            default mutable large 
+      </div>                             
+                      
+           {{> starsRating id='rating' class ="estrella" mutable=true size='lg'}}        
+      
+      {{rati}}
+          <button class="reset">reset</button>
+      </div>
+      
+  
+		
  
-    </div>
-
-     
+    
+  </div>
 </template>

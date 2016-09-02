@@ -38,6 +38,6 @@ Template.organizarPartido.helpers({
   },
   
   recinto: function () {
-    return Recinto.find();
+    return Recintos.find();
   }
 });
