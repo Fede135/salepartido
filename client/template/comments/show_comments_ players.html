@@ -1,5 +1,8 @@
 <template name="showCommentsPlayers">
-  <div class="container">
-     {{comment}}
+  <div class="container">     
+      {{#each comments}}
+        <p>{{this.commentToPlayer}}</p>
+      {{/each}}  
+     
   </div>    
 </template>
