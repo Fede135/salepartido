@@ -3,7 +3,7 @@ Template.organizarPartido.onRendered(function () {
     locale: 'es',
     format: 'L',
     minDate: moment(),
-    showClear: true
+    showClear: true,
   });
 
   this.$('#datetimepicker3').datetimepicker({
@@ -16,21 +16,29 @@ Template.organizarPartido.onRendered(function () {
 
 Template.organizarPartido.events({
   'click [data-picker-handle]': function (event) {
-    var datetimepicker = $(event.currentTarget).data('pickerHandle');
 
+    var datetimepicker = $(event.currentTarget).data('pickerHandle');   
     $(datetimepicker).data('DateTimePicker').toggle();
+
   },
+
   'click [data-for-recinto]': function(event){
+    
     var $item = $(event.currentTarget);
     var $target = $($item.data('forRecinto'));
-
-    $target.val($item.text());
+    
+    x = $item.text()
+    /*console.log(x);*/
+    
+    $target.val($item.text());        
+    
   },
+
   'click [data-for-cancha]': function(event){
     var $item = $(event.currentTarget);
     var $target = $($item.data('forCancha'));
 
-    $target.val($item.text());
+    $target.val($item.text());    
   }
 });
 
@@ -43,5 +51,4 @@ Template.organizarPartido.helpers({
   cancha: function () {
     return Canchas.find();
   }
-
 });
