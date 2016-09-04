@@ -2,8 +2,9 @@
 	
 	<div class = "container">		
 	 <h2>Recintos cargados</h2>
-   {{idRecinto}}
+   
    {{#each recinto}}
+    {{this._id}}
 
     <li>{{this.nombre_recinto}}</li>
 
@@ -11,7 +12,7 @@
     <fieldset>
       <legend><h2>Crear cancha</h2></legend>
 
-      {{> afQuickField name='recintoId' value= '{{this._id}}'}}
+      {{> afQuickField name='recintoId' value= _id }}
 
       {{> afQuickField name='numero' style="color: orange" label-style="color: green"}}
 
