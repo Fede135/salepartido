@@ -2,18 +2,16 @@
 	
 	<div class = "container">		
 	 <h2>Recintos cargados</h2>
+   {{idRecinto}}
    {{#each recinto}}
 
     <li>{{this.nombre_recinto}}</li>
 
-   {{/each}}
-
-	<!--
-	{{> quickForm collection="Canchas" id="cargarCancha" type="insert"}}
-	-->	
-  {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
+    {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
     <fieldset>
       <legend><h2>Crear cancha</h2></legend>
+
+      {{> afQuickField name='recintoId' value= '{{this._id}}'}}
 
       {{> afQuickField name='numero' style="color: orange" label-style="color: green"}}
 
@@ -28,6 +26,13 @@
     </fieldset>
     <button type="submit" class="btn btn-success">Crear</button>
   {{/autoForm}}
+
+   {{/each}}
+
+	<!--
+	{{> quickForm collection="Canchas" id="cargarCancha" type="insert"}}
+	-->	
+  
 
 	</div>
 

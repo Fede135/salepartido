@@ -1,7 +1,14 @@
 Template.cargarCancha.helpers({
 	recinto: function () {
-		if (Meteor.userId() === this.userId()) {
-			return Recintos.find();
+		if (this._id === Recintos.ownerId) {
+			return Recintos.find({ownerId: Meteor.userId()});
 		}
-	}
+	},
+
+	idRecinto : function(){
+		var id = Recintos.find({ownerId: Meteor.userId()});
+		return id._id;
+	},
 });
+
+ 
