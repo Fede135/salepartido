@@ -1,6 +1,6 @@
 Template.modificarCancha.helpers({
 	canchas: function () {
-		return Canchas.find();
+		return Canchas.find({recintoId:'PeJhxKQJasBZtiTPs'});
 	},
 
 	cantJugadores: function(){
@@ -22,4 +22,13 @@ Template.modificarCancha.helpers({
 	countCanchas: function (){
 		return Canchas.find().count();
 	},
+
+	recinto: function () {
+		if (this._id === Recintos.ownerId) {
+			recintoz = Recintos.find({ownerId: Meteor.userId()})
+			return recintoz;
+		}
+	},
 });
+
+//mostrar canchas que le pertenecen al recinto, del usuario logeado

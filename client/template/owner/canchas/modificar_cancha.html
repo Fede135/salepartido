@@ -12,6 +12,8 @@
 		{{> quickForm collection="Canchas" doc=this id="modificarCancha" type="update"}}
 		{{/each}}
 		-->
+        {{#each recinto}}
+        {{this.nombre_recinto}}
 		{{#each canchas}}
 			<div class="form-offline">
             {{#autoForm collection="Canchas" doc=this id=updateFormName type="update" }}
@@ -32,5 +34,7 @@
                 {{/autoForm}}
             </div>
             {{/each}}
+            {{/each}}
+
 	</div>
 </template>

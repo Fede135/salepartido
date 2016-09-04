@@ -4,31 +4,17 @@
 	 <h2>Recintos cargados</h2>
    
    {{#each recinto}}
-    {{this._id}}
+   ID RECINTO : {{this._id}}
 
     <li>{{this.nombre_recinto}}</li>
 
-    {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
-    <fieldset>
-      <legend><h2>Crear cancha</h2></legend>
+    <h3>Canchas del recinto: {{countCanchas}}</h3>
+      {{> uploadCancha}}
 
-      {{> afQuickField name='recintoId' value= _id }}
-
-      {{> afQuickField name='numero' style="color: orange" label-style="color: green"}}
-
-      {{> afQuickField name='jugadores.cantidad_de_jugadores' options="allowed" noselect=true}} 
-
-      {{> afQuickField name='tipo_cancha.tipo_de_cancha' options="allowed" noselect=true}}
-
-      {{> afQuickField name='estado_cancha.estado_de_cancha' options="allowed" noselect=true}}
-
-     
-      {{> afQuickField name='descripcion' rows=3}}
-    </fieldset>
-    <button type="submit" class="btn btn-success">Crear</button>
-  {{/autoForm}}
-
+      
    {{/each}}
+
+
 
 	<!--
 	{{> quickForm collection="Canchas" id="cargarCancha" type="insert"}}
