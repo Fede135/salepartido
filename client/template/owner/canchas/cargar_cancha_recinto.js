@@ -8,16 +8,16 @@ Template.cargarCancha.helpers({
 
 		
 		
-});
 /*
+
 	countCanchas: function(){
-		recintoz = Recintos.find({ownerId: Meteor.userId()})
-			return Canchas.find({recintoId : recintoz._id}).count();
+		count = Canchas.find({recintoId : recintoz._id}).count();
+			return count
 	}
-	
-
-no puedo hacer q me busque las canchas con el recintoId que yo quiero..
-
 */
+});	
+
+//no puedo hacer q me busque las canchas con el recintoId que yo quiero..
+
 
  
