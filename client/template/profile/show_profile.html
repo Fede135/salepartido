@@ -1,21 +1,16 @@
 <template name = "showProfile"> 
-  <div class="container">
-    <div class="row">{{user.profile.name}}</div>
-    <div class="row">{{age}}</div>
-    <div class="row">{{place}}</div>
-   <!-- <div class="row">{{today}}</div>
-    <div class="row">{{user.profile.birthday}}</div> -->
-  </div>
-  <div class="container">
+    <div class="container">
+      <div class="row">{{user.profile.name}}</div>
+      <div class="row">{{age}}</div>
+      <div class="row">{{place}}</div>
     {{#if ownProfile}}
       <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
     {{else}}
       {{> enterCommentsForPlayers}}
     {{/if}}
     
-   {{> showCommentsPlayers}}
-   <!--{{#each comments}}
-      {{this.commentToPlayer}}
-    {{/each}}--> 
+    {{> showCommentsPlayers}}
+    
+   
   </div>
 </template>

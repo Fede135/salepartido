@@ -1,10 +1,10 @@
 Template.showProfile.helpers({
   user : function(){
-    return Meteor.user();
+    return Meteor.users.findOne({_id: this._id});
   },
 
   place : function() {
-    var user = Meteor.user();
+    var user = Meteor.users.findOne({_id: this._id});
     var profile = user && user.profile;
     var locality = profile && profile.country && profile.country.locality;
     var province = profile && profile.country && profile.country.province;
@@ -15,7 +15,7 @@ Template.showProfile.helpers({
   },
 
   age : function(){
-    var user = Meteor.user();
+    var user = Meteor.users.findOne({_id: this._id});
     var profile = user && user.profile;
     var birth = profile && profile.birthday;
     var today = new Date();
@@ -30,6 +30,7 @@ Template.showProfile.helpers({
     return this._id === Meteor.userId();
     
   },
+
 
   /*today : function (){
     return new Date(); 
