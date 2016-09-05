@@ -2,21 +2,23 @@
 	
 	<div class = "container">		
 	 <h2>Recintos cargados</h2>
+    	{{#each recinto}}
+   <!--  
+   para mi-->
+   			ID RECINTO : {{this._id}}
+
+    		<li><h2>{{this.nombre_recinto}}</h2></li>
+
+    		<h3>Canchas del recinto: {{countCanchas}}</h3>
+      		
+      		{{> uploadCancha}}
+      	{{/each}} 
    
-   {{#each recinto}}
-   ID RECINTO : {{this._id}}
-
-    <li><h2>{{this.nombre_recinto}}</h2></li>
-
-    <h3>Canchas del recinto: {{countCanchas}}</h3>
-      {{> uploadCancha}}
-
-      
-   {{/each}}
 
 
 
 	<!--
+	
 	{{> quickForm collection="Canchas" id="cargarCancha" type="insert"}}
 	-->	
   

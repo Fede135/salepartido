@@ -1,12 +1,10 @@
 Template.modificarCancha.helpers({
 
 	recinto: function () {
+		recinto = Recintos.findOne({ownerId: Meteor.userId()});
+			p = recinto._id;
+			return recinto;
 		
-		if (this._id === Recintos.ownerId) {
-			recintoz = Recintos.findOne({ownerId: Meteor.userId()});
-			p = recintoz._id;
-			return recintoz;
-		}
 	},
 
 	canchas: function () {
