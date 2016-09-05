@@ -116,17 +116,17 @@
                               <h4 class="modal-title" id="myModalLabel">Reserva</h4>
                           </div>
                           <div class="modal-body">
-                          {{#autoForm collection="Reserva" id="cargarReserva" type="insert"}}
+                          {{#autoForm collection="Reserva" id="uploadReserva" type="insert" }}
                           <fieldset>
                           <legend><h2>Solicitud de reserva</h2></legend>                          
        
-                          {{> afQuickField type="button" class="form-control" id='nomRecinto' name='nom_recinto' noselect=true}}
-                          
-                          {{> afQuickField type="button" class="form-control" id='numCancha' name='num_cancha' noselect=true}}
-                          
-                          {{> afQuickField type="button" class="form-control" id='idHora' name='hora_de_juego' noselect=true}}
-                          
-                          {{> afQuickField type="button" class="form-control" id='horaJuego' name='fecha_de_juego' noselect=true}}
+                          {{> afQuickField name='nom_recinto'}}
+
+                          {{> afQuickField name='num_cancha'}}
+
+                          {{> afQuickField name='hora_de_juego'}}
+
+                          {{> afQuickField name='fecha_de_juego'}}
                                                  
                           </fieldset>                         
                           
