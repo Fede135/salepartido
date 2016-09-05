@@ -15,7 +15,7 @@
                      </label>
                       <br>
                       <div class='input-group date'>
-                          <input type="button" class="form-control" id="datetimepicker"  value="" />
+                          <input type="button" name="datetimepicker" class="form-control" id="datetimepicker"  value="" />
                              <span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
                                   <i class="glyphicon glyphicon-calendar"></i>
                              </span>
@@ -28,7 +28,7 @@
                       <br>
                       <div class="form-group">
                           <div class='input-group date'>
-                            <input type='button' class="form-control" id='datetimepicker3' value="" />
+                            <input type='button' name="datetimepicker3" class="form-control" id='datetimepicker3' value="" />
                             <span class="input-group-addon" data-picker-handle="#datetimepicker3">
                             <i class="glyphicon glyphicon-time"></i>
                             </span>
@@ -56,7 +56,7 @@
                     
                               </ul>
                           </div>
-                          <input type="button" class="form-control" aria-label="..." id = "nombreRecinto" value="">
+                          <input type="button" name="recinto" class="form-control" aria-label="..." id = "nombreRecinto" value="">
                       </div>
                   </div>
                   <div class="span5 col-md-1">
@@ -78,7 +78,7 @@
                               {{/each}}    
                               </ul>
                           </div>                
-                          <input type="button" class="form-control" aria-label="..." id = "nombreCancha" value="">
+                          <input type="button" name="cancha" class="form-control" aria-label="..." id = "nombreCancha" value="">
                       </div>
                   </div> 
               </div>                    
@@ -94,50 +94,50 @@
               </div>     
               <br>
               <div class="controls">
-                  <input name="title" id="title" type="text" value="{{title}}" placeholder="Lista de amigos" class="form-control"/>
+                  <input name="title" id="title" type="text" value="" placeholder="Lista de amigos" class="form-control"/>
               <br>
               </div>
               <div>
                   <button type="button" class="btn btn-success">¿Querés que algún amigo pueda agregar a sus amigos?       
                   </button>
               </div>
-              <br>              
-
+              <br>  
                <!-- Button trigger reserva -->
-              <button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
+              <button type="button" id="cargarReserva" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
                     Crear reserva y enviar notificacion
               </button>
-
-              <!-- Modal -->
+              
+              
               <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                   <div class="modal-dialog" role="document">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                              <button id="cargarReserva" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                               <h4 class="modal-title" id="myModalLabel">Reserva</h4>
                           </div>
                           <div class="modal-body">
-                          {{#autoForm collection="Reserva" id="cargarReserva" type="update"}}
+                          {{#autoForm collection="Reserva" id="cargarReserva" type="insert"}}
                           <fieldset>
                           <legend><h2>Solicitud de reserva</h2></legend>                          
+       
+                          {{> afQuickField type="button" class="form-control" id='nomRecinto' name='nom_recinto' noselect=true}}
                           
-                          {{> afQuickField type="button" class="form-control" name='nom_recinto'}}                          
+                          {{> afQuickField type="button" class="form-control" id='numCancha' name='num_cancha' noselect=true}}
                           
-                          {{> afQuickField type="button" class="form-control" name='num_cancha'}}                           
+                          {{> afQuickField type="button" class="form-control" id='idHora' name='hora_de_juego' noselect=true}}
                           
-                          {{> afQuickField type="button" class="form-control" name='hora_de_juego'}}                          
+                          {{> afQuickField type="button" class="form-control" id='horaJuego' name='fecha_de_juego' noselect=true}}
+                                                 
+                          </fieldset>                         
                           
-                          {{> afQuickField type="button" class="form-control" name='fecha_de_juego'}}
-                      
-                          </fieldset>
-    
-                          {{/autoForm}}
                           
-                          </div>
                           <div class="modal-footer">
                           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
                           <button type="submit" class="btn btn-success">Realizar reserva</button>
                           </div>
+                          {{/autoForm}}
+                          </div>
+                         
                       </div>
                 </div>
               </div>

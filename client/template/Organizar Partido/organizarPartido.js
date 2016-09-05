@@ -14,6 +14,7 @@ Template.organizarPartido.onRendered(function () {
   });
 });
 
+
 Template.organizarPartido.events({
   'click [data-picker-handle]': function (event) {
 
@@ -26,9 +27,9 @@ Template.organizarPartido.events({
     
     var $item = $(event.currentTarget);
     var $target = $($item.data('forRecinto'));
-    
+    /*
     x = $item.text()
-    /*console.log(x);*/
+    console.log(x);*/
     
     $target.val($item.text());        
     
@@ -39,7 +40,14 @@ Template.organizarPartido.events({
     var $target = $($item.data('forCancha'));
 
     $target.val($item.text());    
+  },
+
+  'click #cargarReserva': function(event){
+
+  nomRecinto = $('input:button[name=recinto]').val();
+    
   }
+  
 });
 
 Template.organizarPartido.helpers({
@@ -50,5 +58,17 @@ Template.organizarPartido.helpers({
 
   cancha: function () {
     return Canchas.find();
-  }
+  }/*,
+    xx: function(){
+    nom_recinto.$('input:button[name=recinto]').val());
+    num_cancha.$('input:button[name=cancha]').val());
+    hora_de_juego.$('input:button[name=datetimepicker3]').val());
+    fecha_de_juego.$('input:button[name=datetimepicker]').val());
+  }*/
 });
+/*
+$('input:button[name=datetimepicker]').val());
+$('input:button[name=datetimepicker3]').val());
+$('input:button[name=recinto]').val());
+$('input:button[name=cancha]').val());
+*/
