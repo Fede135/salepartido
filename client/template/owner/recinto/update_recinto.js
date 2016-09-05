@@ -1,6 +1,6 @@
 Template.updateRecinto.helpers({
 	recintos: function () {
-		return Recintos.find();
+		return Recintos.find({ownerId: Meteor.userId()});
 	},
 
 	servEstacionamiento: function(){
@@ -24,6 +24,12 @@ Template.updateRecinto.helpers({
         },
 
 	countRecintos: function (){
-		return Recintos.find().count();
+		return Recintos.find({ownerId: Meteor.userId()}).count();
 	},
+
+	onSuccess: function () {
+      return function (result) { 
+      	alert("Recinto actualizado"); console.log(result);
+      	 };
+      },
 });
