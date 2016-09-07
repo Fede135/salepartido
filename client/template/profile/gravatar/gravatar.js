@@ -4,8 +4,9 @@ Template.gravatar.helpers({
     if (! user.emails){
       var grav = Gravatar.imageUrl("salepartido2016@gmail.com");
     } else {
-      var grav = Gravatar.imageUrl(_.first(user.emails).address, $default='mm');
-      //default ="http://s.gravatar.com/avatar/1567b6cae96b44db344754ec6bc57dd0?s=80"
+      var grav = Gravatar.imageUrl(_.first(user.emails).address, {
+      default : Gravatar.imageUrl("salepartido2016@gmail.com")
+      });    
     }    
     return grav;
   }
