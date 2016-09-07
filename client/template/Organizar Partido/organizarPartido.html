@@ -1,150 +1,90 @@
 <template name = "organizarPartido">
 	<div class="container">
-    <div class="navbar">
-  		<h2 align="center">
-	     	Organizar Partido      
-		  </h2>
-    </div>  
-		<div class="form-group">
-
-        <div class="well">        
-
-              <div class="row">                  
-                  <div class="span5 col-md-5">
-                      <label class="control-label" for="title" align = "center">Elegi un dia para jugar
-                     </label>
-                      <br>
-                      <div class='input-group date'>
-                          <input type="button" name="datetimepicker" class="form-control" id="datetimepicker"  value="" />
-                             <span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
-                                  <i class="glyphicon glyphicon-calendar"></i>
-                             </span>
-                      </div>
-                  </div>
-
-                  <div class='span5 col-md-5'>
-                     <label class="control-label" for="title" align = "center">Elegi un horario para jugar
-                     </label>
-                      <br>
-                      <div class="form-group">
-                          <div class='input-group date'>
-                            <input type='button' name="datetimepicker3" class="form-control" id='datetimepicker3' value="" />
-                            <span class="input-group-addon" data-picker-handle="#datetimepicker3">
-                            <i class="glyphicon glyphicon-time"></i>
-                            </span>
-                          </div>
-                      </div>
-                  </div>  
-              </div>   
-              <br>
-              <div class="row">                                                      
-                  <div class="span5 col-md-5">
-                  <div>
-                      <label class="control-label" for="title">Selecciona un recinto
-                      </label>
-                  </div>
-                  <br>  
-                      <div class="input-group">
-                          <div class="input-group-btn">
-                              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                              {{#each recinto}}
+	    <div class="navbar">
+	  		<h2 align="center">
+		     	Organizar Partido      
+			  </h2>
+	    </div>
+	    <form class="reserva">
+	    	<div class="well">
+	    		<div class="row">
+			    	<div class="form-group">
+			    		<div class="span5 col-md-5">
+					      	<label class="control-label" for="datetimepicker" align = "center">Elegi un dia para jugar</label>
+					      	<div class="controls">
+					      		<div class='input-group date'>
+					        	  	<input name="datetimepicker" id="datetimepicker" type="button" value="" class="form-control"/>
+					        	  	<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
+					        	  		<i class="glyphicon glyphicon-calendar"></i>
+					        	  	</span>	
+					        	</div>  	
+					     	</div>
+					    </div> 	 
+				    </div>
+				    <div class="form-group">
+				    	<div class='span5 col-md-5'>
+					     	<label class="control-label" for="datetimepicker3" align = "center">Elegi un horario para jugar</label>
+					     	<div class="controls">
+					     		<div class='input-group date'>
+					          		<input name="datetimepicker3" id="datetimepicker3" type="button" value="" class="form-control"/>
+					          		<span class="input-group-addon" data-picker-handle="#datetimepicker3">
+					          			<i class="glyphicon glyphicon-time"></i>
+                            	</span>
+					          	</div>	
+					        </div>
+					    </div> 
+				    </div>
+				</div>
+				<br>
+				<div class="row">
+				    <div class="form-group">
+				    	<div class="span5 col-md-5">
+					      	<label class="control-label" for="nombreRecinto">Selecciona un recinto</label>
+					      	<br>
+					      	<div class="controls">
+					      		<div class="input-group">
+					          		<div class="input-group-btn">
+					          			<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
+                              					<ul class="dropdown-menu">
+                              					{{#each recinto}}
                   
-                              <li><a data-for-recinto = "#nombreRecinto"> {{this.nombre_recinto}} </a></li>
+                              					<li><a data-for-recinto = "#nombreRecinto"> {{this.nombre_recinto}} </a></li>
                   
-                              {{/each}}
+                              					{{/each}}
                     
-                              </ul>
-                          </div>
-                          <input type="button" name="recinto" class="form-control" aria-label="..." id = "nombreRecinto" value="">
-                      </div>
-                  </div>
-                  <div class="span5 col-md-1">
-                  </div>
-                  <div class="span5 col-md-5">
-                  <div>
-                      <label class="control-label" for="title">Selecciona una cancha
-                      </label>
-                  </div>
-                  <br>  
-                      <div class="input-group">
-                          <div class="input-group-btn">
-                              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar cancha <span class="caret"></span></button>
-                              <ul class="dropdown-menu">
-                              {{#each cancha}}
+                              					</ul>
+                          			</div>         		
+					          		<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>	
+					          	</div>
+					     	</div>
+					    </div> 	 
+				    </div>
+				    <div class="span5 col-md-1">
+                  	</div>
+				    <div class="form-group">
+				    	<div class="span5 col-md-5">
+					     	 <label class="control-label" for="nombreCancha">Selecciona una cancha</label>
+					     	 <br>
+					     	 <div class="controls">
+					     	 	<div class="input-group">
+					     	 		<div class="input-group-btn">
+                             			 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar cancha <span class="caret"></span></button>
+                              				<ul class="dropdown-menu">
+                              				{{#each cancha}}
                   
-                              <li><a data-for-cancha = "#nombreCancha"> {{this.numero}} </a></li>
+                             				 <li><a data-for-cancha = "#nombreCancha"> {{this.numero}} </a></li>
                   
-                              {{/each}}    
-                              </ul>
-                          </div>                
-                          <input type="button" name="cancha" class="form-control" aria-label="..." id = "nombreCancha" value="">
-                      </div>
-                  </div> 
-              </div>                    
-              <br>
-              <div>
-                  <label class="control-label" for="title">Invitar amigos
-                  </label>
-                <br>
-              </div>
-              <div> 
-                  <button type="button" class="btn btn-success">Agregar amigos
-                  </button>
-              </div>     
-              <br>
-              <div class="controls">
-                  <input name="title" id="title" type="text" value="" placeholder="Lista de amigos" class="form-control"/>
-              <br>
-              </div>
-              <div>
-                  <button type="button" class="btn btn-success">¿Querés que algún amigo pueda agregar a sus amigos?       
-                  </button>
-              </div>
-              <br>  
-               <!-- Button trigger reserva -->
-              <button type="button" id="cargarReserva" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">
-                    Crear reserva y enviar notificacion
-              </button>
-              
-              
-              <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                  <div class="modal-dialog" role="document">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <button id="cargarReserva" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                              <h4 class="modal-title" id="myModalLabel">Reserva</h4>
-                          </div>
-                          <div class="modal-body">
-                          {{#autoForm collection="Reserva" id="uploadReserva" type="insert" }}
-                          <fieldset>
-                          <legend><h2>Solicitud de reserva</h2></legend>                          
-       
-                          {{> afQuickField name='nom_recinto'}}
-
-                          {{> afQuickField name='num_cancha'}}
-
-                          {{> afQuickField name='hora_de_juego'}}
-
-                          {{> afQuickField name='fecha_de_juego'}}
-                                                 
-                          </fieldset>                         
-                          
-                          
-                          <div class="modal-footer">
-                          <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                          <button type="submit" class="btn btn-success">Realizar reserva</button>
-                          </div>
-                          {{/autoForm}}
-                          </div>
-                         
-                      </div>
-                </div>
-              </div>
-
-
-        </div>     
+                              				{{/each}}    
+                              				</ul>
+                          			</div>
+					          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>
+					          	</div>	
+					     	 </div>
+					    </div> 	 
+				    </div>
+				    <input type="submit" value="Crear reserva" class="btn btn-success"/>	
+				</div>
+			</div>    
+		</form>
     </div>
-  </div>  
-</template>
-
+</template>     
