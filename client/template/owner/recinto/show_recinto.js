@@ -22,16 +22,41 @@ Template.showRecinto.helpers({
 		return Images.find({_id: idImagen2});
 	},
 
-		imagen3: function(){
+	imagen3: function(){
 		reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
 		idImagen3 = reci.imagen3_id;
 		return Images.find({_id: idImagen3});
 	},
 
-		imagen4: function(){
+	imagen4: function(){
 		reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
 		idImagen4 = reci.imagen4_id;
 		return Images.find({_id: idImagen4});
 	},
+
+
 });
 
+
+Template.showRecinto.events({
+	'click #ratingestacionamiento': function(){
+	    var rating = $('#ratingestacionamiento').data('userrating');
+	    console.log('Estacionamiento: ',rating);
+  },
+
+    'click #ratingbaños': function(){
+	    var rating = $('#ratingbaños').data('userrating');
+	    console.log('Baños: ',rating);
+  },
+
+ 
+     'click #ratingcamarines': function(){
+	    var rating = $('#ratingcamarines').data('userrating');
+	    console.log('Camarines: ',rating);
+  },
+
+    'click #ratingcantina': function(){
+	    var rating = $('#ratingcantina').data('userrating');
+	    console.log('Cantina: ',rating);
+  },
+});

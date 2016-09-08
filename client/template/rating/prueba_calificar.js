@@ -31,6 +31,15 @@ Template.pruebaCalificar.events({
     console.log(rating);
   },
 
+    'click #rating1': function(){
+    var rating = $('#rating1').data('userrating');
+    console.log(rating);
+  },
+
+   'click #rating2': function(){
+    var rating = $('#rating2').data('userrating');
+    console.log(rating);
+  },
 });
 
 

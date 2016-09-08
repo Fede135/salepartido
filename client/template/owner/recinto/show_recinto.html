@@ -14,12 +14,23 @@
 	Servicios
 	<br>
 	Estacionamiento: {{recinto.servicios.estacionamiento}}
+
+	{{> starsRating id='ratingestacionamiento' class ="estrella" mutable=true size='lg'}}
+
 	<br>
 	Baños: {{recinto.servicios.baños}}
+
+	{{> starsRating id='ratingbaños' class ="estrella" mutable=true size='lg'}}
+
 	<br>
 	Camarines: {{recinto.servicios.camarines}}
+
+	{{> starsRating id='ratingcamarines' class ="estrella" mutable=true size='lg'}}
 	<br>
+
 	Cantina: {{recinto.servicios.cantina}}
+
+	{{> starsRating id='ratingcantina' class ="estrella" mutable=true size='lg'}}
 	<br>
 	Canchas:
 	<div>
@@ -43,9 +54,13 @@
 	<div>
 		
 	
+	<div>
+		
+	
 	{{#each imagen1}}
 
 	 <img src="{{this.url store='images'}}" alt="Imagen1" height="420" width="600" class="img-responsive">
+
 	{{/each}}
 	</div>
 	<br>
@@ -54,6 +69,7 @@
 	{{#each imagen2}}
 	
 	 <img src="{{this.url store='images'}}" alt="Imagen2" height="420" width="600" class="img-responsive">
+
 	{{/each}}
 	</div>
 	<br>
@@ -62,6 +78,7 @@
 	{{#each imagen3}}
 	
 	 <img src="{{this.url store='images'}}" alt="Imagen3" height="420" width="600" class="img-responsive">
+
 	{{/each}}
 	</div>
 	<br>
@@ -71,11 +88,12 @@
 	{{#each imagen4}}
 	
 	 <img src="{{this.url store='images'}}" alt="Imagen4" height="420" width="600" class="img-responsive">
+
 	{{/each}}
 	</div>
 	
 	</div>
 	
-	
+</div>	
 	
 </template>
