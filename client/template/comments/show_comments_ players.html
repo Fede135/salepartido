@@ -1,9 +1,61 @@
 <template name="showCommentsPlayers">
   <div class="container">
-      <!--{{commentsCount}} Probando para mostrar desp ver tantas comentarios mas--> 
-      {{#each fivecomments}}
-        <p>{{this.commentToPlayer}}</p>
-      {{/each}}  
-        
-  </div>    
+    <!--{{#if fivecomments}}-->
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading1">
+            <h4 class="panel-title"> 
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                Últimos comentarios
+              </a>
+            </h4>
+          </div>
+            <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+              <div class="panel-body table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    {{#if fivecomments}}
+                      {{#each fivecomments}}
+                        <tr>
+                          {{this.commentToPlayer}}
+                        </tr>
+                      {{/each}}
+                    {{else}}
+                      <tr>
+                        No hay comentarios
+                      </tr>
+                    {{/if}}  
+                  </tbody>           
+                </table>
+              </div>
+            </div>
+        </div>
+        {{#if comments20}}
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading2">
+            <h4 class="panel-title"> 
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Ver más
+              </a>
+            </h4>
+          </div>
+            <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+              <div class="panel-body table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    {{#each comments20}}
+                      <tr>
+                        {{this.commentToPlayer}}
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>          
+              </div>
+            </div>        
+        </div>
+        {{/if}} 
+      </div>
+    <!--{{/if}}-->
+  </div>     
 </template>
+
