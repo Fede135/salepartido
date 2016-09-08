@@ -18,6 +18,7 @@ Template.organizarPartido.onRendered(function () {
 Template.organizarPartido.events({
     
    'submit form': function(e) {
+        
         e.preventDefault();
 
         var reserva = {
@@ -27,11 +28,14 @@ Template.organizarPartido.events({
             fecha_de_juego: $(e.target).find('[name=datetimepicker]').val()
         };
 
-    reserva._id = Reserva.insert(reserva);
+        var errors = validateReserva(reserva);
+        if (errors.nombreRecinto || errors.nombreCancha)
+        return Session.set('reservaErrors', errors);
 
-    Router.go('confirmarPartido', reserva);
-   
+        reserva._id = Reserva.insert(reserva);
+        Router.go('confirmarPartido', reserva);        
     },
+  
 
   'click [data-picker-handle]': function (event) {
 
@@ -67,8 +71,21 @@ Template.organizarPartido.helpers({
 
   cancha: function () {
     return Canchas.find();
+  },
+
+  errorMessage: function(field) {
+    return Session.get('reservaErrors')[field];
+  },
+
+  errorClass: function (field) {
+    return !!Session.get('reservaErrors')[field] ? 'has-error' : '';
   }
 });
+
+Template.organizarPartido.onCreated(function() {
+  Session.set('reservaErrors', {});
+});
+
 
 
 
