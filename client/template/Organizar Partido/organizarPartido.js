@@ -22,6 +22,8 @@ Template.organizarPartido.events({
         e.preventDefault();
 
         var reserva = {
+            nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
+            nom_usario: Meteor.user().profile.firstName,
             nom_recinto: $(e.target).find('[name=nombreRecinto]').val(),
             num_cancha: $(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego: $(e.target).find('[name=datetimepicker3]').val(),
@@ -29,7 +31,7 @@ Template.organizarPartido.events({
         };
 
         var errors = validateReserva(reserva);
-        if (errors.nombreRecinto || errors.nombreCancha)
+        if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
         reserva._id = Reserva.insert(reserva);

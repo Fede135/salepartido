@@ -8,6 +8,18 @@
 	    <div class="form-group">
 	    	<form class="reserva">
 	    		<div class="well">
+	    			<div class="row">
+	    				<div class="form-group  {{errorClass 'nombreDeLaReserva'}}">	
+		    				<div class="span5 col-md-11">
+						    	<label class="control-label" for="nombreDeLaReserva" >Dedicale un nombre a la reserva</label>
+							    <div class="controls">
+							    	<input type="text" name="nombreDeLaReserva" id="nombreDeLaReserva" class="form-control" placeholder="Nombre de la reserva" aria-describedby="basic-addon1">
+							    	<span class="help-block">{{errorMessage 'nombreDeLaReserva'}}</span>				
+								</div>
+							</div>
+						</div>		
+					</div> 	
+					<br>					    
 	    			<div class="row">		    	
 			    		<div class="span5 col-md-5">
 					      	<label class="control-label" for="datetimepicker" >Elegi un dia para jugar</label>
@@ -53,9 +65,9 @@
 	                    
 	                              					</ul>
 	                          			</div>         		
-						          		<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>
-						          		<span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
+						          		<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>						          		
 						          	</div>
+						          	<span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
 						     	</div>
 						    </div> 
 					    </div>	 				   
@@ -77,9 +89,9 @@
 	                              				{{/each}}    
 	                              				</ul>
 	                          			</div>
-						          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>
-						          		<span class="help-block">{{errorMessage 'nombreCancha'}}</span>
+						          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>						          		
 						          	</div>	
+						          	<span class="help-block">{{errorMessage 'nombreCancha'}}</span>
 						     	</div>
 						   	</div>
 						</div>   	 	 
