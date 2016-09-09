@@ -40,3 +40,4 @@ Accounts.ui.config({
 
 //setear a castellano lo de logeo
 accountsUIBootstrap3.setLanguage('es');
+

@@ -1,22 +1,20 @@
 <template name = "showProfile"> 
-  <div class="container">
-    <div class="row">{{user.profile.name}}</div>
-    <div class="row">{{age}}</div>
-    <div class="row">{{place}}</div>
-   <!-- <div class="row">{{today}}</div>
-    <div class="row">{{user.profile.birthday}}</div> -->
-  </div>
-  <div class="container">
+    <div class="container">
+      <div class="row">{{user.profile.name}}</div>
+      <div class="row">{{age}}</div>
+      <div class="row">{{place}}</div>
+      <br><br>
     {{#if ownProfile}}
       <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
     {{else}}
       {{> enterCommentsForPlayers}}
     {{/if}}
-    <!--<button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
-    {{> enterCommentsForPlayers}}-->
+    <br><br>
+    {{> showCommentsPlayers}}
 
-   <!--{{#each comments}}
-      {{> showCommentsPlayers}}
-    {{/each}}-->  
+    <!--{{#each amigos}}
+      {{this.data[0].name}}
+    {{/each}}
+    {{friends.data[0].name}}-->
   </div>
 </template>

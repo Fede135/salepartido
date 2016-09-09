@@ -1,14 +1,21 @@
 <template name="enterCommentsForPlayers">
   {{#autoForm collection="CommentsForPlayers" id="enterCommentsPlayers" type="insert"}}
-  <!--{{#autoForm schema=Schema.CommentsForPlayers id="commentsPlayers" type="method" meteormethod="sendComment"}}-->
-  <fieldset>
-    <legend>Comentarios</legend>
-      {{> afQuickField name="commentToPlayer" rows=5}}
-      {{> afFieldInput name="toUserId" value=_id}}
-    <div>
-      <button type="submit" class="btn btn-primary">Enviar</button>
-    </div>
-  </fieldset>
+  <div class="container">
+    <fieldset>
+      <legend>Comentarios</legend>
+        {{> afQuickField name="commentToPlayer" rows=3}}
+        {{> afFieldInput name="toUserId" value=_id}}
+      <div>
+        <seccion class="main row">
+          <article class="col-xs-9 col-sm-10 col-md-11 col-lg-11">
+          </article>
+          <aside class="col-xs-3 col-sm-2 col-md-1 col-lg-1" >
+            <button type="submit" class="btn btn-primary" >Enviar</button>
+          </aside>
+        </seccion>
+      </div>
+    </fieldset>
+  </div>
   {{/autoForm}}
 </template>
 

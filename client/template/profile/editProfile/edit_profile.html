@@ -4,6 +4,10 @@
      {{#autoForm schema="Schema.users" id="editProfile" type="method" meteormethod="completeProfile"}}
    <fieldset>
      <legend>Editar Perfil</legend>
+    {{> afQuickField name="player.position" options = "allowed" noselect=false}}
+    {{> afQuickField name="player.foot" options = "allowed" noselect=false}}
+    {{> afQuickField name="player.height"}}
+    {{> afQuickField name="player.weight"}}
     {{> afQuickField name="profile.birthday"}} 
     {{> afQuickField name="profile.gender" options = "allowed" noselect=false}}
     {{> afQuickField name="profile.country.country"}}
@@ -11,8 +15,9 @@
     {{> afQuickField name="profile.country.locality"}}
     {{> afQuickField name="profile.country.neighborhood"}}
     <div>
-       <button type="submit" class="btn btn-success">Guardar</button>
+       <button type="submit" class="btn btn-success ">Guardar</button>
     </div>
+    <br><br>
    </fieldset>
    {{/autoForm}}
    </div>
