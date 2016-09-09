@@ -27,26 +27,25 @@ Template.showProfile.helpers({
   },
 
   ownProfile: function () {
-    return this._id === Meteor.userId();
-    
+    return this._id === Meteor.userId();    
   },
-
-
-  /*today : function (){
-    return new Date(); 
-  },*/
-  
-  /*comments: function () {
-    return CommentsForPlayers.find();
+  /*amigos: function () {
+    var friends = FacebookCollections.getFriends('me',['id','name']);
+    console.log(friends.count())
+    return friends.find();
   }*/
-
-
 });
-
-
 
 Template.showProfile.events({
   'click #login-buttons-edit-profile': function(event) {
 		Router.go('editProfile', {_id: Meteor.userId()});
 	}
 });
+
+//Probando lista de amigos de facebook
+/*var friends = FacebookCollections.getFriends('me',['id','name']);
+/*Template.showProfile.friends = function() {
+  friends= friends.find();
+  console.log(friends.count());
+  return friends;
+}*/

@@ -3,14 +3,18 @@
       <div class="row">{{user.profile.name}}</div>
       <div class="row">{{age}}</div>
       <div class="row">{{place}}</div>
+      <br><br>
     {{#if ownProfile}}
       <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
     {{else}}
       {{> enterCommentsForPlayers}}
     {{/if}}
-    
+    <br><br>
     {{> showCommentsPlayers}}
-    
-   
+
+    <!--{{#each amigos}}
+      {{this.data[0].name}}
+    {{/each}}
+    {{friends.data[0].name}}-->
   </div>
 </template>
