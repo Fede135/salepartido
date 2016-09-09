@@ -9,7 +9,7 @@ Template.showRecinto.helpers({
 		can = Canchas.find({recintoId: this._id});
 		return can;
 	},
-
+/*
 	imagen1: function(){
 		reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
 		idImagen1 = reci.imagen1_id;
@@ -33,7 +33,7 @@ Template.showRecinto.helpers({
 		idImagen4 = reci.imagen4_id;
 		return Images.find({_id: idImagen4});
 	},
-
+*/
 
 });
 
