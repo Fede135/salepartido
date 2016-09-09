@@ -1,0 +1,19 @@
+<template name="eliminarReserva">
+	<div class="container">
+		<div class="navbar">
+	  		<h2 align="center">
+			Eliminar reservas
+		  	</h2>
+    	</div>
+    	
+		{{#each reserva}}
+		<div>
+		¿ Eliminar reserva numero :{{this.nom_usario}} ?  
+		{{#quickRemoveButton collection="Reserva" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn btn-danger"}}Eliminar{{/quickRemoveButton}}
+			<br>
+			<br>
+		</div>
+		
+		{{/each}}	
+	</div>
+</template>

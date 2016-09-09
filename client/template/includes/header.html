@@ -17,6 +17,10 @@
         <!--{{#if isInRole 'owner'}}-->
           <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
 
+          <a class="navbar-brand" href="{{pathFor 'gestionarRecintos'}}">Administar Recintos</a>      
+
+         <a class="navbar-brand" href="{{pathFor 'gestionarReserva'}}">Gestionar Reservas</a>
+
           <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a>
         <!--{{/if}}-->
         {{#if isInRole 'player'}}
@@ -34,5 +38,6 @@
       </ul> 
     </div> 
    </div>
+
   </nav>
 </template>

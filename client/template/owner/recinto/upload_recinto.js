@@ -27,3 +27,14 @@ Template.uploadRecinto.helpers({
     return Images.findOne({recinto: this._id});
   }
 });
+
+Template.uploadRecinto.events({
+
+	'submit form': function(e) {
+
+		e.preventDefault();
+
+    	Router.go('gestionarRecintos', );
+    }
+});
+   

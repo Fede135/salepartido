@@ -1,86 +1,105 @@
 <template name = "organizarPartido">
 	<div class="container">
-    <div class="navbar">
-  		<h2 align="center">
-	     	Organizar Partido
-		  </h2>
-    </div>  
-		<div class="form-group">
-
-        <div class="well">        
-
-              <div class="row">                  
-                  <div class="span5 col-md-5">
-                      <label class="control-label" for="title" align = "center">Elegi un dia para jugar
-                     </label>
-                      <br>
-                      <div class='input-group date'>
-                          <input type="text" class="form-control" id="datetimepicker"  value="" />
-                             <span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
-                                  <i class="glyphicon glyphicon-calendar"></i> 
-                             </span>
-                      </div>
-                  </div>
-
-                  <div class='span5 col-md-5'>
-                     <label class="control-label" for="title" align = "center">Elegi un horario para jugar
-                     </label>
-                      <br>
-                      <div class="form-group">
-                          <div class='input-group date'>
-                            <input type='text' class="form-control" id='datetimepicker3' value="" />
-                            <span class="input-group-addon" data-picker-handle="#datetimepicker3">
-                            <i class="glyphicon glyphicon-time"></i>
-                            </span>
-                          </div>
-                      </div>
-                  </div>  
-              </div>   
-              <br>
-              <div>
-                  <label class="control-label" for="title">Selecciona un recinto
-                  </label>
-              </div>
-              <br>
-              <div class="input-group">
-                <div class="input-group-btn" id="obtenerNombre">
-                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
-                 <ul class="dropdown-menu">
-                    {{#each recinto}}
-                    <li>{{this.nombre_recinto}}</li>
-                    {{/each}}
-                  </ul>
-                </div>
-                <input type="text" class="form-control" aria-label="..." id = "nombreRecinto" value="">
-              </div>                      
-              <br>
-                <div>
-                   <label class="control-label" for="title">Invitar amigos
-                   </label>
-                <br>
-                </div>
-                <div> 
-                   <button type="button" class="btn btn-success">Agregar amigos
-                   </button>
-                </div>     
-                <br>
-                <div class="controls">
-                    <input name="title" id="title" type="text" value="{{title}}" placeholder="Lista de amigos" class="form-control"/>
-                    <br>
-                </div>
-                <div>
-                    <button type="button" class="btn btn-success">¿Querés que algún amigo pueda agregar a sus amigos?       
-                    </button>
-                </div>
-                <br>
-                <div>
-                    <button type="button" class="btn btn-success">Enviar notificación           
-                    </button>
-                </div>
-                <br>
-          </div>     
+	    <div class="navbar">
+	  		<h2 align="center">
+		     	Organizar Partido      
+			  </h2>
+	    </div>
+	    <div class="form-group">
+	    	<form class="reserva">
+	    		<div class="well">
+	    			<div class="row">
+	    				<div class="form-group  {{errorClass 'nombreDeLaReserva'}}">	
+		    				<div class="span5 col-md-11">
+						    	<label class="control-label" for="nombreDeLaReserva" >Nombre de la reserva</label>
+							    <div class="controls">
+							    	<input type="text" name="nombreDeLaReserva" id="nombreDeLaReserva" class="form-control" placeholder="Nombre de la reserva" aria-describedby="basic-addon1">
+							    	<span class="help-block">{{errorMessage 'nombreDeLaReserva'}}</span>				
+								</div>
+							</div>
+						</div>		
+					</div> 	
+					<br>					    
+	    			<div class="row">		    	
+			    		<div class="span5 col-md-5">
+					      	<label class="control-label" for="datetimepicker" >Elegi un dia para jugar</label>
+					      	<div class="controls">
+					      		<div class='input-group date'>
+					        	  	<input name="datetimepicker" id="datetimepicker" type="button" value="" class="form-control"/>
+					        	  	<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
+					        	  		<i class="glyphicon glyphicon-calendar"></i>
+					        	  	</span>	
+					        	</div>  	
+					     	</div>
+					    </div> 	 				    
+				    	<div class="span5 col-md-1">
+				    	</div>				    
+				    	<div class='span5 col-md-5'>
+					     	<label class="control-label" for="datetimepicker3">Elegi un horario para jugar</label>
+					     	<div class="controls">
+					     		<div class='input-group date'>
+					          		<input name="datetimepicker3" id="datetimepicker3" type="button" value="" class="form-control"/>
+					          		<span class="input-group-addon" data-picker-handle="#datetimepicker3">
+					          			<i class="glyphicon glyphicon-time"></i>
+                            		</span>
+					          	</div>	
+					        </div>
+					    </div> 				   
+					</div>				
+					<div class="row">
+						<div class="form-group  {{errorClass 'nombreRecinto'}}">
+					    	<div class="span5 col-md-5">
+						      	<br>
+						      	<label class="control-label" for="nombreRecinto">Selecciona un recinto</label>
+						      	<br>
+						      	<div class="controls">
+						      		<div class="input-group">
+						          		<div class="input-group-btn">
+						          			<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
+	                              					<ul class="dropdown-menu">
+	                              					{{#each recinto}}
+	                  
+	                              					<li><a data-for-recinto = "#nombreRecinto"> {{this.nombre_recinto}} </a></li>
+	                  
+	                              					{{/each}}
+	                    
+	                              					</ul>
+	                          			</div>         		
+						          		<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>						          		
+						          	</div>
+						          	<span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
+						     	</div>
+						    </div> 
+					    </div>	 				   
+					    <div class="span5 col-md-1">
+    	              	</div>
+    	              	<div class="form-group  {{errorClass 'nombreCancha'}}">
+					    	<div class="span5 col-md-5">
+						     	 <label class="control-label" for="nombreCancha">Selecciona una cancha</label>
+						     	 <br>
+						     	 <div class="controls">
+						     	 	<div class="input-group">
+						     	 		<div class="input-group-btn">
+	                             			 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar cancha <span class="caret"></span></button>
+	                              				<ul class="dropdown-menu">
+	                              				{{#each cancha}}
+	                  
+	                             				 <li><a data-for-cancha = "#nombreCancha"> {{this.numero}} </a></li>
+	                  
+	                              				{{/each}}    
+	                              				</ul>
+	                          			</div>
+						          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>						          		
+						          	</div>	
+						          	<span class="help-block">{{errorMessage 'nombreCancha'}}</span>
+						     	</div>
+						   	</div>
+						</div>   	 	 
+				  	</div>
+				 	<br>  
+					<input type="submit" value="Crear reserva" class="btn btn-success"/>								
+				</div>				
+			</form>
+		</div>     		
     </div>
-  </div>
-  
-</template>
-
+</template>     
