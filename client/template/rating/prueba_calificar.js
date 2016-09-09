@@ -28,6 +28,9 @@ Template.pruebaCalificar.events({
   },
   'click #rating': function(){
     var rating = $('#rating').data('userrating');
+
+    Meteor.call('upvote', this._id, rating);
+
     console.log(rating);
   },
 

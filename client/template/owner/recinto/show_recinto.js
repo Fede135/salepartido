@@ -39,24 +39,11 @@ Template.showRecinto.helpers({
 
 
 Template.showRecinto.events({
-	'click #ratingestacionamiento': function(){
-	    var rating = $('#ratingestacionamiento').data('userrating');
-	    console.log('Estacionamiento: ',rating);
-  },
-
-    'click #ratingbaños': function(){
-	    var rating = $('#ratingbaños').data('userrating');
-	    console.log('Baños: ',rating);
-  },
-
- 
-     'click #ratingcamarines': function(){
-	    var rating = $('#ratingcamarines').data('userrating');
-	    console.log('Camarines: ',rating);
-  },
-
-    'click #ratingcantina': function(){
-	    var rating = $('#ratingcantina').data('userrating');
-	    console.log('Cantina: ',rating);
-  },
+	'click #rating': function(){
+	    var rating = $('#rating').data('userrating');
+	    Meteor.call('upvote',reci._id,rating);
+	    console.log('Calificacion recinto: ',rating);
+ 	}
 });
+
+//falta buscar promedio de calificaciones

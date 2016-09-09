@@ -1,7 +1,10 @@
 <template name="showRecinto">
 	<div class="container">
 	
-	Nombre recinto:{{recinto.nombre_recinto}}
+	Nombre recinto:{{recinto.nombre_recinto}} {{> starsRating id='rating' class ="estrella" mutable=true size='lg'}}
+
+	 
+
 	<br>
 	Direccion: {{recinto.direccion_recinto}}
 	<br>
@@ -15,22 +18,20 @@
 	<br>
 	Estacionamiento: {{recinto.servicios.estacionamiento}}
 
-	{{> starsRating id='ratingestacionamiento' class ="estrella" mutable=true size='lg'}}
-
 	<br>
 	Baños: {{recinto.servicios.baños}}
 
-	{{> starsRating id='ratingbaños' class ="estrella" mutable=true size='lg'}}
+	
 
 	<br>
 	Camarines: {{recinto.servicios.camarines}}
 
-	{{> starsRating id='ratingcamarines' class ="estrella" mutable=true size='lg'}}
+	}
 	<br>
 
 	Cantina: {{recinto.servicios.cantina}}
 
-	{{> starsRating id='ratingcantina' class ="estrella" mutable=true size='lg'}}
+	
 	<br>
 	Canchas:
 	<div>
