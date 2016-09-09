@@ -6,71 +6,81 @@
   			    </h2>
   		</div>
   		<div class="well"> 
-  		 	<div class="row">
-				<div class="form-group">	
-				 	<div class="span5 col-md-11">
-					<br>
-					<label class="control-label" for="nombreReserva">Selecciona una reserva</label>
-					<br>
-						<div class="controls">
-							<div class="input-group">
-						        <div class="input-group-btn">
-						        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar reserva <span class="caret"></span></button>
-	                              	<ul class="dropdown-menu">
-	                            		{{#each reserva}}
-	                  
-	                            		<li><a data-for-reserva = "#nombreReserva"> {{this.nom_reserva}} </a></li>
-	                  
-	                              		{{/each}}
-	                    
-	                              	</ul>
-	                        	</div>         		
-						    	<input name="nombreReserva" id="nombreReserva" type="button" value="" class="form-control"/>	          		
-						    </div>
-						    <!--<span class="help-block">{{errorMessage 'nombreReserva'}}</span>-->
-						</div>
-					</div> 
-			    </div>  		  
-    		</div>
-    		<br>
-    		<div class="row">
-    			<div class="span5 col-md-4">
-    				<textarea class="form-control" rows="12"> </textarea>
-    			</div>	
-    			<div class="span5 col-md-3">
-    				<input name="nombreUsuario" id="nombreUsuario" type="button" value="" class="form-control"/>
-    				<br>
-    				<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>
-    				<br>
-    				<input name="numCancha" id="numCancha" type="button" value="" class="form-control"/>
-    				<br>
-    				<input name="diaDeJuego" id="diaDeJuego" type="button" value="" class="form-control"/>
-    				<br>
-    				<input name="horaDeJuego" id="horaDeJuego" type="button" value="" class="form-control"/>
-    				<br>
-    			</div>
-    			<div class="span5 col-md-4">
-    				<textarea class="form-control" rows="12"> </textarea>
-    			</div>
-    		</div>
-    		<div class="row">
-    			<div class="span5 col-md-4">
-    				<div class="btn-group" role="group" aria-label="...">
-  						<button type="button" class="btn btn-success">Agregar a equipo A</button> 
-  						<button type="button" class="btn btn-danger">Eliminar de equipo A</button> 
-					</div>
-    			</div>	
-    			<div class="span5 col-md-3">    				
-    			</div>
-    			<div class="span5 col-md-4">
-    				<div class="btn-group" role="group" aria-label="...">
-  						<button type="button" class="btn btn-danger" allign="right">Eliminar de equipo B</button> 
-  						<button type="button" class="btn btn-success" allign="right">Agregar a equipo B</button> 			
-					</div>
-    			</div>
-    		</div>
-    		<br>     		
-			<input type="submit" value="Confirmar partido" class="btn btn-success"/>			
+  		  	<div class="row">
+  				    <div class="form-group">	
+    				    	<div class="span5 col-md-11">
+    					     <br>
+        					<label class="control-label" for="nombreReserva">Selecciona una reserva</label>
+        					<br>
+        						  <div class="controls">
+        							    <div class="input-group">
+        						          <div class="input-group-btn">
+        						          <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar reserva <span class="caret"></span></button>
+        	                       	<ul class="dropdown-menu">
+        	                       		{{#each reserva}}
+        	                  
+        	                         		<li><a data-for-reserva = "#nombreReserva"> {{this.nom_reserva}} </a></li>
+        	                  
+        	                       		{{/each}}
+        	                   
+        	                       	</ul>
+        	                   	</div>         		
+        						    	    <input name="nombreReserva" id="nombreReserva" type="button" value="" class="form-control"/>	          		
+        						      </div>
+        						      <!--<span class="help-block">{{errorMessage 'nombreReserva'}}</span>-->
+        						  </div>
+    					    </div> 
+  			      </div>  		  
+    		  </div>
+      		<br>
+          <div class="row">
+              <div class="span5 col-md-4">
+                  <div class="btn-group" role="group" aria-label="...">
+                      <button name="obtenerDetalles" id="obtenerDetalles" type="button" class="btn btn-success">Obtener detalles de la reserva</button>
+                  </div>
+              </div>    
+          </div>     
+          <br>
+      		<div class="row">
+      			  <div class="span5 col-md-4">
+      			     	<textarea class="form-control" rows="12"> </textarea>
+      		  	</div>	
+        			<div class="span5 col-md-3">
+
+          				<input name="nombreUsuario" id="nombreUsuario" type="button" value="" class="form-control"/>
+          				<br>
+          				<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>
+          				<br>
+          				<input name="numCancha" id="numCancha" type="button" value="" class="form-control"/>
+          				<br>
+          				<input name="diaDeJuego" id="diaDeJuego" type="button" value="" class="form-control"/>
+          				<br>
+          				<input name="horaDeJuego" id="horaDeJuego" type="button" value="" class="form-control"/>
+          				<br>
+
+        			</div>
+        			<div class="span5 col-md-4">
+        			   	<textarea class="form-control" rows="12"> </textarea>
+        			</div>
+      		</div>
+      		<div class="row">
+        			<div class="span5 col-md-4">
+          				<div class="btn-group" role="group" aria-label="...">
+          						<button type="button" class="btn btn-success">Agregar a equipo A</button> 
+          						<button type="button" class="btn btn-danger">Eliminar de equipo A</button> 
+      					  </div>
+        			</div>	
+        			<div class="span5 col-md-3">    				
+        			</div>
+        			<div class="span5 col-md-4">
+            			<div class="btn-group" role="group" aria-label="...">
+          						<button type="button" class="btn btn-danger">Eliminar de equipo B</button> 
+          						<button type="button" class="btn btn-success">Agregar a equipo B</button> 			
+        					</div>
+        			</div>
+      		</div>
+      		<br>     		
+  			  <input type="submit" value="Confirmar partido" class="btn btn-success"/>			
     	</div>
   </div> 		
 </template>

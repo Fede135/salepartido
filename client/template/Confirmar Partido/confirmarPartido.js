@@ -34,6 +34,18 @@ Template.confirmarPartido.events({
     var $target = $($item.data('forReserva'));
 
     $target.val($item.text());    
-  }
-	
+    
+    },
+
+  'click #obtenerDetalles': function (event) {
+        
+    var nomReserva = $('input:button[name=nombreReserva]').val();
+    /*
+    var reserva = Reserva.find({nom_reserva:nomReserva}).val();
+            
+        console.log(reserva
+            );
+*/
+
+	}
 });
