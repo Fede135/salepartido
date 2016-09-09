@@ -14,11 +14,11 @@
     <div class="collapse navbar-collapse" id="navigation">
       <ul class="nav navbar-nav navbar-right">
       
-        {{#if isInRole 'owner'}}
+        <!--{{#if isInRole 'owner'}}-->
           <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
 
           <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a>
-        {{/if}}
+        <!--{{/if}}-->
         {{#if isInRole 'player'}}
           <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}" >Confirmar Partido</a>      
 
