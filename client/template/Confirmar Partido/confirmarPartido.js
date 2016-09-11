@@ -41,7 +41,7 @@ Template.confirmarPartido.events({
         
     var nomReserva = $('input:button[name=nombreReserva]').val();
     /*
-    var reserva = Reserva.find({nom_reserva:nomReserva}).val();
+    var reserva = Reserva.findOne({nom_reserva: nomReserva});
             
         console.log(reserva
             );
