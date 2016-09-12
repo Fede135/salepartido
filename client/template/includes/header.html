@@ -19,14 +19,16 @@
 
           <a class="navbar-brand" href="{{pathFor 'gestionarRecintos'}}">Administar Recintos</a>      
 
-         <a class="navbar-brand" href="{{pathFor 'gestionarReserva'}}">Gestionar Reservas</a>
+          <a class="navbar-brand" href="{{pathFor 'gestionarReserva'}}">Gestionar Reservas</a> 
 
           <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a>
-        <!--{{/if}}-->
-        {{#if isInRole 'player'}}
+
           <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}" >Confirmar Partido</a>      
 
           <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
+        <!--{{/if}}-->
+        {{#if isInRole 'player'}}
+          
         {{/if}}  
         <a class="navbar-brand" href="{{pathFor 'pruebaCalificar'}}">CALIFICAR</a>
       
