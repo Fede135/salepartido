@@ -1,6 +1,6 @@
 Template.eliminarCancha.helpers({
 	canchas: function () {
-		return Canchas.find();
+		return Canchas.find({recintoId:"HnA3G5Fqf532eyFpd"});
 	},
 
 	  onError: function () {
