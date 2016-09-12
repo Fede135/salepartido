@@ -1,6 +1,15 @@
 Template.modificarCancha.helpers({
+
+	recinto: function () {
+		recinto = Recintos.findOne({ownerId: Meteor.userId()});
+			p = recinto._id;
+			return recinto;
+		
+	},
+
 	canchas: function () {
-		return Canchas.find();
+		return Canchas.find({recintoId:"HnA3G5Fqf532eyFpd"});
+		//no se si es el find() o que, por esto"HnA3G5Fqf532eyFpd"deberia ir recintoz._id 
 	},
 
 	cantJugadores: function(){
@@ -20,6 +29,10 @@ Template.modificarCancha.helpers({
         },
 
 	countCanchas: function (){
-		return Canchas.find().count();
+		return Canchas.find({recintoId:"HnA3G5Fqf532eyFpd"}).count();
 	},
+
+	
 });
+
+//mostrar canchas que le pertenecen al recinto, del usuario logeado

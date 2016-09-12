@@ -1,26 +1,27 @@
 <template name="cargarCancha">
 	
 	<div class = "container">		
-	
+	 <h2>Recintos cargados</h2>
+    	{{#each recinto}}
+   <!--  
+   para mi-->
+   			ID RECINTO : {{this._id}}
+
+    		<li><h2>{{this.nombre_recinto}}</h2></li>
+
+    		<h3>Canchas del recinto: {{countCanchas}}</h3>
+      		
+      		{{> uploadCancha}}
+      	{{/each}} 
+   
+
+
+
 	<!--
+	
 	{{> quickForm collection="Canchas" id="cargarCancha" type="insert"}}
 	-->	
-  {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
-    <fieldset>
-      <legend><h2>Crear cancha</h2></legend>
-      {{> afQuickField name='numero' style="color: orange" label-style="color: green"}}
-
-      {{> afQuickField name='jugadores.cantidad_de_jugadores' options="allowed" noselect=true}} 
-
-      {{> afQuickField name='tipo_cancha.tipo_de_cancha' options="allowed" noselect=true}}
-
-      {{> afQuickField name='estado_cancha.estado_de_cancha' options="allowed" noselect=true}}
-
-     
-      {{> afQuickField name='descripcion' rows=3}}
-    </fieldset>
-    <button type="submit" class="btn btn-success">Crear</button>
-  {{/autoForm}}
+  
 
 	</div>
 

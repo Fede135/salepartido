@@ -41,11 +41,12 @@ Template.confirmarPartido.events({
         
     var nomReserva = $('input:button[name=nombreReserva]').val();
 
-    
-    var reserva = Reserva.findOne({nom_reserva: nomReserva });
-    console.log( $( '#reserva' ).data() );        
-        
-
+    /*
+    var reserva = Reserva.findOne({nom_reserva: nomReserva});
+            
+        console.log(reserva
+            );
+    */
 
 	}
 });

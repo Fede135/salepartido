@@ -28,13 +28,24 @@ Template.uploadRecinto.helpers({
   }
 });
 
+
+//Tendria que llamar a un metodo para que me inserte en Calificaciones
+//el _id del recinto que esto creando al hacer click en el boton del 
+//formulario.(el metodo donde inserta no esta).
+/*
 Template.uploadRecinto.events({
+	'click #btn-upload-recinto':function(){
+		Meteor.call('crarClificacion');
 
-	'submit form': function(e) {
+	}
 
-		e.preventDefault();
-
-    	Router.go('gestionarRecintos', );
-    }
 });
-   
+*/
+/*
+  Meteor.setTimeout(function () {
+    Roles.addUsersToRoles(user._id, ['player'], Roles.GLOBAL_GROUP);
+  });
+  return user;
+
+})
+*/

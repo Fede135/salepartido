@@ -1,6 +1,6 @@
 Template.deleteRecinto.helpers({
 	recintos: function () {
-		return Recintos.find();
+		return Recintos.find({ownerId: Meteor.userId()});
 	},
 
 	  onError: function () {

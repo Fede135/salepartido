@@ -4,14 +4,18 @@
             <h2 align="center">
             Modificar cancha
             </h2>
-            <h3>Actualmente el recinto cuenta con {{countCanchas}} cancha/s cargada/s.</h3>
-         </div> 
+        </div>
+        
+        
+            <h3>Actualmente el recinto "{{recinto.nombre_recinto}}" cuenta con {{countCanchas}} cancha/s cargada/s.</h3>
+          
          <br>
 		 <!--
 		{{#each canchas}}
 		{{> quickForm collection="Canchas" doc=this id="modificarCancha" type="update"}}
 		{{/each}}
-		-->
+		-->  
+        {{#if recinto}}              
 		{{#each canchas}}
 			<div class="form-offline">
             {{#autoForm collection="Canchas" doc=this id=updateFormName type="update" }}
@@ -25,12 +29,17 @@
                         {{> afFieldInput name='estado_cancha.estado_de_cancha' options=estadoCancha}}
                         <h4>Descripcion</h4>
                         {{> afFieldInput name='descripcion'}}
+                        {{> afFieldInput name='recintoId' value="HnA3G5Fqf532eyFpd"}}
+                        <!--hay q setearle de nuevo el id del recinto?-->
                         <br>                        
                         <button type="submit" class="btn btn-success">Actualizar</button>
                         
                     
                 {{/autoForm}}
             </div>
-            {{/each}}
+        {{/each}}
+       {{/if}}
+
 	</div>
+
 </template>

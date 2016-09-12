@@ -35,9 +35,6 @@ alanning:roles
 jparker:gravatar
 sacha:spin
 
-rzymek:moment-locale-es
-tsega:bootstrap3-datetimepicker
-momentjs:moment
 twbs:bootstrap
 
 
@@ -46,6 +43,12 @@ meteortoys:allthings
 dburles:google-maps
 cfs:gridfs
 
+
 maxkferg:facebook-collections
 
 
+
+barbatus:stars-rating
+rzymek:moment-locale-es
+tsega:bootstrap3-datetimepicker
+momentjs:moment

@@ -75,12 +75,14 @@ Template.organizarPartido.helpers({
     return Canchas.find();
   },
 
+
   errorMessage: function(field) {
     return Session.get('reservaErrors')[field];
   },
 
   errorClass: function (field) {
     return !!Session.get('reservaErrors')[field] ? 'has-error' : '';
+
   }
 });
 
