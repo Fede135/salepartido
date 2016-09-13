@@ -31,7 +31,8 @@ Template.showProfile.helpers({
   },
   amigos: function () {
     friends= Friends && Friends.find();
-    console.log(friends && friends.count());
+/*    a= Meteor.users.findOne({'services.facebook.id': friends.id});
+    console.log(a._id); hacer cn el fb del tch*/
     return friends;
   }
 });
