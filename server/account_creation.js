@@ -7,15 +7,40 @@
         }
 });*/
 
-Accounts.onCreateUser(function (options, user) { 
+/*Accounts.onCreateUser(function (options, user) { 
   if (options.profile) { 
     user.profile = options.profile;      
   }
   Meteor.setTimeout(function () {
     Roles.addUsersToRoles(user._id, ['player'], Roles.GLOBAL_GROUP);
   });
+
   return user;
 
+})*/
+
+
+Accounts.onCreateUser(function (options, user) {
+  if(! user.services.facebook) { 
+    if (options.profile) { 
+      user.profile = options.profile;     
+    };
+  } else {
+      if (options.profile) { 
+        user.profile = options.profile;
+        var emails = {
+          address: user.services.facebook.email,
+          verified : true
+        };
+        user.emails = [emails];
+      };
+  };
+  
+  //user.editedProfile = false;
+  Meteor.setTimeout(function () {
+    Roles.addUsersToRoles(user._id, ['player'], Roles.GLOBAL_GROUP);
+  });
+  
+  return user;
 })
-
-
+  
