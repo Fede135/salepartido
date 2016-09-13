@@ -1,5 +1,9 @@
 Template.confirmarPartido.helpers({
 	
+  reservaSeleccionada: function () {
+    return Session.get('reserva');
+  },
+
   reserva: function () {
     return Reserva.find();
   }
@@ -28,25 +32,27 @@ Template.confirmarPartido.events({
         Router.go('confirmarPartido', reserva);        */
     },
 
-  'click [data-for-reserva]': function(event){
+    'click [data-for-reserva]': function(event){
 
     var $item = $(event.currentTarget);
     var $target = $($item.data('forReserva'));
 
     $target.val($item.text());    
+
+    var reserva = Reserva.findOne($item.data('reservaId'));
+    Session.set('reserva', reserva);    
     
     },
 
-  'click #obtenerDetalles': function (event) {
-        
-    var nomReserva = $('input:button[name=nombreReserva]').val();
+    'click #agregarEquipoA': function(event){
+       
+        var usuario= Meteor.user().profile.firstName;
+        console.log(usuario);
+    }
+});
 
-    /*
-    var reserva = Reserva.findOne({nom_reserva: nomReserva});
-            
-        console.log(reserva
-            );
-    */
+Template.confirmarPartido.onDestroyed( function(){
 
-	}
+    Session.set('reserva', null);
+
 });

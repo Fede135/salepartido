@@ -19,7 +19,7 @@
         	                       	<ul class="dropdown-menu">
         	                       		{{#each reserva}}
         	                  
-        	                         		<li><a data-for-reserva = "#nombreReserva"> {{this.nom_reserva}} </a></li>
+        	                         		<li><a data-for-reserva = "#nombreReserva" data-reserva-id="{{_id}}">{{this.nom_reserva}}</a></li>
         	                  
         	                       		{{/each}}
         	                   
@@ -33,40 +33,37 @@
   			      </div>  		  
     		  </div>
       		<br>
-          <div class="row">
-              <div class="span5 col-md-4">
-                  <div class="btn-group" role="group" aria-label="...">
-                      <button name="obtenerDetalles" id="obtenerDetalles" type="button" class="btn btn-success">Obtener detalles de la reserva</button>
-                  </div>
-              </div>    
-          </div>     
-          <br>
       		<div class="row">
       			  <div class="span5 col-md-4">
-      			     	<textarea class="form-control" rows="12"> </textarea>
+      			     	
       		  	</div>	
         			<div class="span5 col-md-3">
 
-          				<input name="nombreUsuario" id="nombreUsuario" type="button" value="" class="form-control"/>
+                  <h4>Nombre usuario</h4>
+          				<input name="nombreUsuario" id="nombreUsuario" type="button" value="{{reservaSeleccionada.nom_usario}}" class="form-control"/>
           				<br>
-          				<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>
+                  <h4>Nombre del recinto</h4>
+          				<input name="nombreRecinto" id="nombreRecinto" type="button" value="{{reservaSeleccionada.nom_recinto}}" class="form-control"/>
           				<br>
-          				<input name="numCancha" id="numCancha" type="button" value="" class="form-control"/>
+                  <h4>Cancha reservada</h4>
+          				<input name="numCancha" id="numCancha" type="button" value="{{reservaSeleccionada.num_cancha}}" class="form-control"/>
           				<br>
-          				<input name="diaDeJuego" id="diaDeJuego" type="button" value="" class="form-control"/>
+                  <h4>Dia elegido</h4>
+          				<input name="diaDeJuego" id="diaDeJuego" type="button" value="{{reservaSeleccionada.hora_de_juego}}" class="form-control"/>
           				<br>
-          				<input name="horaDeJuego" id="horaDeJuego" type="button" value="" class="form-control"/>
+                  <h4>Hora elegida</h4>
+          				<input name="horaDeJuego" id="horaDeJuego" type="button" value="{{reservaSeleccionada.fecha_de_juego}}" class="form-control"/>
           				<br>
 
         			</div>
         			<div class="span5 col-md-4">
-        			   	<textarea class="form-control" rows="12"> </textarea>
+        			   	
         			</div>
       		</div>
       		<div class="row">
         			<div class="span5 col-md-4">
           				<div class="btn-group" role="group" aria-label="...">
-          						<button type="button" class="btn btn-success">Agregar a equipo A</button> 
+          						<button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
           						<button type="button" class="btn btn-danger">Eliminar de equipo A</button> 
       					  </div>
         			</div>	
