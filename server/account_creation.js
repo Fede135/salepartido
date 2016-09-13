@@ -1,25 +1,3 @@
-/*ServiceConfiguration.configurations.upsert({
-        {service: "facebook"},
-        { $set: {
-          appId:'1604179873208704',
-          secret: '826d819af100945ff4f535b746a7b71b',
-          requestPermissions: ['user_friends'] //here you are requesting the permission to get the user's friends
-        }
-});*/
-
-/*Accounts.onCreateUser(function (options, user) { 
-  if (options.profile) { 
-    user.profile = options.profile;      
-  }
-  Meteor.setTimeout(function () {
-    Roles.addUsersToRoles(user._id, ['player'], Roles.GLOBAL_GROUP);
-  });
-
-  return user;
-
-})*/
-
-
 Accounts.onCreateUser(function (options, user) {
   if(! user.services.facebook) { 
     if (options.profile) { 
@@ -36,7 +14,7 @@ Accounts.onCreateUser(function (options, user) {
       };
   };
   
-  //user.editedProfile = false;
+
   Meteor.setTimeout(function () {
     Roles.addUsersToRoles(user._id, ['player'], Roles.GLOBAL_GROUP);
   });
@@ -44,3 +22,23 @@ Accounts.onCreateUser(function (options, user) {
   return user;
 })
   
+Accounts.emailTemplates.from = "Sale Partido <salepartido2016@gmail.com>"
+Accounts.emailTemplates.resetPassword = {
+  subject(user) {
+    return "Resetee su contraseña en Sale Partido";
+  },
+  text(user, url) {
+    return `Hola!
+Presione el siguiente link para resetear su contraseña en Sale Partido.
+${url}
+Si usted no solicito este cambio, ignore este mail
+Gracias,
+El equipo de Sale Partido.
+`
+  },
+ /* html(user, url) {
+    process.env.MAIL_URL = "smtp://salepartido2016@gmail.com:adrigato@smtp.googlemail.com:465"
+    // This is where HTML email content would go.
+    // See the section about html emails below.
+  }*/
+};

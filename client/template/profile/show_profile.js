@@ -29,11 +29,11 @@ Template.showProfile.helpers({
   ownProfile: function () {
     return this._id === Meteor.userId();    
   },
-  /*amigos: function () {
-    var friends = FacebookCollections.getFriends('me',['id','name']);
-    console.log(friends.count())
-    return friends.find();
-  }*/
+  amigos: function () {
+    friends= Friends && Friends.find();
+    console.log(friends && friends.count());
+    return friends;
+  }
 });
 
 Template.showProfile.events({
@@ -41,11 +41,3 @@ Template.showProfile.events({
 		Router.go('editProfile', {_id: Meteor.userId()});
 	}
 });
-
-//Probando lista de amigos de facebook
-/*var friends = FacebookCollections.getFriends('me',['id','name']);
-/*Template.showProfile.friends = function() {
-  friends= friends.find();
-  console.log(friends.count());
-  return friends;
-}*/
