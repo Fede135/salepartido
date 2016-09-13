@@ -35,7 +35,14 @@
       		<br>
       		<div class="row">
       			  <div class="span5 col-md-4">
-      			     	
+      			     	<ul>
+                        {{#each partido.equipoA}}
+                            
+                        <li></li>
+                            
+                        {{/each}}
+                             
+                   </ul>
       		  	</div>	
         			<div class="span5 col-md-3">
 
@@ -48,16 +55,23 @@
                   <h4>Cancha reservada</h4>
           				<input name="numCancha" id="numCancha" type="button" value="{{reservaSeleccionada.num_cancha}}" class="form-control"/>
           				<br>
-                  <h4>Dia elegido</h4>
+                  <h4>Hora elegida</h4>
           				<input name="diaDeJuego" id="diaDeJuego" type="button" value="{{reservaSeleccionada.hora_de_juego}}" class="form-control"/>
           				<br>
-                  <h4>Hora elegida</h4>
+                  <h4>Dia elegido</h4>
           				<input name="horaDeJuego" id="horaDeJuego" type="button" value="{{reservaSeleccionada.fecha_de_juego}}" class="form-control"/>
           				<br>
 
         			</div>
         			<div class="span5 col-md-4">
-        			   	
+        			   	<ul>
+                        {{#each partido.equipoB}}
+                            
+                        <li></li>
+                            
+                        {{/each}}
+                             
+                   </ul>       
         			</div>
       		</div>
       		<div class="row">

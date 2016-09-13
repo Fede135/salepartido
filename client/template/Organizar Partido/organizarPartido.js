@@ -22,20 +22,31 @@ Template.organizarPartido.events({
         e.preventDefault();
 
         var reserva = {
+            _id:Meteor.ObjectId,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
             nom_usario: Meteor.user().profile.firstName,
-            nom_recinto: $(e.target).find('[name=nombreRecinto]').val(),
-            num_cancha: $(e.target).find('[name=nombreCancha]').val(),
-            hora_de_juego: $(e.target).find('[name=datetimepicker3]').val(),
-            fecha_de_juego: $(e.target).find('[name=datetimepicker]').val()
-        };
+            nom_recinto:$(e.target).find('[name=nombreRecinto]').val(),
+            num_cancha:$(e.target).find('[name=nombreCancha]').val(),
+            hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
+            fecha_de_juego:$(e.target).find('[name=datetimepicker]').val()
+        };        
+
 
         var errors = validateReserva(reserva);
         if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
-        reserva._id = Reserva.insert(reserva);
-        Router.go('confirmarPartido', reserva);        
+        var x= Reserva.insert(reserva);
+        
+        
+        var partido = { 
+          _id:Meteor.ObjectId,
+          reserva_id:x,
+        };
+        
+        var partidoId=Partido.insert(partido);
+        
+        Router.go('confirmarPartido',partidoId);
     },
   
 
@@ -48,8 +59,8 @@ Template.organizarPartido.events({
 
   'click [data-for-recinto]': function(event){
     
-    var $item = $(event.currentTarget);
-    var $target = $($item.data('forRecinto'));
+    var $item=$(event.currentTarget);
+    var $target=$($item.data('forRecinto'));
     
     $target.val($item.text()); 
     
@@ -57,8 +68,8 @@ Template.organizarPartido.events({
 
   'click [data-for-cancha]': function(event){
 
-    var $item = $(event.currentTarget);
-    var $target = $($item.data('forCancha'));
+    var $item=$(event.currentTarget);
+    var $target=$($item.data('forCancha'));
 
     $target.val($item.text());    
   }
@@ -75,18 +86,18 @@ Template.organizarPartido.helpers({
     return Canchas.find();
   },
 
-
   errorMessage: function(field) {
     return Session.get('reservaErrors')[field];
   },
 
   errorClass: function (field) {
     return !!Session.get('reservaErrors')[field] ? 'has-error' : '';
-
   }
+
 });
 
 Template.organizarPartido.onCreated(function() {
+  
   Session.set('reservaErrors', {});
 });
 
