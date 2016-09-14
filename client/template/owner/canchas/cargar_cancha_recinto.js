@@ -50,4 +50,11 @@ Template.cargarCancha.events({
 
 });
 
- 
+Template.confirmarPartido.onDestroyed( function(){
+
+    Session.set('recintoSelect', null);
+
+});
+	
+  //--------------------------------------------------
+ //falta mostrar un mensaje una vez que se crea la cancha
