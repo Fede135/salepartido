@@ -1,6 +1,6 @@
 Calificaciones.insert({
-	nombre_recinto:"usuariocorreo2",
-	id_recinto:"Lpj5njZAHbNiQkpsK",
+	nombre_recinto:"ejemplo1",
+	id_recinto:"k7vWk3PMBkiYHNdDN",
 	upvotes : [],
 	votes:[],
 });

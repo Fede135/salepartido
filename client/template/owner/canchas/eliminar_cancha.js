@@ -1,6 +1,10 @@
 Template.eliminarCancha.helpers({
+
+   
 	canchas: function () {
-		return Canchas.find();
+    recinto = Recintos.findOne({ownerId:Meteor.userId()});
+    p = recinto._id;
+		  return Canchas.find({recintoId:p});
 	},
 
 	  onError: function () {

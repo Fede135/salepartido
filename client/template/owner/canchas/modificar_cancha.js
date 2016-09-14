@@ -1,14 +1,17 @@
 Template.modificarCancha.helpers({
 
 	recinto: function () {
-		recinto = Recintos.findOne({ownerId: Meteor.userId()});
-			p = recinto._id;
-			return recinto;
+		recinto = Recintos.findOne({ownerId:Meteor.userId()});
+		var nomb = recinto.nombre_recinto;
+			return nomb;
 		
 	},
 
+	
 	canchas: function () {
-		return Canchas.find({recintoId:"HnA3G5Fqf532eyFpd"});
+		recinto = Recintos.findOne({ownerId:Meteor.userId()});
+		var p = recinto._id;
+			return Canchas.find({recintoId:p});
 		//no se si es el find() o que, por esto"HnA3G5Fqf532eyFpd"deberia ir recintoz._id 
 	},
 
@@ -17,7 +20,7 @@ Template.modificarCancha.helpers({
 	},
 
 	tipoCancha : function(){
-		return ["Cesped Sintetico","Cesped Natural","Baldosa","Tierra"].map((al) => ({label: al, value: al}));
+		return ["Cesped Sintetico","Cesped Natural","Baldosa","Tierra","Parquet"].map((al) => ({label: al, value: al}));
 	},
 
 	estadoCancha : function(){
@@ -29,7 +32,9 @@ Template.modificarCancha.helpers({
         },
 
 	countCanchas: function (){
-		return Canchas.find({recintoId:"HnA3G5Fqf532eyFpd"}).count();
+		recinto = Recintos.findOne({ownerId:Meteor.userId()});
+		var p = recinto._id;
+		return Canchas.find({recintoId:p}).count();
 	},
 
 	
