@@ -4,26 +4,68 @@
 	 <h2>Recintos cargados</h2>
     	
    <!--  
-   para mi-->
-   			
+   para mi 			
 
     		<li><h2>{{recinto}}</h2></li>
 
     		<h3>Canchas del recinto: {{countCanchas}}</h3>
+  -->
       		<!-- Ver como manejar el id del recinto al cargar la cancha-->
-      		{{> uploadCancha}}
-      	 
-   
-
-
-
-	<!--
+      		<!--{{> uploadCancha}}-->
+  <!--
 	
 	{{> quickForm collection="Canchas" id="cargarCancha" type="insert"}}
 	-->	
-  
+  <div class="input-group-btn">
+    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
+      <ul class="dropdown-menu">
+          {{#each recinto}}
+                            
+            <li><a data-for-recinto = "#nombreRecinto" data-recinto-id="{{_id}}">{{this.nombre_recinto}}</a></li>
+                            
+          {{/each}}
+                             
+      </ul>
+  </div>
+<!--
+  <input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>
+-->
+    {{#if recintoSeleccionado}}
+      <h2>{{recintoSeleccionado.nombre_recinto}}</h2>
+      {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
+      <fieldset>
+          <legend><h2>Crear cancha</h2></legend>
+      
 
+          {{> afQuickField name='recintoId' value=recintoSeleccionado._id}}
+
+          {{> afQuickField name='numero' style="color: orange" label-style="color: green"}}
+
+          {{> afQuickField name='jugadores.cantidad_de_jugadores' options="allowed" noselect=true}} 
+
+          {{> afQuickField name='tipo_cancha.tipo_de_cancha' options="allowed" noselect=true}}
+
+          {{> afQuickField name='estado_cancha.estado_de_cancha' options="allowed" noselect=true}}
+
+         
+          {{> afQuickField name='descripcion' rows=3}}
+
+  
+      </fieldset>
+         <button type="submit" class="btn btn-success">Crear</button>
+    {{/autoForm}}
+    {{/if}}
+ 
+<!--
+  <div>
+    {{#each canchas_recinto}}
+    daleee
+      {{> uploadCancha}}
+    {{/each}}
+  </div>
+  -->
 	</div>
+    
 
 
 
