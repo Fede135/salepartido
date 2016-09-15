@@ -1,8 +1,8 @@
 <!-- Renderizado de formulario definido en el simpleSchema para editProfile -->
  <template name="editProfile">
      <div class="container">
-     {{#autoForm schema="Schema.users" id="editProfile" type="method" meteormethod="completeProfile"}}
-   <fieldset>
+     {{#autoForm schema="Schema.users" id="editProfile" doc=this type="method-update" meteormethod="completeProfile"}}
+      <fieldset>
      <legend>Editar Perfil</legend>
     {{> afQuickField name="player.position" options = "allowed" noselect=false}}
     {{> afQuickField name="player.foot" options = "allowed" noselect=false}}

@@ -1,31 +1,39 @@
-/*Template.userSearch.helpers({
+Template.userSearch.helpers({
   settings: function() {
     return {
-      position: "top",
+      position: "botton",
       limit: 5,
       rules: [
         {
-          collection: Meteor.users,
-          field: "profile.firstName",
-          template: Template.
-        },
-        {
-          collection: Meteor.users,
-          field: "profile.lastName",
-          template: Template.userPill
-        },
-        {
+          token:'@',
           collection: Meteor.users,
           field: "profile.name",
-          template: Template.userPill
+          matchAll: true,
+          template: Template.userDataPill,  
+          //noMatchTemplate: Template.emptyUserPill
         },
+        {
+          token:'!',
+          collection: Recintos,
+          field: "nombre_recinto",
+          template: Template.EnclosureDataPill,  
+          //noMatchTemplate: Template.emptyEnclosurePill
+        },
+        
         
       ]
     };
   }
 });
-Template.foo.events({
+Template.userSearch.events({
   "autocompleteselect input": function(event, template, doc) {
-    console.log("selected ", doc);
-  }
-});*/
+  if(! doc.profile) {
+      Router.go('showRecinto',{nombre_recinto: doc.nombre_recinto});
+    } else {
+      console.log("recinto", doc);
+      Router.go('showProfile',{_id: doc._id}); 
+    }
+  },
+});
+
+
