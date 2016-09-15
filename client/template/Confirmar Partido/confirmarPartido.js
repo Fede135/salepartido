@@ -59,8 +59,19 @@ Template.confirmarPartido.events({
     },
 
     'click #confirmarAsistencia': function(event){
+
+        var equipoA = Partido.findOne(this._id).equipoA;
+        var lista =_.findWhere(equipoA, {userId: Meteor.user()._id});
+        var equipoB = Partido.findOne(this._id).equipoB;
+        var listaB =_.findWhere(equipoB, {userId: Meteor.user()._id});
+
+        if (lista ||listaB )
         Router.go('Home');
-    }
+    },
+
+    'click #noJuega': function(event){
+        Router.go('Home');
+    }    
 });
 
 Template.confirmarPartido.onDestroyed( function(){
