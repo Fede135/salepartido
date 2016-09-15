@@ -1,12 +1,31 @@
 <template name = "confirmarPartido">
     <div class="container">
-  	   	<div class="navbar">
-  		    	<h2 align="center">
-  				      Confirmar partido 
-  			    </h2>
-  		</div>
+  	   	
+  		<h2 align="center">Confirmar partido</h2>
+  		  
   		<div class="well"> 
-  		  	<div class="row">
+          <div class="row">
+              <div class="span5 col-md-4">
+                  <h4>El usuario que te invito es {{reservaSeleccionada.nom_usario}}</h4>
+              </div>
+              <div class="span5 col-md-4">
+                  <h4>Van a jugar en {{reservaSeleccionada.nom_recinto}}</h4>
+              </div>
+              <div class="span5 col-md-4">
+                  <h4>En la cancha numero {{reservaSeleccionada.num_cancha}}</h4>
+              </div>
+          </div>
+          <div class="row">
+              <div class="span5 col-md-4">
+                  <h4>El dia {{reservaSeleccionada.fecha_de_juego}}</h4>
+              </div>
+              <div class="span5 col-md-4">
+                  <h4>A la hora {{reservaSeleccionada.hora_de_juego}}</h4>
+              </div>
+              <div class="span5 col-md-4">
+              </div>
+          </div>      
+  		  <!--	<div class="row">
   				    <div class="form-group">	
     				    	<div class="span5 col-md-11">
     					     <br>
@@ -26,12 +45,11 @@
         	                       	</ul>
         	                   	</div>         		
         						    	    <input name="nombreReserva" id="nombreReserva" type="button" value="" class="form-control"/>	          		
-        						      </div>
-        						      <!--<span class="help-block">{{errorMessage 'nombreReserva'}}</span>-->
+        						      </div>        						     
         						  </div>
     					    </div> 
   			      </div>  		  
-    		  </div>
+    		  </div>-->
       		<br>
       		<div class="row">
       			  <div class="span5 col-md-4">
@@ -45,7 +63,7 @@
                    </ul>
       		  	</div>	
         			<div class="span5 col-md-3">
-
+<!--
                   <h4>Nombre usuario</h4>
           				<input name="nombreUsuario" id="nombreUsuario" type="button" value="{{reservaSeleccionada.nom_usario}}" class="form-control"/>
           				<br>
@@ -61,7 +79,7 @@
                   <h4>Dia elegido</h4>
           				<input name="horaDeJuego" id="horaDeJuego" type="button" value="{{reservaSeleccionada.fecha_de_juego}}" class="form-control"/>
           				<br>
-
+-->
         			</div>
         			<div class="span5 col-md-4">
         			   	<ul>
@@ -91,7 +109,7 @@
         			</div>
       		</div>
       		<br>     		
-  			  <input type="submit" value="Confirmar partido" class="btn btn-success"/>			
+  			  <button type="button" name="confirmarAsistencia" id="confirmarAsistencia" class="btn btn-success">Confirmar asistencia</button>
     	</div>
   </div> 		
 </template>

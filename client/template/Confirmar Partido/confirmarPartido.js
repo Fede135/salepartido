@@ -1,16 +1,19 @@
 Template.confirmarPartido.helpers({
 	
   reservaSeleccionada: function () {
-    return Session.get('reserva');
-  },
+    var partido = Partido.findOne(this._id)
+    var reservaId=partido && partido.reserva_id;
+    
+    return Reserva.findOne(reservaId);
+  }/*,
 
   reserva: function () {
     return Reserva.find();
-  }
+  }*/
 });
 
 Template.confirmarPartido.events({
-
+/*
     'click [data-for-reserva]': function(event){
 
     var $item = $(event.currentTarget);
@@ -21,7 +24,7 @@ Template.confirmarPartido.events({
     var reserva = Reserva.findOne($item.data('reservaId'));
     Session.set('reserva', reserva);    
     
-    },
+    },*/
 
     'click #agregarEquipoA': function(event){
 
@@ -30,7 +33,7 @@ Template.confirmarPartido.events({
 
         if (lista === undefined)                
         
-        Partido.update(this._id, { $addToSet: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.firstName}}}); 
+        Partido.update(this._id, { $addToSet: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}}); 
     
     },
 
@@ -41,18 +44,22 @@ Template.confirmarPartido.events({
 
         if (lista === undefined)  
        
-        Partido.update(this._id, { $addToSet: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.firstName}}}); 
+        Partido.update(this._id, { $addToSet: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}}); 
     },
 
     'click #eliminarEquipoA': function(event){
 
-        Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.firstName}}});
+        Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
              
     },
 
     'click #eliminarEquipoB': function(event){       
            
-        Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.firstName}}});         
+        Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});         
+    },
+
+    'click #confirmarAsistencia': function(event){
+        Router.go('Home');
     }
 });
 

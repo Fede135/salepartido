@@ -24,7 +24,7 @@ Template.organizarPartido.events({
         var reserva = {
             _id:Meteor.ObjectId,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
-            nom_usario: Meteor.user().profile.firstName,
+            nom_usario: Meteor.user().profile.name,
             nom_recinto:$(e.target).find('[name=nombreRecinto]').val(),
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
