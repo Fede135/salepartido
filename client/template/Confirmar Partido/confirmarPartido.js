@@ -6,10 +6,6 @@ Template.confirmarPartido.helpers({
 
   reserva: function () {
     return Reserva.find();
-  },
-
-  partidoSeleccionado: function(){    
-    return Session.get('partido'); 
   }
 });
 
@@ -29,36 +25,34 @@ Template.confirmarPartido.events({
 
     'click #agregarEquipoA': function(event){
 
-        var partido = Partido.findOne({_id:this._id});
-        Session.set('partido', partido.equipoA);
-        var usuarioId = Meteor.user()._id;
-        var usuarioNom = Meteor.user().profile.firstName;
+        var equipoB = Partido.findOne(this._id).equipoB;
+        var lista =_.findWhere(equipoB, {userId: Meteor.user()._id});
 
-        /*var errors = validateEquipo(partido);
-        if (errors.equipoA || errors.equipoB)
-        return Session.set('partidoErrors', errors);
+        if (lista === undefined)                
         
-        Partido.update(reserva._id, {$addToSet: {'equipoA.userId':usuarioId, 'equipoA.nombre':usuarioNom}});*/
-
-       /*Partido.update({_id:this._id}, { $addToSet:  { equipoA: { 'userId': "ausuarioIsssd", 'nombre': "aausuarioNom" } }});*/
-       
-        Partido.update({_id:this._id}, {$addToSet:  { "equipoA": { userId: "nnbbnbnbnnbnbnbnb", nombre: "asdasdasdad"}}}); 
+        Partido.update(this._id, { $addToSet: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.firstName}}}); 
     
     },
 
     'click #agregarEquipoB': function(event){
+
+        var equipoA = Partido.findOne(this._id).equipoA;
+        var lista =_.findWhere(equipoA, {userId: Meteor.user()._id});
+
+        if (lista === undefined)  
        
-          Partido.update(partido, x);
+        Partido.update(this._id, { $addToSet: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.firstName}}}); 
     },
 
     'click #eliminarEquipoA': function(event){
 
-          Partido.update({_id:this._id}, { $pull: {'equipoA': "bbvbvvbvb" }});
+        Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.firstName}}});
              
     },
 
     'click #eliminarEquipoB': function(event){       
            
+        Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.firstName}}});         
     }
 });
 
