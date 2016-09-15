@@ -6,31 +6,14 @@ Template.confirmarPartido.helpers({
 
   reserva: function () {
     return Reserva.find();
+  },
+
+  partidoSeleccionado: function(){    
+    return Session.get('partido'); 
   }
 });
 
 Template.confirmarPartido.events({
-
-	'submit form': function(e) {
-        
-        e.preventDefault();
-/*
-        var partido = {
-            nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
-            nom_usario: Meteor.user().profile.firstName,
-            nom_recinto: $(e.target).find('[name=nombreRecinto]').val(),
-            num_cancha: $(e.target).find('[name=nombreCancha]').val(),
-            hora_de_juego: $(e.target).find('[name=datetimepicker3]').val(),
-            fecha_de_juego: $(e.target).find('[name=datetimepicker]').val()
-        };
-
-        var errors = validateReserva(reserva);
-        if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
-        return Session.set('reservaErrors', errors);
-
-        reserva._id = Reserva.insert(reserva);
-        Router.go('confirmarPartido', reserva);        */
-    },
 
     'click [data-for-reserva]': function(event){
 
@@ -45,9 +28,37 @@ Template.confirmarPartido.events({
     },
 
     'click #agregarEquipoA': function(event){
+
+        var partido = Partido.findOne({_id:this._id});
+        Session.set('partido', partido.equipoA);
+        var usuarioId = Meteor.user()._id;
+        var usuarioNom = Meteor.user().profile.firstName;
+
+        /*var errors = validateEquipo(partido);
+        if (errors.equipoA || errors.equipoB)
+        return Session.set('partidoErrors', errors);
+        
+        Partido.update(reserva._id, {$addToSet: {'equipoA.userId':usuarioId, 'equipoA.nombre':usuarioNom}});*/
+
+       /*Partido.update({_id:this._id}, { $addToSet:  { equipoA: { 'userId': "ausuarioIsssd", 'nombre': "aausuarioNom" } }});*/
        
-        var usuario= Meteor.user().profile.firstName;
-        console.log(usuario);
+        Partido.update({_id:this._id}, {$addToSet:  { "equipoA": { userId: "nnbbnbnbnnbnbnbnb", nombre: "asdasdasdad"}}}); 
+    
+    },
+
+    'click #agregarEquipoB': function(event){
+       
+          Partido.update(partido, x);
+    },
+
+    'click #eliminarEquipoA': function(event){
+
+          Partido.update({_id:this._id}, { $pull: {'equipoA': "bbvbvvbvb" }});
+             
+    },
+
+    'click #eliminarEquipoB': function(event){       
+           
     }
 });
 

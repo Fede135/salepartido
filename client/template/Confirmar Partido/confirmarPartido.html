@@ -2,7 +2,7 @@
     <div class="container">
   	   	<div class="navbar">
   		    	<h2 align="center">
-  				      Confirmar partido
+  				      Confirmar partido 
   			    </h2>
   		</div>
   		<div class="well"> 
@@ -36,9 +36,9 @@
       		<div class="row">
       			  <div class="span5 col-md-4">
       			     	<ul>
-                        {{#each partido.equipoA}}
+                        {{#each partidoSeleccionado}}
                             
-                        <li></li>
+                        <li>{{this}}</li>
                             
                         {{/each}}
                              
@@ -65,7 +65,7 @@
         			</div>
         			<div class="span5 col-md-4">
         			   	<ul>
-                        {{#each partido.equipoB}}
+                        {{#each this.equipoB}}
                             
                         <li></li>
                             
@@ -78,15 +78,15 @@
         			<div class="span5 col-md-4">
           				<div class="btn-group" role="group" aria-label="...">
           						<button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
-          						<button type="button" class="btn btn-danger">Eliminar de equipo A</button> 
+          						<button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
       					  </div>
         			</div>	
-        			<div class="span5 col-md-3">    				
+        			<div class="span5 col-md-3">                  
         			</div>
         			<div class="span5 col-md-4">
             			<div class="btn-group" role="group" aria-label="...">
-          						<button type="button" class="btn btn-danger">Eliminar de equipo B</button> 
-          						<button type="button" class="btn btn-success">Agregar a equipo B</button> 			
+          						<button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-danger">Eliminar de equipo B</button> 
+          						<button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 			
         					</div>
         			</div>
       		</div>

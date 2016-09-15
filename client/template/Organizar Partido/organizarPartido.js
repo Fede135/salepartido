@@ -46,7 +46,7 @@ Template.organizarPartido.events({
         
         var partidoId=Partido.insert(partido);
         
-        Router.go('confirmarPartido',partidoId);
+        Router.go('confirmarPartido',{_id:partidoId});
     },
   
 
@@ -100,15 +100,3 @@ Template.organizarPartido.onCreated(function() {
   
   Session.set('reservaErrors', {});
 });
-
-
-
-
-
-
-/*
-$('input:button[name=datetimepicker]').val());
-$('input:button[name=datetimepicker3]').val());
-$('input:button[name=recinto]').val());
-$('input:button[name=cancha]').val());
-*/
