@@ -42,7 +42,6 @@ Template.modificarCancha.helpers({
 
 });
 
-//mostrar canchas que le pertenecen al recinto, del usuario logeado
 
 Template.modificarCancha.events({
 
@@ -67,6 +66,12 @@ Template.modificarCancha.events({
     Session.set('recintoSelect', recintoSelect);
     },
 
-    
+});
+
+Template.confirmarPartido.onDestroyed( function(){
+
+    Session.set('reserva', null);
 
 });
+
+//Falta mostrar mensaje cuando se modifica la cancha.
