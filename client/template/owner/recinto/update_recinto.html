@@ -1,11 +1,28 @@
 <template name="updateRecinto">
 	<div class="container">
-		<h2>Actualizar Recintos </h2>
-		<h3>Actualmente administra {{countRecintos}} recinto/s</h3>
+	     <h2>Actualizar Recintos </h2>
+           <h3>Seleccione un recinto:</h3>            
+            <!-- Boton desplegable -->
+            <!--
+             <div class="input-group-btn">
+                  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                        {{#each recinto}}
+                            
+                               <li><a data-for-recinto = "#nombreRecinto" data-recinto-id="{{_id}}">{{this.nombre_recinto}}</a></li>
+                            
+                        {{/each}}
+                             
+                  </ul>
+             </div>
+		-->
 
-		{{#each recintos}}
+		<!--{{#if recintoSeleccionado}}
+                  Recinto: {{recintoSeleccionado.nombre_recinto}}
+            -->
+            {{#each recinto}}
 			<div class="form-offline">
-            {{#autoForm collection="Recintos" doc=this id=updateFormName type="update" onSuccess=onSuccess }}
+                  {{#autoForm collection="Recintos" doc=this id=updateFormName type="update" onSuccess=onSuccess }}
 
                     	<h4>Nombre recinto</h4>
                         {{> afFieldInput name='nombre_recinto'}}
@@ -34,14 +51,24 @@
                         <h4>Cantina</h4>
                         {{> afFieldInput name='servicios.cantina' options=servCantina}}
 
+                        <h3>Cambiar imágenes del recinto</h3>
+                          <h4>Imagen 1</h4>
+                          {{> afQuickField name='imagen1_id' }}
+                          <h4>Imagen 2</h4>
+                          {{> afQuickField name='imagen2_id' }}
+                          <h4>Imagen 3</h4>
+                          {{> afQuickField name='imagen3_id' }}
+                          <h4>Imagen 4</h4>
+                          {{> afQuickField name='imagen4_id' }}
                        
 
                         <br>                        
                         <button type="submit" class="btn btn-primary">Actualizar</button>
                         
                     
-                {{/autoForm}}
+                  {{/autoForm}}
             </div>
             {{/each}}
+           <!-- {{/if}}-->
 	</div>
 </template>

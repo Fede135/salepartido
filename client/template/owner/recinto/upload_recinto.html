@@ -34,26 +34,9 @@
 
           
         
-        <h3>Cargar canchas del recinto</h3>
-        <p>poner en otra ventana</p>
-       <!-- ANDA PERO MUESTRA campos de otra manera 
-
-        {{> afArrayField name="canchas_recinto"}}
-        -->
-      <!--  anda. pero no se guarda y no podes seleccionar de dos canchas distintas los campos 
-        {{#afEachArrayItem name="canchas_recinto"}}
-            <button type="button" class="btn btn-primary autoform-remove-item"><span class="glyphicon glyphicon-minus"></span></button>
-            {{> afQuickField name='canchas_recinto.$.numero' }}
-
-            {{> afQuickField name='canchas_recinto.$.jugadores.cantidad_de_jugadores' options="allowed" noselect=true}} 
-
-            {{> afQuickField name='canchas_recinto.$.tipo_cancha.tipo_de_cancha' options="allowed" noselect=true}}
-
-            {{> afQuickField name='canchas_recinto.$.estado_cancha.estado_de_cancha' options="allowed" noselect=true}}
-
-        {{/afEachArrayItem}}
-          <button type="button" class="btn btn-primary autoform-add-item" data-autoform-field="canchas_recinto"><span class="glyphicon glyphicon-plus"></span></button>
-      -->
+        
+        
+ 
     </fieldset>
     <button type="submit"  id="btn-upload-recinto" class="btn btn-primary">Cargar</button>
   {{/autoForm}}

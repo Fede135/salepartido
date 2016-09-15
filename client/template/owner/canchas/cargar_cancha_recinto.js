@@ -33,14 +33,10 @@ Template.cargarCancha.events({
     var $target = $($item.data('forRecinto'));
     
     $target.val($item.text());    
-    //var nombreRecinto =$item.data('forRecinto');
+    
    
     var idRecinto = $item.data('recintoId');
-   // console.log(idRecinto);
-    //var canchas = Canchas.find({recintoId:idRecinto}).fetch();
-    //console.log(canchas);
-    //Session.set('canchas', canchas);    
-    //Session.set('nombreRecinto', nombreRecinto);
+  
     var recintoSelect = Recintos.findOne({_id:idRecinto});
     console.log(recintoSelect);
     Session.set('recintoSelect', recintoSelect);
