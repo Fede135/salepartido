@@ -59,7 +59,7 @@
 	                              					<ul class="dropdown-menu">
 	                              					{{#each recinto}}
 	                  
-	                              					<li><a data-for-recinto = "#nombreRecinto"> {{this.nombre_recinto}} </a></li>
+	                              					<li><a data-for-recinto="#nombreRecinto" data-for-id="{{_id}}">{{this.nombre_recinto}}</a></li>
 	                  
 	                              					{{/each}}
 	                    
@@ -85,7 +85,7 @@
 	                              				<ul class="dropdown-menu">
 	                              				{{#each cancha}}
 	                  
-	                             				 <li><a data-for-cancha = "#nombreCancha"> {{this.numero}} </a></li>
+	                             				 <li><a data-for-cancha = "#nombreCancha">{{this.numero}}</a></li>
 	                  
 	                              				{{/each}}    
 	                              				</ul>

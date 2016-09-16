@@ -5,7 +5,7 @@ Template.cargarCancha.events({
 
 		e.preventDefault();
 
-    	Router.go('gestionRecinto', );
+    	Router.go('gestionarRecintos', );
     }
 });
    

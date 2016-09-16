@@ -20,6 +20,13 @@
 //    }
 //  }
 // });
+Template.uploadRecinto.events({
+ 
+'click #btn-upload-recinto': function(event){
+        
+        Router.go('gestionarCanchas');
+    },
+});
 
 Template.uploadRecinto.helpers({
 

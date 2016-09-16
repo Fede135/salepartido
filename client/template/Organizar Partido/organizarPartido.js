@@ -62,16 +62,20 @@ Template.organizarPartido.events({
     var $item=$(event.currentTarget);
     var $target=$($item.data('forRecinto'));
     
-    $target.val($item.text()); 
+    $target.val($item.text());
+
+    var recinto=Recintos.findOne({'_id':($item.data('forId'))});
+    
+    Session.set('recinto', recinto);
     
   },
 
   'click [data-for-cancha]': function(event){
-
+/*
     var $item=$(event.currentTarget);
     var $target=$($item.data('forCancha'));
 
-    $target.val($item.text());    
+    $target.val($item.text());    */
   }
   
   });
@@ -83,7 +87,10 @@ Template.organizarPartido.helpers({
   },
 
   cancha: function () {
-    return Canchas.find();
+      var recinto = Session.get('recinto');
+      var recinto_Id = recinto && recinto._id;
+      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id});
+      return canchas;
   },
 
   errorMessage: function(field) {
@@ -99,4 +106,10 @@ Template.organizarPartido.helpers({
 Template.organizarPartido.onCreated(function() {
   
   Session.set('reservaErrors', {});
+});
+
+Template.organizarPartido.onDestroyed( function(){
+
+    Session.set('recinto', null);
+
 });
