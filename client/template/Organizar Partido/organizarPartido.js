@@ -22,7 +22,8 @@ Template.organizarPartido.events({
         e.preventDefault();
 
         var reserva = {
-            _id:Meteor.ObjectId,            
+            _id:Meteor.ObjectId,
+            usuarioId:Meteor.user()._id,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
             nom_usario: Meteor.user().profile.name,
             nom_recinto:$(e.target).find('[name=nombreRecinto]').val(),

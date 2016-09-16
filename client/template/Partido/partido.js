@@ -1,11 +1,10 @@
 Template.partido.helpers({
-	
-  reservaSeleccionada: function () {
-    return Session.get('reserva');
-  },
-
-  reserva: function () {
-    return Reserva.find();
+  
+    reserva: function () {
+      var reserva = Reserva.find({'usuarioId':this._id});
+    /*var userId = Meteor.user()._id;
+    console.log(userId);*/
+    return reserva;
   }
 });
 
@@ -16,10 +15,7 @@ Template.partido.events({
     var $item = $(event.currentTarget);
     var $target = $($item.data('forReserva'));
 
-    $target.val($item.text());    
-
-    var reserva = Reserva.findOne($item.data('reservaId'));
-    Session.set('reserva', reserva);    
+    $target.val($item.text());      
     
     },
 
