@@ -46,7 +46,7 @@ Template.cargarCancha.events({
 
 });
 
-Template.confirmarPartido.onDestroyed( function(){
+Template.cargarCancha.onDestroyed( function(){
 
     Session.set('recintoSelect', null);
 

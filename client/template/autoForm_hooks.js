@@ -9,6 +9,8 @@ AutoForm.addHooks(
     }
   }
 },
+
+
 /*['enterCommentsForPlayers'],
  {
     onSubmit: function(currentDoc) {

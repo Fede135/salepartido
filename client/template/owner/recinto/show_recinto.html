@@ -11,8 +11,12 @@
 	<br>
 	Cantidad de usuarios que han calificado : {{countUsers}}
 	<br>
-	¿Desea calificar al recinto?
-	{{> starsRating id='rating' class ="estrella" mutable=true size='lg'}} 
+	{{#if tieneVoto}}
+		Ya votaste este recinto...
+	{{else}}
+		¿Desea calificar al recinto?
+		{{> starsRating id='rating' class ="estrella" mutable=true size='lg'}}
+	{{/if}} 
 
 	 
 

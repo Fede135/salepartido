@@ -68,9 +68,10 @@ Template.modificarCancha.events({
 
 });
 
-Template.confirmarPartido.onDestroyed( function(){
+Template.modificarCancha.onDestroyed( function(){
 
-    Session.set('reserva', null);
+    Session.set('recintoSelect', null);
+    Session.set('canchas', null);
 
 });
 

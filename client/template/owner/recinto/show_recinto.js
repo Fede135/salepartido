@@ -11,10 +11,14 @@ Template.showRecinto.helpers({
 	},
 
 	imagen1: function(){
-		reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
-		var idImagen1 = reci.imagen1_id;
-		var url1 = Images.findOne({_id: idImagen1}).url();
+		var reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
+
+		if (reci) {
+			var idImagen1 = reci.imagen1_id;
+			var url1 = Images.findOne({_id: idImagen1}).url();
 			return url1;
+		}
+		
 	},
 
 	imagen2: function(){
@@ -38,7 +42,7 @@ Template.showRecinto.helpers({
 			return url4;
 	},
 
-	promedio :function(){
+	promedio: function(){
 		var cali = Calificaciones.findOne({id_recinto:this._id});
 		var array = cali.votes;
 		var promedio = 0;
@@ -57,6 +61,10 @@ Template.showRecinto.helpers({
 		var countUsers =  array.length;
 		return countUsers;
 	},
+
+	tieneVoto: function () {
+		return Calificaciones.findOne({ upvotes: Meteor.userId() })
+	}
 });
 
 

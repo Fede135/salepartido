@@ -59,3 +59,10 @@ Template.eliminarCancha.events({
     
 
 });
+
+Template.eliminarCancha.onDestroyed( function(){
+
+    Session.set('recintoSelect', null);
+    Session.set('canchas', null);
+
+});
