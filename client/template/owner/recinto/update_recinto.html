@@ -6,10 +6,11 @@
               {{#each recinto}}
                 Nombre:{{this.nombre_recinto}}
                 Fecha de creación:{{this.createdAt}}
-                Calificación del usuario: {{calificacion}}
+                Promedio de calificación: {{calificacion}}
                 <button type="button" name="editRecinto" id="editRecinto">
                 Editar
                 </button>
+                {{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn btn-danger"}}Eliminar{{/quickRemoveButton}}
                 <br>
                 <br>
               {{/each}}

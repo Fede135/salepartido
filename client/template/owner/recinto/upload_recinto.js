@@ -15,5 +15,5 @@ AutoForm.addHooks(
 },
 );
 
-
+//ver error al cargar imagenes
 

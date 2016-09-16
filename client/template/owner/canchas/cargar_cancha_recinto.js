@@ -54,3 +54,26 @@ Template.cargarCancha.onDestroyed( function(){
 	
   //--------------------------------------------------
  //falta mostrar un mensaje una vez que se crea la cancha
+/*
+ AutoForm.addHooks(
+   'cargarCancha',
+  {
+
+ after:{
+	onError: function () {
+      return function (error) { alert("Error, recargue la página"); console.log(error); };
+    },
+	
+	onSuccess: function (insert,result) {
+		var cancha = Canchas.findOne({_id:result});
+		var numero = cancha.numero;
+		var estado = cancha.estado_cancha.estado_de_cancha;
+
+      return alert("cancha creada correctamente"numero,estado);
+    },
+   
+  }
+},
+);
+
+*/

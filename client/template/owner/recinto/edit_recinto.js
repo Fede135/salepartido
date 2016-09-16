@@ -1,6 +1,9 @@
 Template.editRecinto.helpers({
 
-
+	recinto : function(){
+		return Recintos.findOne({_id: this._id});
+	},
+	
 	servEstacionamiento: function(){
 		return ["SI","NO"].map((el) => ({label: el, value: el}));
 	},

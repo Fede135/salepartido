@@ -1,5 +1,6 @@
 <template name="editRecinto">
-	<div class="form-offline">
+	<div class="container">
+    {{#if recinto}}
       {{#autoForm collection="Recintos" doc=this id=updateFormName type="update" onSuccess=onSuccess }}
 
         	<h4>Nombre recinto</h4>
@@ -45,6 +46,7 @@
             
         
       	{{/autoForm}}
+    {{/if}}
     </div>
 
 </template>
