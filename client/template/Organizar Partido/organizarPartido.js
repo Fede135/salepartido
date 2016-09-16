@@ -71,11 +71,11 @@ Template.organizarPartido.events({
   },
 
   'click [data-for-cancha]': function(event){
-/*
+
     var $item=$(event.currentTarget);
     var $target=$($item.data('forCancha'));
 
-    $target.val($item.text());    */
+    $target.val($item.text()); 
   }
   
   });
