@@ -5,26 +5,10 @@ Template.confirmarPartido.helpers({
     var reservaId=partido && partido.reserva_id;
     
     return Reserva.findOne(reservaId);
-  }/*,
-
-  reserva: function () {
-    return Reserva.find();
-  }*/
+  }
 });
 
 Template.confirmarPartido.events({
-/*
-    'click [data-for-reserva]': function(event){
-
-    var $item = $(event.currentTarget);
-    var $target = $($item.data('forReserva'));
-
-    $target.val($item.text());    
-
-    var reserva = Reserva.findOne($item.data('reservaId'));
-    Session.set('reserva', reserva);    
-    
-    },*/
 
     'click #agregarEquipoA': function(event){
 
@@ -70,6 +54,14 @@ Template.confirmarPartido.events({
     },
 
     'click #noJuega': function(event){
+
+        var equipoA = Partido.findOne(this._id).equipoA;
+        var lista =_.findWhere(equipoA, {userId: Meteor.user()._id});
+        var equipoB = Partido.findOne(this._id).equipoB;
+        var listaB =_.findWhere(equipoB, {userId: Meteor.user()._id});
+
+        if (!lista && !listaB )
+
         Router.go('Home');
     }    
 });

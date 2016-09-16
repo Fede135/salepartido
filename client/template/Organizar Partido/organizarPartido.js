@@ -36,12 +36,12 @@ Template.organizarPartido.events({
         if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
-        var x= Reserva.insert(reserva);
+        var idReserva= Reserva.insert(reserva);
         
         
         var partido = { 
           _id:Meteor.ObjectId,
-          reserva_id:x,
+          reserva_id:idReserva,
         };
         
         var partidoId=Partido.insert(partido);

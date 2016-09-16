@@ -22,4 +22,16 @@ Template.partido.events({
     Session.set('reserva', reserva);    
     
     },
+
+    'click #organizacionPartido': function(event){
+      
+      var nom_reserva=$('input[name=nombreReserva]').val();
+      var reserva = Reserva.findOne({'nom_reserva':nom_reserva});
+      var reserva_id = reserva._id;
+      var partido = Partido.findOne({'reserva_id':reserva_id});
+      var partido_id = partido._id;
+
+      Router.go('confirmarPartido',{_id:partido_id});      
+    }
+
 });
