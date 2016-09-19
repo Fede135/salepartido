@@ -17,13 +17,15 @@ Template.modificarCancha.helpers({
 			return Session.get('recintoSelect');
 	},
 
-/*
+
 	countCanchas: function (){
-		var p = Session.get('canchas1');
-		var count = p.count();
-		return count;
+		var p = Session.get('recintoSelect');
+		console.log(p);
+		var can = Canchas.find({recintoId:p._id}).count();
+		
+		return can;
 	},
-*/	
+	
 	//Todo esto es para mostrar los valores guardados en cancha
 	cantJugadores: function(){
 		return ["5 vs 5","6 vs 6","7 vs 7","11 vs 11"].map((el) => ({label: el, value: el}));

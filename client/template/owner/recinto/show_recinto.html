@@ -3,10 +3,14 @@
 	
 	Nombre recinto:{{recinto.nombre_recinto}} 
 	<br>
-	Promedio de calificaciones: {{promedio}}
+	{{#if promedio}}
 
+	Promedio de calificaciones: {{promedio}}
 	{{> starsRating rating=promedio size='sm'}}
 	
+	{{else}}
+	{{> starsRating rating=0 size='sm'}}
+	{{/if}}
 
 	<br>
 	Cantidad de usuarios que han calificado : {{countUsers}}
