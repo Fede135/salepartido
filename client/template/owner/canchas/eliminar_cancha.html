@@ -5,15 +5,34 @@
 			Eliminar canchas
 		  	</h2>
     	</div>
-    	
-	{{#each canchas}}
+    <h3>Seleccione un recinto:</h3>        
+   <!-- Boton desplegable -->
+    	<div class="input-group-btn">
+            <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+
+                {{#each recinto}}
+                            
+                <li><a data-for-recinto = "#nombreRecinto" data-recinto-id="{{_id}}">{{this.nombre_recinto}}</a></li>
+                            
+                {{/each}}
+                             
+            </ul>
+        </div>	
+    {{# if recintoSeleccionado}} 
+    	<h2>Recinto: {{recintoSeleccionado.nombre_recinto}}</h2> 
+		{{#each canchasRecinto}}
 		<div>
-		¿ Eliminar cancha numero :{{this.numero}} ?  
+		
+		¿ Eliminar cancha numero :{{this.numero}},{{this.descripcion}}?  
 		{{#quickRemoveButton collection="Canchas" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn btn-danger"}}Eliminar{{/quickRemoveButton}}
 			<br>
 			<br>
 		</div>
 		
-	{{/each}}	
+		{{/each}}
+			
+	{{/if}}
+
 	</div>
 </template>

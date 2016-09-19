@@ -1,47 +1,22 @@
 <template name="updateRecinto">
 	<div class="container">
-		<h2>Actualizar Recintos </h2>
-		<h3>Actualmente administra {{countRecintos}} recinto/s</h3>
+	     <h2>Actualizar Recintos </h2>
+           <h3>Recintos que admnistra</h3>            
+   
+              {{#each recinto}}
+                Nombre:{{this.nombre_recinto}}
+                Fecha de creación:{{this.createdAt}}
+                Promedio de calificación: {{calificacion}}
+                <button type="button" name="editRecinto" id="editRecinto">
+                Editar
+                </button>
+                {{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn btn-danger"}}Eliminar{{/quickRemoveButton}}
+                <br>
+                <br>
+              {{/each}}
+     
+  
 
-		{{#each recintos}}
-			<div class="form-offline">
-            {{#autoForm collection="Recintos" doc=this id=updateFormName type="update" onSuccess=onSuccess }}
-
-                    	<h4>Nombre recinto</h4>
-                        {{> afFieldInput name='nombre_recinto'}}
-
-                        <h4>Direccion</h4>
-                        {{> afFieldInput name='direccion_recinto'}}
-
-                        <h4>Telefono fijo</h4>
-                        {{> afFieldInput name='telefono_recinto.fijo'}}
-
-                        <h4>Telefono celular 1</h4>
-                        {{> afFieldInput name='telefono_recinto.celular_1'}}
-
-                        <h4>Telefono celular 2</h4>
-                        {{> afFieldInput name='telefono_recinto.celular_2'}}
-
-                        <h4>Estacionamiento</h4>
-                        {{> afFieldInput name='servicios.estacionamiento' options=servEstacionamiento}}
-
-                        <h4>Baños</h4>
-                        {{> afFieldInput name='servicios.baños' options=servBaños}}
-
-                        <h4>Camarines</h4>
-                        {{> afFieldInput name='servicios.camarines' options=servCamarines}}
-
-                        <h4>Cantina</h4>
-                        {{> afFieldInput name='servicios.cantina' options=servCantina}}
-
-                       
-
-                        <br>                        
-                        <button type="submit" class="btn btn-primary">Actualizar</button>
-                        
-                    
-                {{/autoForm}}
-            </div>
-            {{/each}}
+           
 	</div>
 </template>

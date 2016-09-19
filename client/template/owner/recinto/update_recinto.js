@@ -1,35 +1,47 @@
 Template.updateRecinto.helpers({
-	recintos: function () {
+	recinto: function () {
 		return Recintos.find({ownerId: Meteor.userId()});
 	},
 
-	servEstacionamiento: function(){
-		return ["SI","NO"].map((el) => ({label: el, value: el}));
+	calificacion: function(){
+		var cali = Calificaciones.findOne({id_recinto:this._id});
+		if(cali){
+			var array = cali.votes;
+			var promedio = 0;
+
+			for( i=0; i<array.length; i++ ){
+				promedio += array[i];
+			}
+			promedio = promedio / array.length;
+			
+			return promedio;
+	}
 	},
+	onError: function () {
+      return function (error) { alert("Se produjo un error"); console.log(error); };
+    },
+    onSuccess: function () {
+      return function (result) { alert("Se ha eliminado correctamente"); console.log(result); };
+    },
+    beforeRemove: function () {
+      return function (collection, id) {
+        var doc = Recintos.findOne(id);
+        if (confirm('Realmente quiere eliminar el recinto  "' + doc.nombre_recinto + '"?')) {
+          this.remove();
+        }
+      };
+    }
 
-	servBaños : function(){
-		return ["SI","NO"].map((al) => ({label: al, value: al}));
-	},
-
-	servCamarines : function(){
-		return ["SI","NO"].map((ol) => ({label: ol, value: ol}));
-	},
-
-	servCantina : function(){
-		return ["SI","NO"].map((ol) => ({label: ol, value: ol}));
-	},
-
-	updateFormName: function () {
-            return "updateOrgForm-" + this._id;
-        },
-
-	countRecintos: function (){
-		return Recintos.find({ownerId: Meteor.userId()}).count();
-	},
-
-	onSuccess: function () {
-      return function (result) { 
-      	alert("Recinto actualizado"); console.log(result);
-      	 };
-      },
 });
+
+Template.updateRecinto.events({
+
+	'click #editRecinto': function(event) {
+		console.log("dsad")
+		console.log(event)
+		Router.go('editRecinto', {_id:this._id});
+	}
+});
+
+
+
