@@ -15,10 +15,8 @@
     <br><br>
     {{> showCommentsPlayers}}
 
-
-    <!--{{#each amigos}}
-      {{this.data[0].name}}
+    {{#each amigos}}
+      <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.name}} <!--{{this.profile.name}}--></a>
     {{/each}}
-    {{friends.data[0].name}}-->
   </div>
 </template>
