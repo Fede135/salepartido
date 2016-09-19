@@ -39,8 +39,7 @@ Accounts.ui.config({
 accountsUIBootstrap3.setLanguage('es');
 
 Tracker.autorun(function () {
-  var user = Meteor.user()
-
+  var user = Meteor.user();
   if (user && user.services && user.services.facebook) {
     Friends = FacebookCollections.getFriends('me',['id','name']);
   }

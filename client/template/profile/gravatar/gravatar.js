@@ -10,5 +10,4 @@ Template.gravatar.helpers({
     }    
     return grav;
   }
-
-})
+});

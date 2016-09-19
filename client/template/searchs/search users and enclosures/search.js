@@ -1,4 +1,4 @@
-Template.userSearch.helpers({
+Template.search.helpers({
   settings: function() {
     return {
       position: "botton",
@@ -25,7 +25,7 @@ Template.userSearch.helpers({
     };
   }
 });
-Template.userSearch.events({
+Template.search.events({
   "autocompleteselect input": function(event, template, doc) {
   if(! doc.profile) {
       Router.go('showRecinto',{nombre_recinto: doc.nombre_recinto});

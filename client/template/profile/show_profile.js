@@ -29,13 +29,26 @@ Template.showProfile.helpers({
   ownProfile: function () {
     return this._id === Meteor.userId();    
   },
-  amigos: function () {
+  /*amigos: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
     friends= Friends && Friends.find();
-/*    a= Meteor.users.findOne({'services.facebook.id': friends.id});
-    console.log(a._id); hacer cn el fb del tch*/
+    var j = friends.count()-1; //uso esto xq el .length me da undefined
+    var amigos = []; 
+    for (var i=0; j; i++) {
+      var fbid = friends.fetch()[i].id; //guardo el atributo id de lo que me manda fb de cada usuario para despues buscar en mi bd, ya que este id es unico
+      var usuarios = Meteor.users.findOne({'services.facebook.id' : fbid});
+      console.log("usuarios bd", usuarios);
+      console.log("amigos antes", amigos);
+      var amigos = amigos.push(usuarios);
+      console.log("amigos despues", amigos);
+    };
+    return amigos;
+  },*/
+  amigos: function (){ //esto esta puesto para mostrarlo en clases, pero redirige a cualquier id
+    friends= Friends && Friends.find();
     return friends;
   }
 });
+
 
 Template.showProfile.events({
   'click #login-buttons-edit-profile': function(event) {

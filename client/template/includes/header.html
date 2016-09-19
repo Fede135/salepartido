@@ -1,44 +1,42 @@
 <!--Template que muestra la barra de navegador y el boton de logeo -->
 <template name="header">
   <nav class="navbar navbar-default" role="navigation">
-   <div class="container-fluid"> 
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="{{pathFor 'Home'}}" >Sale Partido</a>
-    </div>   
-    <div class="collapse navbar-collapse" id="navigation">
-      <ul class="nav navbar-nav navbar-right">
-      
-        <!--{{#if isInRole 'owner'}}-->
+        <a class="navbar-brand" href="{{pathFor 'Home'}}">Sale Partido</a>
+      </div>
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="nav navbar-nav navbar-right">
+
+          <!--{{#if isInRole 'owner'}}-->
           <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
 
-          <a class="navbar-brand" href="{{pathFor 'gestionarRecintos'}}">Administar Recintos</a>      
+          <a class="navbar-brand" href="{{pathFor 'gestionarRecintos'}}">Administar Recintos</a>
 
-         <a class="navbar-brand" href="{{pathFor 'gestionarReserva'}}">Gestionar Reservas</a>
+          <a class="navbar-brand" href="{{pathFor 'gestionarReserva'}}">Gestionar Reservas</a>
 
           <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Recinto</a>
-        <!--{{/if}}-->
-         <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}" >Confirmar Partido</a>      
+          {{> search}}
+          <!--{{/if}}-->
+          <a class="navbar-brand" href="{{pathFor 'confirmarPartido'}}">Confirmar Partido</a>
 
-          <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
-        <!--{{#if isInRole 'player'}}
+          <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}">Organizar Partido</a>
+          <!--{{#if isInRole 'player'}}
          
         {{/if}}-->
-        <a class="navbar-brand" href="{{pathFor 'pruebaCalificar'}}">CALIFICAR</a>
-      
-        {{> loginButtons}} 
-
-        {{#if currentUser}}
-          {{> gravatar}}
-        {{/if}}  
-      </ul> 
-    </div> 
-   </div>
+          <a class="navbar-brand" href="{{pathFor 'pruebaCalificar'}}">CALIFICAR</a> 
+          {{> loginButtons}}
+          {{#if currentUser}}
+          <a href="{{pathFor 'Home'}}">{{> gravatar}}</a> {{/if}}
+        </ul>
+      </div>
+    </div>
 
   </nav>
 </template>
