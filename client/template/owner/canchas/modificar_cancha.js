@@ -66,6 +66,11 @@ Template.modificarCancha.events({
     Session.set('recintoSelect', recintoSelect);
     },
 
+    'click #actualizarCancha': function(){
+    	alert("Cancha actualizada correctamente");
+    }
+
+  
 });
 
 Template.modificarCancha.onDestroyed( function(){
@@ -75,4 +80,7 @@ Template.modificarCancha.onDestroyed( function(){
 
 });
 
+
+
 //Falta mostrar mensaje cuando se modifica la cancha.
+	//Router.go('editRecinto', {_id:this._id});

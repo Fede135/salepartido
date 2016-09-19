@@ -1,7 +1,8 @@
 <template name="editRecinto">
 	<div class="container">
     {{#if recinto}}
-      {{#autoForm collection="Recintos" doc=this id=updateFormName type="update" onSuccess=onSuccess }}
+      {{#autoForm collection="Recintos" doc=this id=updateFormName type="update"}}
+      
 
         	<h4>Nombre recinto</h4>
             {{> afFieldInput name='nombre_recinto'}}
@@ -42,7 +43,7 @@
            
 
             <br>                        
-            <button type="submit" class="btn btn-primary">Actualizar</button>
+            <button type="submit" name ="actualizarRecinto" id="actualizarRecinto" class="btn btn-primary">Actualizar</button>
             
         
       	{{/autoForm}}

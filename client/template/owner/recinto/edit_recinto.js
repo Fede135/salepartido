@@ -21,12 +21,37 @@ Template.editRecinto.helpers({
 	},
 
 	updateFormName: function () {
+			console.log(this._id);
             return "updateOrgForm-" + this._id;
+
         },
 
-	onSuccess: function () {
-      return function (result) { 
-      	alert("Recinto actualizado"); console.log(result);
-      	 };
-      },
 });
+
+
+Template.editRecinto.events({
+	'click #actualizarRecinto': function(error) {
+		if(! error)
+	        console.log(result);
+	        alert("Recinto actualizado correctamente.");
+	},
+
+
+});
+
+
+/*
+AutoForm.addHooks(
+   'updateFormName',
+  {
+  after:{
+    update: function (error, result) {
+      if(! error)
+        console.log(result);
+        alert("Recinto actualizado correctamente.Nombre del recinto: ");
+       
+    }
+  }
+},
+);
+*/

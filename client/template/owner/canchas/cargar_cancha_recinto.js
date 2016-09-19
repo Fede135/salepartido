@@ -51,6 +51,21 @@ Template.cargarCancha.onDestroyed( function(){
     Session.set('recintoSelect', null);
 
 });
+
+AutoForm.addHooks(
+   'cargarCancha',
+  {
+  after:{
+    insert: function (error, result) {
+      if(! error)
+        console.log(result);
+        alert("Cancha creada correctamente");
+        
+        
+    }
+  }
+},
+);
 	
   //--------------------------------------------------
  //falta mostrar un mensaje una vez que se crea la cancha
