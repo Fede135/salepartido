@@ -1,38 +1,25 @@
-
-Template.cargarCancha.events({
-
-	'submit form': function(e) {
-
-		e.preventDefault();
-
-    	Router.go('gestionRecinto', );
-    }
-});
-   
-
 Template.cargarCancha.helpers({
+	
 	recinto: function () {
 		//Me busca los recintos del usuario(dueño)logueado.
-		var recinto = Recintos.find({ownerId:Meteor.userId()})
-			return recinto;
+		var recinto = Recintos.find({ownerId:Meteor.userId()})		
+	return recinto;
 		
 	},
 
 	recintoSeleccionado:function(){
 		 
-			return Session.get('recintoSelect');
-	},
-
-	
+		return Session.get('recintoSelect');
+	}/*,
 		
 	countCanchas: function(){
 		//la idea es que el usuario tenga varios recintos...pero al tener varios
-
-		var recinto = Recintos.findOne({ownerId:Meteor.userId()})
-		var p = recinto._id
-		var count = Canchas.find({recintoId:p}).count();
+		var usuarioId = Meteor.userId();
+		var recinto = usuarioId && Recintos.findOne({ownerId:usuarioId})
+		var p = recinto && recinto._id
+		var count = p && Canchas.find({recintoId:p}).count();
 			return count
-	},
+	},*/
 
 });	
 
@@ -50,12 +37,9 @@ Template.cargarCancha.events({
     var idRecinto = $item.data('recintoId');
   
     var recintoSelect = Recintos.findOne({_id:idRecinto});
-    console.log(recintoSelect);
+   
     Session.set('recintoSelect', recintoSelect);
     },
-
-    
-
 });
 
 Template.cargarCancha.onDestroyed( function(){

@@ -1,45 +1,42 @@
 <template name="uploadRecinto">
 	<div class="container">
 		{{#autoForm collection="Recintos" id="uploadRecinto" type="insert" }}
-	<fieldset>
-      <legend><h2>Cargar Recinto</h2></legend>
+    	<fieldset>
+          <legend><h2>Cargar Recinto</h2></legend>
 
-      	{{> afQuickField name='nombre_recinto'}}
+          	{{> afQuickField name='nombre_recinto'}}
 
-      	{{> afQuickField name='direccion_recinto'}}
+          	{{> afQuickField name='direccion_recinto'}}
 
-      	{{> afQuickField name='telefono_recinto.fijo'}} 
+          	{{> afQuickField name='telefono_recinto.fijo'}} 
 
-      	{{> afQuickField name='telefono_recinto.celular_1'}}
+          	{{> afQuickField name='telefono_recinto.celular_1'}}
 
-      	{{> afQuickField name='telefono_recinto.celular_2'}}
+          	{{> afQuickField name='telefono_recinto.celular_2'}}
 
-      	{{> afQuickField name='servicios.estacionamiento' options="allowed" noselect=true}}
+          	{{> afQuickField name='servicios.estacionamiento' options="allowed" noselect=true}}
 
-      	{{> afQuickField name='servicios.baños' options="allowed" noselect=true}}
+          	{{> afQuickField name='servicios.baños' options="allowed" noselect=true}}
 
-      	{{> afQuickField name='servicios.camarines' options="allowed" noselect=true}}
+          	{{> afQuickField name='servicios.camarines' options="allowed" noselect=true}}
 
-      	{{> afQuickField name='servicios.cantina' options="allowed" noselect=true}}
+          	{{> afQuickField name='servicios.cantina' options="allowed" noselect=true}}
 
-      	<h3>Subir imagenes del recinto</h3>
-        <h4>Imagen 1</h4>
-      	{{> afQuickField name='imagen1_id' }}
-        <h4>Imagen 2</h4>
-        {{> afQuickField name='imagen2_id' }}
-        <h4>Imagen 3</h4>
-        {{> afQuickField name='imagen3_id' }}
-        <h4>Imagen 4</h4>
-        {{> afQuickField name='imagen4_id' }}
+          	<h3>Subir imagenes del recinto</h3>
+            <h4>Imagen 1</h4>
+          	{{> afQuickField name='imagen1_id' }}
+            <h4>Imagen 2</h4>
+            {{> afQuickField name='imagen2_id' }}
+            <h4>Imagen 3</h4>
+            {{> afQuickField name='imagen3_id' }}
+            <h4>Imagen 4</h4>
+            {{> afQuickField name='imagen4_id' }}
+
       </fieldset>
-    <button type="submit"  id="btn-upload-recinto" class="btn btn-primary">Cargar</button>
-  {{/autoForm}}
-      
-    
-  </div>      
         
- 
+          <button type="submit"  id="btn-upload-recinto" class="btn btn-primary">Cargar</button>
+
+    {{/autoForm}}      
     
-
-
+   </div>      
 </template>

@@ -15,7 +15,7 @@ Template.showRecinto.helpers({
 
 		if (reci) {
 			var idImagen1 = reci.imagen1_id;
-			var url1 = Images.findOne({_id: idImagen1}).url();
+			var url1 = idImagen1 && Images.findOne({_id: idImagen1}).url();
 			return url1;
 		}
 		
@@ -25,7 +25,7 @@ Template.showRecinto.helpers({
 		var reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
 		if (reci){
 			var idImagen2 = reci.imagen2_id;
-			var url2 = Images.findOne({_id: idImagen2}).url();
+			var url2 = idImagen2 && Images.findOne({_id: idImagen2}).url();
 				return url2;
 		}
 	},
@@ -34,7 +34,7 @@ Template.showRecinto.helpers({
 		var reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
 		if(reci){
 			var idImagen3 = reci.imagen3_id;
-			var url3 = Images.findOne({_id: idImagen3}).url();
+			var url3 = idImagen3 && Images.findOne({_id: idImagen3}).url();
 				return url3;
 		}
 	},
@@ -43,7 +43,7 @@ Template.showRecinto.helpers({
 		var reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
 		if (reci){
 			var idImagen4 = reci.imagen4_id;
-			var url4 = Images.findOne({_id: idImagen4}).url();
+			var url4 = idImagen4 && Images.findOne({_id: idImagen4}).url();
 				return url4;
 		}
 	},
@@ -75,7 +75,7 @@ Template.showRecinto.helpers({
 
 	tieneVoto: function () {
 			var tieneVoto = Calificaciones.findOne({id_recinto:this._id, upvotes: Meteor.userId() });
-			console.log(tieneVoto);
+			
 		return tieneVoto;
 	}
 });

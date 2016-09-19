@@ -1,4 +1,4 @@
-Template.organizarPartido.onRendered(function () {
+Template.crearReserva.onRendered(function () {
   this.$('#datetimepicker').datetimepicker({
     locale: 'es',
     format: 'L',
@@ -14,18 +14,16 @@ Template.organizarPartido.onRendered(function () {
   });
 });
 
-
-Template.organizarPartido.events({
+Template.crearReserva.events({
     
    'submit form': function(e) {
         
         e.preventDefault();
 
-        var reserva = {
-            _id:Meteor.ObjectId,
-            usuarioId:Meteor.user()._id,            
+        var reservadueno = {
+            _id:Meteor.ObjectId,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
-            nom_usario: Meteor.user().profile.name,
+            nom_usario:$(e.target).find('[name=nombreDelCliente]').val(),
             nom_recinto:$(e.target).find('[name=nombreRecinto]').val(),
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
@@ -33,22 +31,31 @@ Template.organizarPartido.events({
         };        
 
 
-        var errors = validateReserva(reserva);
-        if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
+        var errors = validateReservadueno(reservadueno);
+        if (errors.nombreRecinto || errors.nombreDelCliente || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
-        var idReserva= Reserva.insert(reserva);
+        var x= Reservadueno.insert(reservadueno);
         
         
         var partido = { 
           _id:Meteor.ObjectId,
-          reserva_id:idReserva,
+          reserva_id:x,
         };
         
         var partidoId=Partido.insert(partido);
         
-        Router.go('confirmarPartido',{_id:partidoId});
+        Router.go('gestionarReserva');
     },
+
+  'click [data-for-recinto]': function(event){
+    
+    var $item=$(event.currentTarget);
+    var $target=$($item.data('forRecinto'));
+    
+    $target.val($item.text()); 
+    
+  },
   
 
   'click [data-picker-handle]': function (event) {
@@ -58,40 +65,24 @@ Template.organizarPartido.events({
 
   },
 
-  'click [data-for-recinto]': function(event){
-    
-    var $item=$(event.currentTarget);
-    var $target=$($item.data('forRecinto'));
-    
-    $target.val($item.text());
-
-    var recinto=Recintos.findOne({'_id':($item.data('forId'))});
-    
-    Session.set('recinto', recinto);
-    
-  },
-
   'click [data-for-cancha]': function(event){
 
     var $item=$(event.currentTarget);
     var $target=$($item.data('forCancha'));
 
-    $target.val($item.text()); 
+    $target.val($item.text());    
   }
   
   });
 
-Template.organizarPartido.helpers({
-	
+Template.crearReserva.helpers({
+
   recinto: function () {
     return Recintos.find();
   },
-
+  
   cancha: function () {
-      var recinto = Session.get('recinto');
-      var recinto_Id = recinto && recinto._id;
-      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id});
-      return canchas;
+    return Canchas.find();
   },
 
   errorMessage: function(field) {
@@ -104,13 +95,7 @@ Template.organizarPartido.helpers({
 
 });
 
-Template.organizarPartido.onCreated(function() {
+Template.crearReserva.onCreated(function() {
   
   Session.set('reservaErrors', {});
-});
-
-Template.organizarPartido.onDestroyed( function(){
-
-    Session.set('recinto', null);
-
 });

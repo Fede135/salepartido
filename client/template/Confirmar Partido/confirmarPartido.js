@@ -1,52 +1,73 @@
 Template.confirmarPartido.helpers({
 	
-  reserva: function () {
-    return Reserva.find();
+  reservaSeleccionada: function () {
+    var partido = Partido.findOne(this._id)
+    var reservaId=partido && partido.reserva_id;
+    
+    return Reserva.findOne(reservaId);
   }
 });
 
 Template.confirmarPartido.events({
 
-	'submit form': function(e) {
+    'click #agregarEquipoA': function(event){
+
+        var equipoB = Partido.findOne(this._id).equipoB;
+        var lista =_.findWhere(equipoB, {userId: Meteor.user()._id});
+
+        if (lista === undefined)                
         
-        e.preventDefault();
-/*
-        var partido = {
-            nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
-            nom_usario: Meteor.user().profile.firstName,
-            nom_recinto: $(e.target).find('[name=nombreRecinto]').val(),
-            num_cancha: $(e.target).find('[name=nombreCancha]').val(),
-            hora_de_juego: $(e.target).find('[name=datetimepicker3]').val(),
-            fecha_de_juego: $(e.target).find('[name=datetimepicker]').val()
-        };
-
-        var errors = validateReserva(reserva);
-        if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
-        return Session.set('reservaErrors', errors);
-
-        reserva._id = Reserva.insert(reserva);
-        Router.go('confirmarPartido', reserva);        */
-    },
-
-  'click [data-for-reserva]': function(event){
-
-    var $item = $(event.currentTarget);
-    var $target = $($item.data('forReserva'));
-
-    $target.val($item.text());    
+        Partido.update(this._id, { $addToSet: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}}); 
     
     },
 
-  'click #obtenerDetalles': function (event) {
-        
-    var nomReserva = $('input:button[name=nombreReserva]').val();
+    'click #agregarEquipoB': function(event){
 
-    /*
-    var reserva = Reserva.findOne({nom_reserva: nomReserva});
-            
-        console.log(reserva
-            );
-    */
+        var equipoA = Partido.findOne(this._id).equipoA;
+        var lista =_.findWhere(equipoA, {userId: Meteor.user()._id});
 
-	}
+        if (lista === undefined)  
+       
+        Partido.update(this._id, { $addToSet: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}}); 
+    },
+
+    'click #eliminarEquipoA': function(event){
+
+        Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
+             
+    },
+
+    'click #eliminarEquipoB': function(event){       
+           
+        Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});         
+    },
+
+    'click #confirmarAsistencia': function(event){
+
+        var equipoA = Partido.findOne(this._id).equipoA;
+        var lista =_.findWhere(equipoA, {userId: Meteor.user()._id});
+        var equipoB = Partido.findOne(this._id).equipoB;
+        var listaB =_.findWhere(equipoB, {userId: Meteor.user()._id});
+
+        if (lista ||listaB )
+        Router.go('Home');
+    },
+
+    'click #noJuega': function(event){
+
+        var equipoA = Partido.findOne(this._id).equipoA;
+        var lista =_.findWhere(equipoA, {userId: Meteor.user()._id});
+        var equipoB = Partido.findOne(this._id).equipoB;
+        var listaB =_.findWhere(equipoB, {userId: Meteor.user()._id});
+
+        if (!lista && !listaB )
+
+        Router.go('Home');
+    }    
+});
+
+Template.confirmarPartido.onDestroyed( function(){
+
+    Session.set('reserva', null);
+
 });

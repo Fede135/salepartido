@@ -1,9 +1,9 @@
 Template.modificarCancha.helpers({
 
 	recinto: function () {
-		var recin = Recintos.findOne({ownerId: Meteor.userId()});
-			var p = recin._id;
-			return recin;
+		//Me busca los recintos del usuario(dueño)logueado.
+		var recinto = Recintos.find({ownerId:Meteor.userId()})		
+	return recinto;
 		
 	},
 	
@@ -64,7 +64,7 @@ Template.modificarCancha.events({
     ;     
     //Session.set('nombreRecinto', nombreRecinto);
     var recintoSelect = Recintos.findOne({_id:idRecinto});
-    console.log(recintoSelect);
+
     Session.set('recintoSelect', recintoSelect);
     },
 

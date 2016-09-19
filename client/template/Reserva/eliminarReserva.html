@@ -8,12 +8,23 @@
     	
 		{{#each reserva}}
 		<div>
-		¿ Eliminar reserva numero :{{this.nom_usario}} ?  
+		¿ Eliminar reserva a nombre de:{{this.nom_usario}} ?  
 		{{#quickRemoveButton collection="Reserva" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn btn-danger"}}Eliminar{{/quickRemoveButton}}
 			<br>
 			<br>
 		</div>
 		
 		{{/each}}	
-	</div>
+	
+		<div class="well" >
+			{{#each reservadueno}}
+			<div>
+				¿ Eliminar reserva a nombre de:{{this.nom_usario}} ?  
+				{{#quickRemoveButton collection="Reservadueno" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemovee class="btn btn-danger"}}Eliminar{{/quickRemoveButton}}
+				<br>
+				<br>
+			</div>		
+			{{/each}}
+		</div>	
+	</div>	
 </template>

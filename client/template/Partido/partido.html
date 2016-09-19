@@ -1,0 +1,42 @@
+<template name="partido">
+	<div class="container">
+		<h2 align="center">Tus partidos</h2>
+		<div class="well">
+			<div class="row">
+  			    <div class="form-group">	
+    		    	<div class="span5 col-md-11">
+    		        <br>
+        			<label class="control-label" for="nombreReserva">Seleccioná una reserva</label>
+        			<br>
+	        			<div class="controls">
+	        			    <div class="input-group">
+	        			        <div class="input-group-btn">
+	        				        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar reserva <span class="caret"></span></button>
+	        	            	      	<ul class="dropdown-menu">
+	        	                      		{{#each reserva}}
+	        	                  
+	        	                       		<li><a data-for-reserva = "#nombreReserva" data-reserva-id="{{_id}}">{{this.nom_reserva}}</a></li>
+	        	                  
+	        	                   	   		{{/each}}
+	        	                   
+	        	                   		</ul>
+	        	                </div>         		
+	        					<input name="nombreReserva" id="nombreReserva" type="button" value="" class="form-control"/>	          		
+	        				</div>        						     
+	        			</div>
+	        			<br>
+	        			<div class="btn-group" role="group" aria-label="...">
+       						 <button type="button" name="organizacionPartido" id="organizacionPartido" class="btn btn-success">Ir a la organización de partido</button> 
+   						 </div> 
+    			    </div> 
+  			    </div>  		  
+    		</div>
+    		<br>
+    		<div class="row">
+    			<div class="span5 col-md-4">
+    				
+    			</div>
+    		</div>
+		</div>
+	</div>
+</template>

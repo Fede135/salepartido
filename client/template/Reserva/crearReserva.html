@@ -1,8 +1,8 @@
-<template name = "organizarPartido">
+<template name = "crearReserva">
 	<div class="container">
 	    <div class="navbar">
 	  		<h2 align="center">
-		     	Organizar Partido      
+		     	Crear reserva     
 			  </h2>
 	    </div>
 	    <div class="form-group">
@@ -15,6 +15,18 @@
 							    <div class="controls">
 							    	<input type="text" name="nombreDeLaReserva" id="nombreDeLaReserva" class="form-control" placeholder="Nombre de la reserva" aria-describedby="basic-addon1">
 							    	<span class="help-block">{{errorMessage 'nombreDeLaReserva'}}</span>				
+								</div>
+							</div>
+						</div>		
+					</div>
+					<br>
+					<div class="row">
+	    				<div class="form-group  {{errorClass 'nombreDelCliente'}}">	
+		    				<div class="span5 col-md-11">
+						    	<label class="control-label" for="nombreDelCliente" >Nombre del cliente</label>
+							    <div class="controls">
+							    	<input type="text" name="nombreDelCliente" id="nombreDelCliente" class="form-control" placeholder="Nombre del cliente" aria-describedby="basic-addon1">
+							    	<span class="help-block">{{errorMessage 'nombreDelCliente'}}</span>				
 								</div>
 							</div>
 						</div>		
@@ -45,21 +57,21 @@
 					          	</div>	
 					        </div>
 					    </div> 				   
-					</div>				
-					<div class="row">						
-					    <div class="span5 col-md-5">
+					</div>			
+					<div class="row">
+						<div class="span5 col-md-5">
 					    	<div class="form-group  {{errorClass 'nombreRecinto'}}">
-						      	<br>
-						      	<label class="control-label" for="nombreRecinto">Seleccionar un recinto</label>
+					    		<br>						      	
+						      	<label class="control-label" for="nombreRecinto">Seleccionar recinto</label>
 						      	<br>
 						      	<div class="controls">
 						      		<div class="input-group">
 						          		<div class="input-group-btn">
-						          			<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar un recinto <span class="caret"></span></button>
+						          			<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
 	                              					<ul class="dropdown-menu">
 	                              					{{#each recinto}}
 	                  
-	                              					<li><a data-for-recinto="#nombreRecinto" data-for-id="{{_id}}">{{this.nombre_recinto}}</a></li>
+	                              					<li><a data-for-recinto = "#nombreRecinto"> {{this.nombre_recinto}} </a></li>
 	                  
 	                              					{{/each}}
 	                    
@@ -72,20 +84,20 @@
 						    </div> 
 					    </div>	 				   
 					    <div class="span5 col-md-1">
-    	              	</div>    	              	
-					    <div class="span5 col-md-5">
+    	              	</div>
+    	              	<div class="span5 col-md-5">
 					    	<div class="form-group  {{errorClass 'nombreCancha'}}">
-					    		 <br>
+					    		 <br>					    		 
 						     	 <label class="control-label" for="nombreCancha">Seleccionar una cancha</label>
 						     	 <br>
 						     	 <div class="controls">
 						     	 	<div class="input-group">
 						     	 		<div class="input-group-btn">
-	                             			 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar una cancha <span class="caret"></span></button>
+	                             			 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar cancha <span class="caret"></span></button>
 	                              				<ul class="dropdown-menu">
 	                              				{{#each cancha}}
 	                  
-	                             				 <li><a data-for-cancha = "#nombreCancha">{{this.numero}}</a></li>
+	                             				 <li><a data-for-cancha = "#nombreCancha"> {{this.numero}} </a></li>
 	                  
 	                              				{{/each}}    
 	                              				</ul>
