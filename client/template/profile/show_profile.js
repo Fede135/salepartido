@@ -1,9 +1,9 @@
-Template.showProfile.helpers({
+Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
   user : function(){
     return Meteor.users.findOne({_id: this._id});
   },
 
-  place : function() {
+  place : function() {  // se buscan datos del usuario del cual se esta viendo el perfil
     var user = Meteor.users.findOne({_id: this._id});
     var profile = user && user.profile;
     var locality = profile && profile.country && profile.country.locality;
@@ -14,7 +14,7 @@ Template.showProfile.helpers({
     return place;
   },
 
-  age : function(){
+  age : function(){ //se calcula la edad del usuario del cual se esta viendo el perfil
     var user = Meteor.users.findOne({_id: this._id});
     var profile = user && user.profile;
     var birth = profile && profile.birthday;
@@ -26,7 +26,7 @@ Template.showProfile.helpers({
     return age;
   },
 
-  ownProfile: function () {
+  ownProfile: function () { //devuelve verdadero si el perfil es del usuario logeado, o falso sino lo es
     return this._id === Meteor.userId();    
   },
   /*amigos: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
@@ -50,7 +50,7 @@ Template.showProfile.helpers({
 });
 
 
-Template.showProfile.events({
+Template.showProfile.events({  //al hacer click en el boton editar se redirige al template editProfile y se le pasa el _id del usuario del cual quiere editar su perfil
   'click #login-buttons-edit-profile': function(event) {
 		Router.go('editProfile', {_id: Meteor.userId()});
 	}

@@ -16,7 +16,7 @@
         user.emails = [emails];
       ;
     }
-}; 
+  }; 
 
   Meteor.setTimeout(function () {
     Roles.addUsersToRoles(user._id, ['player'], Roles.GLOBAL_GROUP);
