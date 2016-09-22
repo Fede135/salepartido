@@ -10,8 +10,12 @@
       {{> enterCommentsForPlayers}}
     {{/if}}
     <br><br>
+    {{#if isInRole 'player'}}
     {{> partido}}
-                         
+    {{/if}}
+    {{#if isInRole 'owner'}}
+    {{> gestionarReserva}}
+    {{/if}}                         
     <br><br>
     {{> showCommentsPlayers}}
 

@@ -24,7 +24,7 @@ Template.crearReserva.events({
             _id:Meteor.ObjectId,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
             nom_usario:$(e.target).find('[name=nombreDelCliente]').val(),
-            nom_recinto:$(e.target).find('[name=nombreRecinto]').val(),
+            nom_recinto:$('input[name=nombreRecinto]').val(),
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
             fecha_de_juego:$(e.target).find('[name=datetimepicker]').val()
@@ -44,7 +44,7 @@ Template.crearReserva.events({
         };
         
         var partidoId=Partido.insert(partido);
-        
+        alert("Reserva creada");
         Router.go('gestionarReserva');
     },
 
@@ -53,7 +53,11 @@ Template.crearReserva.events({
     var $item=$(event.currentTarget);
     var $target=$($item.data('forRecinto'));
     
-    $target.val($item.text()); 
+    $target.val($item.text());
+
+    var recinto=Recintos.findOne({'_id':($item.data('forId'))});
+    
+    Session.set('recinto', recinto); 
     
   },
   
@@ -78,11 +82,16 @@ Template.crearReserva.events({
 Template.crearReserva.helpers({
 
   recinto: function () {
-    return Recintos.find();
+   
+    var recintoDueno = Recintos.find({'ownerId': Meteor.user()._id});
+    return recintoDueno;
   },
   
   cancha: function () {
-    return Canchas.find();
+      var recinto = Session.get('recinto');
+      var recinto_Id = recinto && recinto._id;
+      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id});
+      return canchas;
   },
 
   errorMessage: function(field) {
@@ -99,3 +108,4 @@ Template.crearReserva.onCreated(function() {
   
   Session.set('reservaErrors', {});
 });
+
