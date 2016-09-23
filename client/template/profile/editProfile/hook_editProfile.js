@@ -1,7 +1,6 @@
 AutoForm.addHooks(
   ['editProfile'],
   {
-
     after: {
       'method-update': function (error, result) {
         if (! error)
@@ -13,4 +12,3 @@ AutoForm.addHooks(
   }
 },
 )
-

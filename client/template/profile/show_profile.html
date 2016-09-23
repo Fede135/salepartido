@@ -1,22 +1,23 @@
 <template name = "showProfile"> 
     <div class="container">
+      <!--muestro datos del usuario-->
       <div class="row">{{user.profile.name}}</div>
       <div class="row">{{age}}</div>
       <div class="row">{{place}}</div>
       <br><br>
-    {{#if ownProfile}}
+    {{#if ownProfile}} <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
       <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
-    {{else}}
+      <br><br>
+      {{> partido}}
+      <br><br>
+      <legend>Amigos</legend>
+      {{#each amigos}}
+        <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.name}} <!--{{this.profile.name}}--></a> 
+      {{/each}}
+    {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario-->
       {{> enterCommentsForPlayers}}
     {{/if}}
     <br><br>
-    {{> partido}}
-                         
-    <br><br>
-    {{> showCommentsPlayers}}
-
-    {{#each amigos}}
-      <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.name}} <!--{{this.profile.name}}--></a>
-    {{/each}}
+    {{> showCommentsPlayers}} <!-- se muestran los comentarios hechos sobre el perfil que se esta viendo-->
   </div>
 </template>

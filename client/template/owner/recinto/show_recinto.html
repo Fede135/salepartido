@@ -3,123 +3,105 @@
 	
 	Nombre recinto:{{recinto.nombre_recinto}} 
 	<br>
-	{{#if promedio}}
+	{{#if isOwner}}
+			{{#if countUsers}}
+				Promedio de calificaciones: {{promedio}}
+				{{> starsRating rating=promedio size='sm'}}
+				<br>
+				Cantidad de usuarios que han calificado : {{countUsers}}
+				<br>
+			{{else}}
+				Ningun usuario ha votado todavía.
+				<br>
+			{{/if}}
+		{{else}}		
+			{{#if countUsers}}		
+				Promedio de calificaciones: {{promedio}}
+				{{> starsRating rating=promedio size='sm'}}
+				<br>
+				Cantidad de usuarios que han calificado : {{countUsers}}
+				<br>
+			{{else}}
+				Ningun usuario ha votado todavía.
+				<br>
+			{{/if}}	
+			{{#if isInRole 'player' }}
+				{{#if tieneVoto}}
+					Ya votaste este recinto...
+				{{else}}
+					¿Desea calificar al recinto?
+					{{> starsRating id='rating' class="estrella" mutable=true size='lg'}}
+				{{/if}}
+			{{/if}}
+		{{/if}}
+		<br>
+		Direccion: {{recinto.direccion_recinto}}
+		<br>
+		Telefono fijo: {{recinto.telefono_recinto.fijo}}
+		<br>
 
-	Promedio de calificaciones: {{promedio}}
-	{{> starsRating rating=promedio size='sm'}}
-	
-	{{else}}
-	{{> starsRating rating=0 size='sm'}}
-	{{/if}}
-
-	<br>
-	Cantidad de usuarios que han calificado : {{countUsers}}
-	<br>
-	{{#if tieneVoto}}
-		Ya votaste este recinto...
-	{{else}}
-		¿Desea calificar al recinto?
-		{{> starsRating id='rating' class ="estrella" mutable=true size='lg'}}
-	{{/if}} 
-
-	 
-
-	<br>
-	Direccion: {{recinto.direccion_recinto}}
-	<br>
-	Telefono fijo: {{recinto.telefono_recinto.fijo}}
-	<br>
-	Telefono celular1: {{recinto.telefono_recinto.celular_1}}
-	<br>
-	Telefono celular2: {{recinto.telefono_recinto.celular_2}}
-	<br>
-	Servicios
-	<br>
-	Estacionamiento: {{recinto.servicios.estacionamiento}}
-
-	<br>
-	Baños: {{recinto.servicios.baños}}
-
-	
-
-	<br>
-	Camarines: {{recinto.servicios.camarines}}
-
-	
-	<br>
-
-	Cantina: {{recinto.servicios.cantina}}
-
-	
-	<br>
-	Canchas:
-	<div>
-	{{#if cancha}}	
-	{{#each cancha}}
+		Telefono celular1: {{recinto.telefono_recinto.celular_1}}
+		<br>
+		Telefono celular2: {{recinto.telefono_recinto.celular_2}}
+		<br>
+		Servicios
+		<br>
+		Estacionamiento: {{recinto.servicios.estacionamiento}}
+		<br>
+		Baños: {{recinto.servicios.baños}}
+		<br>
+		Camarines: {{recinto.servicios.camarines}}
+		<br>
+		Cantina: {{recinto.servicios.cantina}}
+		<br>
+		Canchas:
 		<div>
-		NUMERO: {{this.numero}}
-		<br>		
-		CANTIDAD DE JUGADORES: {{this.jugadores.cantidad_de_jugadores}}
-		<br>
-		TIPO DE CANCHA: {{this.tipo_cancha.tipo_de_cancha}}
-		<br>
-		ESTADO CANCHA: {{this.estado_cancha.estado_de_cancha}}
-		<br>
-		DESCRIPCION: {{this.descripcion}}
+			{{#if cancha}}
+				{{#each cancha}}
+			<div>
+				NUMERO: {{this.numero}}
+				<br>
+				CANTIDAD DE JUGADORES: {{this.jugadores.cantidad_de_jugadores}}
+				<br>
+				TIPO DE CANCHA: {{this.tipo_cancha.tipo_de_cancha}}
+				<br>
+				ESTADO CANCHA: {{this.estado_cancha.estado_de_cancha}}
+				<br>
+				DESCRIPCION: {{this.descripcion}}
+			</div>
+			<br>
+				{{/each}}
+			{{/if}}
 		</div>
-		<br>
-	{{/each}}
-	{{/if}}
-	</div>
-	<br>
-	
-	Imagenes: 
-	
-	<div>
+		<br> Imagenes:
 		
-	
-	<div>
-		
-	
-	
+		<div>
+			<div>
+				<img src={{imagen1}} alt="Imagen1" height="420" width="600" class="img-responsive">
+			</div>
+			<br>
+			<div>
+				<img src={{imagen2}} alt="Imagen2" height="420" width="600" class="img-responsive">
+			</div>
+			<br>
+			<div>
+				<img src={{imagen3}} alt="Imagen3" height="420" width="600" class="img-responsive">
+			</div>
+			<br>
+			<div>
+				<img src={{imagen4}} alt="Imagen4" height="420" width="600" class="img-responsive">
+			</div>
+		</div>
 
-	 <img src={{imagen1}} alt="Imagen1" height="420" width="600" class="img-responsive">
-
-	
 	</div>
-	
-	<br>
-	<div>		
-	
-	
-	
-	 <img src={{imagen2}} alt="Imagen2" height="420" width="600" class="img-responsive">
 
-	
-	</div>
-	<br>
-	<div>
-		
-	
-	
-	 <img src={{imagen3}} alt="Imagen3" height="420" width="600" class="img-responsive">
+	{{#if isOwner}}
+		<button class="btn btn-primary" id="login-buttons-update-recinto">Actualizar recinto</button>
+	<br><br> 
+	{{else}} 
+		{{> enterCommentsForEnclosures}}
+	<br><br>
+	 {{/if}} 
+	 	{{> showCommentsEnclosure}}
 
-	
-	</div>
-	<br>
-	<div>
-		
-	
-
-	
-	 <img src={{imagen4}} alt="Imagen4" height="420" width="600" class="img-responsive">
-
-	
-	
-	</div>
-	
-	</div>
-	
-</div>	
-	
 </template>

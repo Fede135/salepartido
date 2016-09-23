@@ -67,7 +67,6 @@ Template.showRecinto.helpers({
 		var cali = Calificaciones.findOne({id_recinto:this._id});
 		if(cali){
 			var array = cali.upvotes;
-			
 			var countUsers =  array.length;
 			return countUsers;
 		}
@@ -77,7 +76,13 @@ Template.showRecinto.helpers({
 			var tieneVoto = Calificaciones.findOne({id_recinto:this._id, upvotes: Meteor.userId() });
 			
 		return tieneVoto;
-	}
+	},
+
+	isOwner: function(){
+    return this.ownerId === Meteor.userId();    
+  },
+	
+
 });
 
 

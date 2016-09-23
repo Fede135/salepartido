@@ -4,19 +4,23 @@
     <div class="container-fluid">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="http://localhost:3000/cfs/files/images/t28dfbsWvz568DjjG/logo_salepartido5.png?token=eyJhdXRoVG9rZW4iOiJET1ZFdzV2Uzh4MnFaVTV1NjBvRk9KVThfNVFGMlRKVkdKSFhyeDAwbnBQIn0%3D&store=images" width="50px" height="50px" class="img-responsive">
         <a class="navbar-brand" href="{{pathFor 'Home'}}">Sale Partido</a>
       </div>
       <div class="collapse navbar-collapse" id="navigation">
         <ul class="nav navbar-nav navbar-right">
           
-          {{>search}}
+          
           
           {{#if isInRole 'owner'}}      <!--Meteor.users.update({_id:"ZtkuEiaqALSc5D4YS"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
+          
+          <span class ="navbar-brand"> {{>search}} </span>
+
           <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>
 
           <a class="navbar-brand" href="{{pathFor 'gestionarRecintos'}}">Gestionar Recintos</a>      
@@ -29,10 +33,9 @@
         
         
         {{#if isInRole 'player'}}
+          <span class ="navbar-brand"> {{>search}} </span>
           <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
         {{/if}}
-
-        
         <ul class="nav navbar-nav navbar-right">
         {{> loginButtons}}
         {{#if currentUser}}
