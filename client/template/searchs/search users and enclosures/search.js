@@ -9,15 +9,16 @@ Template.search.helpers({
           collection: Meteor.users,
           field: "profile.name",
           matchAll: true,
+          //filter: {type : "roles.__global_roles__.player"}, //preguntar como hacer para buscar solo en usuarios con rol player.
           template: Template.userDataPill,  
-          //noMatchTemplate: Template.emptyUserPill
+          noMatchTemplate: Template.searchEmpty
         },
         {
           token:'!',              //busca con ! en la coleccion Recintos
           collection: Recintos,
           field: "nombre_recinto",
           template: Template.EnclosureDataPill,  
-          //noMatchTemplate: Template.emptyEnclosurePill
+          noMatchTemplate: Template.searchEmpty
         },
         
         
