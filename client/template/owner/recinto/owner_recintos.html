@@ -1,0 +1,17 @@
+<template name="ownerRecintos">
+  <div class="container">
+    <h3>Tus Recintos</h3>
+    {{#each recinto}}
+    Nombre:{{this.nombre_recinto}}
+    Fecha de creación:{{this.createdAt}}
+    Promedio de calificación: {{calificacion}}
+    <button type="button" name= "dashboardRecinto" id="dashboardRecinto"> Ver </button>
+    <button type="button" name="editRecinto" id="editRecinto"> Editar</button>
+    {{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess
+    beforeRemove=beforeRemove class="btn btn-danger"}}
+    Eliminar{{/quickRemoveButton}}
+    {{/each}}
+    <br>
+    <br> 
+  </div>
+</template>
