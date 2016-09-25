@@ -1,4 +1,4 @@
-Template.updateRecinto.helpers({
+Template.ownerRecintos.helpers({
 	recinto: function () {
 		return Recintos.find({ownerId: Meteor.userId()});
 	},
@@ -34,12 +34,12 @@ Template.updateRecinto.helpers({
 
 });
 
-Template.updateRecinto.events({
-
+Template.ownerRecintos.events({
 	'click #editRecinto': function(event) {
-		console.log("dsad")
-		console.log(event)
-		Router.go('editRecinto', {_id:this._id});
+	Router.go('editRecinto', {_id:this._id});
+	},
+	'click #dashboardRecinto':function(event){
+		Router.go('dashboard', {_id: this._id});
 	}
 });
 
