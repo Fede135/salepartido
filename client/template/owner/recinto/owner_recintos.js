@@ -35,8 +35,11 @@ Template.ownerRecintos.helpers({
 });
 
 Template.ownerRecintos.events({
+	'click #uploadRecinto': function (event) {
+		Router.go('uploadRecinto', {_id: this._id});
+	},
 	'click #editRecinto': function(event) {
-	Router.go('editRecinto', {_id:this._id});
+	Router.go('editRecinto', {_id: this._id});
 	},
 	'click #dashboardRecinto':function(event){
 		Router.go('dashboard', {_id: this._id});

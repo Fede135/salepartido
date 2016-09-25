@@ -1,0 +1,36 @@
+<template name="modificarReserva">
+	<div class="container">
+		<div class="navbar">
+            <h2 align="center">
+            Modificar reserva
+            </h2>
+        </div>
+        <div class="row">
+			<div class="span5 col-md-5">
+				<div class="form-group  {{errorClass 'nombreRecinto'}}">
+				<br>						      	
+			 	<label class="control-label" for="nombreRecinto">Seleccionar recinto</label>
+		     	<br>
+				  	<div class="controls">
+						<div class="input-group">
+						    <div class="input-group-btn">
+							<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
+	                             <ul class="dropdown-menu">
+	                              					
+	                              	{{#each recinto}}
+	                  
+	                             		<li><a data-for-recinto="#nombreRecinto" data-for-id="{{_id}}">{{this.nombre_recinto}}</a></li>
+	                  
+	                           		{{/each}}
+
+	                        	</ul>
+	                         </div>         		
+						     <input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>						          		
+						</div>
+						<span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
+					</div>
+			    </div> 
+		    </div>
+		</div>
+	</div>
+</template>	    	
