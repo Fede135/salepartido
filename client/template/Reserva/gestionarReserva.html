@@ -5,16 +5,44 @@
 			Gestionar reserva
 		  	</h2>
     	</div> 
-		<div class="well">
-		   <div class="btn-group" role="group">
-    		<a  href="{{pathFor 'crearReserva'}}" type="button" class="btn btn-success">Crear reserva</a>
-  		   </div>
-		   <div class="btn-group" role="group">
-    		<a  type="button" class="btn btn-success">Modificar reserva</a>
-  		   </div>
-  		  <div class="btn-group" role="group">
-    		<a href="{{pathFor 'eliminarReserva'}}" type="button" class="btn btn-success">Eliminar reservas</a>
-  		  </div>
-  	    </div>
+		<div class="well">			
+		    <div class="btn-group" role="group" aria-label="...">
+		    	<div class="row">						
+					<div class="span5 col-md-5">
+						<div class="form-group  {{errorClass 'nombreRecinto'}}">
+					      	<div class="controls">
+						      	<div class="input-group">
+						          	<div class="input-group-btn">
+						    		<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar un recinto <span class="caret"></span></button>
+	                 					<ul class="dropdown-menu">
+	                      					{{#each recinto}}
+	                  
+	                              				<li><a data-for-recinto="#nombreRecinto" data-for-id="{{_id}}">{{this.nombre_recinto}}</a></li>
+	                  
+	                              			{{/each}}
+	                    
+	                              		</ul>
+	                          		</div>         		
+						          	<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>						          		
+						         </div>
+						    	<span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
+						    </div>
+						</div> 
+					</div>
+					<div class="span5 col-md-2">
+					</div>
+					<div class="span5 col-md-5">
+						<div class="form-group">
+          				<button type="button" name="crearReserva" id="crearReserva" class="btn btn-success">Crear reserva</button>
+          				</div>
+          			</div>           	
+      			</div> 		  
+  	    	{{#if recintoSeleccionado}}
+  	    		{{>crearReserva}}
+  	    	{{else}}
+  	    		{{>tusReservas}}				
+  	    	{{/if}}
+  	    	</div>  	    	
+  	    </div>	
 	</div>
 </template>

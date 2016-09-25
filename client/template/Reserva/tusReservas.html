@@ -1,0 +1,22 @@
+<template name="tusReservas">
+	<div class="container">
+		<div class="navbar">
+	  		<h2 align="center">
+			Tus reservas
+		  	</h2>
+    	</div>
+
+    	{{#each reservas}}
+    	{{this.nom_usuario}}
+                <!--Nombre:{{this.nombre_recinto}}
+                Fecha de creación:{{this.createdAt}}
+                Promedio de calificación: {{calificacion}}
+                <button type="button" name="editRecinto" id="editRecinto">
+                Editar
+                </button>
+                {{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn btn-danger"}}Eliminar{{/quickRemoveButton}}
+                <br>
+                <br>-->
+        {{/each}}
+    </div>
+</template>    

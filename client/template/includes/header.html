@@ -13,8 +13,7 @@
         <a class="navbar-brand" href="{{pathFor 'Home'}}">Sale Partido</a>
       </div>
       <div class="collapse navbar-collapse" id="navigation">
-        <ul class="nav navbar-nav navbar-right">
-          
+        <ul class="nav navbar-nav navbar-right">         
           
           
           {{#if isInRole 'owner'}}      <!--Meteor.users.update({_id:"ZtkuEiaqALSc5D4YS"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
@@ -23,12 +22,8 @@
 
           <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>      
 
-          <a class="navbar-brand" href="{{pathFor 'gestionarReserva'}}">Gestionar Reservas</a> 
-
           <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Canchas</a>
-          {{/if}}
-
-        
+          {{/if}}        
         
         {{#if isInRole 'player'}}
           <span class ="navbar-brand"> {{>search}} </span>

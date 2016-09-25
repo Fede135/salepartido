@@ -1,10 +1,9 @@
 Template.eliminarReserva.helpers({
-  reserva: function () {
-    return Reserva.find();
-  },
-
+  
   reservadueno: function () {
-    return Reservadueno.find();
+    var aaa = Reservadueno.find();
+    
+    return aaa;
   },
     onError: function () {
       return function (error) { alert("Error"); console.log(error); };

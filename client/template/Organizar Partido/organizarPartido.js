@@ -47,6 +47,8 @@ Template.organizarPartido.events({
         
         var partidoId=Partido.insert(partido);
         
+        alert("Reserva creada");
+        
         Router.go('confirmarPartido',{_id:partidoId});
     },
   
