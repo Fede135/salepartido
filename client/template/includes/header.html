@@ -1,42 +1,39 @@
-<!--Template que muestra la barra de navegador y el boton de logeo -->
 <template name="header">
-  <nav class="navbar navbar-default" role="navigation">
+  <nav class="navbar navbar-default">
     <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <img src="http://localhost:3000/cfs/files/images/t28dfbsWvz568DjjG/logo_salepartido5.png?token=eyJhdXRoVG9rZW4iOiJET1ZFdzV2Uzh4MnFaVTV1NjBvRk9KVThfNVFGMlRKVkdKSFhyeDAwbnBQIn0%3D&store=images" width="50px" height="50px" class="img-responsive">
+        <a class="navbar-brand" href="{{pathFor 'Home'}}">
+          <img alt="Brand" src="http://localhost:3000/cfs/files/images/t28dfbsWvz568DjjG/logo_salepartido5.png?token=eyJhdXRoVG9rZW4iOiJET1ZFdzV2Uzh4MnFaVTV1NjBvRk9KVThfNVFGMlRKVkdKSFhyeDAwbnBQIn0%3D&store=images" width="35px" height="35px" class="img-responsive">
+        </a>  
         <a class="navbar-brand" href="{{pathFor 'Home'}}">Sale Partido</a>
       </div>
-      <div class="collapse navbar-collapse" id="navigation">
-        <ul class="nav navbar-nav navbar-right">         
-          
-          
-          {{#if isInRole 'owner'}}      <!--Meteor.users.update({_id:"ZtkuEiaqALSc5D4YS"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
-          
-          <span class ="navbar-brand"> {{>search}} </span>
-
-          <a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a>      
-
-          <a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Canchas</a>
-          {{/if}}        
-        
-        {{#if isInRole 'player'}}
-          <span class ="navbar-brand"> {{>search}} </span>
-          <a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a>
-        {{/if}}
-        <ul class="nav navbar-nav navbar-right">
-        {{> loginButtons}}
-        {{#if currentUser}}
-          <a href="{{pathFor 'Home'}}">{{> gravatar}}</a>
-        {{/if}}  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
         </ul>
-      </ul> 
-    </div> 
-   </div>
+        <form class="navbar-form navbar-left">
+          <div class="form-group">
+            {{> search}}
+          </div>
+        </form>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          {{#if isInRole 'player'}}
+            <li><a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a></li>
+          {{/if}}
+          {{#if isInRole 'owner'}}      <!--Meteor.users.update({_id:"ZtkuEiaqALSc5D4YS"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
+            <li><a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a></li>      
+            <li><a class="navbar-brand" href="{{pathFor 'gestionarReserva'}}">Gestionar Reservas</a></li> 
+            <li><a class="navbar-brand" href="{{pathFor 'gestionRecinto'}}">Gestionar Canchas</a></li>
+          {{/if}}
+          <li class="btn btn-default navbar-btn">{{>loginButtons}}</li>
+          {{#if currentUser}}
+          <li><a alt="Brand" href="{{pathFor 'Home'}}">{{> gravatar}}</a></li>
+          {{/if}}
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+    </div>
   </nav>
 </template>
