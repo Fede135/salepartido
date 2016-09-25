@@ -1,6 +1,9 @@
 <template name="ownerRecintos">
   <div class="container">
     <h3>Tus Recintos</h3>
+    <button type="button" name="uploadRecinto" id="uploadRecinto"> Crear recintos </button>
+    <br>
+    <br>
     {{#each recinto}}
     Nombre:{{this.nombre_recinto}}
     Fecha de creación:{{this.createdAt}}
