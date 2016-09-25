@@ -21,7 +21,6 @@ Template.gestionarReserva.helpers({
     return !!Session.get('recintoErrors')[field] ? 'has-error' : '';
   }
 
-
 });  	
 
 Template.gestionarReserva.events({

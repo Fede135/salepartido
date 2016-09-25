@@ -23,7 +23,7 @@ Template.crearReserva.events({
         var reservadueno = {
             _id:Meteor.ObjectId,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
-            nom_usario:$(e.target).find('[name=nombreDelCliente]').val(),
+            nom_usuario:$(e.target).find('[name=nombreDelCliente]').val(),
             nom_recinto:$('input[name=nombreRecinto]').val(),
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
