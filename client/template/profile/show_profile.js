@@ -4,6 +4,15 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return Meteor.users.findOne({_id: this._id});
   },
 
+  /*arquero : function(){
+    var u = Meteor.users.findOne({_id: this._id});
+    var arq = u.player.position;
+    console.log(arq);
+    if(arq === "Arquero")
+      return true;
+
+  },*/
+
   place : function() {  // se buscan datos del usuario del cual se esta viendo el perfil
     var user = Meteor.users.findOne({_id: this._id});
     var profile = user && user.profile;
