@@ -1,0 +1,28 @@
+<template name="notifications">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notificaciones
+    {{#if notificationCount}}
+      <span class="badge badge-inverse">{{notificationCount}}</span>
+    {{/if}}
+    <b class="caret"></b>
+  </a>
+  <ul class="notification dropdown-menu">
+    {{#if notificationCount}}
+      {{#each notifications}}
+        {{> notificationItem}}
+      {{/each}}
+    {{else}}
+     <li><span>No hay nuevas notificaciones</span></li>
+    {{/if}}
+    <!--<a href="{{pathFor 'allNotifications'}}">Ver todas</a>-->
+  </ul>
+</template>
+
+<template name="notificationItem">
+  {{#if notificationUserPathComment}}
+  <li>
+    <a href="{{notificationUserPathComments}}">
+       Comentaron tu perfil.
+    </a>
+  </li>
+  {{/if}}
+</template>

@@ -4,7 +4,6 @@ AutoForm.addHooks(
   after:{
     insert: function (error, result) {
       if(! error)
-        console.log(result);
         Calificaciones.insert({
             
             id_recinto:result,
