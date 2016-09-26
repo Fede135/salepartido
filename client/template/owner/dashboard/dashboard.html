@@ -1,3 +1,40 @@
 <template name="dashboard">
-  DASHBOARD DE DUEÑO
+  	<div class="container">
+  		<h2 align="center">Tus reservas</h2>
+  		<br>
+		<div class="row">	
+			<div class="span5 col-md-5">
+				<div class="form-group">
+					<button type="button" name="crearReserva" id="crearReserva" class="btn btn-success">Crear reserva</button>
+				</div>
+			</div>  
+		</div>
+		<br>
+		{{#if recintoSeleccionado}}
+  	    		{{>crearReserva}}
+  	    {{/if}}	  	
+
+	  	{{#each reservas}}
+	  	
+	  		<div class="row">
+	            <div class="span5 col-md-2">
+	                <h4><strong>Usuario:</strong>{{this.nom_usuario}}</h4>
+	            </div>
+	            <div class="span5 col-md-2">
+	                  <h4><strong>Cancha:</strong>{{this.num_cancha}}</h4>
+	            </div>
+	            <div class="span5 col-md-2">
+	                <h4><strong>Fecha:</strong>{{this.fecha_de_juego}}</h4>
+	            </div>
+	            <div class="span5 col-md-2">
+	                <h4><strong>Fecha:</strong>{{this.hora_de_juego}}</h4>
+	            </div>
+
+	            <button type="button" name= "modificarReserva" id="modificarReserva">Modificar reserva</button>
+    			<button type="button" name= "eliminarReserva" id="eliminarReserva">Eliminar reserva</button>
+    			<button type="button" name= "jugada" id="jugada">Partido jugado</button>
+	        </div>
+	  	
+	  	{{/each}}
+	</div>
 </template>

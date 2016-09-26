@@ -25,11 +25,12 @@ Template.organizarPartido.events({
             _id:Meteor.ObjectId,
             usuarioId:Meteor.user()._id,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
-            nom_usario: Meteor.user().profile.name,
+            nom_usuario: Meteor.user().profile.name,
             nom_recinto:$(e.target).find('[name=nombreRecinto]').val(),
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
-            fecha_de_juego:$(e.target).find('[name=datetimepicker]').val()
+            fecha_de_juego:$(e.target).find('[name=datetimepicker]').val(),
+            estado:'Reservada'
         };        
 
 
@@ -43,6 +44,7 @@ Template.organizarPartido.events({
         var partido = { 
           _id:Meteor.ObjectId,
           reserva_id:idReserva,
+          estado:'No jugado',
         };
         
         var partidoId=Partido.insert(partido);
