@@ -1,5 +1,6 @@
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
   user : function(){
+    use = this._id;
     return Meteor.users.findOne({_id: this._id});
   },
 
@@ -51,7 +52,86 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
 
 
 Template.showProfile.events({  //al hacer click en el boton editar se redirige al template editProfile y se le pasa el _id del usuario del cual quiere editar su perfil
+
+
+  //Codigo para las calificaciones
+  //Todas las posiciones
+  'click #resistencia': function(){
+    var tipo = "resistencia";
+    var ratingResistencia = $('#resistencia').data('userrating');
+    console.log(ratingResistencia);
+    console.log(use);
+    Meteor.call('calif',use,ratingResistencia,tipo);
+  },
+
+  'click #fairplay': function(){
+    var tipo = "fairplay";
+    var ratingFairplay = $('#fairplay').data('userrating');
+    console.log(ratingFairplay);
+    console.log(this._id);
+    Meteor.call('calif',use,ratingFairplay,tipo);
+  },
+
+  'click #puntualidad': function(){
+    var tipo = "puntualidad";
+    var ratingPunt = $('#puntualidad').data('userrating');
+    console.log(ratingPunt);
+    Meteor.call('calif',use,ratingPunt,tipo);
+  },
+
+  'click #burradas': function(){
+    var tipo = "burradas";
+    var ratingBurradas = $('#burradas').data('userrating');
+    console.log(ratingBurradas);
+    Meteor.call('calif',use,ratingBurradas,tipo);
+  },
+   //Posicion arquero
+   'click #reflejos': function(){
+    var tipo = "reflejos";
+    var ratingReflejos = $('#reflejos').data('userrating');
+    console.log(ratingReflejos);
+    Meteor.call('calif',use,ratingReflejos,tipo);
+  },
+  'click #atajadas': function(){
+    var tipo = "atajadas";
+    var ratingAtajadas = $('#atajadas').data('userrating');
+    console.log(ratingAtajadas);
+    Meteor.call('calif',use,ratingAtajadas,tipo);
+  },
+   //Otras posiciones
+   'click #pase': function(){
+    var tipo = "pase";
+    var ratingPase = $('#pase').data('userrating');
+    console.log(ratingPase);
+    Meteor.call('calif',use,ratingPase,tipo);
+  },
+  'click #defensa': function(){
+    var tipo = "defensa";
+    var ratingDefensa = $('#defensa').data('userrating');
+    console.log(ratingDefensa);
+    Meteor.call('calif',use,ratingDefensa,tipo);
+  },
+  'click #gambeta': function(){
+    var tipo = "gambeta";
+    var ratingGambeta = $('#gambeta').data('userrating');
+    console.log(ratingGambeta);
+    Meteor.call('calif',use,ratingGambeta,tipo);
+  },
+  'click #rematearco': function(){
+    var tipo = "remate";
+    var ratingRematearco = $('#rematearco').data('userrating');
+    console.log(ratingRematearco);
+    Meteor.call('calif',use,ratingRematearco,tipo);
+  },
+  'click #velocidad': function(){
+    var tipo = "velocidad";
+    var ratingVelocidad = $('#velocidad').data('userrating');
+    console.log(ratingVelocidad);
+    Meteor.call('calif',use,ratingVelocidad,tipo);
+  },
+
   'click #login-buttons-edit-profile': function(event) {
-		Router.go('editProfile', {_id: Meteor.userId()});
-	}
+      Router.go('editProfile', {_id: Meteor.userId()});
+  },
+
 });

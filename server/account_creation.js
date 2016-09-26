@@ -20,7 +20,7 @@
 
   Meteor.setTimeout(function () {
     Roles.addUsersToRoles(user._id, ['player'], Roles.GLOBAL_GROUP);
-  });
+      });
   
   return user;
 })
