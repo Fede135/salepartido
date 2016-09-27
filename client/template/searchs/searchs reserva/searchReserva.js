@@ -4,8 +4,7 @@ Template.searchReserva.helpers({
       position: "botton",
       limit: 5,
       rules: [
-        {
-          //token:'@', 
+        {           
           collection: Reserva,
           field: "nom_usuario",
           matchAll: true,          
@@ -19,8 +18,6 @@ Template.searchReserva.helpers({
 });
 Template.searchReserva.events({
   "autocompleteselect input": function(event, template, doc) {
-    if(! doc.nom_usuario) {   
-      Router.go('crearReserva',);
-    } 
+    
   },
 });

@@ -43,6 +43,14 @@ Template.organizarPartido.events({
         if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
+        if (
+          Reserva.find({'nom_recinto': reserva.nom_recinto}) && 
+          Reserva.find({'num_cancha': reserva.num_cancha}) && 
+          Reserva.find({'hora_de_juego': reserva.hora_de_juego}) && 
+          Reserva.find({'fecha_de_juegoD': reserva.fecha_de_juegoD}) && 
+          Reserva.find({'estado':reserva.estado}))
+        return alert("Reserva existente");
+
         var idReserva= Reserva.insert(reserva);
         
         

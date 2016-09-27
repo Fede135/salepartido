@@ -1,10 +1,11 @@
 <template name="searchReserva">
 	<div class="col-lg-6">
     	<div class="input-group">
-  			<span class="input-group-addon" id="sizing-addon2">
-  				<span class="glyphicon glyphicon-search"> </span> 
-  			</span>
-  			<input type="text" class="form-control" placeholder="Nombre de usuario" aria-describedby="sizing-addon2">
+  			<div class="input-group-addon">
+  				<span class="glyphicon glyphicon-search">
+  				</span>
+  			</div>
+  			{{> inputAutocomplete settings=settings id="searchReserva" class="form-control" autocomplete='on' placeholder="Nombre de usuario"}}
 		</div>
   	</div>
-</template>  			
+</template> 
