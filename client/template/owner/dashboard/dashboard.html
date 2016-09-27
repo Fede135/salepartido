@@ -12,8 +12,13 @@
 		<br>
 		{{#if recintoSeleccionado}}
   	    		{{>crearReserva}}
-  	    {{/if}}	  	
-
+  	    {{/if}}
+  	    <div class="row">
+	  	    <div class="form-group">
+            {{> searchReserva}}
+          </div>
+     	</div>
+     	<br>	  	
 	  	{{#each reservas}}
 	  	
 	  		<div class="row">
@@ -27,13 +32,14 @@
 	                <h4><strong>Fecha:</strong>{{this.fecha_de_juego}}</h4>
 	            </div>
 	            <div class="span5 col-md-2">
-	                <h4><strong>Fecha:</strong>{{this.hora_de_juego}}</h4>
+	                <h4><strong>Hora:</strong>{{this.hora_de_juego}}</h4>
 	            </div>
 
 	            <button type="button" name= "modificarReserva" id="modificarReserva">Modificar reserva</button>
-    			<button type="button" name= "eliminarReserva" id="eliminarReserva">Eliminar reserva</button>
-    			<button type="button" name= "jugada" id="jugada">Partido jugado</button>
+    			<button type="button" name= "cancelarReserva" id="cancelarReserva">Cancelar reserva</button>
+    			<button type="button" name= "partidoJugado" id="partidoJugado">Partido jugado</button>
 	        </div>
+
 	  	
 	  	{{/each}}
 	</div>

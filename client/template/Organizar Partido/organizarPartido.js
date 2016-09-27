@@ -21,6 +21,10 @@ Template.organizarPartido.events({
         
         e.preventDefault();
 
+        var diaString = $(e.target).find('[name=datetimepicker]').val();        
+        var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
+        var dia = new Date(diaMoment);
+
         var reserva = {
             _id:Meteor.ObjectId,
             usuarioId:Meteor.user()._id,            
@@ -29,6 +33,7 @@ Template.organizarPartido.events({
             nom_recinto:$(e.target).find('[name=nombreRecinto]').val(),
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
+            fecha_de_juegoD:dia,
             fecha_de_juego:$(e.target).find('[name=datetimepicker]').val(),
             estado:'Reservada'
         };        
@@ -43,8 +48,7 @@ Template.organizarPartido.events({
         
         var partido = { 
           _id:Meteor.ObjectId,
-          reserva_id:idReserva,
-          estado:'No jugado',
+          reserva_id:idReserva
         };
         
         var partidoId=Partido.insert(partido);

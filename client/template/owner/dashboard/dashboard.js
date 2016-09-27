@@ -6,8 +6,13 @@ Template.dashboard.helpers({
 		var recinto = recintoId && Recintos.findOne({'_id': recintoId});
 		var nombRecinto = recinto && recinto.nombre_recinto;
 		var reservas = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"});
-		
+		/*var dia = new Date();
+		var reservaFecha = reservas && reservas.fecha_de_juegoD;
+		console.log(reservaFecha);
+		if(reservaFecha < dia)*/
+
 		return reservas;
+
 	},
 
 	recintoSeleccionado: function(){
@@ -27,16 +32,15 @@ Template.dashboard.events({
 
     	Session.set('recinto', recinto);
   	},
-  	'click #jugada': function (event) {
-		var partido = Partido.findOne({'reserva_id':this._id});
-		var partidoId = partido && partido._id;
+  	'click #partidoJugado': function (event) {
 		
-		Partido.update({_id: partidoId}, {$set: {'estado': "Jugado"}});
+		Reserva.update({_id: this._id}, {$set: {'estado': "Jugada"}});
+		alert("Reserva jugada");
 	},
-	'click #eliminarReserva': function(event){
+	'click #cancelarReserva': function(event){
 
-		Reserva.update({_id: this._id}, {$set: {'estado': "Suspendida"}});
-		alert("Reserva eliminada");
+		Reserva.update({_id: this._id}, {$set: {'estado': "Cancelada"}});
+		alert("Reserva cancelada");
 
   	},
 });

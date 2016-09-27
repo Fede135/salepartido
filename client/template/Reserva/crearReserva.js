@@ -23,7 +23,10 @@ Template.crearReserva.events({
         var recintoId = this._id;
         var recinto = recintoId && Recintos.findOne({'_id': recintoId});
         var nombRecinto = recinto && recinto.nombre_recinto;
-
+        var diaString = $(e.target).find('[name=datetimepicker]').val();        
+        var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
+        var dia = new Date(diaMoment);
+                
         var reserva = {
             _id:Meteor.ObjectId,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
@@ -31,6 +34,7 @@ Template.crearReserva.events({
             nom_recinto:nombRecinto,
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
+            fecha_de_juegoD:dia,
             fecha_de_juego:$(e.target).find('[name=datetimepicker]').val(),
             estado:'Reservada'
         };        
@@ -44,8 +48,7 @@ Template.crearReserva.events({
                 
         var partido = { 
           _id:Meteor.ObjectId,
-          reserva_id:x,
-          estado:'No jugado',
+          reserva_id:x
         };
         
         var partidoId=Partido.insert(partido);
