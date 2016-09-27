@@ -44,7 +44,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return amigos;
   },*/
   amigos: function (){ //esto esta puesto para mostrarlo en clases, pero redirige a cualquier id
-    friends= Friends && Friends.find();
+    friends= FacebookFriends && FacebookFriends.find();
     return friends;
   }
 });
