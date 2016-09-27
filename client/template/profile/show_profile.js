@@ -6,10 +6,10 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
 
   arquero : function() {
      var u = Meteor.users.findOne({_id: this._id});
-     console.log('user', u);
+     // console.log('user', u);
      var arq = u && u.profile.player && u.profile.player.position;
-     console.log('u.player.position',u.profile.player.position)
-     console.log('arq',arq);
+     // console.log('u.player.position',u.profile.player.position)
+     // console.log('arq',arq);
      if(arq === "Arquero") {
        return true;
      } else {
@@ -39,7 +39,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
 
     return age;
   },
-
+//Posicion arquero
   promreflejos: function(){
     var cali = Calificacion_reflejo.findOne({id_user:this._id});
     if(cali){
@@ -50,7 +50,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
@@ -65,10 +65,11 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
+  //Comun a todas las posiciones
   promresistencia: function(){
     var cali = Calificacion_resistencia.findOne({id_user:this._id});
     if(cali){
@@ -79,7 +80,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
@@ -94,7 +95,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
@@ -108,7 +109,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
@@ -122,10 +123,11 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
+  //Resto de las posiciones
   prompase: function(){
     var cali = Calificacion_pase.findOne({id_user:this._id});
     if(cali){
@@ -136,11 +138,11 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
-  promdefensa: function(){
+promdefensa: function(){
     var cali = Calificacion_defensa.findOne({id_user:this._id});
     if(cali){
       var array = cali.votes;
@@ -202,7 +204,10 @@ promvelocidad: function(){
  
   tieneVotoRe: function () {
       var re = Calificacion_reflejo.findOne({id_user:this._id, upvotes: Meteor.userId() });
-      return re;
+      if(re)
+          return true;
+      else
+          return false;
   },
   tieneVotoAt: function () {
       var at = Calificacion_atajadas.findOne({id_user:this._id, upvotes: Meteor.userId() });
@@ -280,7 +285,6 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
     var tipo = "resistencia";
     var ratingResistencia = $('#resistencia').data('userrating');
     console.log(ratingResistencia);
-    console.log(use);
     Meteor.call('calif',use,ratingResistencia,tipo);
   },
 
@@ -288,7 +292,6 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
     var tipo = "fairplay";
     var ratingFairplay = $('#fairplay').data('userrating');
     console.log(ratingFairplay);
-    console.log(this._id);
     Meteor.call('calif',use,ratingFairplay,tipo);
   },
 
