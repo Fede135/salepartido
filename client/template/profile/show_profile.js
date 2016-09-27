@@ -53,6 +53,9 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
 Template.showProfile.events({  //al hacer click en el boton editar se redirige al template editProfile y se le pasa el _id del usuario del cual quiere editar su perfil
   'click #login-buttons-edit-profile': function(event) {
 		Router.go('editProfile', {_id: Meteor.userId()});
-	},
+   },
+   'click #sendFriendRequest' : function(event) {
+     Meteor.user({_id:this._id}).requestFriendship;
+	 },
 });
 
