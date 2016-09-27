@@ -4,14 +4,18 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return Meteor.users.findOne({_id: this._id});
   },
 
-  /*arquero : function(){
-    var u = Meteor.users.findOne({_id: this._id});
-    var arq = u.player.position;
-    console.log(arq);
-    if(arq === "Arquero")
-      return true;
-
-  },*/
+  arquero : function() {
+     var u = Meteor.users.findOne({_id: this._id});
+     console.log('user', u);
+     var arq = u && u.profile.player && u.profile.player.position;
+     console.log('u.player.position',u.profile.player.position)
+     console.log('arq',arq);
+     if(arq === "Arquero") {
+       return true;
+     } else {
+       return false;
+     };
+  },
 
   place : function() {  // se buscan datos del usuario del cual se esta viendo el perfil
     var user = Meteor.users.findOne({_id: this._id});

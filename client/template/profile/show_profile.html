@@ -17,17 +17,17 @@
       {{/each}}
     {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario-->
       
-      <!-- {{#if arquero }} -->
+       {{#if arquero}}
 
           <!-- Arquero -->
-         <!--  <h3>Reflejos</h3>{{> starsRating rating=promreflejos size='sm'}}
+          <h3>Reflejos</h3>{{> starsRating rating=promreflejos size='sm'}}
           {{> starsRating id='reflejos' class="estrella" mutable=true size='lg'}}
 
           <h3>Atajadas</h3>{{> starsRating rating=promatajadas size='sm'}}
-          {{> starsRating id='atajadas' class="estrella" mutable=true size='lg'}} -->
+          {{> starsRating id='atajadas' class="estrella" mutable=true size='lg'}}
 
            <!-- calificaciones comunes a todas las posiciones-->
-         <!--  <h3>Resistencia</h3>{{> starsRating rating=promresistencia size='sm'}}
+          <h3>Resistencia</h3>{{> starsRating rating=promresistencia size='sm'}}
           {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
 
           <h3>Fair Play</h3>{{> starsRating rating=promfairplay size='sm'}}
@@ -38,9 +38,9 @@
 
           <h3>Burradas</h3>{{> starsRating rating=promburradas size='sm'}}
           {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}}
-          {{else}} -->
+          {{else}}
           <!-- Otras posiciones -->
-          <!-- <h3>Pase</h3>{{> starsRating rating=prompase size='sm'}}
+          <h3>Pase</h3>{{> starsRating rating=prompase size='sm'}}
           {{> starsRating id='pase' class="estrella" mutable=true size='lg'}}
 
           <h3>Defensa</h3>{{> starsRating rating=promdefensa size='sm'}}
@@ -53,7 +53,7 @@
           {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}}
 
           <h3>Velocidad</h3>{{> starsRating rating=promvelocidad size='sm'}}
-          {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}} -->
+          {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}}
            <!-- calificaciones comunes a todas las posiciones-->
          <!--  <h3>Resistencia</h3>{{> starsRating rating=promresistencia size='sm'}}
           {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
@@ -68,6 +68,7 @@
           {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}} --> 
       <!-- {{/if}} -->
           {{> enterCommentsForPlayers}}
+    {{/if}}
     {{/if}}
     <br><br>
     {{> showCommentsPlayers}} <!-- se muestran los comentarios hechos sobre el perfil que se esta viendo-->

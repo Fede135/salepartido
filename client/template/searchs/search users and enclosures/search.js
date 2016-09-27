@@ -31,7 +31,6 @@ Template.search.events({
   if(! doc.profile) {   //si tiene doc.profile rutea a showRecintos sino a showProfile
       Router.go('showRecinto',{nombre_recinto: doc.nombre_recinto});
     } else {
-      console.log("recinto", doc);
       Router.go('showProfile',{_id: doc._id}); 
     }
   },
