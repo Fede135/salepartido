@@ -1,7 +1,19 @@
-<!--<template name="allNotifications">
+<template name="allNotifications">
   {{#if notificationCount}}
-      
+    {{#each notifications}}
+      {{this.fecha}} {{> allNotificationItem}} 
+    {{/each}}  
   {{else}}
     No hay notificiaciones
   {{/if}}
-</template>-->
+</template>
+
+<template name="allNotificationItem">
+  {{#if notificationUserPathComment}}
+  <li>
+    <a href="{{notificationUserPathComment}}">
+      Comentaron tu perfil.
+    </a>
+  </li>
+  {{/if}}
+</template>
