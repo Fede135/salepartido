@@ -18,6 +18,9 @@
                       {{#each fivecomments}}
                         <tr>
                           {{this.commentToPlayer}}
+                          {{#if ownComment}}
+                            <button id="deleteComment" name="deleteComment">Borrar</button>
+                          {{/if}}
                         </tr>
                       {{/each}}
                     {{else}}
@@ -46,6 +49,9 @@
                     {{#each comments20}}
                       <tr>
                         {{this.commentToPlayer}}
+                        {{#if ownComment}}
+                            <button id="deleteComment" name="deleteComment">Borrar</button>
+                        {{/if}}
                       </tr>
                     {{/each}}
                   </tbody>
