@@ -9,3 +9,14 @@
 .estrella .active {
   color: #776884;
 }
+
+.carousel-inner { 
+	text-align: center; 
+	width: 100%;/* la imagen ocupa todo el carrousel*/
+   	max-height: 400px;  /* la imagen ocupa todo el carrousel*/
+}
+.carousel .item > img { 
+	display: inline-block; 
+	width: 100%;/* la imagen ocupa todo el carrousel*/
+	height: 100%;
+}

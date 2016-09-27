@@ -40,6 +40,213 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return age;
   },
 
+  promreflejos: function(){
+    var cali = Calificacion_reflejo.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+
+  promatajadas: function(){
+    var cali = Calificacion_atajadas.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+  promresistencia: function(){
+    var cali = Calificacion_resistencia.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+
+  promfairplay: function(){
+    var cali = Calificacion_fairplay.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+  prompuntualidad: function(){
+    var cali = Calificacion_puntualidad.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+  promburradas: function(){
+    var cali = Calificacion_burradas.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+  prompase: function(){
+    var cali = Calificacion_pase.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+  promdefensa: function(){
+    var cali = Calificacion_defensa.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+promgambeta: function(){
+    var cali = Calificacion_gambeta.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+
+promrematearco: function(){
+    var cali = Calificacion_tiroalarco.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+
+promvelocidad: function(){
+    var cali = Calificacion_velocidad.findOne({id_user:this._id});
+    if(cali){
+      var array = cali.votes;
+      var promedio = 0;
+
+      for( i=0; i<array.length; i++ ){
+        promedio += array[i];
+      }
+      promedio = promedio / array.length;
+      console.log(promedio);
+      return promedio;
+    }
+  },
+
+ 
+  tieneVotoRe: function () {
+      var re = Calificacion_reflejo.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return re;
+  },
+  tieneVotoAt: function () {
+      var at = Calificacion_atajadas.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return at;
+  },
+  tieneVotoRes: function () {
+      var res = Calificacion_resistencia.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return res;
+  },
+  tieneVotoFair: function () {    
+      var fair = Calificacion_fairplay.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return fair;
+  },
+  tieneVotoPunt: function () {
+      var punt= Calificacion_puntualidad.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return punt;
+  },
+  tieneVotoBurr :function () {
+      var burr = Calificacion_burradas.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return burr;
+  },
+  tieneVotoPa: function () {
+      var pa = Calificacion_pase.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      console.log(pa);
+      return pa;
+  },
+  tieneVotoDef: function () {
+      var def = Calificacion_defensa.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return def;
+  },
+  tieneVotoGam : function () {
+      var gam = Calificacion_gambeta.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return gam;
+  },
+  tieneVotoRema: function (){
+      var rema = Calificacion_tiroalarco.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return rema;
+  },
+  tieneVotoVel: function() {
+      var vel = Calificacion_velocidad.findOne({id_user:this._id, upvotes: Meteor.userId() });
+      return vel;
+  },
+     
+
   ownProfile: function () { //devuelve verdadero si el perfil es del usuario logeado, o falso sino lo es
     return this._id === Meteor.userId();    
   },

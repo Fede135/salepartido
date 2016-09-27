@@ -15,46 +15,176 @@
       {{#each amigos}}
         <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.name}} <!--{{this.profile.name}}--></a> 
       {{/each}}
-    {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario-->
+      <br><br>
+      <h3>Calificaciones</h3>
+          {{#if arquero}}
+
+                <!-- Arquero -->
+                <h3>Reflejos</h3>
+                {{#if tieneVotoRe}}
+                  {{> starsRating rating=promreflejos size='sm'}}
+                {{else}}
+                   {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                <h3>Atajadas</h3>
+                {{#if tieneVotoAt}}
+                  {{> starsRating rating=promatajadas size='sm'}}
+                {{else}}
+                  {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                 <!-- calificaciones comunes a todas las posiciones-->
+                <h3>Resistencia</h3>
+                {{#if tieneVotoRes}}
+                  {{> starsRating rating=promresistencia size='sm'}}
+                {{else}}
+                  {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                <h3>Fair Play</h3>
+                {{#if tieneVotoFair}}
+                  {{> starsRating rating=promfairplay size='sm'}}
+                {{else}}
+                  {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                <h3>Puntualidad</h3>
+                {{#if tieneVotoPunt}}
+                  {{> starsRating rating=prompuntualidad size='sm'}}
+                {{else}}
+                  {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                <h3>Burradas</h3>
+                {{#if tieneVotoBurr}}
+                  {{> starsRating rating=promburradas size='sm'}}
+                {{else}}
+                 {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+                <!-- Otras posiciones -->
+        {{else}}
+                <h3>Pase</h3>
+                {{#if tieneVotoPa}}
+                  {{> starsRating rating=prompase size='sm'}}
+                {{else}}
+                 {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                <h3>Defensa</h3>
+                {{#if tieneVotoDef}}
+                  {{> starsRating rating=promdefensa size='sm'}}
+                {{else}}
+                  {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                <h3>Gambeta</h3>
+                {{#if tieneVotoGam}}
+                  {{> starsRating rating=promgambeta size='sm'}}
+                {{else}}
+                  {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                <h3>Remate al arco</h3>
+                {{#if tieneVotoRema}}
+                  {{> starsRating rating=promrematearco size='sm'}}
+                {{else}}
+                  {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+
+                <h3>Velocidad</h3>
+                {{#if tieneVotoVel}}
+                  {{> starsRating rating=promvelocidad size='sm'}}
+                {{else}}
+                  {{> starsRating rating=0 size='sm'}}
+                {{/if}}
+      {{/if}}
+    {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario y lo califiquen-->
       
        {{#if arquero}}
 
           <!-- Arquero -->
-          <h3>Reflejos</h3>{{> starsRating rating=promreflejos size='sm'}}
-          {{> starsRating id='reflejos' class="estrella" mutable=true size='lg'}}
-
-          <h3>Atajadas</h3>{{> starsRating rating=promatajadas size='sm'}}
-          {{> starsRating id='atajadas' class="estrella" mutable=true size='lg'}}
-
-           <!-- calificaciones comunes a todas las posiciones-->
-          <h3>Resistencia</h3>{{> starsRating rating=promresistencia size='sm'}}
-          {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
-
-          <h3>Fair Play</h3>{{> starsRating rating=promfairplay size='sm'}}
-          {{> starsRating id='fairplay' class="estrella" mutable=true size='lg'}}
-
-          <h3>Puntualidad</h3>{{> starsRating rating=prompuntualidad size='sm'}}
-          {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
-
-          <h3>Burradas</h3>{{> starsRating rating=promburradas size='sm'}}
-          {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}}
+          <h3>Reflejos</h3>
+          {{#if tieneVotoRe}}
+            {{> starsRating rating=promreflejos size='sm'}}
           {{else}}
-          <!-- Otras posiciones -->
-          <h3>Pase</h3>{{> starsRating rating=prompase size='sm'}}
-          {{> starsRating id='pase' class="estrella" mutable=true size='lg'}}
+            {{> starsRating id='reflejos' class="estrella" mutable=true size='lg'}}
+          {{/if}}
 
-          <h3>Defensa</h3>{{> starsRating rating=promdefensa size='sm'}}
-          {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}}
+          <h3>Atajadas</h3>
+          {{#if tieneVotoAt}}
+            {{> starsRating rating=promatajadas size='sm'}}
+          {{else}}
+            {{> starsRating id='atajadas' class="estrella" mutable=true size='lg'}}
+          {{/if}}
 
-          <h3>Gambeta</h3>{{> starsRating rating=promgambeta size='sm'}}
-          {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}}
-
-          <h3>Remate al arco</h3>{{> starsRating rating=promrematearco size='sm'}}
-          {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}}
-
-          <h3>Velocidad</h3>{{> starsRating rating=promvelocidad size='sm'}}
-          {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}}
            <!-- calificaciones comunes a todas las posiciones-->
+          <h3>Resistencia</h3>
+          {{#if tieneVotoRes}}
+            {{> starsRating rating=promresistencia size='sm'}}
+          {{else}}
+            {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+
+          <h3>Fair Play</h3>
+          {{#if tieneVotoFair}}
+            {{> starsRating rating=promfairplay size='sm'}}
+          {{else}}
+            {{> starsRating id='fairplay' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+
+          <h3>Puntualidad</h3>
+          {{#if tieneVotoPunt}}
+            {{> starsRating rating=prompuntualidad size='sm'}}
+          {{else}}
+            {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+
+          <h3>Burradas</h3>
+          {{#if tieneVotoBurr}}
+            {{> starsRating rating=promburradas size='sm'}}
+          {{else}}
+            {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+          <!-- Otras posiciones -->
+      {{else}}
+          <h3>Pase</h3>
+          {{#if tieneVotoPa}}
+            {{> starsRating rating=prompase size='sm'}}
+          {{else}}
+           {{> starsRating id='pase' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+
+          <h3>Defensa</h3>
+          {{#if tieneVotoDef}}
+            {{> starsRating rating=promdefensa size='sm'}}
+          {{else}}
+            {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+
+          <h3>Gambeta</h3>
+          {{#if tieneVotoGam}}
+            {{> starsRating rating=promgambeta size='sm'}}
+          {{else}}
+            {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+
+          <h3>Remate al arco</h3>
+          {{#if tieneVotoRema}}
+            {{> starsRating rating=promrematearco size='sm'}}
+          {{else}}
+            {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+
+          <h3>Velocidad</h3>
+          {{#if tieneVotoVel}}
+            {{> starsRating rating=promvelocidad size='sm'}}
+          {{else}}
+            {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}}
+          {{/if}}
+           <!-- calificaciones comunes a todas las posiciones-->
+          
+          
          <!--  <h3>Resistencia</h3>{{> starsRating rating=promresistencia size='sm'}}
           {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
 
