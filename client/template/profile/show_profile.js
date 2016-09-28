@@ -29,12 +29,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
   ownProfile: function () { //devuelve verdadero si el perfil es del usuario logeado, o falso sino lo es
     return this._id === Meteor.userId();    
   },
-  /*amigos: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
-    friends= Friends && Friends.find();
-    var j = friends.count()-1; //uso esto xq el .length me da undefined
+  amigos: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
+    appFriends= FacebookFriends && FacebookFriends.find();
+    var j = appFriends.count()-1; //uso esto xq el .length me da undefined
     var amigos = []; 
     for (var i=0; j; i++) {
-      var fbid = friends.fetch()[i].id; //guardo el atributo id de lo que me manda fb de cada usuario para despues buscar en mi bd, ya que este id es unico
+      var fbid = appFriends.fetch()[i].id; //guardo el atributo id de lo que me manda fb de cada usuario para despues buscar en mi bd, ya que este id es unico
       var usuarios = Meteor.users.findOne({'services.facebook.id' : fbid});
       console.log("usuarios bd", usuarios);
       console.log("amigos antes", amigos);
@@ -42,11 +42,11 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       console.log("amigos despues", amigos);
     };
     return amigos;
-  },*/
-  amigos: function (){ //esto esta puesto para mostrarlo en clases, pero redirige a cualquier id
-    friends= FacebookFriends && FacebookFriends.find();
-    return friends;
-  }
+  },
+  // amigos: function (){ //esto esta puesto para mostrarlo en clases, pero redirige a cualquier id
+  //   friends= FacebookFriends && FacebookFriends.find();
+  //   return friends;
+  // }
 });
 
 
