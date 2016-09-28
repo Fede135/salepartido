@@ -152,7 +152,7 @@ promdefensa: function(){
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
@@ -166,7 +166,7 @@ promgambeta: function(){
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
@@ -181,7 +181,7 @@ promrematearco: function(){
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
@@ -196,7 +196,7 @@ promvelocidad: function(){
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      console.log(promedio);
+      
       return promedio;
     }
   },
@@ -231,7 +231,7 @@ promvelocidad: function(){
   },
   tieneVotoPa: function () {
       var pa = Calificacion_pase.findOne({id_user:this._id, upvotes: Meteor.userId() });
-      console.log(pa);
+      
       return pa;
   },
   tieneVotoDef: function () {

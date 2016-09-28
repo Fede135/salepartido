@@ -4,37 +4,33 @@
 			<div class="col-lg-6">
 					<h1>Nombre recinto:{{recinto.nombre_recinto}} </h1>
 					<br>
+					{{#if promedio}}
+						Promedio de calificaciones: {{promedio}}
+						{{> starsRating rating=promedio class="estrella" size='sm'}}
+								
+					{{else}}
+						{{> starsRating rating=0 class="estrella" size='sm'}}
+						<br>
+					{{/if}}		
 					{{#if isOwner}}
-							{{#if countUsers}}
-								Promedio de calificaciones: {{promedio}}
-								{{> starsRating rating=promedio size='sm'}}
-								<br>
+							{{#if promedio}}
+								
 								Cantidad de usuarios que han calificado : {{countUsers}}
 								<br>
 							{{else}}
 								Ningun usuario ha votado todavía.
 								<br>
 							{{/if}}
-						{{else}}		
-							{{#if countUsers}}		
-								Promedio de calificaciones: {{promedio}}
-								{{> starsRating rating=promedio size='sm'}}
-								<br>
-								Cantidad de usuarios que han calificado : {{countUsers}}
-								<br>
+					{{else}}
+														
+							{{#if tieneVoto}}
+								Ya votaste este recinto...
 							{{else}}
-								Ningun usuario ha votado todavía.
-								<br>
-							{{/if}}	
-							{{#if isInRole 'player' }}
-								{{#if tieneVoto}}
-									Ya votaste este recinto...
-								{{else}}
-									¿Desea calificar al recinto?
-									{{> starsRating id='rating' class="estrella" mutable=true size='lg'}}
-								{{/if}}
+								¿Desea calificar al recinto?
+								{{> starsRating id='rating' class="estrella" mutable=true size='lg'}}
 							{{/if}}
-						{{/if}}
+							
+					{{/if}}
 						<br>
 						Direccion: {{recinto.direccion_recinto}}
 						<br>

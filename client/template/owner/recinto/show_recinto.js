@@ -79,6 +79,7 @@ Template.showRecinto.helpers({
 	},
 
 	isOwner: function(){
+		console.log(this.ownerId === Meteor.userId());
     return this.ownerId === Meteor.userId();    
   },
 	
