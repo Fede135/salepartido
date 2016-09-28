@@ -35,18 +35,11 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     appFriends && appFriends.forEach(function (amigo) {
       var fbid = amigo.id; //guardo el atributo id de lo que me manda fb de cada usuario para despues buscar en mi bd, ya que este id es unico
       var usuario = Meteor.users.findOne({'services.facebook.id' : fbid});
-      console.log("usuarios bd", usuario);
-      console.log("amigos antes", amigos);
       amigos.push(usuario);
-      console.log("amigos despues", amigos);
     });
 
     return amigos;
   },
-  // amigos: function (){ //esto esta puesto para mostrarlo en clases, pero redirige a cualquier id
-  //   friends= FacebookFriends && FacebookFriends.find();
-  //   return friends;
-  // }
 });
 
 
