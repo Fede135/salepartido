@@ -1,7 +1,7 @@
 
 Template.showRecinto.helpers({
 	recinto: function () {
-		reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
+		reci = Recintos.findOne({_id: this._id});
 		return  reci;
 	},
 
@@ -11,7 +11,7 @@ Template.showRecinto.helpers({
 	},
 
 	imagen1: function(){
-		var reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
+		var reci = Recintos.findOne({_id: this._id});
 
 		if (reci) {
 			var idImagen1 = reci.imagen1_id;
@@ -22,7 +22,7 @@ Template.showRecinto.helpers({
 	},
 
 	imagen2: function(){
-		var reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
+		var reci = Recintos.findOne({id: this._id});
 		if (reci){
 			var idImagen2 = reci.imagen2_id;
 			var url2 = idImagen2 && Images.findOne({_id: idImagen2}).url();
@@ -31,7 +31,7 @@ Template.showRecinto.helpers({
 	},
 
 	imagen3: function(){
-		var reci = Recintos.findOne({nombre_recinto : this.nombre_recinto});
+		var reci = Recintos.findOne({_id: this._id});
 		if(reci){
 			var idImagen3 = reci.imagen3_id;
 			var url3 = idImagen3 && Images.findOne({_id: idImagen3}).url();

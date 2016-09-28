@@ -29,7 +29,7 @@ Template.search.helpers({
 Template.search.events({
   "autocompleteselect input": function(event, template, doc) {
   if(! doc.profile) {   //si tiene doc.profile rutea a showRecintos sino a showProfile
-      Router.go('showRecinto',{nombre_recinto: doc.nombre_recinto});
+      Router.go('showRecinto',{_id: doc._id});
     } else {
       Router.go('showProfile',{_id: doc._id}); 
     }

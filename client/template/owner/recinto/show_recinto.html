@@ -14,8 +14,11 @@
 					{{/if}}		
 					{{#if isOwner}}
 							{{#if promedio}}
-								
-								Cantidad de usuarios que han calificado : {{countUsers}}
+								{{#if countUsers}}
+									Cantidad de usuarios que han calificado : {{countUsers}}
+								{{else}}
+									Cantidad de usuarios que han calificado : 0
+								{{/if}}
 								<br>
 							{{else}}
 								Ningun usuario ha votado todavía.
