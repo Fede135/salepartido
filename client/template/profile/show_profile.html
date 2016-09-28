@@ -12,7 +12,7 @@
       <br><br>
       <legend>Amigos</legend>
       {{#each amigos}}
-        <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.name}} <!--{{this.profile.name}}--></a> 
+        <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a> 
       {{/each}}
     {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario-->
       <button id="sendFriendRequest" name="sendFriendRequest">Enviar solicitud de amistad</button>

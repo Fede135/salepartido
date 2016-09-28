@@ -1,6 +1,6 @@
 Template.showCommentsPlayers.helpers({
   fivecomments: function () {
-    var comments = CommentsForPlayers.find({toUserId: this._id, status:"Habilitado"}, {sort: {createAt:-1}, limit:5});
+    var comments = CommentsForPlayers.find({toUserId: this._id, status:"Habilitado"}, {sort: {createdAt:-1}, limit:5});
     if (comments.count() === 0) {
       return false;
     } else {      
@@ -9,7 +9,7 @@ Template.showCommentsPlayers.helpers({
   },
   
   comments20: function() {
-    var comments = CommentsForPlayers.find({toUserId:this._id, status:"Habilitado"}, {sort: {createAt:-1}, skip:5, limit:20});
+    var comments = CommentsForPlayers.find({toUserId:this._id, status:"Habilitado"}, {sort: {createdAt:-1}, skip:5, limit:20});
     if (comments.count() === 0) {
       return false;
     } else {      

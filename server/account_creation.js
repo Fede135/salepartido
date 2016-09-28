@@ -40,7 +40,7 @@ El equipo de Sale Partido.
 `
   },
  /* html(user, url) {
-    process.env.MAIL_URL = "smtp://salepartido2016@gmail.com:adrigato@smtp.googlemail.com:465"
+    process.env.MAIL_URL = "smtp://salepartido2016@gmail.com:adrigato@smtp.googlemail.com:587"
     // This is where HTML email content would go.
     // See the section about html emails below.
   }*/
