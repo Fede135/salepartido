@@ -4,6 +4,7 @@ Template.crearReserva.onRendered(function () {
     format: 'L',
     minDate: moment(),
     showClear: true,
+    daysOfWeekDisabled: [1, 7],
   });
 
   this.$('#datetimepicker3').datetimepicker({
@@ -38,18 +39,23 @@ Template.crearReserva.events({
             fecha_de_juego:$(e.target).find('[name=datetimepicker]').val(),
             estado:'Reservada'
         };        
-
         var errors = validateReserva(reserva);
       
         if (errors.nombreRecinto || errors.nombreDelCliente || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
-        if (
-          Reserva.find({'nom_recinto': reserva.nom_recinto}) && 
-          Reserva.find({'num_cancha': reserva.num_cancha}) && 
-          Reserva.find({'hora_de_juego': reserva.hora_de_juego}) && 
-          Reserva.find({'fecha_de_juegoD': reserva.fecha_de_juegoD}) && 
-          Reserva.find({'estado':reserva.estado}))
+        var selector = {
+          
+          'nom_recinto':reserva.nom_recinto,
+          'num_cancha': +reserva.num_cancha,
+          'hora_de_juego': +  reserva.hora_de_juego,
+          'fecha_de_juegoD':reserva.fecha_de_juegoD,
+          'estado':reserva.estado
+          
+        };
+
+//$gte: newDate()
+        if (Reserva.findOne(selector))
         return alert("Reserva existente");
 
         var x= Reserva.insert(reserva);
@@ -59,7 +65,7 @@ Template.crearReserva.events({
           reserva_id:x
         };
         
-        var partidoId=Partido.insert(partido);
+        var partidoId= Partido.insert(partido);
         Session.set('recinto', null);
         alert("Reserva creada");
         

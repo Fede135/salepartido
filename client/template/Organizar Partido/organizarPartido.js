@@ -38,17 +38,22 @@ Template.organizarPartido.events({
             estado:'Reservada'
         };        
 
-
         var errors = validateReserva(reserva);
         if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
-        if (
-          Reserva.find({'nom_recinto': reserva.nom_recinto}) && 
-          Reserva.find({'num_cancha': reserva.num_cancha}) && 
-          Reserva.find({'hora_de_juego': reserva.hora_de_juego}) && 
-          Reserva.find({'fecha_de_juegoD': reserva.fecha_de_juegoD}) && 
-          Reserva.find({'estado':reserva.estado}))
+        var selector = {
+          
+          'nom_recinto':reserva.nom_recinto,
+          'num_cancha': +reserva.num_cancha,
+          'hora_de_juego': +reserva.hora_de_juego,
+          'fecha_de_juegoD':reserva.fecha_de_juegoD,
+          'estado':reserva.estado
+          
+        };
+
+//$gte: newDate()
+        if (Reserva.findOne(selector))
         return alert("Reserva existente");
 
         var idReserva= Reserva.insert(reserva);
@@ -56,7 +61,9 @@ Template.organizarPartido.events({
         
         var partido = { 
           _id:Meteor.ObjectId,
-          reserva_id:idReserva
+          reserva_id:idReserva,
+          equipoA:[],
+          equipoB:[],
         };
         
         var partidoId=Partido.insert(partido);
@@ -82,7 +89,7 @@ Template.organizarPartido.events({
     $target.val($item.text());
 
     var recinto=Recintos.findOne({'_id':($item.data('forId'))});
-    
+    $('input[name=nombreCancha]').val('');
     Session.set('recinto', recinto);
     
   },
@@ -93,6 +100,7 @@ Template.organizarPartido.events({
     var $target=$($item.data('forCancha'));
 
     $target.val($item.text()); 
+    
   }
   
   });
