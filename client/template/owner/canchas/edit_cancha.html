@@ -1,0 +1,36 @@
+<template name="editCancha">
+	<div class="container">
+    {{#if canchasRecinto}}
+        {{#autoForm collection="Canchas" doc=this id=updateFormName type="update" }}
+
+            <h4>Numero de cancha</h4>
+
+            {{> afFieldInput name='numero'}}
+
+            <h4>Cantidad de jugadores</h4>
+
+            {{> afFieldInput name='jugadores.cantidad_de_jugadores' options=cantJugadores}}
+
+
+            <h4>Tipo de cancha</h4>
+
+            {{> afFieldInput name='tipo_cancha.tipo_de_cancha' options=tipoCancha}}
+
+            <h4>Estado cancha</h4>
+
+            {{> afFieldInput name='estado_cancha.estado_de_cancha' options=estadoCancha}}
+
+            <h4>Descripcion</h4>
+
+            {{> afFieldInput name='descripcion'}}
+                        <!--
+                    {{> afFieldInput name='recintoId' value=recinto._id}}
+
+                    hay q setearle de nuevo el id del recinto?-->
+            <br>                        
+                <button type="submit" name="actualizarCancha" id="actualizarCancha" class="btn btn-success">Actualizar</button>                    
+        {{/autoForm}} 
+     {{/if}}           
+     </div>
+
+</template>

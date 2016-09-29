@@ -1,0 +1,28 @@
+<template name="gestionCancha">
+	<div class="container">
+        <div class="form-offline">
+        {{#each canchasRecinto}}
+            Número: {{this.numero}}
+
+            Jugadores : {{this.jugadores.cantidad_de_jugadores}}
+
+            Tipo de cancha: {{this.tipo_cancha.tipo_de_cancha}}
+
+            Estado: {{this.estado_cancha.estado_de_cancha}}
+
+            Descripción:{{this.descripcion}}
+
+            Fecha de creación:{{this.createdAt}}
+
+            <button type="button" name="editCancha" id="editCancha"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+
+            {{#quickRemoveButton collection="Canchas" _id=this._id onError=onError onSuccess=onSuccess beforeRemove=beforeRemove class="btn btn-danger"}}
+
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            {{/quickRemoveButton}}
+
+        {{/each}}
+        </div>
+    </div>
+</template>
+

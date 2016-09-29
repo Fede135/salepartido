@@ -39,6 +39,9 @@ Template.dashboard.events({
 		alert("Reserva cancelada");
 
   	},
+  	'click #gestionCanchas': function(event){
+		Router.go('gestionCancha', {_id: this._id});
+  	},
 });
 
 Template.dashboard.onDestroyed( function(){
