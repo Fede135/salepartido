@@ -1,0 +1,97 @@
+<template name="modificarReservaPlayer">
+	<div class="container">
+	    <div class="navbar">
+	  		<h2 align="center">
+		     	Modificar organizacion de partido 
+			  </h2>
+	    </div>
+	    {{#if reserva}}
+	    <div class="form-group">
+	    	<form class="reserva">
+	    		<div class="well"> 							
+					<div class="row">						
+					    <div class="span5 col-md-5">
+					    	<div class="form-group  {{errorClass 'nombreRecinto'}}">
+						      	<br>
+						      	<label class="control-label" for="nombreRecinto">Seleccionar un recinto</label>
+						      	<br>
+						      	<div class="controls">
+						      		<div class="input-group">
+						          		<div class="input-group-btn">
+						          			<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar un recinto <span class="caret"></span></button>
+	                              					<ul class="dropdown-menu">
+	                              					{{#each recinto}}
+	                  
+	                              					<li><a data-for-recinto="#nombreRecinto" data-for-id="{{_id}}">{{this.nombre_recinto}}</a></li>
+	                  
+	                              					{{/each}}
+	                    
+	                              					</ul>
+	                          			</div>         		
+						          		<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>						          		
+						          	</div>
+						          	<span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
+						     	</div>
+						    </div> 
+					    </div>	 				   
+					    <div class="span5 col-md-1">
+    	              	</div>    	              	
+					    <div class="span5 col-md-5">
+					    	<div class="form-group  {{errorClass 'nombreCancha'}}">
+					    		 <br>
+						     	 <label class="control-label" for="nombreCancha">Seleccionar una cancha</label>
+						     	 <br>
+						     	 <div class="controls">
+						     	 	<div class="input-group">
+						     	 		<div class="input-group-btn">
+	                             			 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar una cancha <span class="caret"></span></button>
+	                              				<ul class="dropdown-menu">
+	                              				{{#each cancha}}
+	                  
+	                             				 <li><a data-for-cancha = "#nombreCancha">{{this.numero}}</a></li>
+	                  
+	                              				{{/each}}    
+	                              				</ul>
+	                          			</div>
+						          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>						          		
+						          	</div>	
+						          	<span class="help-block">{{errorMessage 'nombreCancha'}}</span>
+						     	</div>
+						   	</div>
+						</div>   	 	 
+				  	</div>
+				  	<br>
+				  	<div class="row">		    	
+			    		<div class="span5 col-md-5">
+					      	<label class="control-label" for="datetimepicker" >Elegí un día para jugar</label>
+					      	<div class="controls">
+					      		<div class='input-group date'>
+					        	  	<input name="datetimepicker" id="datetimepicker" type="button" value="" class="form-control"/>
+					        	  	<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
+					        	  		<i class="glyphicon glyphicon-calendar"></i>
+					        	  	</span>	
+					        	</div>  	
+					     	</div>
+					    </div> 	 				    
+				    	<div class="span5 col-md-1">
+				    	</div>				    
+				    	<div class='span5 col-md-5'>
+					     	<label class="control-label" for="datetimepicker3">Elegí un horario para jugar</label>
+					     	<div class="controls">
+					     		<div class='input-group date'>
+					          		<input name="datetimepicker3" id="datetimepicker3" type="button" value="" class="form-control"/>
+					          		<span class="input-group-addon" data-picker-handle="#datetimepicker3">
+					          			<i class="glyphicon glyphicon-time"></i>
+                            		</span>
+					          	</div>	
+					        </div>
+					    </div> 				   
+					</div>
+					<br>		
+					<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-success">Actualizar</button>				
+				</div>				
+			</form>
+		</div>
+		{{/if}}     		
+    </div>
+</template>

@@ -48,7 +48,7 @@ Template.crearReserva.events({
           
           'nom_recinto':reserva.nom_recinto,
           'num_cancha': +reserva.num_cancha,
-          'hora_de_juego': +  reserva.hora_de_juego,
+          'hora_de_juego': +reserva.hora_de_juego,
           'fecha_de_juegoD':reserva.fecha_de_juegoD,
           'estado':reserva.estado
           

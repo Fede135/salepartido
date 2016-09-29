@@ -56,8 +56,7 @@ Template.organizarPartido.events({
         if (Reserva.findOne(selector))
         return alert("Reserva existente");
 
-        var idReserva= Reserva.insert(reserva);
-        
+        var idReserva= Reserva.insert(reserva);        
         
         var partido = { 
           _id:Meteor.ObjectId,
