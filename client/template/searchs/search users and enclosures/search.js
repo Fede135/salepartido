@@ -2,14 +2,18 @@ Template.search.helpers({
   settings: function() {  //configuraciones de Autocomplete
     return {
       position: "botton",
-      limit: 5,
+      
       rules: [
         {
           token:'@',                //busca con @ en la coleccion Meteor.users
           collection: Meteor.users,
+          // selector: function (match){
+          //   console.log('selector', {'profile.name': new RegExp(match, 'i'), 'roles.__global_roles__':'player' })   //queda comentado hasta que no saquemos insecure y autopublish
+          //   return {'profile.name': new RegExp(match, 'i'), 'roles.__global_roles__':'player' }
+          // },
           field: "profile.name",
           matchAll: true,
-          //filter: {type : "roles.__global_roles__.player"}, //preguntar como hacer para buscar solo en usuarios con rol player.
+          //filter: {'roles.__global_roles__':'player'}, //preguntar como hacer para buscar solo en usuarios con rol player.
           template: Template.userDataPill,  
           noMatchTemplate: Template.searchEmpty
         },

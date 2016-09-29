@@ -21,7 +21,6 @@ Template.editRecinto.helpers({
 	},
 
 	updateFormName: function () {
-			console.log(this._id);
             return "updateOrgForm-" + this._id;
 
         },
@@ -32,7 +31,6 @@ Template.editRecinto.helpers({
 Template.editRecinto.events({
 	'click #actualizarRecinto': function(error) {
 		if(! error)
-	        console.log(result);
 	        alert("Recinto actualizado correctamente.");
 	},
 
