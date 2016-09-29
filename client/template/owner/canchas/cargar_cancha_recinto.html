@@ -2,28 +2,11 @@
 	
 	  <div class = "container">		
 
-	     <h3>Seleccione un recinto:</h3>  	  	
-       <!-- Boton desplegable -->
-          <div class="input-group-btn">
-              <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar recinto <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    {{#each recinto}}
-                                      
-                      <li><a data-for-recinto = "#nombreRecinto" data-recinto-id="{{_id}}">{{this.nombre_recinto}}</a></li>
-                                      
-                    {{/each}}
-                                       
-                </ul>
-            </div>
-
-        {{#if recintoSeleccionado}}
-          <h2>Nombre del recinto: {{recintoSeleccionado.nombre_recinto}}</h2>
-          <!--Formulario para crear canchas -->
           {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
           <fieldset>
               <legend><h2>Crear cancha</h2></legend>
 
-          {{> afQuickField name='recintoId' value=recintoSeleccionado._id}}
+          {{> afQuickField name='recintoId' value=this._id}}
 
           {{> afQuickField name='numero' style="color: orange" label-style="color: green"}}
 
@@ -40,6 +23,6 @@
           </fieldset>
          <button type="submit" class="btn btn-success">Crear</button>
         {{/autoForm}}
-        {{/if}}
+
 	  </div>
 </template>

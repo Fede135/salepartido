@@ -37,7 +37,9 @@ AutoForm.addHooks(
           alert("Recinto creado correctamente");
                 var reci = Recintos.findOne({_id:result});
                 var nombreR = reci.nombre_recinto;
-                Router.go('cargarCancha',);
+
+        
+                Router.go('cargarCancha', {_id:result});
       
     },
   }  
