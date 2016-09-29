@@ -23,8 +23,7 @@ Template.search.helpers({
           field: "nombre_recinto",
           template: Template.EnclosureDataPill,  
           noMatchTemplate: Template.searchEmpty
-        },
-        
+        },                
         
       ]
     };

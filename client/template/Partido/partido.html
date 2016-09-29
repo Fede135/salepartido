@@ -3,7 +3,7 @@
 		<h2 align="center">Tus partidos</h2>
 		<div class="well">
 			<div class="row">
-  			    <div class="form-group">	
+  			    <div class="form-group {{errorClass 'nombreDeLaReserva'}}">	
     		    	<div class="span5 col-md-11">
     		        <br>
         			<label class="control-label" for="nombreReserva">Seleccioná una reserva</label>
@@ -22,12 +22,19 @@
 	        	                   		</ul>
 	        	                </div>         		
 	        					<input name="nombreReserva" id="nombreReserva" type="button" value="" class="form-control"/>	          		
-	        				</div>        						     
+	        				</div>
+	        				<span class="help-block">{{errorMessage 'nombreDeLaReserva'}}</span>
 	        			</div>
 	        			<br>
 	        			<div class="btn-group" role="group" aria-label="...">
        						 <button type="button" name="organizacionPartido" id="organizacionPartido" class="btn btn-success">Ir a la organización de partido</button> 
    						 </div> 
+   						 <div class="btn-group" role="group" aria-label="...">
+   						 <button type="button" name="modificar" id="modificar" class="btn btn-success">Modificar</button>
+   						 </div>
+   						 <div class="btn-group" role="group" aria-label="...">
+   						 <button type="button" name="cancelar" id="cancelar" class="btn btn-success">Cancelar</button>
+   						 </div>
     			    </div> 
   			    </div>  		  
     		</div>

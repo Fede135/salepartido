@@ -4,6 +4,7 @@ Template.crearReserva.onRendered(function () {
     format: 'L',
     minDate: moment(),
     showClear: true,
+    daysOfWeekDisabled: [1, 7],
   });
 
   this.$('#datetimepicker3').datetimepicker({
@@ -20,48 +21,56 @@ Template.crearReserva.events({
         
         e.preventDefault();
 
-        var reservadueno = {
+        var recintoId = this._id;
+        var recinto = recintoId && Recintos.findOne({'_id': recintoId});
+        var nombRecinto = recinto && recinto.nombre_recinto;
+        var diaString = $(e.target).find('[name=datetimepicker]').val();        
+        var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
+        var dia = new Date(diaMoment);
+                
+        var reserva = {
             _id:Meteor.ObjectId,            
             nom_reserva:$(e.target).find('[name=nombreDeLaReserva]').val(),
             nom_usuario:$(e.target).find('[name=nombreDelCliente]').val(),
-            nom_recinto:$('input[name=nombreRecinto]').val(),
+            nom_recinto:nombRecinto,
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
-            fecha_de_juego:$(e.target).find('[name=datetimepicker]').val()
+            fecha_de_juegoD:dia,
+            fecha_de_juego:$(e.target).find('[name=datetimepicker]').val(),
+            estado:'Reservada'
         };        
-
-
-        var errors = validateReservadueno(reservadueno);
+        var errors = validateReserva(reserva);
+      
         if (errors.nombreRecinto || errors.nombreDelCliente || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
-        var x= Reservadueno.insert(reservadueno);
-        
-        
+        var selector = {
+          
+          'nom_recinto':reserva.nom_recinto,
+          'num_cancha': +reserva.num_cancha,
+          'hora_de_juego': +reserva.hora_de_juego,
+          'fecha_de_juegoD':reserva.fecha_de_juegoD,
+          'estado':reserva.estado
+          
+        };
+
+//$gte: newDate()
+        if (Reserva.findOne(selector))
+        return alert("Reserva existente");
+
+        var x= Reserva.insert(reserva);
+                
         var partido = { 
           _id:Meteor.ObjectId,
-          reserva_id:x,
+          reserva_id:x
         };
         
-        var partidoId=Partido.insert(partido);
+        var partidoId= Partido.insert(partido);
+        Session.set('recinto', null);
         alert("Reserva creada");
-        Router.go('gestionarReserva');
+        
     },
-
-  'click [data-for-recinto]': function(event){
     
-    var $item=$(event.currentTarget);
-    var $target=$($item.data('forRecinto'));
-    
-    $target.val($item.text());
-
-    var recinto=Recintos.findOne({'_id':($item.data('forId'))});
-    
-    Session.set('recinto', recinto); 
-    
-  },
-  
-
   'click [data-picker-handle]': function (event) {
 
     var datetimepicker = $(event.currentTarget).data('pickerHandle');   
@@ -74,7 +83,7 @@ Template.crearReserva.events({
     var $item=$(event.currentTarget);
     var $target=$($item.data('forCancha'));
 
-    $target.val($item.text());    
+    $target.val($item.text());        
   }
   
   });
@@ -109,3 +118,8 @@ Template.crearReserva.onCreated(function() {
   Session.set('reservaErrors', {});
 });
 
+Template.crearReserva.onDestroyed( function(){
+
+    Session.set('reserva', null);
+
+});

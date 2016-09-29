@@ -1,25 +1,14 @@
-<template name = "organizarPartido">
+<template name="modificarReservaPlayer">
 	<div class="container">
 	    <div class="navbar">
 	  		<h2 align="center">
-		     	Organizar Partido      
+		     	Modificar organizacion de partido 
 			  </h2>
 	    </div>
+	    {{#if reserva}}
 	    <div class="form-group">
 	    	<form class="reserva">
-	    		<div class="well">
-	    			<div class="row">
-	    				<div class="form-group  {{errorClass 'nombreDeLaReserva'}}">	
-		    				<div class="span5 col-md-11">
-						    	<label class="control-label" for="nombreDeLaReserva" >Nombre de la reserva</label>
-							    <div class="controls">
-							    	<input type="text" name="nombreDeLaReserva" id="nombreDeLaReserva" class="form-control" placeholder="Nombre de la reserva" aria-describedby="basic-addon1">
-							    	<span class="help-block">{{errorMessage 'nombreDeLaReserva'}}</span>				
-								</div>
-							</div>
-						</div>		
-					</div> 	
-					<br>	    							
+	    		<div class="well"> 							
 					<div class="row">						
 					    <div class="span5 col-md-5">
 					    	<div class="form-group  {{errorClass 'nombreRecinto'}}">
@@ -98,10 +87,11 @@
 					        </div>
 					    </div> 				   
 					</div>
-				 	<br>  
-					<input type="submit" value="Crear reserva" class="btn btn-success"/>							
+					<br>		
+					<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-success">Actualizar</button>				
 				</div>				
 			</form>
-		</div>     		
+		</div>
+		{{/if}}     		
     </div>
-</template>     
+</template>
