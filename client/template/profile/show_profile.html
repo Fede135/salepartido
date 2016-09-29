@@ -15,7 +15,7 @@
         <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a> 
       {{/each}}
     {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario-->
-      <button id="sendFriendRequest" name="sendFriendRequest">Enviar solicitud de amistad</button>
+      <!--<button id="sendFriendRequest" name="sendFriendRequest">Enviar solicitud de amistad</button>  queda comentado, no puedo hacerlo andar todavia-->
       {{> enterCommentsForPlayers}}
     {{/if}}
     <br><br>

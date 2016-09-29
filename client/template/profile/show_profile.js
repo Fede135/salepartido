@@ -47,9 +47,9 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
   'click #login-buttons-edit-profile': function(event) {
 		Router.go('editProfile', {_id: Meteor.userId()});
    },
-   'click #sendFriendRequest' : function(event) {
-     console.log('sendRequest');
-     Meteor.users.findOne({_id:this._id}).requestFriendship();
-	 },
+  //  'click #sendFriendRequest' : function(event) {  queda comentado, no puedo hacerlo andar todavia
+  //    console.log('sendRequest');
+  //    Meteor.users.findOne({_id:this._id}).requestFriendship();
+	//  },
 });
 
