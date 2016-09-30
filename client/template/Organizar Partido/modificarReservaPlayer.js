@@ -129,7 +129,7 @@ Template.modificarReservaPlayer.events({
         
         var partidoId=Partido.insert(partido);
 
-        alert("Reserva creada");
+        alert("Reserva actualizada");
 
         Router.go('confirmarPartido',{_id:partidoId});
     }
