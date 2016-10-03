@@ -17,13 +17,15 @@ Template.organizarPartido.onRendered(function () {
 
 Template.organizarPartido.events({
     
-   'submit form': function(e) {
+   'submit form': function(e,t) {
         
         e.preventDefault();
 
         var diaString = $(e.target).find('[name=datetimepicker]').val();        
         var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
         var dia = new Date(diaMoment);
+        var hora = $(e.target).find('[name=datetimepicker3]').val();
+        var recinto = $(e.target).find('[name=nombreRecinto]').val();
 
         var reserva = {
             _id:Meteor.ObjectId,
@@ -68,7 +70,13 @@ Template.organizarPartido.events({
         var partidoId=Partido.insert(partido);
         
         alert("Reserva creada");
-        
+       //---------Para mandar mail a los que quiera invitar------- 
+       /* var selected = template.findAll( "input[type=checkbox]:checked");
+        var arrayAmigos = _.map(selected, function(item) {
+              return item.defaultValue;
+        });
+        Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);*/
+
         Router.go('confirmarPartido',{_id:partidoId});
     },
   
@@ -101,14 +109,7 @@ Template.organizarPartido.events({
     $target.val($item.text()); 
     
   },
-  //---------Para mandar mail a los que quiera invitar-------
-    'click #sendmail': function() {
-      console.log(document.URL);
-      Meteor.call('mailReserva',document.URL,'tiincho.alvarez@gmail.com');
-             
-        
-    },
-  
+   
   });
 
 Template.organizarPartido.helpers({
@@ -123,6 +124,17 @@ Template.organizarPartido.helpers({
       var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id,'estado_cancha.estado_de_cancha':'Habilitada'});
       return canchas;
   },
+
+   amigos: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
+        var appFriends = FacebookFriends && FacebookFriends.find();
+        var amigos = []
+        appFriends && appFriends.forEach(function (amigo) {
+          var fbid = amigo.id; //guardo el atributo id de lo que me manda fb de cada usuario para despues buscar en mi bd, ya que este id es unico
+          var usuario = Meteor.users.findOne({'services.facebook.id' : fbid});
+          amigos.push(usuario);
+        });
+        return amigos;
+      },
 
   errorMessage: function(field) {
     return Session.get('reservaErrors')[field];

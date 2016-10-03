@@ -96,13 +96,25 @@
                             		</span>
 					          	</div>	
 					        </div>
-					    </div> 				   
+					    </div> 	
+					    <br>  
+				 		<!-- <div class="span5 col-md-5">
+				 		<div claas="checkbox"></div>
+
+				 		<h4>Invitar Amigos</h4>
+				 			 {{#each amigos}}
+				 								 				
+				 				<input type="checkbox" name="friend" value="{{this.emails[0].address}}"> Nombre{{this.profile.name}},{{this.emails[0].address}} <br>
+
+				 				
+				 			{{/each}} 
+				 		</div>
+				 		</div> -->			   
 					</div>
-				 	<br>  
-					<input type="submit" value="Crear reserva" class="btn btn-success"/>
-					 <button type="button" name="sendmail" id="sendmail" class="btn btn-default"> Enviar aviso partido al correo</button>							
+				 	<input type="submit" value="Crear reserva" class="btn btn-success"/>
+												
 				</div>				
-			</form>
+			</form>			
 		</div>     		
     </div>
 </template>     
