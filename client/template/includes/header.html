@@ -27,6 +27,7 @@
           {{/if}}
           {{#if isInRole 'owner'}}      <!--Meteor.users.update({_id:"Kgn73Nujya9NKPW4M"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
             <li><a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a></li>      
+
           {{/if}}
           <li class="btn btn-default navbar-btn">{{>loginButtons}}</li>
           {{#if currentUser}}

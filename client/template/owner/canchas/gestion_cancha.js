@@ -25,8 +25,12 @@ Template.gestionCancha.helpers({
 	
 Template.gestionCancha.events({
 	'click #editCancha': function(event) {
-	Router.go('editCancha', {_id: this._id});
+	 Router.go('editCancha', {_id: this._id});//ID DE LA CANCHA
 	},
+
+  'click #crearCancha': function(event) {
+      Router.go('cargarCancha', {_id: this._id}); //ID DEL RECINTO
+  },
 
 });
 	
