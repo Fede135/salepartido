@@ -1,3 +1,7 @@
+  Accounts.config({
+    sendVerificationEmail: true,
+    forbidClientAccountCreation: false
+  });
   Accounts.onCreateUser(function (options, user) {
   if(! user.services.facebook) { 
     if (options.profile) { 
@@ -20,11 +24,13 @@
 
   Meteor.setTimeout(function () {
     Roles.addUsersToRoles(user._id, ['player'], Roles.GLOBAL_GROUP);
+    
       });
-  
+ 
   return user;
 })
-  
+
+//Accounts.emailTemplates.siteName = "Sale Partido"; //The public name of your application. Defaults to the DNS name of the application
 Accounts.emailTemplates.from = "Sale Partido <salepartido2016@gmail.com>"
 Accounts.emailTemplates.resetPassword = {
   subject(user) {
@@ -45,3 +51,23 @@ El equipo de Sale Partido.
     // See the section about html emails below.
   }*/
 };
+Accounts.emailTemplates.verifyEmail = {
+  subject(user) {
+    return "Veificacion correo electrónico. Sale Partido";//Asunto del correo
+  },
+  text(user, url) {
+    return `Hola!
+Para verificar su cuenta de correo electrónico, haga clic en el enlace de abajo.
+${url}
+
+Gracias,
+El equipo de Sale Partido.
+`
+  },
+
+  html (user, url) {
+    /* Return your HTML code here: */
+    return '<h1>Gracias por registrarte.</h1><br/><a href="' + url + '">Click para verificar el correo electrónico</a>';
+},
+};
+
