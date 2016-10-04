@@ -13,7 +13,7 @@ Template.modificarReservaPlayer.helpers({
   cancha: function () {
       var recinto = Session.get('recinto');
       var recinto_Id = recinto && recinto._id;
-      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id});
+      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id, 'estado_cancha.estado_de_cancha': "Habilitada"});
       return canchas;
   },
 
@@ -97,15 +97,15 @@ Template.modificarReservaPlayer.events({
         if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
 
-      var selector = {
-
-          'nom_recinto':reserva.nom_recinto,         
-          'num_cancha': +reserva.num_cancha,
-          'hora_de_juego': +reserva.hora_de_juego,
-          'fecha_de_juegoD':reserva.fecha_de_juegoD,
-          'estado':reserva.estado
-          
-        };
+        var selector = {
+            
+            'nom_recinto':reserva.nom_recinto,
+            'num_cancha': +reserva.num_cancha,
+            'hora_de_juego': +reserva.hora_de_juego,
+            'fecha_de_juegoD':reserva.fecha_de_juegoD,
+            'estado':reserva.estado
+            
+          };
 
         if (Reserva.findOne(selector))
         return alert("Reserva existente");
@@ -114,7 +114,8 @@ Template.modificarReservaPlayer.events({
         Reserva.update({_id: this._id}, {$set: 
           {            
             'num_cancha': $('input[name=nombreCancha]').val(), 
-            'hora_de_juego': $('input[name=datetimepicker3]').val(),            
+            'hora_de_juego': $('input[name=datetimepicker3]').val(),
+            'fecha_de_juego': $('input[name=datetimepicker]').val(),                        
             'fecha_de_juegoD':dia,
             'estado':reserva.estado
           }

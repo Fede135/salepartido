@@ -99,7 +99,7 @@ Template.crearReserva.helpers({
   cancha: function () {
       var recinto = Session.get('recinto');
       var recinto_Id = recinto && recinto._id;
-      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id});
+      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id, 'estado_cancha.estado_de_cancha': "Habilitada"});
       return canchas;
   },
 

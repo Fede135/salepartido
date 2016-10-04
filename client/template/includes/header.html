@@ -4,7 +4,7 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
          <a class="navbar-brand" href="{{pathFor 'Home'}}">
-          <img alt="Brand" src="http://localhost:3000/cfs/files/images/t28dfbsWvz568DjjG/logo_salepartido5.png?token=eyJhdXRoVG9rZW4iOiJET1ZFdzV2Uzh4MnFaVTV1NjBvRk9KVThfNVFGMlRKVkdKSFhyeDAwbnBQIn0%3D&store=images" width="35px" height="35px" class="img-responsive">
+          <img alt="Brand" src="http://localhost:3000/cfs/files/images/HXdhpuLwN9zeDghGL/logo_salepartido5.png?token=eyJhdXRoVG9rZW4iOiJYNEhxZXhKQkNyT1BJekNxSGZsclZDTThLeXBNZEdYSno5bGVBTDdRajV3In0%3D&store=images" width="35px" height="35px" class="img-responsive">
         </a>   
         <a class="navbar-brand" href="{{pathFor 'Home'}}">Sale Partido</a>
       </div>
@@ -12,24 +12,33 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
         </ul>
+        {{#if currentUser}}
+          {{#if emailsVerified}}
         <form class="navbar-form navbar-left">
           <div class="form-group">
             {{> search}}
           </div>
         </form>
+          {{/if}}
+        {{/if}}
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           {{#if isInRole 'player'}}
+            {{#if emailsVerified}}
             <li><a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a></li>
             <li class="dropdown">
               {{> notifications}}
             </li>
+            {{/if}}
           {{/if}}
           {{#if isInRole 'owner'}}      <!--Meteor.users.update({_id:"Kgn73Nujya9NKPW4M"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
-            <li><a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a></li>      
 
+            {{#if emailsVerified}}
+            <li><a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a></li>  
+            {{/if}}    
+           
           {{/if}}
-          <li class="btn btn-default navbar-btn">{{>loginButtons}}</li>
+          <li class="navbar-brand">{{>loginButtons}}</li>
           {{#if currentUser}}
           <li><a alt="Brand" href="{{pathFor 'Home'}}">{{> gravatar}}</a></li>
           {{/if}}

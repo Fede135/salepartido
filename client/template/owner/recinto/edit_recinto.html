@@ -1,35 +1,35 @@
 <template name="editRecinto">
 	<div class="container">
     {{#if recinto}}
-      {{#autoForm collection="Recintos" doc=this id=updateFormName type="update"}}
+      {{#autoForm collection="Recintos" doc=this id="updateRecinto" type="update"}}
       
 
         	<h4>Nombre recinto</h4>
-            {{> afFieldInput name='nombre_recinto'}}
+            {{> afQuickField name='nombre_recinto'}}
 
             <h4>Direccion</h4>
-            {{> afFieldInput name='direccion_recinto'}}
+            {{> afQuickField name='direccion_recinto'}}
 
             <h4>Telefono fijo</h4>
-            {{> afFieldInput name='telefono_recinto.fijo'}}
+            {{> afQuickField name='telefono_recinto.fijo'}}
 
             <h4>Telefono celular 1</h4>
-            {{> afFieldInput name='telefono_recinto.celular_1'}}
+            {{> afQuickField name='telefono_recinto.celular_1'}}
 
             <h4>Telefono celular 2</h4>
-            {{> afFieldInput name='telefono_recinto.celular_2'}}
+            {{> afQuickField name='telefono_recinto.celular_2'}}
 
             <h4>Estacionamiento</h4>
-            {{> afFieldInput name='servicios.estacionamiento' options=servEstacionamiento}}
+            {{> afQuickField name='servicios.estacionamiento' options=servEstacionamiento}}
 
             <h4>Baños</h4>
-            {{> afFieldInput name='servicios.baños' options=servBaños}}
+            {{> afQuickField name='servicios.baños' options=servBaños}}
 
             <h4>Camarines</h4>
-            {{> afFieldInput name='servicios.camarines' options=servCamarines}}
+            {{> afQuickField name='servicios.camarines' options=servCamarines}}
 
             <h4>Cantina</h4>
-            {{> afFieldInput name='servicios.cantina' options=servCantina}}
+            {{> afQuickField name='servicios.cantina' options=servCantina}}
 
             <h3>Cambiar imágenes del recinto</h3>
               <h4>Imagen 1</h4>

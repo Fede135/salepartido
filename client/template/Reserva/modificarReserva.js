@@ -11,7 +11,7 @@ Template.modificarReserva.helpers({
       var nombre_recinto = reserva && reserva.nom_recinto;
       var recinto = nombre_recinto && Recintos.findOne({'nombre_recinto':nombre_recinto});
 	    var recintoId = recinto && recinto._id;
-	    var canchas = recintoId && Canchas.find({'recintoId':recintoId});
+	    var canchas = recintoId && Canchas.find({'recintoId':recintoId, 'estado_cancha.estado_de_cancha': "Habilitada"});
       
       return canchas;
   },	
@@ -105,7 +105,8 @@ Template.modificarReserva.events({
         Reserva.update({_id: this._id}, {$set: 
           {            
             'num_cancha': $('input[name=nombreCancha]').val(), 
-            'hora_de_juego': $('input[name=datetimepicker3]').val(),            
+            'hora_de_juego': $('input[name=datetimepicker3]').val(),
+            'fecha_de_juego': $('input[name=datetimepicker]').val(),            
             'fecha_de_juegoD':dia,
             'estado':reserva.estado
           }

@@ -22,8 +22,8 @@ Template.showRecinto.helpers({
 	},
 
 	imagen2: function(){
-		var reci = Recintos.findOne({id: this._id});
-		if (reci){
+		var reci = Recintos.findOne({_id: this._id});
+		if(reci){
 			var idImagen2 = reci.imagen2_id;
 			var url2 = idImagen2 && Images.findOne({_id: idImagen2}).url();
 				return url2;
@@ -58,7 +58,6 @@ Template.showRecinto.helpers({
 				promedio += array[i];
 			}
 			promedio = promedio / array.length;
-			console.log(promedio);
 			return promedio;
 		}
 	},

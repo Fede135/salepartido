@@ -12,9 +12,9 @@ Template.dashboard.helpers({
 	},
 
 	recintoSeleccionado: function(){
-      
       return Session.get('recinto');
-    },
+    },   
+
 });
 
 Template.dashboard.events({
@@ -42,6 +42,8 @@ Template.dashboard.events({
   	'click #gestionCanchas': function(event){
 		Router.go('gestionCancha', {_id: this._id});
   	},
+  	 
+  	 
 });
 
 Template.dashboard.onDestroyed( function(){
@@ -54,3 +56,13 @@ Template.dashboard.onCreated(function() {
   
   Session.set('recintoErrors', {});
 });
+
+/*Meteor.setInterval(function () {
+  var now = moment()
+  console.log(now.format('dddd D MMMM'));
+  console.log(now.format('LT'));
+ 
+  Session.set('time',      now.format('LT'))
+  Session.set('date',      now.format('dddd D MMMM'))
+  Session.set('timeTitle', now.format('L LT ([GMT]Z)'))
+}, 90000)*/

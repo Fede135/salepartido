@@ -20,7 +20,7 @@ Template.editRecinto.helpers({
 		return ["SI","NO"].map((ol) => ({label: ol, value: ol}));
 	},
 
-	updateFormName: function () {
+	updateRecinto: function () {
             return "updateOrgForm-" + this._id;
 
         },
@@ -28,28 +28,35 @@ Template.editRecinto.helpers({
 });
 
 
-Template.editRecinto.events({
-	'click #actualizarRecinto': function(error) {
-		if(! error)
+/*Template.editRecinto.events({
+	
+	'click #actualizarRecinto': function(error, event) {
+
+		if(error){			
 	        alert("Recinto actualizado correctamente.");
-	},
+	    	Router.go('ownerRecintos', {_id:Meteor.userId()});
+	    }
+	    else{
+	    	alert("Complete todos los campos");
+	    }
+	}
+
+});*/
 
 
-});
 
-
-/*
 AutoForm.addHooks(
-   'updateFormName',
+   'updateRecinto',
   {
   after:{
-    update: function (error, result) {
+    update: function (error, result) {    	
       if(! error)
         console.log(result);
-        alert("Recinto actualizado correctamente.Nombre del recinto: ");
+       
+       alert("Recinto actualizado correctamente!!");
+       Router.go('ownerRecintos', {_id:Meteor.userId()});
        
     }
   }
 },
 );
-*/
