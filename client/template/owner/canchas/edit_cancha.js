@@ -2,8 +2,7 @@ Template.editCancha.helpers({
 
 	canchasRecinto : function(){
 		idCancha= this._id;
-		var canchas = Canchas.findOne({_id:idCancha});
-			console.log(canchas);
+		canchas = Canchas.findOne({_id:idCancha});
 			return canchas;
 
 	},
@@ -21,20 +20,24 @@ Template.editCancha.helpers({
 	 	return ["Habilitada","No Habilitada","Mantenimiento"].map((ol) => ({label: ol, value: ol}));
 	 },
 
-	 updateFormName: function () {
+	 updateCancha: function () {
             return "updateOrgForm-" + this._id;
          },
 });
 	
 
-Template.editCancha.events({
-	'click #actualizarCancha': function() {
-	    alert("Cancha actualizada!!");
-	      Router.go('gestionCancha',{_id:this.recintoId});
-	    	
-	    	
-	},
-
-
-});
-	
+AutoForm.addHooks(
+   'updateCancha',
+  {
+  after:{
+    update: function (error, result) {    	
+      if(! error){
+        console.log(result);
+      	
+       alert("Cancha actualizada correctamente!!");
+       Router.go('gestionCancha', {_id: canchas.recintoId });
+       }
+    }
+  }
+},
+);

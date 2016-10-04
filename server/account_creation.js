@@ -53,7 +53,7 @@ El equipo de Sale Partido.
 };
 Accounts.emailTemplates.verifyEmail = {
   subject(user) {
-    return "Veificacion correo electrónico. Sale Partido";//Asunto del correo
+    return "Verificacion correo electrónico. Sale Partido";//Asunto del correo
   },
   text(user, url) {
     return `Hola!

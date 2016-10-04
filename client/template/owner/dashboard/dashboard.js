@@ -12,17 +12,8 @@ Template.dashboard.helpers({
 	},
 
 	recintoSeleccionado: function(){
-      
       return Session.get('recinto');
-    },
-
-  /*  hora : function(){
-    	return Session.get('time');
-    },
-    fecha: function(){
-    	return Session.get('date');
-    },*/
-   
+    },   
 
 });
 
