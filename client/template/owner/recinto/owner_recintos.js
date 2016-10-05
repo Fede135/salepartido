@@ -1,6 +1,8 @@
+Meteor.subscribe('recintoPropio');
+
 Template.ownerRecintos.helpers({
 	recinto: function () {
-		return Recintos.find({ownerId: Meteor.userId()});
+		return Recintos.find();
 	},
 
 	calificacion: function(){

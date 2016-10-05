@@ -1,7 +1,9 @@
+Meteor.subscribe('reserva');
+
 Template.partido.helpers({
   
   reserva: function () {
-    return Reserva.find({'usuarioId':this._id, 'estado': "Reservada"});
+    return Reserva.find();
   },
 
   errorMessage: function(field) {

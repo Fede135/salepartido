@@ -27,7 +27,6 @@ underscore
 audit-argument-checks
 check
 cfs:standard-packages
-autopublish
 insecure
 cfs:ui
 aldeed:delete-button
