@@ -1,14 +1,19 @@
-Meteor.publish('reserva', function(){
+Meteor.publish('reservas', function(){
 
-	return Reserva.find({'usuarioId':this.userId, 'estado': "Reservada"});
-});
-
-Meteor.publish('recintoPropio', function(){
-	
-	return Recintos.find({ownerId: this.userId});
-});
-
-Meteor.publish('reservaDueno', function(){
-	
 	return Reserva.find();
+});
+
+Meteor.publish('recintos', function(){
+	
+	return Recintos.find();
+});
+
+Meteor.publish('canchas', function(){
+	
+	return Canchas.find();
+});
+
+Meteor.publish('partidos', function(){
+	
+	return Partido.find();
 });
