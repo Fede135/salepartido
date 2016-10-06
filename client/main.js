@@ -1,3 +1,3 @@
 Tracker.autorun(function () {
-  if (! Meteor.user()) Router.go('/')
+  if (! Meteor.user() && ! Meteor.loggingIn()) Router.go('/')
 })
