@@ -23,21 +23,21 @@
         {{/if}}
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          {{#if isInRole 'player'}}
+          {{#unless isInRole 'owner'}}
             {{#if emailsVerified}}
             <li><a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a></li>
             <li class="dropdown">
               {{> notifications}}
             </li>
             {{/if}}
-          {{/if}}
-          {{#if isInRole 'owner'}}      <!--Meteor.users.update({_id:"52BjwYmxbWFDTMp7S"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
+          {{/unless}}
+          {{#unless isInRole 'player'}}      <!--Meteor.users.update({_id:"52BjwYmxbWFDTMp7S"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
 
             {{#if emailsVerified}}
             <li><a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a></li>  
             {{/if}}    
            
-          {{/if}}
+          {{/unless}}
           <li class="navbar-brand">{{>loginButtons}}</li>
           {{#if currentUser}}
           <li><a alt="Brand" href="{{pathFor 'Home'}}">{{> gravatar}}</a></li>
