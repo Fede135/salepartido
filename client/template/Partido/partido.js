@@ -1,7 +1,7 @@
 Template.partido.helpers({
   
   reserva: function () {
-    return Reserva.find();
+    return Reserva.find({'usuarioId':this._id, 'estado': "Reservada"});
   },
 
   errorMessage: function(field) {

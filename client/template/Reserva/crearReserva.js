@@ -98,7 +98,10 @@ Template.crearReserva.helpers({
   },
   
   cancha: function () {
-      return Canchas.find();
+      
+      var recinto_Id = this._id;
+      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id, 'estado_cancha.estado_de_cancha': "Habilitada"});
+      return canchas;
   },
 
   errorMessage: function(field) {
