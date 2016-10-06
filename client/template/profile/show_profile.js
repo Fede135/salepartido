@@ -1,3 +1,4 @@
+Meteor.subscribe('users');
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
       user : function(){
         use = this._id;

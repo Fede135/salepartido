@@ -1,8 +1,8 @@
 Template.modificarReservaPlayer.helpers({
 
   reserva: function(){
-    var reserva = Reserva.findOne({'_id':this._id});      
-    Session.set('reserva', reserva);
+    var reserva = Reserva.findOne({'_id':this._id});
+    Session.set('reserva', reserva);      
   return reserva;
   },
 	

@@ -55,6 +55,7 @@ Template.organizarPartido.events({
         };
 
 //$gte: newDate()
+Meteor.subscribe('reservas')
         if (Reserva.findOne(selector))
         return alert("Reserva existente");
 
