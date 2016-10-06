@@ -12,9 +12,11 @@
       <br><br>
       {{> partido}}
       <br><br>
-      <legend>Amigos</legend>
+      <legend>Amigos Facebook</legend>
       {{#each amigos}}
         <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a> 
+      {{else}}
+        No tienes amigos de Facebook
       {{/each}}
       <br><br>
       <h3>Calificaciones</h3>
@@ -132,6 +134,11 @@
             {{/if}}
 
     {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario y lo califiquen-->
+        {{#if isFriend}} 
+          <button type="button" name="addJugadores" id="addJugadores" class="btn btn-default">Agregar a tu lista de Jugadores</button>
+        {{else}}
+          Ya esta en tu lista de jugadores.
+        {{/if}} 
       
                  {{#if arquero}}
                     {{#if isOwner}}

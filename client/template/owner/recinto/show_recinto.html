@@ -35,16 +35,19 @@
 							
 					{{/if}}
 						<br>
-						Direccion: {{recinto.direccion_recinto}}
+						<div>
+						<h4>Dirección: {{recinto.direccion_recinto}}</h4>
 						<br>
-						Telefono fijo: {{recinto.telefono_recinto.fijo}}
+						<h4>Telefono fijo : {{recinto.telefono_recinto.fijo}}</h4>
 						<br>
 
-						Telefono celular1: {{recinto.telefono_recinto.celular_1}}
+						<h4>Telefono celular1: {{recinto.telefono_recinto.celular_1}}</h4>
 						<br>
-						Telefono celular2: {{recinto.telefono_recinto.celular_2}}
+						<h4>Telefono celular2: {{recinto.telefono_recinto.celular_2}}</h4>:
 						<br>
-						Servicios
+						</div>
+						<div>
+						<h4>Servicios</h4>
 							<br>
 							Estacionamiento: {{recinto.servicios.estacionamiento}}
 							<br>
@@ -54,7 +57,9 @@
 							<br>
 							Cantina: {{recinto.servicios.cantina}}
 							<br>
-						Canchas:
+						</div>
+						<div>
+						<h4>Canchas:</h4>
 						<div>
 							{{#if cancha}}
 								{{#each cancha}}
@@ -72,6 +77,7 @@
 							<br>
 								{{/each}}
 							{{/if}}
+						</div>
 						</div>
 			</div>
 		

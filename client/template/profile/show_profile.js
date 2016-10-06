@@ -271,6 +271,14 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           return dueño;
 
        },
+
+       isFriend : function(){
+          var ve = Meteor.users.findOne({_id:Meteor.userId()}, { friends: { id: use }});
+          console.log('boton amigos',ve);
+          return ve ;
+     },
+
+        
 });
 
 
@@ -355,6 +363,15 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
   'click #login-buttons-edit-profile': function(event) {
       Router.go('editProfile', {_id: Meteor.userId()});
   },
+
+  'click #addJugadores': function() {
+      var agregadoId = use;
+      var agregaId = Meteor.userId();
+      console.log('El que agrega',agregaId);
+      console.log('Agregado',agregadoId);
+      Meteor.call('addJugadores',agregaId, agregadoId);
+  },
+
   //  'click #sendFriendRequest' : function(event) {  queda comentado, no puedo hacerlo andar todavia
   //    console.log('sendRequest');
   //    Meteor.users.findOne({_id:this._id}).requestFriendship();

@@ -7,6 +7,7 @@
     if (options.profile) { 
       user.profile = options.profile;
       user.profile.name = user.profile.firstName+" "+user.profile.lastName;
+      
     };
   } else {
     if(options.profile){
@@ -18,6 +19,7 @@
           verified : true
         };
         user.emails = [emails];
+
       ;
     }
   }; 
