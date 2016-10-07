@@ -8,7 +8,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
        ownProfile: function () { //devuelve verdadero si el perfil es del usuario logeado, o falso sino lo es
         return this._id === Meteor.userId();
       },
-      amigos: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
+      amigosfb: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
         var appFriends = FacebookFriends && FacebookFriends.find();
         var amigos = []
         appFriends && appFriends.forEach(function (amigo) {
@@ -17,6 +17,33 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           amigos.push(usuario);
         });
         return amigos;
+      },
+
+     amigosapp: function (){
+            var usuario = Meteor.users.findOne({_id: use});
+            var array = usuario.profile.friends;          
+            console.log('array friends',array);
+            if(array){
+              var length = array.length;
+              console.log('longitud array',length);
+              var arrayAmigos= [];
+              for(i=0; i<length; i++ ){
+                console.log(! array[i].fb);
+                if(! array[i].fb){
+                  var amigosId = array[i].id;
+                  console.log('idAmigos',amigosId);
+                  var amigo = Meteor.users.findOne({_id : amigosId});
+                  console.log('objeto',amigo)
+                  arrayAmigos.push(amigo);
+
+                }
+              } 
+              return arrayAmigos; 
+            }else{
+              return false;
+            }       
+            
+
       },
 
       arquero : function() {
@@ -272,7 +299,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           return dueño;
 
        },
-       //NOOOO ANDAAAAAA NO SE COMO HACERLOO, me devuelve siempre un usuario.
+       
        isFriend : function(){
       /*    var ve = Meteor.users.findOne({_id:Meteor.userId()},{'profile.friends':{id:use}});
           
@@ -287,14 +314,16 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           console.log('boton amigos',ve);*/
           var ve = Meteor.users.findOne({_id:Meteor.userId()});
-          var array = ve.profile.friends;          
-          console.log(array);
-          var length = array.length;
-          console.log(length);
-          var result = false;
-          for(i=0; i<length; i++ ){
-            if(use === array[i].id){
-              result = true;
+          var array = ve.profile.friends; 
+          if(array){        
+            console.log(array);
+            var length = array.length;
+            console.log(length);
+            var result = false;
+            for(i=0; i<length; i++ ){
+              if(use === array[i].id){
+                result = true;
+              }
             }
           }
           return result;

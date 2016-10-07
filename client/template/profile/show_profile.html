@@ -13,11 +13,24 @@
       {{> partido}}
       <br><br>
       <legend>Amigos Facebook</legend>
-      {{#each amigos}}
+      {{#each amigosfb}}
         <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a> 
       {{else}}
         No tienes amigos de Facebook
       {{/each}}
+      <br><br>
+      <legend>Amigos Aplicación</legend>
+        <!-- {{#each user.profile.friends}}
+          {{this.id}}
+        {{/each}} -->
+        {{#if amigosapp}}
+        {{#each amigosapp}}
+          {{this.profile.name}}          
+          {{this.profile.player.position}} <br>
+        {{/each}}
+        {{else}}
+          No tienes amigos de la aplicación
+        {{/if}}
       <br><br>
       <h3>Calificaciones</h3>
                 {{#if arquero}}
