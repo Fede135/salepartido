@@ -25,7 +25,7 @@
         {{/each}} -->
         {{#if amigosapp}}
         {{#each amigosapp}}
-          {{this.profile.name}}          
+          <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
           {{this.profile.player.position}} <br>
         {{/each}}
         {{else}}
