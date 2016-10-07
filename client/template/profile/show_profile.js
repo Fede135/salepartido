@@ -1,6 +1,7 @@
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
       user : function(){
         use = this._id;
+
         return Meteor.users.findOne({_id: this._id});
       },
 
@@ -271,11 +272,32 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           return dueño;
 
        },
-
+       //NOOOO ANDAAAAAA NO SE COMO HACERLOO, me devuelve siempre un usuario.
        isFriend : function(){
-          var ve = Meteor.users.findOne({_id:Meteor.userId()}, { friends: { id: use }});
-          console.log('boton amigos',ve);
-          return ve ;
+      /*    var ve = Meteor.users.findOne({_id:Meteor.userId()},{'profile.friends':{id:use}});
+          
+          console.log('ayyay:',ve);
+         
+          if(ve){
+            console.log('true')
+            return true;
+          }else{
+            console.log('false')
+            return false;
+          }
+          console.log('boton amigos',ve);*/
+          var ve = Meteor.users.findOne({_id:Meteor.userId()});
+          var array = ve.profile.friends;          
+          console.log(array);
+          var length = array.length;
+          console.log(length);
+          var result = false;
+          for(i=0; i<length; i++ ){
+            if(use === array[i].id){
+              result = true;
+            }
+          }
+          return result;
      },
 
         

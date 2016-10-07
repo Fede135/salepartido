@@ -8,7 +8,7 @@ Meteor.methods({
 		console.log(correo);
 		console.log(elagregado);
 		Meteor.users.update(elqueagrega,{
-			$addToSet: {friends:{id: elagregado}}
+			$addToSet: {'profile.friends':{id: elagregado,fb: false}}
 		});
 		
 		

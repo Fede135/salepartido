@@ -63,12 +63,14 @@ Accounts.onLogin(function (){
               console.log('if')
               console.log(user.services.facebook.id);
               var userFace = Meteor.users.findOne({'services.facebook.id':fbid});//busco con el id de face al usuario
-               console.log('usuario: ',userFace);
-               var idApp = userFace._id;//busco el id que tiene en la aplicacion
-               console.log('_id: ',idApp);
-               Meteor.users.update(Meteor.userId(),{
-                $addToSet: {friends:{id: idApp}}
-              }) //update  
+              if(userFace){
+                 console.log('usuario: ',userFace);
+                 var idApp = userFace._id;//busco el id que tiene en la aplicacion
+                 console.log('_id: ',idApp);
+                 Meteor.users.update(Meteor.userId(),{
+                  $addToSet: {'profile.friends':{id: idApp,fb:true}}
+                }) //update  
+              }//if user face
           }//if count 
     
     
