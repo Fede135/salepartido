@@ -1,0 +1,32 @@
+<template name="dashboardAdmin">
+  <div class="container">
+    <div>            
+      <h1>Usuarios duenos</h1>
+      {{#each usuarioDuenos}}
+        <div class="span5 col-md-6">
+              <h4>Nombre de usuario: <strong>{{this.profile.name}}</strong></h4>
+            </div>
+            <div class="span5 col-md-6">
+              <button type="button" name= "detalles" id="detalles">Ver detalles</button>
+              <button type="button" name= "cambiarRoleAPlayer" id="cambiarRoleAPlayer" >Hacer player</button>
+              <button type="button" name= "eliminarUsuario" id="eliminarUsuario">Eliminar usuario</button>
+            </div>
+      {{/each}}
+    </div>
+    <div>      
+    <h1>Usuarios player</h1>
+    {{#each usuarioJugador}}
+      <div class="row">
+          <div class="span5 col-md-6">
+            <h4>Nombre de usuario: <strong>{{this.profile.name}}</strong></h4>
+          </div>
+          <div class="span5 col-md-6">
+            <button type="button" name= "detalles" id="detalles">Ver detalles</button>
+            <button type="button" name= "cambiarRoleADueno" id="cambiarRoleADueno">Hacer dueno</button>
+            <button type="button" name= "eliminarUsuario" id="eliminarUsuario">Eliminar usuario</button>
+          </div>
+      </div>
+    {{/each}}
+    </div>
+  </div>
+</template>

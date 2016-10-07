@@ -1,10 +1,12 @@
 Template.confirmarPartido.helpers({
 	
     reservaSeleccionada: function () {
+
         var partido = Partido.findOne(this._id);
         var reservaId=partido && partido.reserva_id;
-    
-        return Reserva.findOne(reservaId);
+        Meteor.subscribe('reserva', reservaId)
+            
+        return Reserva.findOne({'_id':reservaId});
     },
 
     cantJugadores: function(){        

@@ -1,8 +1,8 @@
 Template.modificarReservaPlayer.helpers({
 
   reserva: function(){
-    var reserva = Reserva.findOne({'_id':this._id});      
-    Session.set('reserva', reserva);
+    var reserva = Reserva.findOne({'_id':this._id});
+    Session.set('reserva', reserva);      
   return reserva;
   },
 	
@@ -130,7 +130,7 @@ Template.modificarReservaPlayer.events({
         
         var partidoId=Partido.insert(partido);
 
-        alert("Reserva creada");
+        alert("Reserva actualizada");
 
         Router.go('confirmarPartido',{_id:partidoId});
     }

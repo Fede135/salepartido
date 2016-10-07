@@ -36,23 +36,25 @@ Template.partido.events({
     },
 
     'click #modificar': function (event) {
+      
       var nom_reserva=$('input[name=nombreReserva]').val();
       var reserva = Reserva.findOne({'nom_reserva':nom_reserva});
       var reserva_id = reserva._id;
-    Router.go('modificarReservaPlayer', {_id: reserva_id});
+    
+      Router.go('modificarReservaPlayer', {_id: reserva_id});
   },
 
   'click #cancelar': function(event){
 
-    var nom_reserva=$('input[name=nombreReserva]').val();
-    var reserva = Reserva.findOne({'nom_reserva':nom_reserva});
-    var reserva_id = reserva._id;
+      var nom_reserva=$('input[name=nombreReserva]').val();
+      var reserva = Reserva.findOne({'nom_reserva':nom_reserva});
+      var reserva_id = reserva._id;
 
-    Reserva.update({_id: reserva_id}, {$set: {'estado': "Cancelada"}});
-    alert("Reserva cancelada");
-    $('input[name=nombreReserva]').val('');
+      Reserva.update({_id: reserva_id}, {$set: {'estado': "Cancelada"}});
+      alert("Reserva cancelada");
+      $('input[name=nombreReserva]').val('');
 
-    },
+      },
 
 });
 

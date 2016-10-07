@@ -112,7 +112,7 @@ Template.modificarReserva.events({
           }
         });
  
-        alert("Reserva creada");
+        alert("Reserva actualizada");
         
         var recinto = nombre_recinto && Recintos.findOne({'nombre_recinto':nombre_recinto});
         var recintoId = recinto && recinto._id;

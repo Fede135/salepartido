@@ -8,7 +8,6 @@ Template.dashboard.helpers({
 		var reservas = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"});	
 		
 		return reservas;
-
 	},
 
 	recintoSeleccionado: function(){
