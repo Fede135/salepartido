@@ -11,12 +11,16 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       amigosfb: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
         var appFriends = FacebookFriends && FacebookFriends.find();
         var amigos = []
+        if(appFriends){
         appFriends && appFriends.forEach(function (amigo) {
           var fbid = amigo.id; //guardo el atributo id de lo que me manda fb de cada usuario para despues buscar en mi bd, ya que este id es unico
           var usuario = Meteor.users.findOne({'services.facebook.id' : fbid});
           amigos.push(usuario);
         });
         return amigos;
+      }else{
+        return false;
+      }
       },
 
      amigosapp: function (){

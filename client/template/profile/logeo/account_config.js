@@ -54,7 +54,9 @@ Accounts.onLogin(function (){
       console.log('cantidad de amigos face',FacebookFriends.find().count());
       FacebookFriends.find().forEach(function (amigo) {
         var fbid = amigo.id; 
+        correo = amigo.email;
         console.log('id de face',fbid);
+        console.log('correo de face',correo);
         Meteor.setTimeout(function () {
           console.log('timeout');
           console.log(FacebookFriends.find().count() != 0)
@@ -66,13 +68,15 @@ Accounts.onLogin(function (){
               if(userFace){
                  console.log('usuario: ',userFace);
                  var idApp = userFace._id;//busco el id que tiene en la aplicacion
+                 
                  console.log('_id: ',idApp);
+                 
                  Meteor.users.update(Meteor.userId(),{
-                  $addToSet: {'profile.friends':{id: idApp,fb:true}}
+                  $addToSet: {'profile.friends':{id: idApp, correo: correo, fb:true}}
                 }) //update  
               }//if user face
           }//if count 
-    
+    //ver que hacer si no entra a estos ifffff
     
       },4000);
                
