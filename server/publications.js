@@ -23,7 +23,12 @@ Meteor.publish('imagenes', function(){
 	return Images.find();
 });
 
-Meteor.publish('users', function(){
+Meteor.publish('usersPlayer', function(){
 	
 	return Meteor.users.find({'roles.__global_roles__': ['player']});
+});
+
+Meteor.publish('user', function(){
+	
+	return Meteor.users.find();
 });
