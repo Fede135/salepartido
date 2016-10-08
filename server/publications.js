@@ -24,3 +24,11 @@ Meteor.publish('users', function(){
 	
 	return Meteor.users.find({'roles.__global_roles__': ['player']});
 });
+
+Meteor.publish('notifications', function() {
+	return Notifications.find();
+});
+
+Meteor.publish('commentsForPlayers', function() {
+	return CommentsForPlayers.find();
+})

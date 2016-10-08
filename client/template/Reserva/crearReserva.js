@@ -60,7 +60,7 @@ Template.crearReserva.events({
         return alert("Reserva existente");
 
         var x= Reserva.insert(reserva);
-                
+        
         var partido = { 
           _id:Meteor.ObjectId,
           reserva_id:x

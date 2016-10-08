@@ -60,6 +60,8 @@ Template.organizarPartido.events({
 
         var idReserva= Reserva.insert(reserva);        
         
+        createReservaForOwnerNotification(idReserva);
+        
         var partido = { 
           _id:Meteor.ObjectId,
           reserva_id:idReserva,
