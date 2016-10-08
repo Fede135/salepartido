@@ -41,22 +41,22 @@ accountsUIBootstrap3.setLanguage('es');
 Tracker.autorun(function () {
   
 });
-
 Accounts.onLogin(function (){
   console.log('login');
   var user = Meteor.user();
-
+    
+  console.log(user);
+  
   if (user && user.services && user.services.facebook) {
     FacebookFriends = FacebookCollections.getFriends('me',['id','name']);
-
+    console.log('primer if');
  //Busca ls amigos de face y los guarda en el array friends del user
    Tracker.autorun(function () {
       console.log('cantidad de amigos face',FacebookFriends.find().count());
       FacebookFriends.find().forEach(function (amigo) {
         var fbid = amigo.id; 
-        correo = amigo.email;
         console.log('id de face',fbid);
-        console.log('correo de face',correo);
+        
         Meteor.setTimeout(function () {
           console.log('timeout');
           console.log(FacebookFriends.find().count() != 0)
@@ -68,8 +68,9 @@ Accounts.onLogin(function (){
               if(userFace){
                  console.log('usuario: ',userFace);
                  var idApp = userFace._id;//busco el id que tiene en la aplicacion
-                 
+                 var correo = userFace.emails[0].address;
                  console.log('_id: ',idApp);
+                 console.log('correo:',correo);
                  
                  Meteor.users.update(Meteor.userId(),{
                   $addToSet: {'profile.friends':{id: idApp, correo: correo, fb:true}}

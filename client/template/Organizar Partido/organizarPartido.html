@@ -105,7 +105,7 @@
 				 		<h4>Invitar Amigos</h4>
 				 			 {{#each amigos}}
 				 								 				
-				 				<input type="checkbox" name="friend" value="tiincho.alvarez@gmail.com"> Nombre{{this.profile.name}},{{this.profile.player.position}} <br>
+				 				<input type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
 
 				 				
 				 			{{/each}} 

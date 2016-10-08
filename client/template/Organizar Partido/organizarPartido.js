@@ -69,15 +69,16 @@ Template.organizarPartido.events({
         
         var partidoId=Partido.insert(partido);
         
-        alert("Reserva creada");
+        
        //---------Para mandar mail a los que quiera invitar------- 
-        var selected = template.findAll( "input[type=checkbox]:checked");
+        var selected = t.findAll( "input[type=checkbox]:checked");
+        console.log('lo q selecciona',selected);
         var arrayAmigos = _.map(selected, function(item) {
               return item.defaultValue;
         });
         console.log('array org prtido',arrayAmigos);
         Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);
-
+        alert("Reserva creada");
         Router.go('confirmarPartido',{_id:partidoId});
     },
   
@@ -128,27 +129,26 @@ Template.organizarPartido.helpers({
 
    amigos: function () { 
     var usuario = Meteor.users.findOne({_id: Meteor.userId()});
-            var array = usuario.profile.friends;          
-            console.log('array friends',array);
-            if(array){
-              var length = array.length;
-              console.log('longitud array',length);
-              var arrayAmigos= [];
-              for(i=0; i<length; i++ ){
-                console.log(! array[i].fb);
-                
-                  var amigosId = array[i].id;
-                  console.log('idAmigos',amigosId);
-                  var amigo = Meteor.users.findOne({_id : amigosId});
-                  console.log('objeto',amigo)
-                  arrayAmigos.push(amigo);
-
-                
-              } 
-              return arrayAmigos; 
-            }else{
-              return false;
-            }       
+    var array = usuario.profile.friends;          
+    console.log('array friends,helper',array);
+    if(array){
+      var length = array.length;
+      console.log('longitud array,helper',length);
+      var arrayAmigos= [];
+      for(i=0; i<length; i++ ){              
+        
+          var amigosId = array[i].id;
+          console.log('idAmigos,helper',amigosId);
+          var amigo = Meteor.users.findOne({_id : amigosId});
+          console.log('objeto,helper',amigo)
+          arrayAmigos.push(amigo);
+          console.log(amigo.emails[0].address);
+        
+      } 
+      return arrayAmigos; 
+    }else{
+      return false;
+    }       
 
      },
 
