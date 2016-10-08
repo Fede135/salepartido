@@ -71,14 +71,16 @@ Template.organizarPartido.events({
         
         var partidoId=Partido.insert(partido);
         
-        alert("Reserva creada");
+        
        //---------Para mandar mail a los que quiera invitar------- 
-       /* var selected = template.findAll( "input[type=checkbox]:checked");
+        var selected = t.findAll( "input[type=checkbox]:checked");
+        console.log('lo q selecciona',selected);
         var arrayAmigos = _.map(selected, function(item) {
               return item.defaultValue;
         });
-        Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);*/
-
+        console.log('array org prtido',arrayAmigos);
+        Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);
+        alert("Reserva creada");
         Router.go('confirmarPartido',{_id:partidoId});
     },
   
@@ -127,16 +129,30 @@ Template.organizarPartido.helpers({
       return canchas;
   },
 
-   amigos: function () {  //este es el metodo que va realmente. falta ver porque no se crea el array usuarios
-        var appFriends = FacebookFriends && FacebookFriends.find();
-        var amigos = []
-        appFriends && appFriends.forEach(function (amigo) {
-          var fbid = amigo.id; //guardo el atributo id de lo que me manda fb de cada usuario para despues buscar en mi bd, ya que este id es unico
-          var usuario = Meteor.users.findOne({'services.facebook.id' : fbid});
-          amigos.push(usuario);
-        });
-        return amigos;
-      },
+   amigos: function () { 
+    var usuario = Meteor.users.findOne({_id: Meteor.userId()});
+    var array = usuario.profile.friends;          
+    console.log('array friends,helper',array);
+    if(array){
+      var length = array.length;
+      console.log('longitud array,helper',length);
+      var arrayAmigos= [];
+      for(i=0; i<length; i++ ){              
+        
+          var amigosId = array[i].id;
+          console.log('idAmigos,helper',amigosId);
+          var amigo = Meteor.users.findOne({_id : amigosId});
+          console.log('objeto,helper',amigo)
+          arrayAmigos.push(amigo);
+          console.log(amigo.emails[0].address);
+        
+      } 
+      return arrayAmigos; 
+    }else{
+      return false;
+    }       
+
+     },
 
   errorMessage: function(field) {
     return Session.get('reservaErrors')[field];

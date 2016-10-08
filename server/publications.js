@@ -1,5 +1,3 @@
-
-
 Meteor.publish('reservas', function(){
 
 	return Reserva.find();
@@ -20,10 +18,16 @@ Meteor.publish('partidos', function(){
 	return Partido.find();
 });
 
-Meteor.publish('users', function(){
+Meteor.publish('imagenes', function(){
+
+	return Images.find();
+});
+
+Meteor.publish('usersPlayer', function(){
 	
 	return Meteor.users.find({'roles.__global_roles__': ['player']});
 });
+
 
 Meteor.publish('notifications', function() {
 	return Notifications.find();
@@ -32,3 +36,8 @@ Meteor.publish('notifications', function() {
 Meteor.publish('commentsForPlayers', function() {
 	return CommentsForPlayers.find();
 })
+
+Meteor.publish('user', function(){	
+	return Meteor.users.find();
+});
+

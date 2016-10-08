@@ -97,6 +97,21 @@
 					          	</div>	
 					        </div>
 					    </div> 	
+
+					    <br>  
+				 		 <div class="span5 col-md-5">
+				 		<div claas="checkbox">
+
+				 		<h4>Invitar Amigos</h4>
+				 			 {{#each amigos}}
+				 								 				
+				 				<input type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
+
+				 				
+				 			{{/each}} 
+				 		</div>
+				 		</div> 	   
+
 					</div>
 					<br>					
 				 	<input type="submit" value="Crear reserva" class="btn btn-success"/>

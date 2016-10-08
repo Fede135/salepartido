@@ -20,10 +20,27 @@
       <br><br>
       {{> partido}}
       <br><br>
-      <legend>Amigos</legend>
-      {{#each amigos}}
-        <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a> 
-      {{/each}}
+      <legend>Amigos Facebook</legend>
+      {{#if amigosfb}}
+      {{#each amigosfb}}
+        <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>
+      {{/each}} 
+      {{else}}
+        No tienes amigos de Facebook
+      {{/if}}
+      <br><br>
+      <legend>Amigos Aplicación</legend>
+        <!-- {{#each user.profile.friends}}
+          {{this.id}}
+        {{/each}} -->
+        {{#if amigosapp}}
+        {{#each amigosapp}}
+          <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
+          {{this.profile.player.position}} <br>
+        {{/each}}
+        {{else}}
+          No tienes amigos de la aplicación
+        {{/if}}
       <br><br>
       <h3>Calificaciones</h3>
                 {{#if arquero}}
@@ -140,6 +157,11 @@
             {{/if}}
 
     {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario y lo califiquen-->
+        {{#if isFriend}} 
+          Ya esta en tu lista de jugadores.
+        {{else}}          
+          <button type="button" name="addJugadores" id="addJugadores" class="btn btn-default">Agregar a tu lista de Jugadores</button>
+        {{/if}} 
       
                  {{#if arquero}}
                     {{#if isOwner}}
