@@ -3,10 +3,11 @@ AutoForm.addHooks(
   {
     after: {
       'method-update': function (error, result) {
-        if (! error)
-          alert("Su perfil ha sido actualizado");
-          Router.go('showProfile', {_id: Meteor.userId()});
-    }
+        if (! error) {
+          alert('Se editó su perfil correctamente');
+          Router.go('showProfile', {_id: Meteor.userId()}); 
+        }
+      }
+    } 
   }
-},
-)
+);

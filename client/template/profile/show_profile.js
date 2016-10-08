@@ -20,10 +20,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
 
       arquero : function() {
          var u = Meteor.users.findOne({_id: this._id});
-         // console.log('user', u);
          var arq = u && u.profile.player && u.profile.player.position;
-         // console.log('u.player.position',u.profile.player.position)
-         // console.log('arq',arq);
          if(arq === "Arquero") {
            return true;
          } else {
