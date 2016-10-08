@@ -15,7 +15,7 @@ Meteor.methods({
 		
 	}
 
-
+//falta avisarle al dueño de la cancha
 
 });
 
