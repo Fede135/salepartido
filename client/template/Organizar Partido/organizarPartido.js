@@ -55,8 +55,10 @@ Template.organizarPartido.events({
         };
 
 //$gte: newDate()
-        if (Reserva.findOne(selector))
-        return alert("Reserva existente");
+        if (Reserva.findOne(selector)) {
+          $('#alertReservaExistente').removeClass('hide');
+        return false;
+      }
 
         var idReserva = Reserva.insert(reserva);        
         
@@ -88,7 +90,7 @@ Template.organizarPartido.events({
         Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);
         //Envia notificaciones de confirmar partido a invitados
         createInvitationToGameNotification(partidoId);
-        Meteor.call('defaultRoles', partidoId);
+        // Meteor.call('defaultRoles', partidoId); comentado para merge, probando 
         alert("Reserva creada");
         Router.go('confirmarPartido',{_id:partidoId});
     },

@@ -329,9 +329,16 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           return result;
      },
-
-        
+     
+     seActualizo : function() {
+      if (perfilEditado) {
+        $('#alertEditProfile').removeClass('hide');
+        perfilEdidado = false;
+      };
+      return true;
+     }
 });
+
 
 
 
