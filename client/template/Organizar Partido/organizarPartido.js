@@ -55,29 +55,42 @@ Template.organizarPartido.events({
         };
 
 //$gte: newDate()
-        if (Reserva.findOne(selector))
-        return alert("Reserva existente");
+        if (Reserva.findOne(selector)) {
+          $('#alertReservaExistente').removeClass('hide');
+        return false;
+      }
 
-        var idReserva= Reserva.insert(reserva);        
+        var idReserva = Reserva.insert(reserva);        
         
-        var partido = { 
-          _id:Meteor.ObjectId,
-          reserva_id:idReserva,
-          equipoA:[],
-          equipoB:[],
-        };
+        createReservaForOwnerNotification(idReserva);
         
-        var partidoId=Partido.insert(partido);
-        
-        
-       //---------Para mandar mail a los que quiera invitar------- 
+
         var selected = t.findAll( "input[type=checkbox]:checked");
         console.log('lo q selecciona',selected);
         var arrayAmigos = _.map(selected, function(item) {
               return item.defaultValue;
         });
         console.log('array org prtido',arrayAmigos);
+
+        var partido = { 
+          _id:Meteor.ObjectId,
+          reserva_id:idReserva,
+          hostId: Meteor.userId(),
+          invitados: arrayAmigos,
+          equipoA:[],
+          equipoB:[],
+        };
+        
+        var partidoId = Partido.insert(partido);
+        
+        
+        
+        
+       //---------Para mandar mail a los que quiera invitar------- 
         Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);
+        //Envia notificaciones de confirmar partido a invitados
+        createInvitationToGameNotification(partidoId);
+        // Meteor.call('defaultRoles', partidoId); comentado para merge, probando 
         alert("Reserva creada");
         Router.go('confirmarPartido',{_id:partidoId});
     },

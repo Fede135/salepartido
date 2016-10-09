@@ -8,7 +8,9 @@
   <ul class="notification dropdown-menu">
     {{#if notificationCount}}
       {{#each notifications}}
-        {{> notificationItem}}
+      <li>
+        <a href="{{this.link}}">{{this.text}}</a>
+        </li>
       {{/each}}
     {{else}}
      <li><span>No hay nuevas notificaciones</span></li>
@@ -17,12 +19,3 @@
   </ul>
 </template>
 
-<template name="notificationItem">
-  {{#if notificationUserPathComment}}
-  <li>
-    <a href="{{notificationUserPathComment}}">
-      Comentaron tu perfil.
-    </a>
-  </li>
-  {{/if}}
-</template>

@@ -8,9 +8,3 @@ Template.allNotifications.helpers({
   },
 
 });
-  
-Template.allNotificationItem.helpers({
-  notificationUserPathComment: function() {
-    return Router.routes.showProfile.path({_id: this.toUserId});
-  }
-});

@@ -8,7 +8,7 @@ Template.showCommentsEnclosure.helpers({
     } 
   },
   
-  comments20: function(){
+  comments20: function() {
     var comments = CommentsForEnclosure.find({toEnclosureId:this._id, status:"Habilitado"}, {sort: {createdAt:-1}, skip:5, limit:20});
     if (comments.count() === 0) {
       return false;

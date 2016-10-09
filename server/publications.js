@@ -28,7 +28,16 @@ Meteor.publish('usersPlayer', function(){
 	return Meteor.users.find({'roles.__global_roles__': ['player']});
 });
 
-Meteor.publish('user', function(){
-	
+
+Meteor.publish('notifications', function() {
+	return Notifications.find();
+});
+
+Meteor.publish('commentsForPlayers', function() {
+	return CommentsForPlayers.find();
+})
+
+Meteor.publish('user', function(){	
 	return Meteor.users.find();
 });
+

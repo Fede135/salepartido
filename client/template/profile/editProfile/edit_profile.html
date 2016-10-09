@@ -1,6 +1,13 @@
 <!-- Renderizado de formulario definido en el simpleSchema para editProfile -->
 <template name="editProfile">
     <div class="container">
+        
+        <!--<div class="alert alert-success alert-dismissible fade in hide" role="alert" id="alertEditProfile" > comentado para mergear, falta terminar
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> 
+           <span aria-hidden="true">&times;</span>
+         </button> 
+         Tu perfil fue actualizado con éxito!
+      </div>-->
         {{#autoForm schema="Schema.users" id="editProfile" doc=this type="method-update" meteormethod="completeProfile"}}
         <fieldset>
             <legend>Editar Perfil</legend>
@@ -16,7 +23,6 @@
             {{> afQuickField name="profile.country.neighborhood"}}
             <div>
                 <button type="submit" id="edit" class="btn btn-success ">Guardar</button>
-                <!--<div class="alert alert-warning alert-dismissible fade in" role="alert"> <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button> <strong>Holy guacamole!</strong> Best check yo self, you're not looking too good. </div>-->
             </div>
             <br><br>
         </fieldset>
