@@ -22,9 +22,7 @@
       {{/if}}
       <br><br>
       <legend>Amigos Aplicación</legend>
-        <!-- {{#each user.profile.friends}}
-          {{this.id}}
-        {{/each}} -->
+        
         {{#if amigosapp}}
         {{#each amigosapp}}
           <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         

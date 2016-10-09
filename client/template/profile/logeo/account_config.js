@@ -44,7 +44,7 @@ Tracker.autorun(function () {
 Accounts.onLogin(function (){
   console.log('login');
   var user = Meteor.user();
-    
+   Meteor.subscribe('usersPlayer'), 
   console.log(user);
   
   if (user && user.services && user.services.facebook) {
@@ -79,7 +79,7 @@ Accounts.onLogin(function (){
           }//if count 
     //ver que hacer si no entra a estos ifffff
     
-      },4000);
+       },4000);
                
       })//foreach
     })//tracker
