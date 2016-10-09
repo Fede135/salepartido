@@ -53,3 +53,4 @@ tsega:bootstrap3-datetimepicker
 momentjs:moment
 mizzao:autocomplete
 email
+meteorhacks:ssr
