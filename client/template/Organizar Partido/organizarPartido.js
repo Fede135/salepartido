@@ -64,13 +64,18 @@ Template.organizarPartido.events({
         
         createReservaForOwnerNotification(idReserva);
         
-
-        var selected = t.findAll( "input[type=checkbox]:checked");
-        console.log('lo q selecciona',selected);
-        var arrayAmigos = _.map(selected, function(item) {
+        //----------Guarda en arrayAmigos los amigos seleccionados para invitar---------
+        var selectedFriends = t.findAll( "input[name=friend]:checked");
+        var arrayAmigos = _.map(selectedFriends, function(item) {
               return item.defaultValue;
         });
-        console.log('array org prtido',arrayAmigos);
+        //----------Guarda en arrayHost los amigos seleccionados para darle permisos de hostSecundario---------
+        var selectedHost = t.findAll( "input[name=gameRoles]:checked");
+        var arrayHostSecundario = _.map(selectedHost, function(item) {
+              return item.defaultValue;
+        });
+
+        
 
         var partido = { 
           _id:Meteor.ObjectId,
@@ -90,12 +95,14 @@ Template.organizarPartido.events({
         Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);
         //Envia notificaciones de confirmar partido a invitados
         createInvitationToGameNotification(partidoId);
-        Meteor.call('defaultRoles', partidoId); 
+        console.log('arrayHostSecundario en organizarPartido', arrayHostSecundario)
+        Meteor.call('gameRoles', partidoId, arrayHostSecundario);
         alert("Reserva creada");
         Router.go('confirmarPartido',{_id:partidoId});
     },
   
 
+  
   'click [data-picker-handle]': function (event) {
 
     var datetimepicker = $(event.currentTarget).data('pickerHandle');   

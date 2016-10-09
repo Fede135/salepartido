@@ -1,5 +1,5 @@
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
-      user : function(){
+      user : function() {
         use = this._id;
 
         return Meteor.users.findOne({_id: this._id});
@@ -28,7 +28,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
                 }
               } 
               return arrayAmigos; 
-            }else{
+            } else {
               return false;
             }
       },
@@ -340,13 +340,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           return result;
      },
      
-     seActualizo : function() {
-      if (perfilEditado) {
-        $('#alertEditProfile').removeClass('hide');
-        perfilEdidado = false;
-      };
-      return true;
-     }
+     
 });
 
 
