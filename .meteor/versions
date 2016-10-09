@@ -87,7 +87,6 @@ logging@1.0.8
 maxkferg:facebook-collections@0.8.0
 meteor@1.1.7
 meteor-base@1.0.1
-meteorhacks:ssr@2.2.0
 meteortoys:allthings@3.0.0
 meteortoys:authenticate@3.0.0
 meteortoys:autopub@3.0.0
