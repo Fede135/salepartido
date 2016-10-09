@@ -90,7 +90,7 @@ Template.organizarPartido.events({
         Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);
         //Envia notificaciones de confirmar partido a invitados
         createInvitationToGameNotification(partidoId);
-        // Meteor.call('defaultRoles', partidoId); comentado para merge, probando 
+        Meteor.call('defaultRoles', partidoId); 
         alert("Reserva creada");
         Router.go('confirmarPartido',{_id:partidoId});
     },
