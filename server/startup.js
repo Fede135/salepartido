@@ -17,7 +17,7 @@ Meteor.startup(function () {
 			password: 'admin',
         	profile: {
         		firstName: 'administrador',
-	            lastName: 'administrador'
+	          lastName: 'administrador'
 	        }    	            
        	});
 
