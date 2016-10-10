@@ -76,6 +76,23 @@
       		<br>     		
   			  <button type="button" name="confirmarAsistencia" id="confirmarAsistencia" class="btn btn-success">Confirmar asistencia</button>
           <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
+          <div>
+            <h4>Invitar más jugadores.</h4>
+            {{#if jugadoresNoInvitados}}
+                <div claas="checkbox">
+                
+                  {{#each jugadoresNoInvitados}}
+                                
+                <input type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
+                
+                  {{/each}} 
+                <button type="button" name="invitarJugadores" id="invitarJugadores" class="btn btn-default">Invitar</button>
+                </div>
+              {{else}}
+                Ya invitaste a todos tus jugadores.
+              {{/if}}
+            
+          </div>
     	</div>
   </div> 		
 </template>

@@ -17,6 +17,7 @@ Template.modificarReservaPlayer.helpers({
       return canchas;
   },
 
+ 
   errorMessage: function(field) {
     return Session.get('reservaErrors')[field];
   },
@@ -68,7 +69,7 @@ Template.modificarReservaPlayer.events({
     
   },
 
-  'click #actualizarReserva': function(e) {
+  'click #actualizarReserva': function(e,t) {
         
         var reserva = Session.get('reserva');
         var nom_reserva = reserva && reserva.nom_reserva;
@@ -121,18 +122,40 @@ Template.modificarReservaPlayer.events({
           }
         });
 
-        var partido = { 
+       /* var partido = { 
           _id:Meteor.ObjectId,
           reserva_id:this._id,
           equipoA:[],
           equipoB:[],
         };
         
-        var partidoId=Partido.insert(partido);
-
+        var partidoId=Partido.insert(partido);*/
+        var reserva = Reserva.findOne({'_id':this._id});
+        var oldHora = reserva.hora_de_juego;
+        var oldDia = reserva.fecha_de_juego;
+        var oldRecinto = reserva.nom_recinto;
+        var partido = Partido.findOne({reserva_id:this._id});
+        console.log(partido);
+        var idPartido = partido._id;
+        var arrayInvitados = partido.invitados;        
+        var equipoA = partido.equipoA;
+        var equipoB = partido.equipoB;
+        var confirmados = _.union(equipoA,equipoB);
+        var confirCorreo = [];
+        confirmados.forEach(function (e) {
+          var id = e.userId;
+          var usu = Meteor.users.findOne({_id:id});
+          var correo = usu.emails[0].address;
+          confirCorreo.push(correo)
+        });
+        console.log(confirCorreo);
+        var recinto = $('input[name=nombreRecinto]').val()
+        var hora = $('input[name=datetimepicker3]').val()
+        var host = this.usuarioId
+        Meteor.call('mailModificacion',confirCorreo,idPartido,diaString,hora,recinto,host,oldHora,oldDia,oldRecinto);
         alert("Reserva actualizada");
-
-        Router.go('confirmarPartido',{_id:partidoId});
+       
+        Router.go('confirmarPartido',{_id:idPartido});
     }
 });
 

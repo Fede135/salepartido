@@ -22,7 +22,43 @@ Template.confirmarPartido.helpers({
         var porEquipo = _.first(cantJugadores);
         
         return porEquipo;
-    }
+    },
+
+    jugadoresNoInvitados: function(){
+        var usuario = Meteor.users.findOne({_id: Meteor.userId()});
+        console.log(usuario);
+        var array = usuario.profile.friends;    
+        console.log(array);
+        var arrayJugadoresId = [];    
+        array.forEach(function (e) {
+          var id = e.id;
+          arrayJugadoresId.push(id);
+      });
+        console.log('array Jugadores id',arrayJugadoresId);
+        
+        var partido = Partido.findOne({_id:this._id});
+        console.log(partido);
+        var invitadosCorreo = partido.invitados;  
+        console.log('invitados',invitadosCorreo);
+        var invitadosId =[];   
+        invitadosCorreo.forEach(function(e){
+          var user = Meteor.users.findOne({'emails.0.address':e});
+          var userid = user._id;
+          invitadosId.push(userid);
+      });
+        var porInvitar = _.difference(arrayJugadoresId,invitadosId);
+        if (porInvitar.length != 0){
+          var invitar = [];
+          porInvitar.forEach(function(e){
+            var use = Meteor.users.findOne({_id: e});        
+            invitar.push(use)
+        });
+          return invitar
+
+      }else{
+       return false;
+   }
+},
 });
 
 Template.confirmarPartido.events({
@@ -105,7 +141,28 @@ Template.confirmarPartido.events({
         if (!lista && !listaB )
 
         Router.go('Home');
-    }    
+    },
+
+    'click #invitarJugadores': function(event,t){
+        console.log(event)
+        var idpartido = this._id;
+        var reserva_id = Partido.findOne(this._id).reserva_id;
+        var reserva = Reserva.findOne({'_id': reserva_id});
+        var organizador = reserva.nom_usuario;
+        var recinto = reserva.nom_recinto;
+        var cancha = reserva.num_cancha;
+        var hora = reserva.hora_de_juego;
+        var dia = reserva.fecha_de_juego;
+        var selected = t.findAll( "input[type=checkbox]:checked");
+        console.log('lo q selecciona',selected);
+        var arrayJugadores = _.map(selected, function(item) {
+              return item.defaultValue;
+        });
+        console.log(arrayJugadores);
+        Meteor.call('agregarJugadores',arrayJugadores,idpartido);
+        Meteor.call('mailReserva',arrayJugadores, idpartido,dia,hora,recinto,organizador);
+        alert('Se invitaron')
+    }, 
 });
 
 Template.confirmarPartido.onDestroyed( function(){
