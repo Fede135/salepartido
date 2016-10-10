@@ -57,6 +57,7 @@
                    </ul>       
         			</div>
       		</div>
+            {{#if puedeVerBotones}}
       		<div class="row">
         			<div class="span5 col-md-4">
           				<div class="btn-group" role="group" aria-label="...">
@@ -73,9 +74,11 @@
         					</div>
         			</div>
       		</div>
+            
       		<br>     		
   			  <button type="button" name="confirmarAsistencia" id="confirmarAsistencia" class="btn btn-success">Confirmar asistencia</button>
           <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
+          {{/if}}
     	</div>
   </div> 		
 </template>

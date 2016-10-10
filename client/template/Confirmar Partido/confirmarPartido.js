@@ -22,6 +22,9 @@ Template.confirmarPartido.helpers({
         var porEquipo = _.first(cantJugadores);
         
         return porEquipo;
+    },
+    puedeVerBotones: function() {
+        return Roles.userIsInRole( Meteor.userId(), ['invitado', 'host', 'hostSecundario'], this._id);
     }
 });
 
