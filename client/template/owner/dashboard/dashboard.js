@@ -12,7 +12,13 @@ Template.dashboard.helpers({
 
 	recintoSeleccionado: function(){
       return Session.get('recinto');
-    },   
+    }, 
+
+    canchas: function(){
+    	var recinto = Session.get('recintoo');    	
+    	var canchas = recinto && Canchas.find({'recintoId': recinto._id});
+    	return canchas;
+    }   
 
 });
 
@@ -22,9 +28,10 @@ Template.dashboard.events({
 		Router.go('modificarReserva', {_id: this._id});
 	},
 	'click #crearReserva': function(event){
+		var recintoo = null;
 		var recintoId = this._id;
 		var recinto = recintoId && Recintos.findOne({'_id': recintoId});
-
+		Session.set('recintoo', recintoo);
     	Session.set('recinto', recinto);
   	},
   	'click #partidoJugado': function (event) {
@@ -39,7 +46,12 @@ Template.dashboard.events({
 
   	},
   	'click #gestionCanchas': function(event){
-		Router.go('gestionCancha', {_id: this._id});
+  		var recinto = null;
+  		var recintoId = this._id;
+		var recintoo = recintoId && Recintos.findOne({'_id': recintoId});
+
+		Session.set('recinto', recinto);
+    	Session.set('recintoo', recintoo);
   	},
   	 
   	 
@@ -54,6 +66,7 @@ Template.dashboard.onDestroyed( function(){
 Template.dashboard.onCreated(function() {
   
   Session.set('recintoErrors', {});
+  
 });
 
 /*Meteor.setInterval(function () {

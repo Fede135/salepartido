@@ -8,7 +8,7 @@
 
           	{{> afQuickField name='direccion_recinto'}}
 
-          	{{> afQuickField name='telefono_recinto.fijo'}}
+          	{{> afQuickField name='telefono_recinto.teléfono_fijo'}}
 
           	{{> afQuickField name='telefono_recinto.celular_1'}}
 
@@ -23,20 +23,16 @@
           	{{> afQuickField name='servicios.cantina' options="allowed" noselect=true}}
 
           	<h3>Subir imagenes del recinto</h3>
-            <h4>Imagen 1</h4>
           	{{> afQuickField name='imagen1_id' }}
-            <h4>Imagen 2</h4>
             {{> afQuickField name='imagen2_id' }}
-            <h4>Imagen 3</h4>
             {{> afQuickField name='imagen3_id' }}
-            <h4>Imagen 4</h4>
             {{> afQuickField name='imagen4_id' }}
 
       </fieldset>
         
-          <button type="submit"  id="btn-upload-recinto" class="btn btn-primary">Cargar</button>
+          <button type="submit"  id="btn-upload-recinto" class="btn btn-propio">Cargar recinto</button>
 
     {{/autoForm}}      
-    
+    <br>
    </div>      
 </template>
