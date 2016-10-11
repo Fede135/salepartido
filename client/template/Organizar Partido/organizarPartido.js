@@ -77,17 +77,18 @@ Template.organizarPartido.events({
           reserva_id:idReserva,
           hostId: Meteor.userId(),
           invitados: arrayAmigos,
+          suplentes:[],
           equipoA:[],
           equipoB:[],
         };
         
         var partidoId = Partido.insert(partido);
-        
-        
+        var horamail = +$(e.target).find('[name=datetimepicker3]').val();
+        var organizador = Meteor.users.findOne({_id : Meteor.userId()}).profile.name
         
         
        //---------Para mandar mail a los que quiera invitar------- 
-        Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);
+        Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,horamail,recinto,organizador);
         //Envia notificaciones de confirmar partido a invitados
         createInvitationToGameNotification(partidoId);
         // Meteor.call('defaultRoles', partidoId); comentado para merge, probando 

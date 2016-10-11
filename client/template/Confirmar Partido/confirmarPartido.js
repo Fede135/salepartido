@@ -19,9 +19,54 @@ Template.confirmarPartido.helpers({
         var recintoId = recinto && recinto._id;
         var cancha = recintoId && Canchas.findOne({'recintoId': recintoId, 'numero': numcancha});
         var cantJugadores = cancha && cancha.jugadores.cantidad_de_jugadores;
-        var porEquipo = _.first(cantJugadores);
+        porEquipo = _.first(cantJugadores);
         
         return porEquipo;
+    },
+
+    disponibleA: function(){
+        var partido = Partido.findOne(this._id);
+        var arrayA = partido.equipoA;
+        var cantidadA = porEquipo;
+        
+        if(arrayA.length === 0){
+            return porEquipo;
+        }else if (arrayA.length === porEquipo){
+            return false;
+        }else{
+            cantidadA = cantidadA - arrayA.length;
+            return cantidadA;
+        }
+
+    },
+    disponibleB : function(){
+        var partido = Partido.findOne(this._id);
+        var arrayB = partido.equipoB;
+        var cantidadB = porEquipo;
+        
+        if(arrayB.length === 0){
+            return porEquipo;
+        }else if (arrayB.length === porEquipo){
+            return false;
+        }else{
+            cantidadB = cantidadB - arrayB.length;
+            return cantidadB;
+        }
+    },
+
+    suplente : function(){
+        var arraySuplente = Partido.findOne(this._id).suplentes;
+        if(arraySuplente === 0){
+            return false;
+        }else{
+            var array = [];
+            arraySuplente.forEach(function(e){
+                var usu = Meteor.user.findOne({_id:e});
+                array.push(usu);         
+           })             
+            return array;
+        }
+
     },
 
     jugadoresNoInvitados: function(){
@@ -80,10 +125,15 @@ Template.confirmarPartido.events({
         var lista =_.findWhere(equipoB, {userId: Meteor.user()._id});
         var cantJugEquipoA = Partido.findOne(this._id).equipoA.length;
 
-        if (lista === undefined && cantJugEquipoA<numero)        
+        if (lista === undefined && cantJugEquipoA<numero){        
             Partido.update(this._id, { $addToSet: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
-        else
+        }else if (cantJugEquipoA === numero){
+            Partido.update(this._id, { $push: { suplentes: Meteor.user()._id}});
+
+        }else{
             alert("Equipo lleno o estas en el otro equipoB");
+        }
+        
     },
 
     'click #agregarEquipoB': function(event){
@@ -97,27 +147,75 @@ Template.confirmarPartido.events({
         var cancha = Canchas.findOne({'recintoId': recintoId, 'numero': numcancha});
         var cantJugadores = cancha.jugadores.cantidad_de_jugadores;
         var porEquipo = _.first(cantJugadores);
-        var numero = + porEquipo;
-        
+        var numero = + porEquipo;        
         var equipoA = Partido.findOne(this._id).equipoA;
         var lista =_.findWhere(equipoA, {userId: Meteor.user()._id});
         var cantJugEquipoB = Partido.findOne(this._id).equipoB.length;
 
-        if (lista === undefined && cantJugEquipoB<numero)         
+        if (lista === undefined && cantJugEquipoB<numero){        
             Partido.update(this._id, { $addToSet: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}}); 
-        else            
-            alert("Equipo lleno o estas en el otro equipoA");
+        }else if (cantJugEquipoB === numero){
+            Partido.update(this._id, { $push: { suplentes: Meteor.user()._id}});
+
+        }else{
+            alert("Equipo lleno o estas en el otro equipoB");
+        }
     },
 
     'click #eliminarEquipoA': function(event){
 
+        var reserva_id = Partido.findOne(this._id).reserva_id;
+        var reserva = Reserva.findOne({'_id': reserva_id});
+        var nomrecinto = reserva.nom_recinto;
+        var numcancha = reserva.num_cancha;
+        var recinto = Recintos.findOne({'nombre_recinto': nomrecinto});
+        var recintoId = recinto._id;
+        var cancha = Canchas.findOne({'recintoId': recintoId, 'numero': numcancha});
+        var cantJugadores = cancha.jugadores.cantidad_de_jugadores;
+        var porEquipo = _.first(cantJugadores);
+        var numero = + porEquipo;        
+        var cantJugEquipoA = Partido.findOne(this._id).equipoA.length;
+        var arraysuplentes= Partido.findOne(this._id).suplentes;
         Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
+        if(cantJugEquipoA < numero && arraysuplentes.length !=0){
+            var primerSuplente = _.first(arraysuplentes);
+            var usu = Meteor.users.findOne({_id:primerSuplente});
+            Partido.update(this._id, { $addToSet: { equipoA: { userId: primerSuplente, nombre: primerSuplente.profile.name}}});
+            arraysuplentes.shift();
+            arraysuplentes.forEach(function(e){
+                Partido.update(this._id, { $push: { suplentes: e}});
+            })
+
+        }
+
              
     },
 
     'click #eliminarEquipoB': function(event){       
-        
-        Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});         
+        var reserva_id = Partido.findOne(this._id).reserva_id;
+        var reserva = Reserva.findOne({'_id': reserva_id});
+        var nomrecinto = reserva.nom_recinto;
+        var numcancha = reserva.num_cancha;
+        var recinto = Recintos.findOne({'nombre_recinto': nomrecinto});
+        var recintoId = recinto._id;
+        var cancha = Canchas.findOne({'recintoId': recintoId, 'numero': numcancha});
+        var cantJugadores = cancha.jugadores.cantidad_de_jugadores;
+        var porEquipo = _.first(cantJugadores);
+        var numero = + porEquipo;        
+        var cantJugEquipoB = Partido.findOne(this._id).equipoB.length;
+        var arraysuplentes= Partido.findOne(this._id).suplentes;
+        Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}}); 
+         if(cantJugEquipoB < numero && arraysuplentes.length !=0){
+            var primerSuplente = _.first(arraysuplentes);
+            var usu = Meteor.users.findOne({_id:primerSuplente});
+            Partido.update(this._id, { $addToSet: { equipoB: { userId: primerSuplente, nombre: primerSuplente.profile.name}}});
+            arraysuplentes.shift();
+            arraysuplentes.forEach(function(e){
+                Partido.update(this._id, { $push: { suplentes: e}});
+            })
+            //suplentes = _.without(suplentes,primerSuplente)
+
+        }        
     },
 
     'click #confirmarAsistencia': function(event){
