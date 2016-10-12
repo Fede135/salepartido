@@ -56,12 +56,13 @@ Template.organizarPartido.events({
 
 //$gte: newDate()
         if (Reserva.findOne(selector)) {
-          $('#alertReservaExistente').removeClass('hide');
+          $('#alertReservaExistente').show();
         return false;
       }
 
         var idReserva = Reserva.insert(reserva);        
         
+        //---------Envia notificaciones al dueño del recinto-----------
         createReservaForOwnerNotification(idReserva);
         
         //----------Guarda en arrayAmigos los amigos seleccionados para invitar---------
@@ -93,11 +94,17 @@ Template.organizarPartido.events({
         
        //---------Para mandar mail a los que quiera invitar------- 
         Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,hora,recinto);
-        //Envia notificaciones de confirmar partido a invitados
+
+        //------Envia notificaciones de confirmar partido a invitados---------
         createInvitationToGameNotification(partidoId);
-        console.log('arrayHostSecundario en organizarPartido', arrayHostSecundario)
+
+        //----------Agrega Roles a los usuarios para ese partido---------
         Meteor.call('gameRoles', partidoId, arrayHostSecundario);
-        alert("Reserva creada");
+
+        //--------Activa el alert---------
+        Session.set('alertReservaCreada', true);
+
+        //-----------Redirige a confirmar partido--------
         Router.go('confirmarPartido',{_id:partidoId});
     },
   
@@ -150,19 +157,14 @@ Template.organizarPartido.helpers({
    amigos: function () { 
     var usuario = Meteor.users.findOne({_id: Meteor.userId()});
     var array = usuario.profile.friends;          
-    console.log('array friends,helper',array);
     if(array){
       var length = array.length;
-      console.log('longitud array,helper',length);
       var arrayAmigos= [];
-      for(i=0; i<length; i++ ){              
-        
+      for(i=0; i<length; i++ ) {              
           var amigosId = array[i].id;
-          console.log('idAmigos,helper',amigosId);
-          var amigo = Meteor.users.findOne({_id : amigosId});
-          console.log('objeto,helper',amigo)
+          var amigo = Meteor.users.findOne({_id : amigosId}); 
           arrayAmigos.push(amigo);
-          console.log(amigo.emails[0].address);
+      
         
       } 
       return arrayAmigos; 
@@ -187,7 +189,7 @@ Template.organizarPartido.onCreated(function() {
   Session.set('reservaErrors', {});
 });
 
-Template.organizarPartido.onDestroyed( function(){
+Template.organizarPartido.onDestroyed( function() {
 
     Session.set('recinto', null);
 

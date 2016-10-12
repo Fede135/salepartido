@@ -1,9 +1,10 @@
 AutoForm.addHooks(
-  ['enterCommentsPlayers'],
+  ['enterCommentsEnclosure'],
   {
     before: {
       insert: function(doc) {
-        var docFiltrado = doc.commentToPlayer.replace(/puto|pajero|cagón|culiado|pija|puta|concha|conchudo|conchuda|cagon/gi, function filtrar(x) {
+        console.log(doc);
+        var docFiltrado = doc.commentToEnclosure.replace(/puto|pajero|cagón|culiado|pija|puta|concha|conchudo|conchuda|cagon/gi, function filtrar(x) {
           var len= x.length;
           var arr = []
           for (var i = 0; i < len; i++) {
@@ -13,16 +14,10 @@ AutoForm.addHooks(
         });
         docModificado = {
           commentToPlayer: docFiltrado,
-          toUserId: doc.toUserId,
+          toEnclosureId: doc.toEnclosureId,
         };
         return docModificado;
        }
-    },
-    after: {
-      insert: function (error, result) {
-        createCommentForPlayersNotification(result);
-      }
-    } 
-  },
+    }
+  }
 )
-

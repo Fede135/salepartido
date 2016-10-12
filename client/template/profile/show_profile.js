@@ -1,3 +1,11 @@
+Template.showProfile.onRendered(function() {
+  if (Session.get('alertPerfilEditado')) {
+    $('#alertPerfilEditado').show();
+  } else {
+    $('#alertPerfilEditado').hide();
+  }
+});
+
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
       user : function() {
         use = this._id;
@@ -339,12 +347,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           return result;
      },
-     
-     
 });
-
-
-
 
 Template.showProfile.events({  //al hacer click en el boton editar se redirige al template editProfile y se le pasa el _id del usuario del cual quiere editar su perfil
 
@@ -434,11 +437,9 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
       console.log('Agregado',agregadoId);
       Meteor.call('addJugadores',agregaId, agregadoId);
   },
-
-  //  'click #sendFriendRequest' : function(event) {  queda comentado, no puedo hacerlo andar todavia
-  //    console.log('sendRequest');
-  //    Meteor.users.findOne({_id:this._id}).requestFriendship();
-	//  },
 });
 
+Template.showProfile.onDestroyed(function() {
+  Session.set('alertPerfilEditado', undefined);
+})
 

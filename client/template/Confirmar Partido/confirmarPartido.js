@@ -1,3 +1,11 @@
+Template.confirmarPartido.onRendered(function () {
+    if (Session.get('alertReservaCreada')) {
+     $('#alertReservaCreada').show();
+    } else {
+     $('#alertReservaCreada').hide();   
+    }
+})
+
 Template.confirmarPartido.helpers({
 	
     reservaSeleccionada: function () {
@@ -94,8 +102,11 @@ Template.confirmarPartido.events({
         var equipoB = Partido.findOne(this._id).equipoB;
         var listaB =_.findWhere(equipoB, {userId: Meteor.user()._id});
 
-        if (lista ||listaB )
-        Router.go('Home');
+
+        if (lista || listaB ){
+          Roles.addUsersToRoles(Meteor.userId(), 'confirmado', this._id);
+          Router.go('Home');
+        }  
     },
 
     'click #noJuega': function(event){
@@ -106,14 +117,13 @@ Template.confirmarPartido.events({
         var listaB =_.findWhere(equipoB, {userId: Meteor.user()._id});
 
         if (!lista && !listaB )
-
+          Roles.addUsersToRoles(Meteor.userId(), 'noJuega', this._id);
         Router.go('Home');
     }    
 });
 
-Template.confirmarPartido.onDestroyed( function(){
-
+Template.confirmarPartido.onDestroyed( function() {
     Session.set('reserva', null);
-
+    Session.set('alertReservaCreada', undefined);
 });
 //._first('string')

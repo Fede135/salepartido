@@ -4,7 +4,7 @@ AutoForm.addHooks(
     after: {
       'method-update': function (error, result) {
         if (! error) {
-          perfilEditado = true;
+          Session.set('alertPerfilEditado', true);
           Router.go('showProfile', {_id: Meteor.userId()}); 
         }
       }
