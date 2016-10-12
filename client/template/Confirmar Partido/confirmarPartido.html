@@ -1,16 +1,10 @@
+
 <template name = "confirmarPartido">
     <div class="container">
-        <!--Alert de reserva creada-->
-  	   	<div class="alert alert-success alert-dismissible" role="alert" id="alertReservaCreada" style="display: none">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Reserva creada!!</strong> Agregate a un equipo.
-	    </div>
-
-  		<h2 align="center">Confirmar partido</h2>
-  		  
-  		<div class="well"> 
+        
+      <h2 align="center">Confirmar partido</h2>
+        
+      <div class="well"> 
           <div class="row">
               <div class="span5 col-md-4">
                   <h4>El usuario que te invitó es <strong>{{reservaSeleccionada.nom_usuario}}</strong></h4>
@@ -35,14 +29,14 @@
               <div class="span5 col-md-4">
               </div>
           </div>
-      		<br>
-      		<div class="row">
-      			  <div class="span5 col-md-4">
+          <br>
+          <div class="row">
+              <div class="span5 col-md-4">
                   <h3 align="center">Equipo A</h3>
                   <br>
                   Lugares disponibles:{{disponibleA}}
                   <br>
-      			     	<ul>
+                  <ul>
                         {{#each equipoA}}
                             
                         <li>{{this.nombre}}</li>
@@ -50,15 +44,15 @@
                         {{/each}}
                              
                    </ul>
-      		  	</div>	
-        			<div class="span5 col-md-3">
+              </div>  
+              <div class="span5 col-md-3">
               </div>
-        			<div class="span5 col-md-4">
+              <div class="span5 col-md-4">
                   <h3 align="center">Equipo B</h3>
                   <br>
                   Lugares disponibles:{{disponibleB}}
                   <br>
-        			   	<ul>
+                  <ul>
                         {{#each equipoB}}
                             
                         <li>{{this.nombre}}</li>
@@ -66,38 +60,37 @@
                         {{/each}}
                              
                    </ul>       
-        			</div>
-      		</div>
-            {{#if puedeVerBotones}}
-      		<div class="row">
-        			<div class="span5 col-md-4">
-          				<div class="btn-group" role="group" aria-label="...">
+              </div>
+          </div>
+          <div class="row">
+              <div class="span5 col-md-4">
+                  <div class="btn-group" role="group" aria-label="...">
                   {{#if disponibleA}}
-          						<button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
+                      <button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
                   {{else}}
                     Equipo completo
                     <button type="button" name="suplenteA" id="suplenteA" class="btn btn-default">Agregar a la lista de suplentes</button> 
                   {{/if}}
-          						<button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
-      					  </div>
-        			</div>	
-        			<div class="span5 col-md-3">                  
-        			</div>
-        			<div class="span5 col-md-4">
-            			<div class="btn-group" role="group" aria-label="...">
+                      <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
+                  </div>
+              </div>  
+              <div class="span5 col-md-3">                  
+              </div>
+              <div class="span5 col-md-4">
+                  <div class="btn-group" role="group" aria-label="...">
                   
-          						<button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-danger">Eliminar de equipo B</button> 
+                      <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-danger">Eliminar de equipo B</button> 
                   
                   {{#if disponibleB}}
-          						<button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
+                      <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
                   {{else}}
                     Equipo completo
                     <button type="button" name="suplenteB" id="suplenteB" class="btn btn-default">Agregar a la lista de suplentes</button> 
-                  {{/if}}			
-        					</div>
-        			</div>
-      		</div>
-      		<br>  
+                  {{/if}}     
+                  </div>
+              </div>
+          </div>
+          <br>  
           Suplentes:
           {{#if suplente}}
             {{#each suplente}}
@@ -106,8 +99,8 @@
           {{else}}
             Sin suplentes
           {{/if}} 
-          <br>   		
-  			  <button type="button" name="confirmarAsistencia" id="confirmarAsistencia" class="btn btn-success">Confirmar asistencia</button>
+          <br>      
+          <button type="button" name="confirmarAsistencia" id="confirmarAsistencia" class="btn btn-success">Confirmar asistencia</button>
           <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
           <div>
             <h4>Invitar más jugadores.</h4>
@@ -126,6 +119,6 @@
               {{/if}} 
             
           </div>
-    	</div>
-  </div> 		
+      </div>
+  </div>    
 </template>

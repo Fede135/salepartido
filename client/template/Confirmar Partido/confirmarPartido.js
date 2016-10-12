@@ -31,7 +31,7 @@ Template.confirmarPartido.helpers({
         
         return porEquipo;
     },
-<<<<<<< HEAD
+
 
     disponibleA: function(){
         var partido = Partido.findOne(this._id);
@@ -123,6 +123,11 @@ Template.confirmarPartido.helpers({
 
     puedeVerBotones: function() {
         return Roles.userIsInRole( Meteor.userId(), ['invitado', 'host', 'hostSecundario'], this._id);
+    },
+
+    isConfirmado: function(){
+        return Roles.userIsInRole( Meteor.userId(),'confirmado', this._id);
+
     }
 
 });
