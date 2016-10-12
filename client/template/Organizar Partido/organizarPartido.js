@@ -56,21 +56,27 @@ Template.organizarPartido.events({
 
 //$gte: newDate()
         if (Reserva.findOne(selector)) {
-          $('#alertReservaExistente').removeClass('hide');
+          $('#alertReservaExistente').show();
         return false;
       }
 
         var idReserva = Reserva.insert(reserva);        
         
+        //---------Envia notificaciones al dueño del recinto-----------
         createReservaForOwnerNotification(idReserva);
         
-
-        var selected = t.findAll( "input[type=checkbox]:checked");
-        console.log('lo q selecciona',selected);
-        var arrayAmigos = _.map(selected, function(item) {
+        //----------Guarda en arrayAmigos los amigos seleccionados para invitar---------
+        var selectedFriends = t.findAll( "input[name=friend]:checked");
+        var arrayAmigos = _.map(selectedFriends, function(item) {
               return item.defaultValue;
         });
-        console.log('array org prtido',arrayAmigos);
+        //----------Guarda en arrayHost los amigos seleccionados para darle permisos de hostSecundario---------
+        var selectedHost = t.findAll( "input[name=gameRoles]:checked");
+        var arrayHostSecundario = _.map(selectedHost, function(item) {
+              return item.defaultValue;
+        });
+
+        
 
         var partido = { 
           _id:Meteor.ObjectId,
@@ -89,14 +95,23 @@ Template.organizarPartido.events({
         
        //---------Para mandar mail a los que quiera invitar------- 
         Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,horamail,recinto,organizador);
+
+        
         //Envia notificaciones de confirmar partido a invitados
         createInvitationToGameNotification(partidoId);
-        // Meteor.call('defaultRoles', partidoId); comentado para merge, probando 
-        alert("Reserva creada");
+
+        //----------Agrega Roles a los usuarios para ese partido---------
+        Meteor.call('gameRoles', partidoId, arrayHostSecundario);
+
+        //--------Activa el alert---------
+        Session.set('alertReservaCreada', true);
+
+        //-----------Redirige a confirmar partido--------
         Router.go('confirmarPartido',{_id:partidoId});
     },
   
 
+  
   'click [data-picker-handle]': function (event) {
 
     var datetimepicker = $(event.currentTarget).data('pickerHandle');   
@@ -144,19 +159,14 @@ Template.organizarPartido.helpers({
    amigos: function () { 
     var usuario = Meteor.users.findOne({_id: Meteor.userId()});
     var array = usuario.profile.friends;          
-    console.log('array friends,helper',array);
     if(array){
       var length = array.length;
-      console.log('longitud array,helper',length);
       var arrayAmigos= [];
-      for(i=0; i<length; i++ ){              
-        
+      for(i=0; i<length; i++ ) {              
           var amigosId = array[i].id;
-          console.log('idAmigos,helper',amigosId);
-          var amigo = Meteor.users.findOne({_id : amigosId});
-          console.log('objeto,helper',amigo)
+          var amigo = Meteor.users.findOne({_id : amigosId}); 
           arrayAmigos.push(amigo);
-          console.log(amigo.emails[0].address);
+      
         
       } 
       return arrayAmigos; 
@@ -181,7 +191,7 @@ Template.organizarPartido.onCreated(function() {
   Session.set('reservaErrors', {});
 });
 
-Template.organizarPartido.onDestroyed( function(){
+Template.organizarPartido.onDestroyed( function() {
 
     Session.set('recinto', null);
 

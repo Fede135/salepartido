@@ -1,5 +1,13 @@
 <template name = "showProfile"> 
     <div class="container">
+      <!--Alert que muestra que el perfil fue editado con exito-->
+      <div class="alert alert-success alert-dismissible" role="alert" id="alertPerfilEditado" style="display: none">
+ 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+  			Tu perfil fue actualizado!
+			</div>
+      
       <!--muestro datos del usuario-->
       <div class="row">{{user.profile.name}}</div>
       <div class="row">{{age}}</div>

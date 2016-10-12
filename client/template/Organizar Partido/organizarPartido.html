@@ -5,12 +5,13 @@
 		     	Organizar Partido      
 			  </h2>
 	    </div>
-			<div class="alert alert-danger alert-dismissible hide" role="alert" id="alertReservaExistente">
- 						<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-							 <span aria-hidden="true">&times;</span>
-						</button>
-  						<strong>Reserva existente!!</strong>Ya existe otra reserva en el horario que desea.
-					</div>
+			<!--Alert de reserva existente-->
+			<div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none">
+ 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+  			<strong>Reserva existente!!</strong>Ya existe otra reserva en el horario que desea.
+			</div>
 	    <div class="form-group">
 	    	<form class="reserva">
 	    		<div class="well">
@@ -105,17 +106,30 @@
 					    </div> 	
 
 					    <br>  
-				 		 <div class="span5 col-md-5">
-				 		<div claas="checkbox">
+				 		<div class="span5 col-md-5">
+							<div class="checkbox">
 
-				 		<h4>Invitar Amigos</h4>
-				 			 {{#each amigos}}
-				 								 				
-				 				<input type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
+							<h4>Invitar Amigos</h4>
+								{{#each amigos}}
+																	
+									<input id="checkboxFriends" type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
+									
+									<div id="checkboxRolesDiv">
+										<input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host <br>
+									</div>
+									<!--Se agrega este script para ocultar o mostrar el checkbox host dependiendo si el amigo fue seleccionado o no. Falta ver como hacer para que funcione bien, queda comentado-->
+									<script> 
+										var elem = document.getElementById('checkboxRolesDiv'),
+										checkBox = document.getElementById('checkboxFriends');
+										checkBox.checked = false;
+										checkBox.onchange = function doruc() {
+										elem.style.display = this.checked ? 'inline' : 'none';
+										};
+										checkBox.onchange();
+									</script>
 
-				 				
-				 			{{/each}} 
-				 		</div>
+								{{/each}} 
+							</div>
 				 		</div> 	   
 
 					</div>
