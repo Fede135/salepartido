@@ -125,6 +125,10 @@ Template.confirmarPartido.helpers({
         return Roles.userIsInRole( Meteor.userId(), ['invitado', 'host', 'hostSecundario'], this._id);
     },
 
+    puedeInvitar: function () {
+        return Roles.userIsInRole( Meteor.userId(), ['host', 'hostSecundario'], this._id);
+    },
+
     isConfirmado: function(){
         return Roles.userIsInRole( Meteor.userId(),'confirmado', this._id);
 

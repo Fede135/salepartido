@@ -1,6 +1,16 @@
 
 <template name = "confirmarPartido">
     <div class="container">
+      <div class="container">
+        <!--Alert de reserva creada-->
+ 
+        <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaCreada" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Reserva creada!!</strong> Agregate a un equipo.
+        </div>
+      
         
       <h2 align="center">Confirmar partido</h2>
         
@@ -69,7 +79,9 @@
                       <button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
                   {{else}}
                     Equipo completo
+                   {{#unless isConfirmado}}
                     <button type="button" name="suplenteA" id="suplenteA" class="btn btn-default">Agregar a la lista de suplentes</button> 
+                   {{/unless}}
                   {{/if}}
                       <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
                   </div>
@@ -85,7 +97,9 @@
                       <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
                   {{else}}
                     Equipo completo
+                    {{#unless isConfirmado}}
                     <button type="button" name="suplenteB" id="suplenteB" class="btn btn-default">Agregar a la lista de suplentes</button> 
+                    {{/unless}}
                   {{/if}}     
                   </div>
               </div>
@@ -102,23 +116,31 @@
           <br>      
           <button type="button" name="confirmarAsistencia" id="confirmarAsistencia" class="btn btn-success">Confirmar asistencia</button>
           <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
+          <br>
+          
           <div>
+          {{#if puedeInvitar}}
             <h4>Invitar más jugadores.</h4>
             {{#if jugadoresNoInvitados}}
                 <div claas="checkbox">
                 
-                  {{#each jugadoresNoInvitados}}
+                {{#each jugadoresNoInvitados}}
                                 
-                <input type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
+                  <input type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
                 
-                  {{/each}} 
+                {{/each}} 
+
                 <button type="button" name="invitarJugadores" id="invitarJugadores" class="btn btn-default">Invitar</button>
                 </div>
               {{else}}
+                <div>
                 Ya invitaste a todos tus jugadores.
-              {{/if}} 
-            
+                </div>
+              {{/if}}  
+          {{/if}}           
           </div>
-      </div>
-  </div>    
+          
+    </div>  
+  </div>  
+  </div>  
 </template>
