@@ -64,7 +64,12 @@
       		<div class="row">
         			<div class="span5 col-md-4">
           				<div class="btn-group" role="group" aria-label="...">
+                  {{#if disponibleA}}
           						<button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
+                  {{else}}
+                    Equipo completo
+                    <button type="button" name="suplenteA" id="suplenteA" class="btn btn-default">Agregar a la lista de suplentes</button> 
+                  {{/if}}
           						<button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
       					  </div>
         			</div>	
@@ -72,8 +77,15 @@
         			</div>
         			<div class="span5 col-md-4">
             			<div class="btn-group" role="group" aria-label="...">
+                  
           						<button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-danger">Eliminar de equipo B</button> 
-          						<button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 			
+                  
+                  {{#if disponibleB}}
+          						<button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
+                  {{else}}
+                    Equipo completo
+                    <button type="button" name="suplenteB" id="suplenteB" class="btn btn-default">Agregar a la lista de suplentes</button> 
+                  {{/if}}			
         					</div>
         			</div>
       		</div>
@@ -103,7 +115,7 @@
                 </div>
               {{else}}
                 Ya invitaste a todos tus jugadores.
-              {{/if}}
+              {{/if}} 
             
           </div>
     	</div>

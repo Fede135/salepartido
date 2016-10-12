@@ -44,7 +44,7 @@ Tracker.autorun(function () {
 Accounts.onLogin(function (){
   console.log('login');
   var user = Meteor.user();
-   Meteor.subscribe('usersPlayer'), 
+  // Meteor.subscribe('usersPlayer'), 
   console.log(user);
   
   if (user && user.services && user.services.facebook) {

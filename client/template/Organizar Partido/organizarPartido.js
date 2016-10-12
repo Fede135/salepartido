@@ -76,10 +76,10 @@ Template.organizarPartido.events({
           _id:Meteor.ObjectId,
           reserva_id:idReserva,
           hostId: Meteor.userId(),
-          invitados: arrayAmigos,
-          suplentes:[],
+          invitados: arrayAmigos,          
           equipoA:[],
           equipoB:[],
+          suplentes:[]
         };
         
         var partidoId = Partido.insert(partido);
