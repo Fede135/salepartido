@@ -98,8 +98,10 @@ Template.modificarReserva.events({
           
         };
 
-        if (Reserva.findOne(selector))
-        return alert("Reserva existente");
+        if (Reserva.findOne(selector)) {
+          $('#alertReservaExistente').show();
+        return false;
+      }
 
 
         Reserva.update({_id: this._id}, {$set: 
@@ -112,7 +114,7 @@ Template.modificarReserva.events({
           }
         });
  
-        alert("Reserva actualizada");
+        $('#alertReservaActualizada').show();
         
         var recinto = nombre_recinto && Recintos.findOne({'nombre_recinto':nombre_recinto});
         var recintoId = recinto && recinto._id;
