@@ -1,38 +1,70 @@
 <template name="dashboard">
-  <br>
-  <br>
-  <br>
-  <div class="row">
-		<div class="col-sm-4 col-md-3 sidebar">
-      <div class="mini-submenu">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </div>
-      <div class="list-group">
-        
-        <a href="#" name="crearReserva" id="crearReserva" class="list-group-item">
-            <i class="fa fa-comment-o"></i> Crear reserva
-        </a>
-        <a href="#" name="gestionCanchas" id="gestionCanchas" class="list-group-item">
-            <i class="fa fa-comment-o"></i> Gestionar canchas
-        </a>
-        <a href="{{pathFor 'uploadImages'}}" class="list-group-item">
-            <i class="fa fa-user"></i> Images
-        </a>
-        <a href="#" class="list-group-item">
-            <i class="fa fa-folder-open-o"></i> Lorem ipsum <span class="badge">14</span>
-        </a>
-        <a href="#" class="list-group-item">
-            <i class="fa fa-bar-chart-o"></i> Lorem ipsumr <span class="badge">14</span>
-        </a>
-        <a href="#" class="list-group-item">
-            <i class="fa fa-envelope"></i> Lorem ipsum
-        </a>
-      </div>        
-    </div>
-    <div class="col-sm-4 col-md-9 sidebar">  		
-  		<h2 align="center">Tus reservas</h2>
+    <div class="container-fluid">
+        <h2 align="center">Tus reservas</h2>
+        <div class="row">
+		        <div class="col-sm-4 col-md-3 sidebar">
+                <div class="list-group">
+                  <a href="#" name="crearReserva" id="crearReserva" class="list-group-item">
+                      <i class="fa fa-file-text-o"></i> Crear reserva
+                  </a>
+                  <a href="#" class="list-group-item">
+                      <i class="fa fa-folder-open-o"></i> Reservas hoy
+                  </a>
+                  <a href="#" class="list-group-item">
+                      <i class="fa fa-folder"></i> Visualizar proximas reservas
+                  </a>
+                  <a href="#" name="gestionCanchas" id="gestionCanchas" class="list-group-item">
+                      <i class="fa fa-comment-o"></i> Gestionar canchas
+                  </a>
+                  <a href="{{pathFor 'uploadImages'}}" class="list-group-item">
+                      <i class="fa fa-user"></i> Images
+                  </a>
+                  
+                  <a href="#" class="list-group-item">
+                      <i class="fa fa-bar-chart-o"></i> Estadisticas
+                  </a>
+                </div>        
+            </div>
+    <div class="col-sm-8 col-md-9">
+
+
+      {{#if abrirReserva}}
+        {{> crearReserva}}
+      {{/if}}
+
+      {{#if abrirCanchas}}
+        {{> gestionCancha}}
+      {{/if}} <!-- 		
+        <div class="table-responsive-dashboard" >
+            <table class="table-dashboard">
+                <thead>
+                    <tr>
+                        <th><h4>Hora</h4></th>
+                        <th><h4>Cancha n</h4></th>
+                        <th><h4>Cancha n</h4></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td><h5>9:00</h5></td> <td>asas</td><td>asas</td></tr>                            
+                    <tr><td><h5>10:00</h5></td></tr>
+                    <tr><td><h5>11:00</h5></td></tr>
+                    <tr><td><h5>12:00</h5></td></tr>
+                    <tr><td><h5>13:00</h5></td></tr>
+                    <tr><td><h5>14:00</h5></td></tr>
+                    <tr><td><h5>15:00</h5></td></tr>
+                    <tr><td><h5>16:00</h5></td></tr>
+                    <tr><td><h5>17:00</h5></td></tr>
+                    <tr><td><h5>18:00</h5></td></tr>
+                    <tr><td><h5>19:00</h5></td></tr>
+                    <tr><td><h5>20:00</h5></td></tr>
+                    <tr><td><h5>21:00</h5></td></tr>
+                    <tr><td><h5>22:00</h5></td></tr>
+                    <tr><td><h5>23:00</h5></td></tr>
+                    <tr><td><h5>00:00</h5></td></tr>
+                    <tr><td><h5>01:00</h5></td></tr>
+                </tbody>
+            </table>
+        </div>  
   		<br>		
 		    {{#if recintoSeleccionado}}
   	    	{{>crearReserva}}
@@ -87,7 +119,8 @@
 	  	{{/each}}
 	  	<br>
 	  	<br>
-	  	<br>
+	  	<br>-->
+      </div>
     </div>
-  </div>
+    </div>
 </template>

@@ -26,8 +26,10 @@ Template.crearReserva.events({
         var recinto = recintoId && Recintos.findOne({'_id': recintoId});
         var nombRecinto = recinto && recinto.nombre_recinto;
         var diaString = $(e.target).find('[name=datetimepicker]').val();        
-        var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
+        var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format("L");
+        console.log(diaMoment)
         var dia = new Date(diaMoment);
+        console.log(dia);
                 
         var reserva = {
             _id:Meteor.ObjectId,            
@@ -36,7 +38,7 @@ Template.crearReserva.events({
             nom_recinto:nombRecinto,
             num_cancha:$(e.target).find('[name=nombreCancha]').val(),
             hora_de_juego:$(e.target).find('[name=datetimepicker3]').val(),
-            fecha_de_juegoD:dia,
+            fecha_de_juegoD:diaMoment,
             fecha_de_juego:$(e.target).find('[name=datetimepicker]').val(),
             estado:'Reservada'
         };        
@@ -67,25 +69,32 @@ Template.crearReserva.events({
         };
         
         var partidoId= Partido.insert(partido);
-        Session.set('recinto', null);
+        Session.set('abrirReserva', null);
         alert("Reserva creada");
         
     },
+
+    'click #cancelar': function (event){
+
+        event.preventDefault;
+
+         Session.set('abrirReserva', null);
+    },
     
-  'click [data-picker-handle]': function (event) {
+    'click [data-picker-handle]': function (event) {
 
-    var datetimepicker = $(event.currentTarget).data('pickerHandle');   
-    $(datetimepicker).data('DateTimePicker').toggle();
+      var datetimepicker = $(event.currentTarget).data('pickerHandle');   
+      $(datetimepicker).data('DateTimePicker').toggle();
 
-  },
+    },
 
-  'click [data-for-cancha]': function(event){
+    'click [data-for-cancha]': function(event){
 
-    var $item=$(event.currentTarget);
-    var $target=$($item.data('forCancha'));
+      var $item=$(event.currentTarget);
+      var $target=$($item.data('forCancha'));
 
-    $target.val($item.text());        
-  }
+      $target.val($item.text());        
+    }
   
   });
 

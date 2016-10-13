@@ -45,9 +45,7 @@ Template.ownerRecintos.events({
 	Router.go('editRecinto', {_id: this._id});
 	},
 	'click #dashboardRecinto':function(event){
+		Session.clear();
 		Router.go('dashboard', {_id: this._id});
 	}
 });
-
-
-

@@ -34,7 +34,7 @@ label {
     max-width: 100%;
     margin-bottom: 5px;
     font-weight: bold;
-    color: white;
+    color: black;
     font-size: 22px;
 }
 
@@ -54,9 +54,9 @@ input[type="radio"] {
 }
 
 .btn-propio {
-    color: black;
+    color: white;
     background-color: #1bb3af;
-    border-color: black;
+    border-color: #1bb3af;
 
     margin-left: auto;
     margin-right: auto;
@@ -79,7 +79,7 @@ h2 {
   font-variant: normal;
   font-weight: 400;
   line-height: 38px;
-  color:white;
+  color:black;
 }
 
 h3 {
@@ -93,23 +93,68 @@ h3 {
 }
 /*owner*/
 
-.table-responsive {
+.table-responsive-owner {
     max-width: 90%;
     min-height: .01%;
     overflow-x: auto;
     margin: 0px auto;
+    border: 3px solid #1bb3af;
 }
-.table > thead > tr > th {
+.table-owner > thead > tr > th {
     vertical-align: bottom;
     border-bottom: 3px solid #1bb3af;
     background: white;
+    width: 10%;
 }
-table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+
+
+.table-responsive-canchas{
+    max-width: 100%;
+    min-height: .01%;
+    overflow-x: auto;
+    margin: 0px auto;
+    border: 3px solid #1bb3af;
+}
+.table-canchas > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 3px solid #1bb3af;
+    background: white;
+    width: 10%;
+}
+
+h1, h2, h3, h4, h5, h6 .table-canchas {
+    font-family: inherit;
+    font-weight: 500;
+    line-height: 1.1;
+    color: #555;
+}
+
+
+.table-responsive-dashboard{
+    max-width: 90%;
+    min-height: .01%;
+    overflow-x: auto;
+    margin: 0px auto;
+    border-collapse: collapse;
+    
+}
+
+.table-dashboard > thead > tr > th {
+    vertical-align: bottom;
+    border-bottom: 3px solid black;
+    background: white;
+    border: 2px solid black;
+
+}
+
+
+.table-dashboard > thead > tr > td, .table-dashboard > tbody > tr > td, .table-dashboard > tfoot > tr > td {
     padding: 9px;
     line-height: 1.42857143;
     vertical-align: top;
-    border-top: 3px solid #1bb3af;
     background: white;
+    width: 10%;
+    border: 2px solid black;
 }
 /*Alert*/
 
@@ -406,7 +451,6 @@ body
 {
   margin: 0px;
   padding: 0px;
-  background: #2b2b2b;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 11pt;
   font-weight: 300;
@@ -417,7 +461,7 @@ body
 {
   display: inline-block;
   padding: 1.3em 3em;
-  background: #4d3f92;
+  background: #1bb3af;
   border-radius: 30px;
   -moz-transition: opacity 0.25s ease-in-out;
   -webkit-transition: opacity 0.25s ease-in-out;
@@ -433,7 +477,6 @@ body
 #header-featured
   {
     padding: 10em 0em;
-    background: #2b2b2b;
     background-position: center;
     background-size: cover;
   }
@@ -461,7 +504,7 @@ body
   padding-bottom: 1em;
   font-weight: 400;
   font-size: 3em;
-  color: #FFF;
+  color: #444443;
 }
 
 #banner .button
@@ -470,18 +513,19 @@ body
   border-radius: 50px;
 }
 
-#banner strong
+
+
+#banner p
 {
-  color: #FFF;
+  color: black;
 }
 
 #banner span
 {
   display: block;
-  padding-top: 0.20em;
   text-transform: uppercase;
   font-size: 1.2em;
-  color: #A2A2A2;
+  color: white;
 }
 
 .navbar-inverse .navbar-brand {
@@ -492,11 +536,83 @@ a {
     color: white;
     text-decoration: none;
 }
+#habla_topbar_div {
+    background: #1bb3af
+}
 
-@media screen and (max-width: 700px){
+span.blue {
+  float: left;
+  background: #1bb3af;
+  border-radius: 0.8em;
+  -moz-border-radius: 0.8em;
+  -webkit-border-radius: 0.8em;
+  color: #ffffff;
+  font-weight: bold;
+  line-height: 1.6em;
+  margin-right: 15px;
+  text-align: center;
+  width: 1.6em; 
+}
+
+@media screen and (max-width: 1000px){
 
 #banner h2
 {
   font-size: 2em; 
 }
+
+#header-featured
+  {
+    background-position: center;
+    background-size: cover;
+    padding: 10em 0em;
+  }
+}
+
+@media screen and (max-width: 900px){
+
+  #banner h2
+{
+  font-size: 2em; 
+}
+
+#header-featured
+  {
+    background-position: center;
+    background-size: cover;
+    padding: 10em 0em;
+  }
+}
+
+@media screen and (max-width: 767px){
+
+  #banner h2
+{
+  font-size: 2em; 
+}
+
+#header-featured
+  {
+    background-position: center;
+    background-size: cover;
+    padding: 2em 0em;
+  }
+}
+
+
+
+
+@media screen and (max-width: 500px){
+
+  #banner h2
+{
+  font-size: 2em; 
+}
+
+#header-featured
+  {
+    background-position: center;
+    background-size: cover;
+    padding: 2em 0em;
+  }
 }
