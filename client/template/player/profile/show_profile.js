@@ -443,6 +443,10 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
       console.log('Agregado',agregadoId);
       Meteor.call('addJugadores',agregaId, agregadoId);
   },
+
+  'click #gestionJugador': function(event) {
+      Router.go('gestionJugadores', {_id: Meteor.userId()});
+  }
 });
 
 Template.showProfile.onDestroyed(function() {

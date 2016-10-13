@@ -20,7 +20,8 @@
       {{> partido}}
       <br><br>
       {{#if isUserFacebook}}
-        <legend>Amigos Facebook</legend>
+        <button class="btn btn-default" id="gestionJugador" name="gestionJugador">Gestionar Jugadores</button>
+        <legend>Jugadores de Facebook</legend>
           {{#if amigosfb}}
           {{#each amigosfb}}
             <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>
@@ -29,7 +30,7 @@
             No tienes amigos de Facebook
           {{/if}}
       <br><br>
-      <legend>Amigos Aplicación</legend>        
+      <legend>Jugadores de la Aplicación</legend>        
           {{#if amigosapp}}
           {{#each amigosapp}}
             <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
@@ -40,7 +41,8 @@
           {{/if}}
       <br><br>    
       {{else}}
-      <legend>Amigos Aplicación</legend>        
+      <button class="btn btn-default" id="gestionJugador" name="gestionJugador">Gestionar Jugadores</button>
+      <legend>Jugadores de la Aplicación</legend>        
           {{#if amigosapp}}
           {{#each amigosapp}}
             <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
