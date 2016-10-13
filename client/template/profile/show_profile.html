@@ -19,26 +19,39 @@
       <br><br>
       {{> partido}}
       <br><br>
-      <legend>Amigos Facebook</legend>
-      {{#if amigosfb}}
-      {{#each amigosfb}}
-        <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>
-      {{/each}} 
+      {{#if isUserFacebook}}
+        <legend>Amigos Facebook</legend>
+          {{#if amigosfb}}
+          {{#each amigosfb}}
+            <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>
+          {{/each}} 
+          {{else}}
+            No tienes amigos de Facebook
+          {{/if}}
+      <br><br>
+      <legend>Amigos Aplicación</legend>        
+          {{#if amigosapp}}
+          {{#each amigosapp}}
+            <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
+            {{this.profile.player.position}} <br>
+          {{/each}}
+          {{else}}
+            No tienes amigos de la aplicación
+          {{/if}}
+      <br><br>    
       {{else}}
-        No tienes amigos de Facebook
+      <legend>Amigos Aplicación</legend>        
+          {{#if amigosapp}}
+          {{#each amigosapp}}
+            <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
+            {{this.profile.player.position}} <br>
+          {{/each}}
+          {{else}}
+            No tienes amigos de la aplicación
+          {{/if}}
+      <br><br>    
+      
       {{/if}}
-      <br><br>
-      <legend>Amigos Aplicación</legend>
-        
-        {{#if amigosapp}}
-        {{#each amigosapp}}
-          <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
-          {{this.profile.player.position}} <br>
-        {{/each}}
-        {{else}}
-          No tienes amigos de la aplicación
-        {{/if}}
-      <br><br>
       <h3>Calificaciones</h3>
                 {{#if arquero}}
 

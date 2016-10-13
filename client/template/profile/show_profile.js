@@ -13,60 +13,66 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         return Meteor.users.findOne({_id: this._id});
       },
 
+      isUserFacebook: function(){
+        var user = Meteor.users.findOne({_id: this._id});
+        if (user && user.services && user.services.facebook){
+          return true;
+        }else{
+          return false;
+        }
+
+      },
+
        ownProfile: function () { //devuelve verdadero si el perfil es del usuario logeado, o falso sino lo es
         return this._id === Meteor.userId();
       },
       amigosfb: function () {  
         var usuario = Meteor.users.findOne({_id: use});
-            var array = usuario.profile.friends;          
-            console.log('array friends',array);
-            if(array){
-              var length = array.length;
-              console.log('longitud array',length);
-              var arrayAmigos= [];
-              for(i=0; i<length; i++ ){
-                console.log(! array[i].fb);
-                if(array[i].fb){
-                  var amigosId = array[i].id;
-                  console.log('idAmigos',amigosId);
-                  var amigo = Meteor.users.findOne({_id : amigosId});
-                  console.log('objeto',amigo)
-                  arrayAmigos.push(amigo);
-
-                }
-              } 
-              return arrayAmigos; 
-            } else {
-              return false;
+        var array = usuario.profile.friends;          
+        //console.log('array friends',array);
+        if(array){
+          var length = array.length;
+          //console.log('longitud array',length);
+          var arrayAmigos= [];
+          for(i=0; i<length; i++ ){
+            //console.log(! array[i].fb);
+            if(array[i].fb){
+              var amigosId = array[i].id;
+              //console.log('idAmigos',amigosId);
+              var amigo = Meteor.users.findOne({_id : amigosId});
+              //console.log('objeto',amigo)
+              arrayAmigos.push(amigo);
             }
+          } 
+          return arrayAmigos; 
+        } else {
+          return false;
+        }
       },
 
      amigosapp: function (){
-            var usuario = Meteor.users.findOne({_id: use});
-            var array = usuario.profile.friends;          
-            console.log('array friends',array);
-            if(array){
-              var length = array.length;
-              console.log('longitud array',length);
-              var arrayAmigos= [];
-              for(i=0; i<length; i++ ){
-                console.log(! array[i].fb);
-                if(! array[i].fb){
-                  var amigosId = array[i].id;
-                  console.log('idAmigos',amigosId);
-                  var amigo = Meteor.users.findOne({_id : amigosId});
-                  console.log('objeto',amigo)
-                  arrayAmigos.push(amigo);
-
-                }
-              } 
-              return arrayAmigos; 
-            }else{
-              return false;
-            }       
-            
-
-      },
+      var usuario = Meteor.users.findOne({_id: use});
+      var array = usuario.profile.friends;          
+      //console.log('array friends',array);
+      if(array){
+        var length = array.length;
+        //console.log('longitud array',length);
+        var arrayAmigos= [];
+        for(i=0; i<length; i++ ){
+          //console.log(! array[i].fb);
+          if(! array[i].fb){
+            var amigosId = array[i].id;
+            //console.log('idAmigos',amigosId);
+            var amigo = Meteor.users.findOne({_id : amigosId});
+            //console.log('objeto',amigo)
+            arrayAmigos.push(amigo);
+          }
+        } 
+        return arrayAmigos; 
+      }else{
+        return false;
+      }
+    },
 
       arquero : function() {
          var u = Meteor.users.findOne({_id: this._id});
