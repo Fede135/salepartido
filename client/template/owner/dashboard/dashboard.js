@@ -2,11 +2,13 @@ Template.dashboard.helpers({
 
   reservas: function () {
 
+
+/*
 		var recintoId = this._id;
 		var recinto = recintoId && Recintos.findOne({'_id': recintoId});
 		var nombRecinto = recinto && recinto.nombre_recinto;    
 		var reservas = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"});	
-		return reservas;
+		return reservas;*/
 	},
 
     abrirReserva: function(){
@@ -20,9 +22,20 @@ Template.dashboard.helpers({
 
     	var recinto_Id = Session.get('canchas') && this._id;
       var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id, 'estado_cancha.estado_de_cancha': "Habilitada"});
-
     	return canchas;
 
+    },
+
+    canchas: function(){
+
+      var recintoId = this._id;
+      var canchas = recintoId && Canchas.find({'recintoId':recintoId, 'estado_cancha.estado_de_cancha': "Habilitada"});
+      return canchas;
+    },
+
+    horas: function(){
+      var horas = [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1];
+      return horas;
     }   
 
 });
@@ -65,6 +78,8 @@ Template.dashboard.events({
 });
 
 Template.dashboard.onCreated(function() {
+
+    
   
 });
 

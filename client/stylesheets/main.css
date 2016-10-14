@@ -22,8 +22,6 @@
 
 .container {
     width: 90%;
-    max-width: 1000px;
-    min-width: 400px;
     margin: 0px auto;
    /* box-sizing:border-box;
     padding: */
@@ -488,7 +486,7 @@ body
 #banner
 {
   overflow: hidden;
-  width: 75%;
+  width: 95%;
   text-align: center;
   color: rgba(255,255,255,.7);
   font-size: 1.5em;
