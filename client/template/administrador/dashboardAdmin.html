@@ -1,5 +1,19 @@
 <template name="dashboardAdmin">
   <div class="container">
+    <!--Alert usuario cambiado a Dueño-->
+        <div class="alert alert-info alert-dismissible" role="alert" id="alertDarDueño" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            El rol de este usuario fue cambiado de Jugador a Dueño.
+        </div>
+        <!--Alert usuario cambiado a Jugador-->
+        <div class="alert alert-info alert-dismissible" role="alert" id="alertDarPlayer" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            El rol de este usuario fue cambiado de Dueño a Jugador.
+        </div>
     <div class="row">
     <div class="col-xs-12 col-md-8">            
         <h1>Usuarios dueños</h1>

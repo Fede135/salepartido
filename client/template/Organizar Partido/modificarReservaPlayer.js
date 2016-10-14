@@ -115,7 +115,7 @@ Template.modificarReservaPlayer.events({
         
 
 
-        Reserva.update({_id: this._id}, {$set: 
+       var idReservaUpdate = Reserva.update({_id: this._id}, {$set: 
           {            
             'num_cancha': $('input[name=nombreCancha]').val(), 
             'hora_de_juego': $('input[name=datetimepicker3]').val(),
@@ -124,6 +124,9 @@ Template.modificarReservaPlayer.events({
             'estado':reserva.estado
           }
         });
+
+        //updateReservaForOwnerNotification(idReservaUpdate);
+
 
        /* var partido = { 
           _id:Meteor.ObjectId,
