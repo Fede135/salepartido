@@ -326,24 +326,13 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
        },
        
        isFriend : function(){
-      /*    var ve = Meteor.users.findOne({_id:Meteor.userId()},{'profile.friends':{id:use}});
-          
-          console.log('ayyay:',ve);
-         
-          if(ve){
-            console.log('true')
-            return true;
-          }else{
-            console.log('false')
-            return false;
-          }
-          console.log('boton amigos',ve);*/
+    
           var ve = Meteor.users.findOne({_id:Meteor.userId()});
           var array = ve.profile.friends; 
           if(array){        
-            console.log(array);
+            //console.log(array);
             var length = array.length;
-            console.log(length);
+            //console.log(length);
             var result = false;
             for(i=0; i<length; i++ ){
               if(use === array[i].id){
@@ -363,72 +352,72 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
   'click #resistencia': function(){
     var tipo = "resistencia";
     var ratingResistencia = $('#resistencia').data('userrating');
-    console.log(ratingResistencia);
+    //console.log(ratingResistencia);
     Meteor.call('calif',use,ratingResistencia,tipo);
   },
 
   'click #fairplay': function(){
     var tipo = "fairplay";
     var ratingFairplay = $('#fairplay').data('userrating');
-    console.log(ratingFairplay);
+    //console.log(ratingFairplay);
     Meteor.call('calif',use,ratingFairplay,tipo);
   },
 
   'click #puntualidad': function(){
     var tipo = "puntualidad";
     var ratingPunt = $('#puntualidad').data('userrating');
-    console.log(ratingPunt);
+    //console.log(ratingPunt);
     Meteor.call('calif',use,ratingPunt,tipo);
   },
 
   'click #burradas': function(){
     var tipo = "burradas";
     var ratingBurradas = $('#burradas').data('userrating');
-    console.log(ratingBurradas);
+    //console.log(ratingBurradas);
     Meteor.call('calif',use,ratingBurradas,tipo);
   },
    //Posicion arquero
    'click #reflejos': function(){
     var tipo = "reflejos";
     var ratingReflejos = $('#reflejos').data('userrating');
-    console.log(ratingReflejos);
+    //console.log(ratingReflejos);
     Meteor.call('calif',use,ratingReflejos,tipo);
   },
   'click #atajadas': function(){
     var tipo = "atajadas";
     var ratingAtajadas = $('#atajadas').data('userrating');
-    console.log(ratingAtajadas);
+    //console.log(ratingAtajadas);
     Meteor.call('calif',use,ratingAtajadas,tipo);
   },
    //Otras posiciones
    'click #pase': function(){
     var tipo = "pase";
     var ratingPase = $('#pase').data('userrating');
-    console.log(ratingPase);
+    //console.log(ratingPase);
     Meteor.call('calif',use,ratingPase,tipo);
   },
   'click #defensa': function(){
     var tipo = "defensa";
     var ratingDefensa = $('#defensa').data('userrating');
-    console.log(ratingDefensa);
+    //console.log(ratingDefensa);
     Meteor.call('calif',use,ratingDefensa,tipo);
   },
   'click #gambeta': function(){
     var tipo = "gambeta";
     var ratingGambeta = $('#gambeta').data('userrating');
-    console.log(ratingGambeta);
+    //console.log(ratingGambeta);
     Meteor.call('calif',use,ratingGambeta,tipo);
   },
   'click #rematearco': function(){
     var tipo = "remate";
     var ratingRematearco = $('#rematearco').data('userrating');
-    console.log(ratingRematearco);
+    //console.log(ratingRematearco);
     Meteor.call('calif',use,ratingRematearco,tipo);
   },
   'click #velocidad': function(){
     var tipo = "velocidad";
     var ratingVelocidad = $('#velocidad').data('userrating');
-    console.log(ratingVelocidad);
+    //console.log(ratingVelocidad);
     Meteor.call('calif',use,ratingVelocidad,tipo);
   },
 
@@ -439,13 +428,21 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
   'click #addJugadores': function() {
       var agregadoId = use;
       var agregaId = Meteor.userId();
-      console.log('El que agrega',agregaId);
-      console.log('Agregado',agregadoId);
+      //console.log('El que agrega',agregaId);
+      //console.log('Agregado',agregadoId);
       Meteor.call('addJugadores',agregaId, agregadoId);
   },
 
   'click #gestionJugador': function(event) {
       Router.go('gestionJugadores', {_id: Meteor.userId()});
+  },
+
+  'click #eliminarJugador': function () {
+    
+    Meteor.users.update(Meteor.userId(),{ $pull: { 'profile.friends': { id: this._id,}}});
+    alert('Lo eliminaste de tu lista de jugadores');
+        
+    
   }
 });
 

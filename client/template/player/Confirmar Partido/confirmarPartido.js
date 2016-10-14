@@ -38,9 +38,9 @@ Template.confirmarPartido.helpers({
         var tamañoA = arrayA.length;
         var tamañoB = arrayB.length;
         var ab = tamañoA + tamañoB;
-        console.log('numero',porEquipo);
+        //console.log('numero',porEquipo);
         var total = porEquipo * 2;
-        console.log(total);
+        //console.log(total);
         if(ab === total){ 
             return true;
         }else{
@@ -80,7 +80,7 @@ Template.confirmarPartido.helpers({
 
     suplente : function(){
         var arraySuplente = Partido.findOne(this._id).suplentes;
-        console.log('suplentes',arraySuplente)
+        //console.log('suplentes',arraySuplente)
         if(arraySuplente === undefined || arraySuplente.length === 0){
             console.log('if')
             return false;
@@ -137,7 +137,7 @@ Template.confirmarPartido.helpers({
     },
 
     isConfirmado: function(){
-        console.log('isconfirmado',Roles.userIsInRole( Meteor.userId(),['confirmado'], this._id));
+        //console.log('isconfirmado',Roles.userIsInRole( Meteor.userId(),['confirmado'], this._id));
         return Roles.userIsInRole( Meteor.userId(),['confirmado','host-confirmado','hostsecundario-confirmado'], this._id);
     },
 
@@ -146,7 +146,7 @@ Template.confirmarPartido.helpers({
     },*/
 
     isSuplente: function(){
-        console.log('isusplente',Roles.userIsInRole( Meteor.userId(),['suplente'], this._id));
+        //console.log('isusplente',Roles.userIsInRole( Meteor.userId(),['suplente'], this._id));
         return Roles.userIsInRole( Meteor.userId(),['suplente','host-suplente','hostsecundario-suplente'], this._id);
 
     }
@@ -362,7 +362,7 @@ Template.confirmarPartido.events({
     },
    
 
-    'click #noJuega': function(event){
+    'click #noJuega': function(event){//FALTA SACARLO DEL ARRAY INVITADOS.
 
         var equipoA = Partido.findOne(this._id).equipoA;
         var listaA =_.findWhere(equipoA, {userId: Meteor.user()._id});
@@ -390,7 +390,7 @@ Template.confirmarPartido.events({
     },
 
     'click #invitarJugadores': function(event,t){
-        console.log(event)
+        
         var idpartido = this._id;
         var reserva_id = Partido.findOne(this._id).reserva_id;
         var reserva = Reserva.findOne({'_id': reserva_id});
@@ -400,11 +400,11 @@ Template.confirmarPartido.events({
         var hora = reserva.hora_de_juego;
         var dia = reserva.fecha_de_juego;
         var selected = t.findAll( "input[type=checkbox]:checked");
-        console.log('lo q selecciona',selected);
+        
         var arrayJugadores = _.map(selected, function(item) {
               return item.defaultValue;
         });
-        console.log(arrayJugadores);
+        
         Meteor.call('agregarJugadores',arrayJugadores,idpartido);
         Meteor.call('mailReserva',arrayJugadores, idpartido,dia,hora,recinto,organizador);
         alert('Se invitaron')
@@ -417,7 +417,7 @@ Template.confirmarPartido.events({
         var tamañoA = arrayA.length;
         var tamañoB = arrayB.length;
         var ab = tamañoA + tamañoB;
-        console.log('numero',porEquipo);
+        
         var total = porEquipo * 2;
         console.log(total);
         if(ab === total){       

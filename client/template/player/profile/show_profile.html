@@ -20,11 +20,10 @@
       {{> partido}}
       <br><br>
       {{#if isUserFacebook}}
-        <button class="btn btn-default" id="gestionJugador" name="gestionJugador">Gestionar Jugadores</button>
-        <legend>Jugadores de Facebook</legend>
+      <legend>Jugadores de Facebook</legend>
           {{#if amigosfb}}
           {{#each amigosfb}}
-            <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>
+            <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}},{{this.profile.player.position}}</a> <button type="button" name="eliminarJugador" id="eliminarJugador"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
           {{/each}} 
           {{else}}
             No tienes amigos de Facebook
@@ -34,19 +33,19 @@
           {{#if amigosapp}}
           {{#each amigosapp}}
             <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
-            {{this.profile.player.position}} <br>
+            {{this.profile.player.position}} <button type="button" name="eliminarJugador" id="eliminarJugador"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> <br>
           {{/each}}
           {{else}}
             No tienes amigos de la aplicación
           {{/if}}
       <br><br>    
       {{else}}
-      <button class="btn btn-default" id="gestionJugador" name="gestionJugador">Gestionar Jugadores</button>
+      
       <legend>Jugadores de la Aplicación</legend>        
           {{#if amigosapp}}
           {{#each amigosapp}}
             <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
-            {{this.profile.player.position}} <br>
+            {{this.profile.player.position}} <button type="button" name="eliminarJugador" id="eliminarJugador"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button><br>
           {{/each}}
           {{else}}
             No tienes amigos de la aplicación
