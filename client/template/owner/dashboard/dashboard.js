@@ -30,6 +30,12 @@ Template.dashboard.events({
   	'click #partidoJugado': function (event) {
 		
 		Reserva.update({_id: this._id}, {$set: {'estado': "Jugada"}});
+		var partidoId = Partido.findOne({reserva_id:this._id})._id;
+		var arrayConfirmados = getGroupsForUser(partidoId,[confirmado]);
+		console.log('array de confirmados',arrayConfirmados);
+		arrayConfirmados.forEach(function (e) {
+			setUserRoles(e,['jugoPartido'],partidoId);
+		});
 		alert("Reserva jugada");
 	},
 	'click #cancelarReserva': function(event){
