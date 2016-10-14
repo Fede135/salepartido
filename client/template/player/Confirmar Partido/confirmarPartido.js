@@ -3,6 +3,11 @@ Template.confirmarPartido.onRendered(function () {
      $('#alertReservaCreada').show();
     } else {
      $('#alertReservaCreada').hide();   
+    };
+    if (Session.get('alertReservaActualizada')){
+      $('#alertReservaActualizada').show();
+    } else {
+      $('#alertReservaActualizada').hide();
     }
 })
 
@@ -82,10 +87,10 @@ Template.confirmarPartido.helpers({
         var arraySuplente = Partido.findOne(this._id).suplentes;
         //console.log('suplentes',arraySuplente)
         if(arraySuplente === undefined || arraySuplente.length === 0){
-            console.log('if')
+            //console.log('if')
             return false;
         }else{
-            console.log('else')
+            //console.log('else')
             var array = [];
             arraySuplente.forEach(function(e){
                 var usu = Meteor.users.findOne({_id:e});
@@ -451,5 +456,6 @@ Template.confirmarPartido.events({
 Template.confirmarPartido.onDestroyed( function() {
     Session.set('reserva', null);
     Session.set('alertReservaCreada', undefined);
+    Session.set('alertReservaActualizada', undefined);
 });
 //._first('string')

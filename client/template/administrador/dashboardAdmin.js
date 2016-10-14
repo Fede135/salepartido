@@ -24,7 +24,7 @@ Template.dashboardAdmin.events({
 		
 		Meteor.users.update({_id: this._id}, {$set: {'roles.__global_roles__': ['owner']}});
 	
-		alert("Este usuario "+this.profile.name+" es dueno ahora");
+		$('#alertDarDueño').show();
 		
 	},
 
@@ -34,7 +34,6 @@ Template.dashboardAdmin.events({
 		
 		Meteor.users.update({_id: this._id}, {$set: {'roles.__global_roles__': ['player']}});
 	
-		alert("Este usuario "+this.profile.name+" es jugador ahora");
-		"cambiarRoleAPlayer"
+		$('#alertDarPlayer').show();
 	}
 });

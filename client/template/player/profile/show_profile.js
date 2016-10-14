@@ -74,6 +74,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       }
     },
 
+
       arquero : function() {
          var u = Meteor.users.findOne({_id: this._id});
          var arq = u && u.profile.player && u.profile.player.position;
@@ -320,7 +321,6 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
        
        isOwner : function () {
           var dueño = Roles.userIsInRole(Meteor.userId(), 'owner', 'Roles.GLOBAL_GROUP');
-          console.log(dueño);
           return dueño;
 
        },

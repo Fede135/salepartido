@@ -108,11 +108,14 @@ Template.modificarReservaPlayer.events({
             
           };
 
-        if (Reserva.findOne(selector))
-        return alert("Reserva existente");
+        if (Reserva.findOne(selector)) {
+          $('#alertReservaExistente').show();
+          return false;
+        }
+        
 
 
-        Reserva.update({_id: this._id}, {$set: 
+       var idReservaUpdate = Reserva.update({_id: this._id}, {$set: 
           {            
             'num_cancha': $('input[name=nombreCancha]').val(), 
             'hora_de_juego': $('input[name=datetimepicker3]').val(),
@@ -121,6 +124,9 @@ Template.modificarReservaPlayer.events({
             'estado':reserva.estado
           }
         });
+
+        //updateReservaForOwnerNotification(idReservaUpdate);
+
 
        /* var partido = { 
           _id:Meteor.ObjectId,
@@ -132,20 +138,19 @@ Template.modificarReservaPlayer.events({
         var partidoId=Partido.insert(partido);*/
         var reserva = Reserva.findOne({'_id':this._id});
         var oldHora = reserva.hora_de_juego;
-        console.log('hora vijeja',oldHora);
         var oldDia = reserva.fecha_de_juego;
         var oldRecinto = reserva.nom_recinto;
         var partido = Partido.findOne({reserva_id:this._id});
-        console.log('partido:',partido);
         var idPartido = partido._id;
-        var arrayInvitados = partido.invitados;        
+        var arrayInvitados = partido.invitados; 
+        console.log("arrayInvitados", arrayInvitados);       
         var equipoA = partido.equipoA;
         var equipoB = partido.equipoB;
         var confirmados = _.union(equipoA,equipoB);
         var recinto = $('input[name=nombreRecinto]').val()
         var hora = +$('input[name=datetimepicker3]').val()         
         var host = this.usuarioId
-        if(confirmados.length != 0){
+        if(confirmados.length != 0) {
           var confirCorreo = [];
           confirmados.forEach(function (e) {
             var id = e.userId;
@@ -153,13 +158,17 @@ Template.modificarReservaPlayer.events({
             var correo = usu.emails[0].address;
             confirCorreo.push(correo)
           });
-                    
+
+          modifyInvitationToGameNotificationConfirmados(idPartido, confirCorreo);
+          modifyInvitationToGameNotificationInvitados(idPartido, arrayInvitados);          
           Meteor.call('mailModificacion',confirCorreo,idPartido,diaString,hora,recinto,host,oldHora,oldDia,oldRecinto);
-          alert("Reserva actualizada");       
-          Router.go('confirmarPartido',{_id:idPartido});
-        }else{
           Meteor.call('mailModificacion',arrayInvitados,idPartido,diaString,hora,recinto,host,oldHora,oldDia,oldRecinto);
-          alert("Reserva actualizada");       
+          Session.set('alertReservaActualizada', true);     
+          Router.go('confirmarPartido',{_id:idPartido});
+        } else { 
+          modifyInvitationToGameNotificationInvitados(idPartido, arrayInvitados);
+          Meteor.call('mailModificacion',arrayInvitados,idPartido,diaString,hora,recinto,host,oldHora,oldDia,oldRecinto);
+          Session.set('alertReservaActualizada', true);       
           Router.go('confirmarPartido',{_id:idPartido});
         }
     }

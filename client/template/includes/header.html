@@ -33,7 +33,7 @@
           {{/unless}}
           {{#unless isInRole 'player'}}      <!--Meteor.users.update({_id:"52BjwYmxbWFDTMp7S"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
 
-            {{#if emailsVerified}}      <!--Meteor.users.update({_id:"4AmDooTyvfT9WDton"}, {$set: {'emails.0.verified':true}})    Para dar por verificado un mail de un usuario cualquiera-->
+            {{#if emailsVerified}}      <!--Meteor.users.update({_id:"jnmrMDABMdT9qftZL"}, {$set: {'emails.0.verified':true}})    Para dar por verificado un mail de un usuario cualquiera-->
             <li><a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a></li>
             <li class="dropdown">
               {{> notifications}}
