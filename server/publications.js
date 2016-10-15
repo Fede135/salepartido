@@ -27,9 +27,8 @@ Meteor.publish('partidos', function(){
 	return Partido.find();
 });
 
-Meteor.publish('imagenes', function(){
-
-	return Images.find();
+Meteor.publish('user', function(){	
+	return Meteor.users.find();
 });
 
 Meteor.publish('usersPlayer', function(){
@@ -37,14 +36,15 @@ Meteor.publish('usersPlayer', function(){
 	return Meteor.users.find({'roles.__global_roles__': ['player']});
 });
 
+Meteor.publish('imagenes', function(){
+
+	return Images.find();
+});
 
 Meteor.publish('notifications', function() {
 	return Notifications.find();
 });
 
-Meteor.publish('user', function(){	
-	return Meteor.users.find();
-});
 
 Meteor.publish('calificacion_resistencia', function(){
 
@@ -89,4 +89,20 @@ Meteor.publish('calificacion_defensa', function(){
 Meteor.publish('calificacion_gambeta', function(){
 
 	return Calificacion_gambeta.find();
+});
+
+
+Meteor.publish('calificacion_tiroalarco', function(){
+
+	return Calificacion_tiroalarco.find();
+});
+
+Meteor.publish('calificacion_velocidad', function(){
+
+	return Calificacion_velocidad.find();
+});
+//recinto
+Meteor.publish('calificaciones', function(){
+
+	return Calificaciones.find();
 });
