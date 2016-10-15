@@ -1,18 +1,41 @@
-Template.dashboard.helpers({	
+Template.dashboard.helpers({
 
-	reservas: function () {
+  
 
-		var recintoId = this._id;
+
+/*		var recintoId = this._id;
 		var recinto = recintoId && Recintos.findOne({'_id': recintoId});
-		var nombRecinto = recinto && recinto.nombre_recinto;
+		var nombRecinto = recinto && recinto.nombre_recinto;    
 		var reservas = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"});	
-		
-		return reservas;
-	},
+		return reservas;*/
+	
 
-	recintoSeleccionado: function(){
-      return Session.get('recinto');
-    },   
+    abrirReserva: function(){
+
+    	var reservaGet = Session.get('abrirReserva') && true;
+      return reservaGet;
+
+    },
+
+    abrirCanchas: function(){
+
+    	var recinto_Id = Session.get('canchas') && this._id;
+      var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id, 'estado_cancha.estado_de_cancha': "Habilitada"});
+    	return canchas;
+
+    },
+
+    canchas: function(){
+
+      var recintoId = this._id;
+      var canchas = recintoId && Canchas.find({'recintoId':recintoId, 'estado_cancha.estado_de_cancha': "Habilitada"});
+      return canchas;
+    },
+
+    horas: function(){
+      var horas = [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1];
+      return horas;
+    }   
 
 });
 
@@ -21,40 +44,44 @@ Template.dashboard.events({
 	'click #modificarReserva': function (event) {
 		Router.go('modificarReserva', {_id: this._id});
 	},
-	'click #crearReserva': function(event){
-		var recintoId = this._id;
-		var recinto = recintoId && Recintos.findOne({'_id': recintoId});
+  
+  'click #gestionCanchas': function(event){
 
-    	Session.set('recinto', recinto);
-  	},
+     Session.clear();
+     var canchas = true;
+
+     Session.set('canchas', canchas);
+  },
+
+	'click #crearReserva': function(event){
+
+    Session.clear();
+		var abrirReserva = true;
+		Session.set('abrirReserva', abrirReserva);
+  },
+
   	'click #partidoJugado': function (event) {
 		
 		Reserva.update({_id: this._id}, {$set: {'estado': "Jugada"}});
 		alert("Reserva jugada");
 	},
+
 	'click #cancelarReserva': function(event){
 
 		Reserva.update({_id: this._id}, {$set: {'estado': "Cancelada"}});
 		alert("Reserva cancelada");
 
-  	},
-  	'click #gestionCanchas': function(event){
-		Router.go('gestionCancha', {_id: this._id});
-  	},
+  	}
   	 
   	 
-});
-
-Template.dashboard.onDestroyed( function(){
-
-    Session.set('recinto', null);
-
 });
 
 Template.dashboard.onCreated(function() {
+
+    
   
-  Session.set('recintoErrors', {});
 });
+
 
 /*Meteor.setInterval(function () {
   var now = moment()
@@ -65,3 +92,7 @@ Template.dashboard.onCreated(function() {
   Session.set('date',      now.format('dddd D MMMM'))
   Session.set('timeTitle', now.format('L LT ([GMT]Z)'))
 }, 90000)*/
+
+
+
+

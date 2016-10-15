@@ -1,9 +1,11 @@
 <!-- template donde el header es fijo y la parte del yield es dinámita y se renderiza por el router-->
 <template name = "layout">
-  <div class="container-fluid">
-    {{> header}}
-  </div>
-  <div class="main">
-      {{> yield}}
-  </div>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<div class="container-fluid">
+	    {{> header}}
+	  	<div class="main">
+	      {{> yield}}
+	  	</div>
+  	</div>
+
 </template>

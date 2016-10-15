@@ -1,30 +1,45 @@
 <template name="ownerRecintos">
-  <div class="container">
-    <h3>Tus Recintos</h3>
-    <button type="button" name="uploadRecinto" id="uploadRecinto"> Crear recintos </button>
-    <br>
-    <br>
-    {{#each recinto}}
-        Nombre:{{this.nombre_recinto}}
-        Fecha de creación:{{this.createdAt}}
-         
-        {{#if calificacion}}
-        Promedio de calificación:{{calificacion}}
-        {{else}}
-        Promedio de calificación: Sin calificar
-
-        {{/if}}
-        <button type="button" name= "dashboardRecinto" id="dashboardRecinto"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> </button>
-        <button type="button" name="editRecinto" id="editRecinto"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-        {{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess
-        beforeRemove=beforeRemove class="btn btn-danger"}}
-        
-        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-        {{/quickRemoveButton}}
+   
+    <div class="container-fluid">        
+        <h1 align="center">Tus Recintos</h1>            
+        <row>
+        <button type="button" class="btn btn-propio" name="uploadRecinto" id="uploadRecinto" style= "margin-left: 5%"> Crear recintos </button>
         <br>
-    {{/each}}
-    <br>
-    <br> 
-  </div>
+        </row>
+        <br>
+        <row>
+            <div class="table-responsive-owner" >
+                <table class="table-owner">
+                    <thead>
+                        <tr>
+                            <th><h4>Nombre del recinto</h4></th>
+                            <th><h4>Fecha de creación</h4></th>
+                            <th><h4>Promedio de calificación</h4></th>
+                            <th><h4>Visualizar</h4></th>
+                            <th><h4>Editar</h4></th>
+                            <th><h4>Eliminar</h4></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each recinto}}
+                        <tr>
+                            <td><h5>{{this.nombre_recinto}}</h5></td>
+                            <td><h5>{{this.createdAtString}}</h5></td>
+                            {{#if calificacion}}
+                            <td><h5>{{calificacion}}</h5></td>
+                            {{else}}
+                            <td><h5>Sin calificar</h5></td>
+                            {{/if}}
+                            <td><button type="button" name= "dashboardRecinto" id="dashboardRecinto"> <i class="fa fa-undo fa-lg" aria-hidden="true"></i> </button></td>
+                            <td><button type="button" name="editRecinto" id="editRecinto" > <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
+                            <td>{{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess        beforeRemove=beforeRemove}}
+                            <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+                            {{/quickRemoveButton}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>   
+        </row>
+    </div>
 </template>
-

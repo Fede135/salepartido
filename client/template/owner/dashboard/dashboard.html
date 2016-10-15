@@ -1,56 +1,69 @@
 <template name="dashboard">
-  	<div class="container">
-  		<!-- <h1>{{fecha}}</h1>
-  	
-  		<h1>Hora: {{hora}} </h1> -->
+    <div class="container-fluid">
+      <br>
+        <div class="row">
+		        <div class="col-sm-4 col-md-3 sidebar">
+                <div class="list-group">
+                  <a class="list-group-item">
+                       {{>search}}
+                  </a>
+                  <a href="#" name="crearReserva" id="crearReserva" class="list-group-item">
+                      <i class="fa fa-file-text-o"></i> Crear reserva
+                  </a>
+                  <a href="#" class="list-group-item">
+                      <i class="fa fa-folder-open-o"></i> Reservas hoy
+                  </a>
+                  <a href="#" class="list-group-item">
+                      <i class="fa fa-folder"></i> Visualizar proximas reservas
+                  </a>
+                  <a href="#" name="gestionCanchas" id="gestionCanchas" class="list-group-item">
+                      <i class="fa fa-comment-o"></i> Gestionar canchas
+                  </a>
+                  <a href="{{pathFor 'uploadImages'}}" class="list-group-item">
+                      <i class="fa fa-user"></i> Images
+                  </a>
+                  
+                  <a href="#" class="list-group-item">
+                      <i class="fa fa-bar-chart-o"></i> Estadisticas
+                  </a>
+                </div>        
+            </div>
+    <div class="col-sm-8 col-md-9">
+        
+      {{#if abrirReserva}}
+        {{> crearReserva}}
+      {{/if}}
 
+      {{#if abrirCanchas}}
+        {{> gestionCancha}}
+      {{/if}}
+<!--
+          <div class="table-responsive-dashboard" >
+            <table class="table-dashboard" id="tabla">
+                <thead>
+                   <tr>
+                        <th><h4>Hora</h4></th>
+                        {{#each canchas}}
+                        <th id="{{this.numero}}."> <h4>Cancha {{this.numero}}</h4> </th>
+                        {{/each}}
+                    </tr>
+                </thead>
+                <tbody id='demo'>
+                  {{#each horas}}
+                    <tr id="{{this}}hs">
+                      <td><h5>{{this}}</h5></td>                      
+                    </tr>
+                  {{/each}}
+                </tbody>
+            </table>
+        </div>  
+        
+		-->    
+     
 
-
-  		<div class="form-group">
-  		<button type="button" name="gestionCanchas" id="gestionCanchas" class="btn btn-default">Gestionar Canchas</button>
-  		</div>
-
-  		<h2 align="center">Tus reservas</h2>
-  		<br>
-		<div class="row">	
-			<div class="span5 col-md-5">
-				<div class="form-group">
-					<button type="button" name="crearReserva" id="crearReserva" class="btn btn-success">Crear reserva</button>
-				</div>
-			</div>  
-		</div>
-		<br>
-		{{#if recintoSeleccionado}}
-  	    		{{>crearReserva}}
-  	    {{/if}}
-  	    <div class="row">
-	  	    <div class="form-group">
-            {{> searchReserva}}
-          </div>
-     	</div>
-     	<br>	  	
-	  	{{#each reservas}}
-	  	
-	  		<div class="row">
-	            <div class="span5 col-md-2">
-	                <h4><strong>Usuario:</strong>{{this.nom_usuario}}</h4>
-	            </div>
-	            <div class="span5 col-md-2">
-	                  <h4><strong>Cancha:</strong>{{this.num_cancha}}</h4>
-	            </div>
-	            <div class="span5 col-md-2">
-	                <h4><strong>Fecha:</strong>{{this.fecha_de_juego}}</h4>
-	            </div>
-	            <div class="span5 col-md-2">
-	                <h4><strong>Hora:</strong>{{this.hora_de_juego}}</h4>
-	            </div>
-
-	            <button type="button" name= "modificarReserva" id="modificarReserva">Modificar reserva</button>
-    			<button type="button" name= "cancelarReserva" id="cancelarReserva">Cancelar reserva</button>
-    			<button type="button" name= "partidoJugado" id="partidoJugado">Partido jugado</button>
-	        </div>
-
-	  	
-	  	{{/each}}
-	</div>
+  	    
+  	 
+      </div>
+    </div>
+    </div>
 </template>
