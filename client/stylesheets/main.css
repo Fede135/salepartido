@@ -8,6 +8,11 @@
   color: #4d3f92;
 }
 
+div.bootstrap-datetimepicker-widget.dropdown-menu.usetwentyfour.bottom{
+   
+   color: black;
+ }
+
 .carousel-inner { 
 	text-align: center; 
 	width: 100%;/* la imagen ocupa todo el carrousel*/
@@ -16,8 +21,6 @@
 
 .carousel .item > img { 
 	display: inline-block; 
-	width: 100%;/* la imagen ocupa todo el carrousel*/
-	height: 100%;
 }
 
 .container {
@@ -25,6 +28,11 @@
     margin: 0px auto;
    /* box-sizing:border-box;
     padding: */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: ubun;
+    color: black;
 }
 
 label {
@@ -61,17 +69,15 @@ input[type="radio"] {
 }
 
 h1 {
-  font-family: Aldrich;
   font-size: 40px;
   font-style: normal;
   font-variant: normal;
   font-weight: 400;
   line-height: 48px;
-  color:white;
+  color:black;
 }
 
 h2 {
-  font-family: Aldrich;
   font-size: 30px;
   font-style: normal;
   font-variant: normal;
@@ -81,13 +87,12 @@ h2 {
 }
 
 h3 {
-  font-family: Aldrich;
   font-size: 25px;
   font-style: normal;
   font-variant: normal;
   font-weight: 400;
   line-height: 33px;
-  color:white;
+  color:black;
 }
 /*owner*/
 
@@ -113,20 +118,11 @@ h3 {
     margin: 0px auto;
     border: 3px solid #1bb3af;
 }
-.table-canchas > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 3px solid #1bb3af;
-    background: white;
-    width: 10%;
-}
 
-h1, h2, h3, h4, h5, h6 .table-canchas {
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.1;
-    color: #555;
-}
 
+.table-responsive-canchas h4{
+    font-family: Aldrich;
+}
 
 .table-responsive-dashboard{
     max-width: 90%;
@@ -530,7 +526,7 @@ body
     color: white;
 }
 
-a {
+#login-dropdown-list a {
     color: white;
     text-decoration: none;
 }
