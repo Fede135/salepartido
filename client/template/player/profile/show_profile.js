@@ -117,9 +117,13 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           promedio += array[i];
         }
         promedio = promedio / array.length;
-
-        return promedio;
-      }
+        
+        if(promedio){
+          return promedio;
+        }else{
+          return 0;
+        }   
+      }    
     },
 
   promatajadas: function(){
@@ -132,8 +136,11 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           promedio += array[i];
         }
         promedio = promedio / array.length;
-
-        return promedio;
+        if(promedio){
+          return promedio;
+        }else{
+          return 0;
+        }
       }
     },
       //Comun a todas las posiciones
@@ -147,9 +154,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-          
+        if(promedio){
           return promedio;
+        }else{
+          return 0;
         }
+      }
       },
 
   promfairplay: function(){
@@ -162,9 +172,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-          
+        if(promedio){
           return promedio;
+        }else{
+          return 0;
         }
+      }
       },
   prompuntualidad: function(){
         var cali = Calificacion_puntualidad.findOne({id_user:this._id});
@@ -176,9 +189,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-          
+        if(promedio){
           return promedio;
+        }else{
+          return 0;
         }
+       } 
       },
   promburradas: function(){
         var cali = Calificacion_burradas.findOne({id_user:this._id});
@@ -190,9 +206,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-          
+        if(promedio){
           return promedio;
+        }else{
+          return 0;
         }
+      }
       },
       //Resto de las posiciones
   prompase: function(){
@@ -205,9 +224,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-          
+        if(promedio){
           return promedio;
+        }else{
+          return 0;
         }
+      }
       },
   promdefensa: function(){
         var cali = Calificacion_defensa.findOne({id_user:this._id});
@@ -220,8 +242,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           
+        if(promedio){
           return promedio;
+        }else{
+          return 0;
         }
+      }
       },
   promgambeta: function(){
         var cali = Calificacion_gambeta.findOne({id_user:this._id});
@@ -233,9 +259,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-          
+        if(promedio){
           return promedio;
+        }else{
+          return 0;
         }
+      }
       },
 
   promrematearco: function(){
@@ -248,9 +277,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      
-      return promedio;
-    }
+      if(promedio){
+          return promedio;
+        }else{
+          return 0;
+        }
+      }
   },
 
   promvelocidad: function(){
@@ -263,9 +295,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio += array[i];
       }
       promedio = promedio / array.length;
-      
-      return promedio;
-    }
+       if(promedio){
+          return promedio;
+        }else{
+          return 0;
+        }
+      }
   },
 
 
