@@ -1,15 +1,14 @@
 Template.dashboard.helpers({
 
-  reservas: function () {
+  
 
 
-/*
-		var recintoId = this._id;
+/*		var recintoId = this._id;
 		var recinto = recintoId && Recintos.findOne({'_id': recintoId});
 		var nombRecinto = recinto && recinto.nombre_recinto;    
 		var reservas = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"});	
 		return reservas;*/
-	},
+	
 
     abrirReserva: function(){
 

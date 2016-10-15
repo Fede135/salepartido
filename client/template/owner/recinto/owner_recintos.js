@@ -38,7 +38,6 @@ Template.ownerRecintos.helpers({
 
 Template.ownerRecintos.events({
 	'click #uploadRecinto': function (event) {
-		console.log("Asasa")
 		Router.go('uploadRecinto', {_id: this._id});
 	},
 	'click #editRecinto': function(event) {

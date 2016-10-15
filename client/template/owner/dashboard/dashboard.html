@@ -1,6 +1,6 @@
 <template name="dashboard">
     <div class="container-fluid">
-        <h2 align="center">Tus reservas</h2>
+      <br>
         <div class="row">
 		        <div class="col-sm-4 col-md-3 sidebar">
                 <div class="list-group">
@@ -29,62 +29,40 @@
                 </div>        
             </div>
     <div class="col-sm-8 col-md-9">
-
-
+        
       {{#if abrirReserva}}
         {{> crearReserva}}
       {{/if}}
 
       {{#if abrirCanchas}}
         {{> gestionCancha}}
-      {{/if}}  		
-        <!--
-        <div class="table-responsive-dashboard" >
-            <table class="table-dashboard">
+      {{/if}}
+<!--
+          <div class="table-responsive-dashboard" >
+            <table class="table-dashboard" id="tabla">
                 <thead>
-                    <tr>
+                   <tr>
                         <th><h4>Hora</h4></th>
                         {{#each canchas}}
-                        <th><h4>Cancha {{this.numero}}</h4></th>
+                        <th id="{{this.numero}}."> <h4>Cancha {{this.numero}}</h4> </th>
                         {{/each}}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id='demo'>
                   {{#each horas}}
-                    <tr><td><h5>{{this}}</h5></td></tr>
-                  {{/each}}    
+                    <tr id="{{this}}hs">
+                      <td><h5>{{this}}</h5></td>                      
+                    </tr>
+                  {{/each}}
                 </tbody>
             </table>
         </div>  
-  		<br>		
-		    
+        
+		-->    
+     
 
   	    
-  	    	
-	  	{{#each reservas}}	  	
-	  		<div class="row">
-	        <div class="span5 col-md-2">
-	            <h4><strong>Usuario:</strong>{{this.nom_usuario}}</h4>
-	        </div>
-	        <div class="span5 col-md-2">
-	            <h4><strong>Cancha:</strong>{{this.num_cancha}}</h4>
-	        </div>
-	        <div class="span5 col-md-2">
-	            <h4><strong>Fecha:</strong>{{this.fecha_de_juego}}</h4>
-	        </div>
-	        <div class="span5 col-md-2">
-	            <h4><strong>Hora:</strong>{{this.hora_de_juego}}</h4>
-	        </div>
-
-	        <button type="button" name= "modificarReserva" id="modificarReserva">Modificar reserva</button>
-    			<button type="button" name= "cancelarReserva" id="cancelarReserva">Cancelar reserva</button>
-    			<button type="button" name= "partidoJugado" id="partidoJugado">Partido jugado</button>
-	      </div>
-	  	
-	  	{{/each}}
-	  	<br>
-	  	<br>
-	  	<br>-->
+  	 
       </div>
     </div>
     </div>
