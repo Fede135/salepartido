@@ -90,7 +90,7 @@
                   <div class="btn-group" role="group" aria-label="...">
 
                   {{#if disponibleA}}
-                    {{#if puedeConfirmar}}
+                    {{#if isInvitado}}
                       <button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
                       <br>
                     {{/if}}
@@ -111,7 +111,7 @@
                     {{/if}}
                   
                   {{#if disponibleB}}
-                    {{#if puedeConfirmar}}
+                    {{#if isInvitado}}
                       <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
                       <br>
                     {{/if}}
@@ -139,10 +139,12 @@
             Sin suplentes
           {{/if}} 
           <br>   
-          
-          <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
-          <br>
-          
+          {{#unless isNoJuega}}
+            <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
+            <br>
+          {{else}}
+            Dijiste que no querías jugar, pero puedes comunicarte con el organizador para que vuelva a invitarte.
+          {{/unless}}
           <div>
           {{#if isHostHostSecundario}}
             <h4>Invitar más jugadores.</h4>
@@ -151,8 +153,23 @@
                 
                 {{#each jugadoresNoInvitados}}
                                 
-                  <input type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
-                
+                  <input type="checkbox" id="checkboxFriends" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
+
+                  {{#if isHost}}
+                    <div id="checkboxRolesDiv">
+                        <input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host <br>
+                    </div>
+                        <!--Se agrega este script para ocultar o mostrar el checkbox host dependiendo si el amigo fue seleccionado o no. Falta ver como hacer para que funcione bien, queda comentado-->
+                    <script> 
+                        var elem = document.getElementById('checkboxRolesDiv'),
+                        checkBox = document.getElementById('checkboxFriends');
+                        checkBox.checked = false;
+                        checkBox.onchange = function doruc() {
+                        elem.style.display = this.checked ? 'inline' : 'none';
+                        };
+                        checkBox.onchange();
+                    </script>
+                  {{/if}}
                 {{/each}} 
 
                 <button type="button" name="invitarJugadores" id="invitarJugadores" class="btn btn-default">Invitar</button>
