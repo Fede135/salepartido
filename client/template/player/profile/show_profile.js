@@ -342,7 +342,17 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     }
     return result;
   },
-
+  cantidadPartidosJugados: function(){
+    var reserva = Reserva.find({estado : "Jugada"});
+    var arrayPartidos=[];
+    reserva.forEach(function (e) {
+      var recintoId= e._id
+      var partido = Partido.findOne({recinto_id: recintoId});
+      arrayPartidos.push(partido)
+    });
+    var cantidad = arrayPartidos.count();
+    return cantidad;
+  },
   partidosJugados: function(){
     var reserva = Reserva.find({estado : "Jugada"});
     var arrayPartidos=[];

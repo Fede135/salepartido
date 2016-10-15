@@ -9,17 +9,28 @@
       </div>
       
       <!--muestro datos del usuario-->
-      <div class="row">{{user.profile.name}}</div>
+      <div class="row">
+      <div class="col-xs-6">
+      <div class="row"><h1>{{user.profile.name}}</h1></div>
+      <div class="row">{{user.profile.player.position}}</div>
+      <div class="row">{{user.profile.player.foot}}</div>
+      <div class="row">{{user.profile.player.height}}</div>
+      <div class="row">{{user.profile.player.weight}}</div>
       <div class="row">{{age}}</div>
       <div class="row">{{place}}</div>
-      <br><br>
-    {{#if ownProfile}} <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
-         
-      <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button>
-      <br><br>
+      {{#if ownProfile}}
+       <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
+      <div class="row"> <button class="btn btn-primary" id="login-buttons-edit-profile">Editar Perfil</button></div>
+      {{/if}}
+      </div> 
+    
+     
+     <div class="col-xs-6">
+     {{#if ownProfile}}
       <!-- <legend>Partidos a los que estas invitado</legend> -->
       <!-- ############################################################################################## -->
-      <row>
+
+      <div class="row">
         <div><!-- hacer responsive -->
           <table>
             <caption>Partidos a los que estas invitado</caption>
@@ -43,10 +54,10 @@
             </tbody>
           </table>
         </div>  
-      </row> 
+      </div> 
       <br>
       <!-- ##############################################################3 -->
-      <row>
+      <div class="row">
         <div><!-- hacer responsive -->
           <table>
             <caption>Partidos pendientes</caption>
@@ -72,10 +83,10 @@
             </tbody>
           </table>
         </div>  
-      </row> 
+      </div> 
       <br>
       <!-- ################################################################### -->
-      <row>
+      <div class="row">
         <div><!-- hacer responsive -->
           <table>
             <caption>Pertidos jugados</caption>
@@ -99,12 +110,141 @@
             </tbody>
           </table>
         </div>  
-      </row> 
+      </div> 
+    {{/if}}
+    </div>
+    </div>
+    {{#if ownProfile}}
     <!-- ######################################################################################### -->
       <!-- {{> partido}} lo que estaba antes -->
       <br><br>
+   
+      <div class="row">
+      <h3>Calificaciones</h3>
+                {{#if arquero}}
+                      <div class="col-xs-6">
+                      <!-- calificaciones comunes a todas las posiciones-->
+                       <h3>Puntualidad</h3>{{prompuntualidad}}
+                      {{#if prompuntualidad}}
+                        {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+
+                      <h3>Resistencia</h3>{{promresistencia}}
+                      {{#if promresistencia}}
+                        {{> starsRating rating=promresistencia class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+
+                      <h3>Fair Play</h3>{{promfairplay}}
+                      {{#if promfairplay}}
+                        {{> starsRating rating=promfairplay class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}                     
+                      </div>
+                      <div class="col-xs-6">
+                      <h3>Burradas</h3>{{promburradas}}
+                      {{#if promburradas}}
+                        {{> starsRating rating=promburradas class="estrella" size='sm'}}
+                      {{else}}
+                       {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+                      <!-- Arquero -->
+                      <h3>Reflejos</h3>{{promreflejos}}
+                      {{#if promreflejos}}
+                        {{> starsRating rating=promreflejos class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}                       
+
+                      <h3>Atajadas</h3>{{promatajadas}}
+                      {{#if promatajadas}}
+                        {{> starsRating rating=promatajadas class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+                      </div>
+                      
+              {{else}}
+                       <!-- calificaciones comunes a todas las posiciones-->
+                       <div class="col-xs-6">
+                       <h3>Puntualidad</h3>{{prompuntualidad}}
+                      {{#if prompuntualidad}}
+                        {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
+                      {{else}}
+                       {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+                      
+                      <h3>Resistencia</h3>{{promresistencia}}
+                      {{#if promresistencia}}
+                        {{> starsRating rating=promresistencia class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+
+                      <h3>Fair Play</h3>{{promfairplay}}
+                      {{#if promfairplay}}
+                        {{> starsRating rating=promfairplay class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}                  
+
+                      <h3>Burradas</h3>{{promburradas}}
+                      {{#if promburradas}}
+                        {{> starsRating rating=promburradas class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+                      <!-- Otras posiciones -->
+                      <h3>Pase</h3>{{prompase}}
+                      {{#if prompase}}
+                        {{> starsRating rating=prompase class="estrella" size='sm'}}
+                      {{else}}
+                       {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+                    </div>
+                    <div class="col-xs-6">
+                      <h3>Defensa</h3>{{promdefensa}}
+                      {{#if promdefensa}}
+                        {{> starsRating rating=promdefensa class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+
+                      <h3>Gambeta</h3>{{promgambeta}}
+                      {{#if promgambeta}}
+                        {{> starsRating rating=promgambeta class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+
+                      <h3>Remate al arco</h3>{{promrematearco}}
+                      {{#if promrematearco}}
+                        {{> starsRating rating=promrematearco class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+
+                      <h3>Velocidad</h3>{{promvelocidad}}
+                      {{#if promvelocidad}}
+                        {{> starsRating rating=promvelocidad class="estrella" size='sm'}}
+                      {{else}}
+                        {{> starsRating rating=0 size='sm'}}
+                      {{/if}}
+                    </div>
+
+            {{/if}}
+            </div>
+            <br>
+            <br>
+            <div class="row">
       {{#if isUserFacebook}}
-      <row>
+      <div class="col-xs-6">
+      
+      
         <legend>Jugadores de Facebook</legend>        
         {{#if amigosfb}}
         <div>    
@@ -130,10 +270,12 @@
         {{else}}<!-- if amigosfb -->
             No tienes amigos de Facebook
         {{/if}}<!-- if amigosfb -->
-      </row>
+      </div>    
+
       <br><br>
       <!-- ########################################################################################### -->
-      <row>
+      <div class="col-xs-6">
+      
         <legend>Jugadores de la Aplicación</legend>        
         {{#if amigosapp}}
         <div>    
@@ -159,10 +301,13 @@
         {{else}}<!-- if amigosapp -->
             No tienes amigos de la aplicación
         {{/if}}<!-- if amigosapp -->
-      </row>
+      
+      </div>
+      
       <br><br>    
       <!-- ############################################################################################### -->
       {{else}}<!-- If isUserFacebook -->
+      <div class="col-xs-6">
       <row>
         <legend>Jugadores de la Aplicación</legend>        
         {{#if amigosapp}}
@@ -190,142 +335,39 @@
             No tienes amigos de la aplicación
         {{/if}}
       </row>
-      <br><br>    
-      <!-- ################################################################################################### -->
+      </div>
+      <br><br>          
+      
       {{/if}}<!-- If isUserFacebook -->
-      <h3>Calificaciones</h3>
-                {{#if arquero}}
-
-                      <!-- calificaciones comunes a todas las posiciones-->
-                       <h3>Puntualidad</h3>
-                      {{#if prompuntualidad}}
-                        {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-
-                      <h3>Resistencia</h3>
-                      {{#if promresistencia}}
-                        {{> starsRating rating=promresistencia class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-
-                      <h3>Fair Play</h3>
-                      {{#if promfairplay}}
-                        {{> starsRating rating=promfairplay class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}                     
-
-                      <h3>Burradas</h3>
-                      {{#if promburradas}}
-                        {{> starsRating rating=promburradas class="estrella" size='sm'}}
-                      {{else}}
-                       {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-                      <!-- Arquero -->
-                      <h3>Reflejos</h3>
-                      {{#if promreflejos}}
-                        {{> starsRating rating=promreflejos class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-                       
-
-                      <h3>Atajadas</h3>
-                      {{#if promatajadas}}
-                        {{> starsRating rating=promatajadas class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-                      
-              {{else}}
-                       <!-- calificaciones comunes a todas las posiciones-->
-                       <h3>Puntualidad</h3>
-                      {{#if prompuntualidad}}
-                        {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
-                      {{else}}
-                       {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-                      
-                      <h3>Resistencia</h3>
-                      {{#if promresistencia}}
-                        {{> starsRating rating=promresistencia class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-
-                      <h3>Fair Play</h3>
-                      {{#if promfairplay}}
-                        {{> starsRating rating=promfairplay class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}                  
-
-                      <h3>Burradas</h3>
-                      {{#if promburradas}}
-                        {{> starsRating rating=promburradas class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-                      <!-- Otras posiciones -->
-                      <h3>Pase</h3>
-                      {{#if prompase}}
-                        {{> starsRating rating=prompase class="estrella" size='sm'}}
-                      {{else}}
-                       {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-
-                      <h3>Defensa</h3>
-                      {{#if promdefensa}}
-                        {{> starsRating rating=promdefensa class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-
-                      <h3>Gambeta</h3>
-                      {{#if promgambeta}}
-                        {{> starsRating rating=promgambeta class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-
-                      <h3>Remate al arco</h3>
-                      {{#if promrematearco}}
-                        {{> starsRating rating=promrematearco class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-
-                      <h3>Velocidad</h3>
-                      {{#if promvelocidad}}
-                        {{> starsRating rating=promvelocidad class="estrella" size='sm'}}
-                      {{else}}
-                        {{> starsRating rating=0 size='sm'}}
-                      {{/if}}
-
-            {{/if}}
+      </div>
 
     {{else}}  <!-- sino muestra para que se ingresen comentarios sobre ese usuario y lo califiquen-->
               <!-- Cuando ves otro perfil -->
+     <br>
+     <br>
+     <div class="row">         
         {{#if isFriend}} 
           Ya esta en tu lista de jugadores.
         {{else}}          
           <button type="button" name="addJugadores" id="addJugadores" class="btn btn-default">Agregar a tu lista de Jugadores</button>
         {{/if}} 
-      
+    </div>
+                <div class="row">
                  {{#if arquero}}
+
                     {{#if isOwner}}
-                           <h3>Puntualidad</h3>                   
+                      <div class="col-xs-6">
+                           <h3>Puntualidad</h3>{{prompuntualidad}}                   
                         {{#if tieneVotoPunt}}
                           {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
                         {{/if}}
+                      </div>
                     {{else}}
+                      <div class="col-xs-6">
                         <!-- calificaciones comunes a todas las posiciones-->
-                           <h3>Puntualidad</h3>
+                           <h3>Puntualidad</h3>{{prompuntualidad}}
                                                
                         {{#if tieneVotoPunt}}
                           {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
@@ -333,21 +375,22 @@
                           {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                         
-                        <h3>Resistencia</h3>
+                        <h3>Resistencia</h3>{{promresistencia}}
                         {{#if tieneVotoRes}}
                           {{> starsRating rating=promresistencia class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
                         {{/if}}
 
-                        <h3>Fair Play</h3>
+                        <h3>Fair Play</h3>{{promfairplay}}
                         {{#if tieneVotoFair}}
                           {{> starsRating rating=promfairplay class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='fairplay' class="estrella" mutable=true size='lg'}}
                         {{/if}}
-                       
-                        <h3>Burradas</h3>
+                    </div>
+                    <div class="col-xs-6">
+                        <h3>Burradas</h3>{{promburradas}}
                         {{#if tieneVotoBurr}}
                           {{> starsRating rating=promburradas class="estrella" size='sm'}}
                         {{else}}
@@ -355,99 +398,110 @@
                         {{/if}}
 
                            <!-- Arquero -->
-                        <h3>Reflejos</h3>
+                        <h3>Reflejos</h3>{{promreflejos}}
                         {{#if tieneVotoRe}}
                           {{> starsRating rating=promreflejos class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='reflejos' class="estrella" mutable=true size='lg'}}
                         {{/if}}
 
-                        <h3>Atajadas</h3>
+                        <h3>Atajadas</h3>{{promatajadas}}
                         {{#if tieneVotoAt}}
                           {{> starsRating rating=promatajadas class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='atajadas' class="estrella" mutable=true size='lg'}}
                         {{/if}}
+                    </div>
                   {{/if}}
                     
                 {{else}}
                     {{#if isOwner}}
+                      <div class="col-xs-6">
                          <!-- calificaciones comunes a todas las posiciones-->
-                           <h3>Puntualidad</h3>
+                           <h3>Puntualidad</h3>{{prompuntualidad}}
                         {{#if tieneVotoPunt}}
                           {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
                         {{/if}}
+                      </div>
                     {{else}}
+                    <div class="col-xs-6">
                         <!-- calificaciones comunes a todas las posiciones-->
-                           <h3>Puntualidad</h3>
+                           <h3>Puntualidad</h3>{{prompuntualidad}}
                         {{#if tieneVotoPunt}}
                           {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                         
-                         <h3>Resistencia</h3>
+                         <h3>Resistencia</h3>{{promresistencia}}
                         {{#if tieneVotoRes}}
                           {{> starsRating rating=promresistencia class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
                         {{/if}}
 
-                        <h3>Fair Play</h3>
+                        <h3>Fair Play</h3>{{promfairplay}}
                         {{#if tieneVotoFair}}
                           {{> starsRating rating=promfairplay class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='fairplay' class="estrella" mutable=true size='lg'}}
                         {{/if}}                      
 
-                        <h3>Burradas</h3>
+                        <h3>Burradas</h3>{{promburradas}}
                         {{#if tieneVotoBurr}}
                           {{> starsRating rating=promburradas class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                         <!-- Otras posiciones -->
-                        <h3>Pase</h3>
+                        <h3>Pase</h3>{{prompase}}
                         {{#if tieneVotoPa}}
                           {{> starsRating rating=prompase class="estrella" size='sm'}}
                         {{else}}
                          {{> starsRating id='pase' class="estrella" mutable=true size='lg'}}
                         {{/if}}
-
-                        <h3>Defensa</h3>
+                      </div>
+                      <div class="col-xs-6">
+                        <h3>Defensa</h3>{{promdefensa}}
                         {{#if tieneVotoDef}}
                           {{> starsRating rating=promdefensa class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}}
                         {{/if}}
 
-                        <h3>Gambeta</h3>
+                        <h3>Gambeta</h3>{{promgambeta}}
                         {{#if tieneVotoGam}}
                           {{> starsRating rating=promgambeta class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}}
                         {{/if}}
 
-                        <h3>Remate al arco</h3>
+                        <h3>Remate al arco</h3>{{promrematearco}}
                         {{#if tieneVotoRema}}
                           {{> starsRating rating=promrematearco class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}}
                         {{/if}}
 
-                        <h3>Velocidad</h3>
+                        <h3>Velocidad</h3>{{promvelocidad}}
                         {{#if tieneVotoVel}}
                           {{> starsRating rating=promvelocidad class="estrella" size='sm'}}
                         {{else}}
                           {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}}
                         {{/if}}
+                      </div>
                   {{/if}}
                {{/if}} 
+            </div>  
+
+    {{/if}} 
+
+    {{#unless ownProfile}}
+    
       {{> enterCommentsForPlayers}}
-  
-  {{/if}}
+    {{/unless}}    
 
     <br><br>
     <section id="comentarios">{{> showCommentsPlayers}} <!-- se muestran los comentarios hechos sobre el perfil que se esta viendo--></section>
