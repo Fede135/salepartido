@@ -52,6 +52,8 @@ Template.reservasHoy.helpers({
       var recintoId = this._id;
       var canchas = recintoId && Canchas.find({'recintoId':recintoId, 'estado_cancha.estado_de_cancha': "Habilitada"});
       return canchas;
+    },
+    reserva: function(){
     }   
 
 });
