@@ -28,35 +28,19 @@
                   </a>
                 </div>        
             </div>
-    <div class="col-sm-8 col-md-9">
-      {{#if abrirReserva}}
-        {{> crearReserva}}
-      {{/if}}
+            <div class="col-sm-8 col-md-9">
+              {{#if tablaReserva}}
+                {{> reservasHoy}}
+              {{/if}}
 
-      {{#if abrirCanchas}}
-        {{> gestionCancha}}
-      {{/if}}
+              {{#if abrirReserva}}
+                {{> crearReserva}}
+              {{/if}}
 
-          <div class="table-responsive-dashboard" >
-            <table class="table-dashboard" name="tabla" id="tabla">
-                <thead>
-                   <tr>
-                      <th><h4 align="center">Hora</h4></th>
-                      {{#each canchas}}
-                      <th id="{{this.numero}}."> <h4 align="center">Cancha {{this.numero}}</h4> </th>
-                      {{/each}}
-                   </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
-        </div>  
-              
-     
-
-  	    
-  	 
-      </div>
-    </div>
+              {{#if abrirCanchas}}
+                {{> gestionCancha}}
+              {{/if}}
+            </div>
+        </div>
     </div>
 </template>

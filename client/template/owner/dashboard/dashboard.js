@@ -1,8 +1,8 @@
 Template.dashboard.helpers({
 
-  tablaReserva: function(){
+    tablaReserva: function(){
 
-    var tabla = Session.get(tabla);
+      var tabla = Session.get('tabla') && true;
     return tabla;
 },
 
@@ -55,7 +55,8 @@ Template.dashboard.events({
   'click #reservasHoy': function(event){
 
     Session.clear();
-    Session.get(tabla);
+    var tabla = true;
+    Session.set('tabla', tabla);
   },
 
 	'click #crearReserva': function(event){
@@ -82,75 +83,11 @@ Template.dashboard.events({
 });
 
 Template.dashboard.onRendered(function() {
-
-    var recinto_Id = this.data._id;
-    var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id, 'estado_cancha.estado_de_cancha': "Habilitada"}).count();
-    var horas = [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1];
-    var filas = horas.length;
-    var tabla =document.getElementById('tabla').getElementsByTagName('tbody')[0];
-  
-    for(var i = 0; i < filas; i++){
-        var tr = tabla.insertRow();
-        for(var j = 0; j <= canchas; j++){
-            
-                var td = tr.insertCell();
-                var primerElemento = _.first(horas, [1])
-                if(i == 0 && j == 0 ){
-                td.appendChild(document.createTextNode(primerElemento));
-                }else{
-                  if(i <= filas && j == 0){
-                    var rest =_.rest(horas)
-                    var rest1 = _.first(rest)
-                    td.appendChild(document.createTextNode(rest1));
-                    horas.splice(1,1);
-                  }
-                  else{
-                  td.appendChild(document.createTextNode(""));  
-                  }
-                }
-                td.style.border = '1px solid black';
-                
-        }
-    }
+    var tabla = true;
     Session.set('tabla', tabla);
-/*
-    var recinto_Id = this._id;
-    var canchas = recinto_Id && Canchas.find({'recintoId':recinto_Id, 'estado_cancha.estado_de_cancha': "Habilitada"}).count();
-    var horas = [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1];
-    var filas = horas.length;
-    var tabla =document.getElementById('tabla').getElementsByTagName('tbody')[0];
-    console.log(tabla)
-    for(var i = 1; i <= filas; i++){
-      var tr = tabla.insertRow();
-        for(var j = 1; j <= canchas; j++){
-                var td = tr.insertCell();
-                td.appendChild(document.createTextNode('Cell'));
-                td.style.border = '1px solid black';
-                
-            }
-        }
-        tabla.appendChild(tr);*/
+   
 });
-/*
-function tableCreate(filas,canchas){ 
-    console.log(tabla)
-    var filas=filas;
-    var columnas=canchas;
-    var body = document.body;
-    console.log(tabla)
-    for(var i = 0; i < filas; i++){
-        var tr = tabla.insertRow();
-        for(var j = 0; j < columnas; j++){
-            
-                var td = tr.insertCell();
-                td.appendChild(document.createTextNode('Cell'));
-                td.style.border = '1px solid black';
-                
-            }
-        }
-        body.appendChild(tbl);
 
-}
 
 
 

@@ -1,0 +1,16 @@
+<template name="reservasHoy">
+	<div class="table-responsive-dashboard" >
+        <table class="table-dashboard" name="tabla" id="tabla">
+            <thead>
+                <tr>
+                    <th><h4 align="center">Hora</h4></th>
+					{{#each canchas}}
+                    	<th id="{{this.numero}}Cancha"> <h4 align="center">Cancha {{this.numero}}</h4> </th>
+                	{{/each}}
+            	</tr>
+            </thead>
+            <tbody>
+        	</tbody>
+        </table>
+    </div>  
+</template>
