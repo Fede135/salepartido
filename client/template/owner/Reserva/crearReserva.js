@@ -69,7 +69,9 @@ Template.crearReserva.events({
         };
         
         var partidoId= Partido.insert(partido);
-        Session.set('abrirReserva', null);
+        Session.clear();
+        var tabla = true;
+        Session.set('tabla', tabla);
         alert("Reserva creada");
         
     },

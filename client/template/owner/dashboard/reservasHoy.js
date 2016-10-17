@@ -44,6 +44,18 @@ Template.reservasHoy.onRendered(function() {
         }
     }
     Session.set('tabla', tabla);
+
+    var recinto = recinto_Id && Recintos.findOne({'_id': recinto_Id});
+    var nombRecinto = recinto && recinto.nombre_recinto;
+    var reservasArray = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"}).fetch();
+    var cantReservas = reservasArray && reservasArray.length;
+    for(var z=0 ; z <= cantReservas ; z++){
+    var resIndividual = reservasArray[z];
+    var nomUsuarioRes = resIndividual && resIndividual.nom_usuario;
+    var nomUsuarioReservaString = nomUsuarioRes && nomUsuarioRes.toString();
+    var tdReserva = nomUsuarioReservaString && document.getElementById(resIndividual.hora_de_juego+"Hora"+resIndividual.num_cancha+"Cancha");
+     tdReserva && tdReserva.appendChild(document.createTextNode(nomUsuarioReservaString));
+    }
 });
 
 Template.reservasHoy.helpers({
