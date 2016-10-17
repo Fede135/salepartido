@@ -13,7 +13,7 @@ AutoForm.addHooks(
           return arr.toString().replace(/,/g, "");
         });
         docModificado = {
-          commentToPlayer: docFiltrado,
+          commentToEnclosure: docFiltrado,
           toEnclosureId: doc.toEnclosureId,
         };
         return docModificado;

@@ -35,9 +35,12 @@ Meteor.publish('notifications', function() {
 
 Meteor.publish('commentsForPlayers', function() {
 	return CommentsForPlayers.find();
-})
+});
 
 Meteor.publish('user', function(){	
 	return Meteor.users.find();
 });
 
+Meteor.publish('commentsForEnclosure', function() {
+	return CommentsForEnclosure.find();
+})
