@@ -10,7 +10,7 @@
       
       <!--muestro datos del usuario-->
       <div class="row">
-      <div class="col-xs-6">
+      <div class="col-md-6">           
       <div class="row"><h1>{{user.profile.name}}</h1></div>
       <div class="row">{{user.profile.player.position}}</div>
       <div class="row">{{user.profile.player.foot}}</div>
@@ -25,13 +25,14 @@
       </div> 
     
      
-     <div class="col-xs-6">
+     <div class="col-md-6">
      {{#if ownProfile}}
       <!-- <legend>Partidos a los que estas invitado</legend> -->
       <!-- ############################################################################################## -->
 
       <div class="row">
         <div><!-- hacer responsive -->
+        {{#if partidosInvitado}}
           <table>
             <caption>Partidos a los que estas invitado</caption>
             <thead>
@@ -53,12 +54,17 @@
               {{/each}}
             </tbody>
           </table>
+          <a href="{{pathFor 'partidos' _id=this._id}}">Ver más</a>
+          {{else}}
+            <h4>No te han invitado a ningún partido.Organizá uno!</h4>
+          {{/if}}
         </div>  
       </div> 
       <br>
       <!-- ##############################################################3 -->
       <div class="row">
         <div><!-- hacer responsive -->
+          {{#if partidosPendientes}}
           <table>
             <caption>Partidos pendientes</caption>
             <thead>
@@ -82,12 +88,16 @@
               {{/each}}
             </tbody>
           </table>
+          {{else}}
+          <h4>No tenes partidos pendientes</h4>
+          {{/if}}
         </div>  
       </div> 
       <br>
       <!-- ################################################################### -->
       <div class="row">
         <div><!-- hacer responsive -->
+          {{#if partidosJugados}}
           <table>
             <caption>Pertidos jugados</caption>
             <thead>
@@ -109,8 +119,13 @@
               {{/each}}
             </tbody>
           </table>
+          {{else}}
+            <h4>No has jugado ningún partido</h4>
+          {{/if}}
         </div>  
       </div> 
+    {{else}}
+      {{> showCommentsPlayers}} 
     {{/if}}
     </div>
     </div>
@@ -122,7 +137,7 @@
       <div class="row">
       <h3>Calificaciones</h3>
                 {{#if arquero}}
-                      <div class="col-xs-6">
+                      <div class="col-md-6">
                       <!-- calificaciones comunes a todas las posiciones-->
                        <h3>Puntualidad</h3>{{prompuntualidad}}
                       {{#if prompuntualidad}}
@@ -145,7 +160,7 @@
                         {{> starsRating rating=0 size='sm'}}
                       {{/if}}                     
                       </div>
-                      <div class="col-xs-6">
+                      <div class="col-md-6">
                       <h3>Burradas</h3>{{promburradas}}
                       {{#if promburradas}}
                         {{> starsRating rating=promburradas class="estrella" size='sm'}}
@@ -170,7 +185,7 @@
                       
               {{else}}
                        <!-- calificaciones comunes a todas las posiciones-->
-                       <div class="col-xs-6">
+                       <div class="col-md-6">
                        <h3>Puntualidad</h3>{{prompuntualidad}}
                       {{#if prompuntualidad}}
                         {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
@@ -206,7 +221,7 @@
                        {{> starsRating rating=0 size='sm'}}
                       {{/if}}
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-md-6">
                       <h3>Defensa</h3>{{promdefensa}}
                       {{#if promdefensa}}
                         {{> starsRating rating=promdefensa class="estrella" size='sm'}}
@@ -242,7 +257,7 @@
             <br>
             <div class="row">
       {{#if isUserFacebook}}
-      <div class="col-xs-6">
+      <div class="col-md-6">
       
       
         <legend>Jugadores de Facebook</legend>        
@@ -274,7 +289,7 @@
 
       <br><br>
       <!-- ########################################################################################### -->
-      <div class="col-xs-6">
+      <div class="col-md-6">
       
         <legend>Jugadores de la Aplicación</legend>        
         {{#if amigosapp}}
@@ -307,7 +322,7 @@
       <br><br>    
       <!-- ############################################################################################### -->
       {{else}}<!-- If isUserFacebook -->
-      <div class="col-xs-6">
+      <div class="col-md-6">
       <row>
         <legend>Jugadores de la Aplicación</legend>        
         {{#if amigosapp}}
@@ -356,7 +371,7 @@
                  {{#if arquero}}
 
                     {{#if isOwner}}
-                      <div class="col-xs-6">
+                      <div class="col-md-6">
                            <h3>Puntualidad</h3>{{prompuntualidad}}                   
                         {{#if tieneVotoPunt}}
                           {{> starsRating rating=prompuntualidad class="estrella" size='sm'}}
@@ -365,7 +380,7 @@
                         {{/if}}
                       </div>
                     {{else}}
-                      <div class="col-xs-6">
+                      <div class="col-md-6">
                         <!-- calificaciones comunes a todas las posiciones-->
                            <h3>Puntualidad</h3>{{prompuntualidad}}
                                                
@@ -389,7 +404,7 @@
                           {{> starsRating id='fairplay' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-xs-6">
+                    <div class="col-md-6">
                         <h3>Burradas</h3>{{promburradas}}
                         {{#if tieneVotoBurr}}
                           {{> starsRating rating=promburradas class="estrella" size='sm'}}
@@ -416,7 +431,7 @@
                     
                 {{else}}
                     {{#if isOwner}}
-                      <div class="col-xs-6">
+                      <div class="col-md-6">
                          <!-- calificaciones comunes a todas las posiciones-->
                            <h3>Puntualidad</h3>{{prompuntualidad}}
                         {{#if tieneVotoPunt}}
@@ -426,7 +441,7 @@
                         {{/if}}
                       </div>
                     {{else}}
-                    <div class="col-xs-6">
+                    <div class="col-md-6">
                         <!-- calificaciones comunes a todas las posiciones-->
                            <h3>Puntualidad</h3>{{prompuntualidad}}
                         {{#if tieneVotoPunt}}
@@ -463,7 +478,7 @@
                          {{> starsRating id='pase' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                       </div>
-                      <div class="col-xs-6">
+                      <div class="col-md-6">
                         <h3>Defensa</h3>{{promdefensa}}
                         {{#if tieneVotoDef}}
                           {{> starsRating rating=promdefensa class="estrella" size='sm'}}
@@ -504,6 +519,6 @@
     {{/unless}}    
 
     <br><br>
-    <section id="comentarios">{{> showCommentsPlayers}} <!-- se muestran los comentarios hechos sobre el perfil que se esta viendo--></section>
+    <!-- se muestran los comentarios hechos sobre el perfil que se esta viendo-->
   </div>
 </template>

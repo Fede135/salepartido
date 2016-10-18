@@ -24,11 +24,11 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
   },
 
   ownProfile: function () { //devuelve verdadero si el perfil es del usuario logeado, o falso sino lo es
-        return this._id === Meteor.userId();
-      },
+    return this._id === Meteor.userId();
+  },
   amigosfb: function () {  
-        var usuario = Meteor.users.findOne({_id: use});
-        var array = usuario.profile.friends;          
+    var usuario = Meteor.users.findOne({_id: use});
+    var array = usuario.profile.friends;          
         //console.log('array friends',array);
         if(array){
           var length = array.length;
@@ -50,7 +50,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         }
       },
 
-  amigosapp: function (){
+      amigosapp: function (){
         var usuario = Meteor.users.findOne({_id: use});
         var array = usuario.profile.friends;          
       //console.log('array friends',array);
@@ -74,7 +74,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       }
     },
 
-  arquero : function() {
+    arquero : function() {
      var u = Meteor.users.findOne({_id: this._id});
      var arq = u && u.profile.player && u.profile.player.position;
      if(arq === "Arquero") {
@@ -85,29 +85,29 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
    },
 
   place : function() {  // se buscan datos del usuario del cual se esta viendo el perfil
-        var user = Meteor.users.findOne({_id: this._id});
-        var profile = user && user.profile;
-        var locality = profile && profile.country && profile.country.locality;
-        var province = profile && profile.country && profile.country.province;
-        var country = profile && profile.country && profile.country.country;
-        var place = country && (locality + ", " + province + ", " + country + ".");
+    var user = Meteor.users.findOne({_id: this._id});
+    var profile = user && user.profile;
+    var locality = profile && profile.country && profile.country.locality;
+    var province = profile && profile.country && profile.country.province;
+    var country = profile && profile.country && profile.country.country;
+    var place = country && (locality + ", " + province + ", " + country + ".");
 
-        return place;
-      },
+    return place;
+  },
 
   age : function(){ //se calcula la edad del usuario del cual se esta viendo el perfil
-        var user = Meteor.users.findOne({_id: this._id});
-        var profile = user && user.profile;
-        var birth = profile && profile.birthday;
-        var today = new Date();
-        var diffMs = birth && Math.abs(today.getTime() - birth.getTime());
-        var diffDays = diffMs && Math.ceil(diffMs / (1000*3600*24));
-        var age = diffDays && ("Edad: " + Math.floor(diffDays / 361));
+    var user = Meteor.users.findOne({_id: this._id});
+    var profile = user && user.profile;
+    var birth = profile && profile.birthday;
+    var today = new Date();
+    var diffMs = birth && Math.abs(today.getTime() - birth.getTime());
+    var diffDays = diffMs && Math.ceil(diffMs / (1000*3600*24));
+    var age = diffDays && ("Edad: " + Math.floor(diffDays / 361));
 
-        return age;
-      },
+    return age;
+  },
     //Posicion arquero
-  promreflejos: function(){
+    promreflejos: function(){
       var cali = Calificacion_reflejo.findOne({id_user:this._id});
       if(cali){
         var array = cali.votes;
@@ -126,7 +126,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       }    
     },
 
-  promatajadas: function(){
+    promatajadas: function(){
       var cali = Calificacion_atajadas.findOne({id_user:this._id});
       if(cali){
         var array = cali.votes;
@@ -144,7 +144,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       }
     },
       //Comun a todas las posiciones
-  promresistencia: function(){
+      promresistencia: function(){
         var cali = Calificacion_resistencia.findOne({id_user:this._id});
         if(cali){
           var array = cali.votes;
@@ -154,15 +154,15 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-        if(promedio){
-          return promedio;
-        }else{
-          return 0;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
         }
-      }
       },
 
-  promfairplay: function(){
+      promfairplay: function(){
         var cali = Calificacion_fairplay.findOne({id_user:this._id});
         if(cali){
           var array = cali.votes;
@@ -172,14 +172,14 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-        if(promedio){
-          return promedio;
-        }else{
-          return 0;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
         }
-      }
       },
-  prompuntualidad: function(){
+      prompuntualidad: function(){
         var cali = Calificacion_puntualidad.findOne({id_user:this._id});
         if(cali){
           var array = cali.votes;
@@ -189,14 +189,14 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-        if(promedio){
-          return promedio;
-        }else{
-          return 0;
-        }
-       } 
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
+        } 
       },
-  promburradas: function(){
+      promburradas: function(){
         var cali = Calificacion_burradas.findOne({id_user:this._id});
         if(cali){
           var array = cali.votes;
@@ -206,15 +206,15 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-        if(promedio){
-          return promedio;
-        }else{
-          return 0;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
         }
-      }
       },
       //Resto de las posiciones
-  prompase: function(){
+      prompase: function(){
         var cali = Calificacion_pase.findOne({id_user:this._id});
         if(cali){
           var array = cali.votes;
@@ -224,14 +224,14 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-        if(promedio){
-          return promedio;
-        }else{
-          return 0;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
         }
-      }
       },
-  promdefensa: function(){
+      promdefensa: function(){
         var cali = Calificacion_defensa.findOne({id_user:this._id});
         if(cali){
           var array = cali.votes;
@@ -242,14 +242,14 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           
-        if(promedio){
-          return promedio;
-        }else{
-          return 0;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
         }
-      }
       },
-  promgambeta: function(){
+      promgambeta: function(){
         var cali = Calificacion_gambeta.findOne({id_user:this._id});
         if(cali){
           var array = cali.votes;
@@ -259,112 +259,112 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
             promedio += array[i];
           }
           promedio = promedio / array.length;
-        if(promedio){
-          return promedio;
-        }else{
-          return 0;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
         }
-      }
       },
 
-  promrematearco: function(){
-    var cali = Calificacion_tiroalarco.findOne({id_user:this._id});
-    if(cali){
-      var array = cali.votes;
-      var promedio = 0;
+      promrematearco: function(){
+        var cali = Calificacion_tiroalarco.findOne({id_user:this._id});
+        if(cali){
+          var array = cali.votes;
+          var promedio = 0;
 
-      for( i=0; i<array.length; i++ ){
-        promedio += array[i];
-      }
-      promedio = promedio / array.length;
-      if(promedio){
-          return promedio;
-        }else{
-          return 0;
+          for( i=0; i<array.length; i++ ){
+            promedio += array[i];
+          }
+          promedio = promedio / array.length;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
         }
-      }
-  },
+      },
 
-  promvelocidad: function(){
-    var cali = Calificacion_velocidad.findOne({id_user:this._id});
-    if(cali){
-      var array = cali.votes;
-      var promedio = 0;
+      promvelocidad: function(){
+        var cali = Calificacion_velocidad.findOne({id_user:this._id});
+        if(cali){
+          var array = cali.votes;
+          var promedio = 0;
 
-      for( i=0; i<array.length; i++ ){
-        promedio += array[i];
-      }
-      promedio = promedio / array.length;
-       if(promedio){
-          return promedio;
-        }else{
-          return 0;
+          for( i=0; i<array.length; i++ ){
+            promedio += array[i];
+          }
+          promedio = promedio / array.length;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
         }
-      }
-  },
+      },
 
 
-  tieneVotoRe: function () {
-    var re = Calificacion_reflejo.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    if(re)
-      return true;
-    else
-      return false;
-  },
-  tieneVotoAt: function () {
-    var at = Calificacion_atajadas.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return at;
-  },
-  tieneVotoRes: function () {
-    var res = Calificacion_resistencia.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return res;
-  },
-  tieneVotoFair: function () {    
-    var fair = Calificacion_fairplay.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return fair;
-  },
-  tieneVotoPunt: function () {
-    var punt= Calificacion_puntualidad.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return punt;
-  },
-  tieneVotoBurr :function () {
-    var burr = Calificacion_burradas.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return burr;
-  },
-  tieneVotoPa: function () {
-    var pa = Calificacion_pase.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    
-    return pa;
-  },
-  tieneVotoDef: function () {
-    var def = Calificacion_defensa.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return def;
-  },
-  tieneVotoGam : function () {
-    var gam = Calificacion_gambeta.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return gam;
-  },
-  tieneVotoRema: function (){
-    var rema = Calificacion_tiroalarco.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return rema;
-  },
-  tieneVotoVel: function() {
-    var vel = Calificacion_velocidad.findOne({id_user:this._id, upvotes: Meteor.userId() });
-    return vel;
-  },
+      tieneVotoRe: function () {
+        var re = Calificacion_reflejo.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        if(re)
+          return true;
+        else
+          return false;
+      },
+      tieneVotoAt: function () {
+        var at = Calificacion_atajadas.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return at;
+      },
+      tieneVotoRes: function () {
+        var res = Calificacion_resistencia.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return res;
+      },
+      tieneVotoFair: function () {    
+        var fair = Calificacion_fairplay.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return fair;
+      },
+      tieneVotoPunt: function () {
+        var punt= Calificacion_puntualidad.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return punt;
+      },
+      tieneVotoBurr :function () {
+        var burr = Calificacion_burradas.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return burr;
+      },
+      tieneVotoPa: function () {
+        var pa = Calificacion_pase.findOne({id_user:this._id, upvotes: Meteor.userId() });
 
-  isOwner : function () {
-    var dueño = Roles.userIsInRole(Meteor.userId(), 'owner', 'Roles.GLOBAL_GROUP');
-    console.log(dueño);
-    return dueño;
+        return pa;
+      },
+      tieneVotoDef: function () {
+        var def = Calificacion_defensa.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return def;
+      },
+      tieneVotoGam : function () {
+        var gam = Calificacion_gambeta.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return gam;
+      },
+      tieneVotoRema: function (){
+        var rema = Calificacion_tiroalarco.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return rema;
+      },
+      tieneVotoVel: function() {
+        var vel = Calificacion_velocidad.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return vel;
+      },
 
-  },
+      isOwner : function () {
+        var dueño = Roles.userIsInRole(Meteor.userId(), 'owner', 'Roles.GLOBAL_GROUP');
+        console.log(dueño);
+        return dueño;
 
-  isFriend : function(){
+      },
 
-    var ve = Meteor.users.findOne({_id:Meteor.userId()});
-    var array = ve.profile.friends; 
-    if(array){        
+      isFriend : function(){
+
+        var ve = Meteor.users.findOne({_id:Meteor.userId()});
+        var array = ve.profile.friends; 
+        if(array){        
       //console.log(array);
       var length = array.length;
       //console.log(length);
@@ -378,7 +378,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return result;
   },
   cantidadPartidosJugados: function(){
-    var reserva = Reserva.find({estado : "Jugada"});
+    var reserva = Reserva.find({estado : "Jugada"}, {sort: {'fecha_de_juego':-1}, limit:3});
     var arrayPartidos=[];
     reserva.forEach(function (e) {
       var recintoId= e._id
@@ -389,58 +389,147 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return cantidad;
   },
   partidosJugados: function(){
-    var reserva = Reserva.find({estado : "Jugada"});
+    var reserva = Reserva.find({estado : "Jugada"}).fetch();
     var arrayPartidos=[];
-    reserva.forEach(function (e) {
-      var recintoId= e._id
-      var partido = Partido.findOne({recinto_id: recintoId});
-      arrayPartidos.push(partido)
-    });
-    var arrayPartidosJugo=[];
-    arrayPartidos.forEach(function (e) {
-      var partidoId= e._id;
-      if(Roles.userIsInRole( Meteor.userId(),['jugoPartido'], partidoId)){
-        arrayPartidosJugo.push(partidoId);
-      
+    if(reserva.length != 0){
+      reserva.forEach(function (e) {
+        var recintoId= e._id
+        var partido = Partido.findOne({recinto_id: recintoId});
+        arrayPartidos.push(partido)
+      });
+      var arrayPartidosJugo=[];
+      if(arrayPartidos.length === 0){
+        return false;
+      }else if(arrayPartidos.length === 1){      
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['jugoPartido'], partidoId)){
+            arrayPartidosJugo.push(partidoId);      
+          }else{
+            return false;
+          }
+        });
+        return arrayPartidosJugo;
+      }else if (arrayPartidos.length === 2){
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['jugoPartido'], partidoId)){
+            arrayPartidosJugo.push(partidoId);      
+          }else{
+            return false;
+          }
+        });
+      }else if (arrayPartidos.length >= 3){
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['jugoPartido'], partidoId)){
+            arrayPartidosJugo.push(partidoId);      
+          }else{
+            return false;
+          }
+        });      
+        var ultimo3 = arrayPartidosJugo.slice(Math.max(arrayPartidosJugo.length - 3, 1));
+        return ultimo3;
       }
-    });
-    return arrayPartidosJugo;
+    }else{
+      return false;
+    }
   },
   partidosInvitado: function(){
-    var reserva = Reserva.find({estado : "Reservada"});
+    var reserva = Reserva.find({estado : "Reservada"}).fetch();
     var arrayPartidos=[];
-    reserva.forEach(function (e) {
-      var recintoId= e._id
-      var partido = Partido.findOne({recinto_id: recintoId});
-      arrayPartidos.push(partido)
-    });
-    var arrayPartidosInvitado=[];
-    arrayPartidos.forEach(function (e) {
-      var partidoId= e._id;
-      if(Roles.userIsInRole( Meteor.userId(),['invitado'], partidoId)){
-        arrayPartidosInvitado.push(partidoId);
-      
+    if(reserva.length != 0){
+      reserva.forEach(function (e) {
+        var recintoId= e._id
+        var partido = Partido.findOne({recinto_id: recintoId});
+        arrayPartidos.push(partido)
+      });
+      var arrayPartidosInvitado=[];
+      if(arrayPartidos.length === 0){
+        return false;
+      }else if(arrayPartidos.length === 1){      
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['invitado'], partidoId)){
+            arrayPartidosInvitado.push(partidoId);      
+          }else{
+            return false;
+          }
+        });
+        return arrayPartidosInvitado;
+      }else if (arrayPartidos.length === 2){
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['invitado'], partidoId)){
+            arrayPartidosInvitado.push(partidoId);      
+          }else{
+            return false;
+          }
+        });
+      }else if (arrayPartidos.length >= 3){
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['invitado'], partidoId)){
+            arrayPartidosInvitado.push(partidoId);      
+          }else{
+            return false;
+          }
+        });      
+        var ultimo3 = arrayPartidosInvitado.slice(Math.max(arrayPartidosInvitado.length - 3, 1));
+        return ultimo3;
       }
-    });
-    return arrayPartidosInvitado;
+    }else{
+      return false;
+    }
   },
+
+
   partidosPendientes: function(){
-    var reserva = Reserva.find({estado : "Reservada"});
+    var reserva = Reserva.find({estado : "Reservada"}).fetch();
     var arrayPartidos=[];
-    reserva.forEach(function (e) {
-      var recintoId= e._id
-      var partido = Partido.findOne({recinto_id: recintoId});
-      arrayPartidos.push(partido)
-    });
-    var arrayPartidosPendientes=[];
-    arrayPartidos.forEach(function (e) {
-      var partidoId= e._id;
-      if(Roles.userIsInRole( Meteor.userId(),['confirmado'], partidoId)){
-        arrayPartidosPendientes.push(partidoId);
-      
+    if(reserva.length != 0){
+      reserva.forEach(function (e) {
+        var recintoId= e._id
+        var partido = Partido.findOne({recinto_id: recintoId});
+        arrayPartidos.push(partido)
+      });
+      var arrayPartidosPendientes=[];
+      if(arrayPartidos.length === 0){
+        return false;
+      }else if(arrayPartidos.length === 1){      
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['confirmado'], partidoId)){
+            arrayPartidosPendientes.push(partidoId);      
+          }else{
+            return false;
+          }
+        });
+        return arrayPartidosPendientes;
+      }else if (arrayPartidos.length === 2){
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['confirmado'], partidoId)){
+            arrayPartidosPendientes.push(partidoId);      
+          }else{
+            return false;
+          }
+        });
+      }else if (arrayPartidos.length >= 3){
+        arrayPartidos.forEach(function (e) {
+          var partidoId= e._id;
+          if(Roles.userIsInRole( Meteor.userId(),['confirmado'], partidoId)){
+            arrayPartidosPendientes.push(partidoId);      
+          }else{
+            return false;
+          }
+        });      
+        var ultimo3 = arrayPartidosPendientes.slice(Math.max(arrayPartidosPendientes.length - 3, 1));
+        return ultimo3;
       }
-    });
-    return arrayPartidosPendientes;
+    }else{
+      return false;
+    }
   },
   dia: function(){
     var reservaDia = Reserva.findOne({_id: this.reserva_id}).fecha_de_juego;
@@ -455,19 +544,19 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return  reservaRecinto;
   },
   cancha: function(){
-     var reservaCancha = Reserva.findOne({_id: this.reserva_id}).num_cancha;
-     return reservaCancha
-  },
-  isHost :function(){
+   var reservaCancha = Reserva.findOne({_id: this.reserva_id}).num_cancha;
+   return reservaCancha
+ },
+ isHost :function(){
       //this._id es el id del partido que viene del each de partidos pendientes
       if(Roles.userIsInRole( Meteor.userId(),['host','hostSecundario'], this._id)){
         return true;
       }else{
         return false;
       }
-  },
+    },
 
-});
+  });
 
 Template.showProfile.events({  //al hacer click en el boton editar se redirige al template editProfile y se le pasa el _id del usuario del cual quiere editar su perfil
 
@@ -547,33 +636,33 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
   },
 
   'click #login-buttons-edit-profile': function(event) {
-      Router.go('editProfile', {_id: Meteor.userId()});
+    Router.go('editProfile', {_id: Meteor.userId()});
   },
 
   'click #addJugadores': function() {
-      var agregadoId = use;
-      var agregaId = Meteor.userId();
+    var agregadoId = use;
+    var agregaId = Meteor.userId();
       //console.log('El que agrega',agregaId);
       //console.log('Agregado',agregadoId);
       Meteor.call('addJugadores',agregaId, agregadoId);
-  },
+    },
 
-  'click #gestionJugador': function(event) {
+    'click #gestionJugador': function(event) {
       Router.go('gestionJugadores', {_id: Meteor.userId()});
-  },
+    },
 
-  'click #eliminarJugador': function () {
-    
-    Meteor.users.update(Meteor.userId(),{ $pull: { 'profile.friends': { id: this._id,}}});
-    alert('Lo eliminaste de tu lista de jugadores');     
-    
-  },
+    'click #eliminarJugador': function () {
 
-  'click #modificarReservaPlayer': function () {
-    Router.go('modificarReservaPlayer', {_id: this.reserva_id});        
-    
-  },
-});
+      Meteor.users.update(Meteor.userId(),{ $pull: { 'profile.friends': { id: this._id,}}});
+      alert('Lo eliminaste de tu lista de jugadores');     
+
+    },
+
+    'click #modificarReservaPlayer': function () {
+      Router.go('modificarReservaPlayer', {_id: this.reserva_id});        
+
+    },
+  });
 
 Template.showProfile.onDestroyed(function() {
   Session.set('alertPerfilEditado', undefined);
