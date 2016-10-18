@@ -115,28 +115,34 @@
                       <button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
                       <br>
                     {{/if}}
+                    {{#if isEquipoA}}
+                        <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
+                      {{/if}}
                   {{else}}
+                    {{#if isEquipoA}}
+                      <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
+                    {{/if}}
                     <h3>Equipo A completo</h3>                     
                   {{/if}}
-                  {{#if isEquipoA}}
-                      <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
-                  {{/if}}
+                  
                   </div>
               </div>  
               <div class="span5 col-md-3">                  
               </div>
               <div class="span5 col-md-4">
                   <div class="btn-group" role="group" aria-label="...">
+                  {{#if disponibleB}}
                     {{#if isEquipoB}}
                       <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-danger">Eliminar de equipo B</button> 
                     {{/if}}
-                  
-                  {{#if disponibleB}}
                     {{#if isInvitado}}
-                      <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
-                      <br>
+                        <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
+                        <br>
                     {{/if}}
                   {{else}}
+                    {{#if isEquipoB}}
+                        <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-danger">Eliminar de equipo B</button> 
+                    {{/if}}
                     <h3>Equipo B completo</h3>                   
                   {{/if}}     
                   </div>

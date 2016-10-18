@@ -31,7 +31,7 @@ Meteor.methods({
     invitado.forEach( function(element) {
       var player = Meteor.users.findOne({'emails.0.address': element});
       var invitadoId = player._id;
-      if(Roles.isInRole(player._id, 'noJuega', partidoId)) {
+      if(Roles.userIsInRole(player._id, 'noJuega', partidoId)) {
         Roles.removeUsersFromRoles(player._id, 'noJuega', this._id);
       };
       Roles.addUsersToRoles(invitadoId, 'invitado', partidoId);
