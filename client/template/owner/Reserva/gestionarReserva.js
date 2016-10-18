@@ -31,17 +31,28 @@ Template.gestionarReserva.events({
    		var datetimepicker = $(event.currentTarget).data('pickerHandle');   
     	$(datetimepicker).data('DateTimePicker').toggle();
 
-  	},
+  },
 
-  	'click #datetimepicker': function(event){
+  'click #datetimepicker': function(event){
 
-  		event.preventDefault();
-  		$('#datetimepicker').on('dp.change', function (event) {
-  			var fecha = event.date.format('L');
-  			var diaMoment = moment(fecha, 'DD/MM/YYYY', true).format();
-        var dia = new Date(diaMoment); 
-  			Session.set('dia', dia);
+  	event.preventDefault();
+  	$('#datetimepicker').on('dp.change', function (event) {
+  		var fecha = event.date.format('L');
+  		var diaMoment = moment(fecha, 'DD/MM/YYYY', true).format();
+       var dia = new Date(diaMoment); 
+  		Session.set('dia', dia);
 		})
-  	}  	 
+  },
+  
+  'click #modificarReserva': function (event) {
+    Router.go('modificarReserva', {_id: this._id});
+  },
+
+  'click #cancelarReserva': function(event){
+
+    Reserva.update({_id: this._id}, {$set: {'estado': "Cancelada"}});
+    alert("Reserva cancelada");
+
+  }  	 
 
 });

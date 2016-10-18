@@ -35,10 +35,9 @@
                                 <td><h5 align="center">{{this.fecha_de_juego}}</h5></td>
                                 <td><h5 align="center">{{this.num_cancha}}</h5></td>
                                 <td><h5 align="center">{{this.hora_de_juego}}</h5></td>
-                                <td><button type="button" name="editReserva" id="editReserva" align="center"> <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
-                                <td>{{#quickRemoveButton collection="Reserva" _id=this._id onError=onError onSuccess=onSuccess        beforeRemove=beforeRemove}}
-                                <i class="fa fa-times fa-lg" aria-hidden="true"></i>
-                                {{/quickRemoveButton}}</td>
+                                <td><button type="button" name="modificarReserva" id="modificarReserva" align="center"> <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
+                                <td><button type="button" name="cancelarReserva" id="cancelarReserva" align="center"><i class="fa fa-times fa-lg" aria-hidden="true"></i></button>
+                                </td>
                             </tr>
                         {{/each}}
                 	</tbody>

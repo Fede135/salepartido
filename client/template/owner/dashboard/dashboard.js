@@ -38,10 +38,6 @@ Template.dashboard.helpers({
 
 Template.dashboard.events({
 
-	'click #modificarReserva': function (event) {
-		Router.go('modificarReserva', {_id: this._id});
-	},
-  
   'click #gestionCanchas': function(event){
 
      Session.clear();
@@ -75,15 +71,7 @@ Template.dashboard.events({
 		
 		Reserva.update({_id: this._id}, {$set: {'estado': "Jugada"}});
 		alert("Reserva jugada");
-	},
-
-	'click #cancelarReserva': function(event){
-
-		Reserva.update({_id: this._id}, {$set: {'estado': "Cancelada"}});
-		alert("Reserva cancelada");
-
-  	}
-  	 
+	} 	 
   	 
 });
 
