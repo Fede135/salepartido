@@ -107,11 +107,11 @@
 
 					    <br>  
 				 		<div class="span5 col-md-5">
-							<div class="checkbox">
+							
 
 							<h4>Invitar Amigos</h4>
 								{{#each amigos}}
-																	
+							<div class="checkbox">										
 									<input id="checkboxFriends" type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
 									
 									<div id="checkboxRolesDiv">
@@ -123,13 +123,13 @@
 										checkBox = document.getElementById('checkboxFriends');
 										checkBox.checked = false;
 										checkBox.onchange = function doruc() {
-										elem.style.display = this.checked ? 'list-item' : 'none';
+										elem.style.display = this.checked ? 'block' : 'none';
 										};
 										checkBox.onchange();
 									</script>
-
-								{{/each}} 
 							</div>
+								{{/each}} 
+							
 				 		</div> 	   
 
 					</div>
