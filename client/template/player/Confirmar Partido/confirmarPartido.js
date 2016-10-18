@@ -381,13 +381,9 @@ Template.confirmarPartido.events({
             var cantB = equipoB.length;
             
             if (_.contains(equipoA, Meteor.userId())) {
-                console.log("antes1",cantA);
                 var p = Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
-                console.log("antes2",cantA);
                 var cantA =  _.pluck(p.equipoA, 'userId' ).length;
-                console.log(cantA);
                 var arraySuplentes= Partido.findOne(this._id).suplentes;
-                console.log("condicion de a", (cantA < numero && arraySuplentes.length !=0))
                 if(cantA < numero && arraySuplentes.length !=0) {
                 var primerSuplente = _.first(arraySuplentes);
                 var primerSuplente = Meteor.users.findOne({_id:primerSuplente});
@@ -406,11 +402,8 @@ Template.confirmarPartido.events({
             }
             
             if (_.contains(equipoB, Meteor.userId())) {
-                console.log("antes1",cantB);
                 var p = Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
-                console.log("antes2",cantB);
                 var cantB = _.pluck(p.equipoB, 'userId' ).length;
-                console.log(cantB);
                 var arraySuplentes= Partido.findOne(this._id).suplentes;
                 console.log("condicion de b",(cantB < numero && arraySuplentes.length !=0));
                 if(cantB < numero && arraySuplentes.length !=0) {  
@@ -448,8 +441,8 @@ Template.confirmarPartido.events({
             var cantB = equipoB.length;
             
             if (_.contains(equipoA, Meteor.userId())) {
-                Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
-                var cantA =  _.pluck(partido.equipoA, 'userId' ).length;
+                var p = Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
+                var cantA =  _.pluck(p.equipoA, 'userId' ).length;
                 var arraySuplentes= Partido.findOne(this._id).suplentes;
                 if(cantA < numero && arraySuplentes.length !=0) {
                 var primerSuplente = _.first(arraySuplentes);
@@ -467,8 +460,8 @@ Template.confirmarPartido.events({
             }
             
             if (_.contains(equipoB, Meteor.userId())) {
-                Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
-                var cantB = _.pluck(partido.equipoB, 'userId' ).length;
+                var p = Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
+                var cantB = _.pluck(p.equipoB, 'userId' ).length;
                 var arraySuplentes= Partido.findOne(this._id).suplentes;
                 if(cantB < numero && arraySuplentes.length !=0) {  
                 var primerSuplente = _.first(arraySuplentes);
