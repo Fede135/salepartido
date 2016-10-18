@@ -1,0 +1,49 @@
+<template name="gestionarReserva">
+    <div class="container-fluid">
+        <legend><h2>Tus reservas</h2></legend>
+        <div class="row">               
+            <div class="span5 col-md-5">
+                <label class="control-label" for="datetimepicker" >Elegí un día para filtrar las reservas</label>
+                <div class="controls">
+                    <div class='input-group date'>
+                        <input name="datetimepicker" id="datetimepicker" type="button" value="" class="form-control"/>
+                        <span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        </span> 
+                    </div>      
+                </div>
+            </div>  
+        </div>
+        <br>
+        <div class="row">
+        	<div class="table-responsive-dashboard" >        
+                <table class="table-dashboard" name="tabla" id="tabla">
+                    <thead>
+                        <tr>
+                            <th><h4 align="center">Usuario</h4></th>					
+                            <th><h4 align="center">Dia</h4></th>
+                            <th><h4 align="center">Cancha</h4></th>
+                            <th><h4 align="center">Hora</h4></th>
+                            <th><h4 align="center">Editar</h4></th>
+                            <th><h4 align="center">Eliminar</h4></th>
+                    	</tr>
+                    </thead>
+                    <tbody>
+                        {{#each reservas}}
+                            <tr>
+                                <td><h5 align="center">{{this.nom_usuario}}</h5></td>
+                                <td><h5 align="center">{{this.fecha_de_juego}}</h5></td>
+                                <td><h5 align="center">{{this.num_cancha}}</h5></td>
+                                <td><h5 align="center">{{this.hora_de_juego}}</h5></td>
+                                <td><button type="button" name="editReserva" id="editReserva" align="center"> <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
+                                <td>{{#quickRemoveButton collection="Reserva" _id=this._id onError=onError onSuccess=onSuccess        beforeRemove=beforeRemove}}
+                                <i class="fa fa-times fa-lg" aria-hidden="true"></i>
+                                {{/quickRemoveButton}}</td>
+                            </tr>
+                        {{/each}}
+                	</tbody>
+                </table>
+            </div>
+        </div>    
+    </div>  
+</template>

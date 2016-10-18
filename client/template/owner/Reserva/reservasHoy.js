@@ -47,7 +47,9 @@ Template.reservasHoy.onRendered(function() {
 
     var recinto = recinto_Id && Recintos.findOne({'_id': recinto_Id});
     var nombRecinto = recinto && recinto.nombre_recinto;
-    var reservasArray = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"}).fetch();
+    var diaMoment = moment().format("L");
+    var dia = new Date(diaMoment);
+    var reservasArray = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada", 'fecha_de_juegoD':dia}).fetch();
     var cantReservas = reservasArray && reservasArray.length;
     for(var z=0 ; z <= cantReservas ; z++){
     var resIndividual = reservasArray[z];
@@ -55,6 +57,7 @@ Template.reservasHoy.onRendered(function() {
     var nomUsuarioReservaString = nomUsuarioRes && nomUsuarioRes.toString();
     var tdReserva = nomUsuarioReservaString && document.getElementById(resIndividual.hora_de_juego+"Hora"+resIndividual.num_cancha+"Cancha");
      tdReserva && tdReserva.appendChild(document.createTextNode(nomUsuarioReservaString));
+
     }
 });
 
@@ -64,8 +67,6 @@ Template.reservasHoy.helpers({
       var recintoId = this._id;
       var canchas = recintoId && Canchas.find({'recintoId':recintoId, 'estado_cancha.estado_de_cancha': "Habilitada"});
       return canchas;
-    },
-    reserva: function(){
-    }   
+    }  
 
 });

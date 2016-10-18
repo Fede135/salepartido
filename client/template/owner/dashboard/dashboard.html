@@ -13,8 +13,8 @@
                   <a href="#" class="list-group-item" name="reservasHoy" id="reservasHoy">
                       <i class="fa fa-folder-open-o"></i> Reservas hoy
                   </a>
-                  <a href="#" class="list-group-item">
-                      <i class="fa fa-folder"></i> Visualizar proximas reservas
+                  <a href="#" name="gestionReserva" id="gestionReserva"  class="list-group-item">
+                      <i class="fa fa-folder"></i> Gestionar reservas
                   </a>
                   <a href="#" name="gestionCanchas" id="gestionCanchas" class="list-group-item">
                       <i class="fa fa-comment-o"></i> Gestionar canchas
@@ -40,6 +40,11 @@
               {{#if abrirCanchas}}
                 {{> gestionCancha}}
               {{/if}}
+
+              {{#if gestionReservas}}
+                {{> gestionarReserva}}
+              {{/if}}            
+
             </div>
         </div>
     </div>

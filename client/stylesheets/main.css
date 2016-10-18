@@ -30,6 +30,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: ubun;
     color: black;
 }
+#login-dropdown-list a{
+  color: white;
+}
+#login-other-options a{
+  color: black;
+}
 
 label {
     display: inline-block;
@@ -39,6 +45,8 @@ label {
     color: black;
     font-size: 22px;
 }
+
+
 
 input[type="checkbox"] {
     position: absolute;
@@ -124,7 +132,7 @@ h3 {
     max-width: 90%;
     min-height: .01%;
     overflow-x: auto;
-    margin: 0px auto;
+    margin: 0px 15px;
     border-collapse: collapse;
     
 }
@@ -522,10 +530,6 @@ body
     color: white;
 }
 
-#login-dropdown-list a {
-    color: white;
-    text-decoration: none;
-}
 #habla_topbar_div {
     background: #1bb3af
 }

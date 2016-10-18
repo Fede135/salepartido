@@ -4,15 +4,13 @@ Template.dashboard.helpers({
 
       var tabla = Session.get('tabla') && true;
     return tabla;
-},
+    },
 
+    gestionReservas: function(){
 
-/*		var recintoId = this._id;
-		var recinto = recintoId && Recintos.findOne({'_id': recintoId});
-		var nombRecinto = recinto && recinto.nombre_recinto;    
-		var reservas = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"});	
-		return reservas;*/
-	
+      var reservas = Session.get('reserva') && true;
+      return reservas;	
+    },
 
     abrirReserva: function(){
 
@@ -57,6 +55,13 @@ Template.dashboard.events({
     Session.clear();
     var tabla = true;
     Session.set('tabla', tabla);
+  },
+
+  'click #gestionReserva': function(event){
+
+    Session.clear();
+    var reserva = true;
+    Session.set('reserva', reserva);
   },
 
 	'click #crearReserva': function(event){
