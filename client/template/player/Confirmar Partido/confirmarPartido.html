@@ -151,7 +151,9 @@
               {{#if lleno}}
                 {{#unless isConfirmado}}
                   {{#unless isSuplente}}
-                    <button type="button" name="suplente" id="suplente" class="btn btn-default">Agregar a la lista de suplentes</button> 
+                    {{#unless isNoJuega}}
+                        <button type="button" name="suplente" id="suplente" class="btn btn-default">Agregar a la lista de suplentes</button>
+                    {{/unless}} 
                   {{/unless}}
                 {{/unless}}
               {{/if}}
