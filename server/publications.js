@@ -45,9 +45,7 @@ Meteor.publish('notifications', function() {
 	return Notifications.find();
 });
 
-
 Meteor.publish('calificacion_resistencia', function(){
-
 	return Calificacion_resistencia.find();
 });
 

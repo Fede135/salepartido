@@ -101,7 +101,7 @@ Template.organizarPartido.events({
         createInvitationToGameNotification(partidoId);
 
         //----------Agrega Roles a los usuarios para ese partido---------
-        Meteor.call('gameRoles', partidoId, arrayHostSecundario);
+        Meteor.call('gameRolesOrganizar', partidoId, arrayHostSecundario);
 
         //--------Activa el alert---------
         Session.set('alertReservaCreada', true);

@@ -5,8 +5,6 @@ Meteor.methods({
 		
 		var agregado = Meteor.users.findOne({_id: elagregado});
 		var correo = agregado.emails[0].address ;
-		console.log(correo);
-		console.log(elagregado);
 		Meteor.users.update(elqueagrega,{
 			$addToSet: {'profile.friends':{id: elagregado,correo:correo,fb: false}}
 		});
@@ -16,4 +14,3 @@ Meteor.methods({
 
 });
 
-//_.pluck (http://underscorejs.org/)

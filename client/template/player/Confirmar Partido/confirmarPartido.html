@@ -14,17 +14,38 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            <strong>Se invitaron jugadores!!</strong>
+            <strong>Se invitaron jugadores!!</strong> Ya fueron notificados.
         </div>
-			<!--Alert de Reserva actualizada-->
-			<div class="alert alert-success alert-dismissible" role="alert" id="alertReservaActualizada" style="display: none">
- 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-  			<strong>La reserva fue actualizada con éxito!!</strong>Todos los invitados fueron notificados.
-			</div>
+        <!--Alert de Reserva actualizada-->
+        <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaActualizada" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        <strong>La reserva fue actualizada con éxito!!</strong>Todos los invitados fueron notificados.
+        </div>
+        <!--Alert de Confirmado a un partido -->
+        <div class="alert alert-info alert-dismissible" role="alert" id="alertConfirmado" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Confirmaste tu asistencia!</strong> Recorda avisar si no podés ir.!
+        </div>
+        <!--Alert de Eliminado de un equipo -->
+        <div class="alert alert-warning alert-dismissible" role="alert" id="alertEliminado" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Te diste de baja!</strong> Igualmente puedes volver a agregarte a un equipo cuando desees, si es que no hay suplentes esperando.
+        </div>
 
-        
+        <!--Alert de Eliminado de un equipo -->
+        <div class="alert alert-info alert-dismissible" role="alert" id="alertSuplente" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Te añadiste a la lista de suplentes!</strong> Se te confirmará automaticamente si alguien se da de baja.
+        </div>
+                
       <h2 align="center">Confirmar partido</h2>
         
       <div class="well"> 
@@ -90,32 +111,38 @@
                   <div class="btn-group" role="group" aria-label="...">
 
                   {{#if disponibleA}}
-                    {{#if puedeConfirmar}}
+                    {{#if isInvitado}}
                       <button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-success">Agregar a equipo A</button> 
                       <br>
                     {{/if}}
+                    {{#if isEquipoA}}
+                        <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
+                      {{/if}}
                   {{else}}
+                    {{#if isEquipoA}}
+                      <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
+                    {{/if}}
                     <h3>Equipo A completo</h3>                     
                   {{/if}}
-                  {{#if isEquipoA}}
-                      <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-danger">Eliminar de equipo A</button> 
-                  {{/if}}
+                  
                   </div>
               </div>  
               <div class="span5 col-md-3">                  
               </div>
               <div class="span5 col-md-4">
                   <div class="btn-group" role="group" aria-label="...">
+                  {{#if disponibleB}}
                     {{#if isEquipoB}}
                       <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-danger">Eliminar de equipo B</button> 
                     {{/if}}
-                  
-                  {{#if disponibleB}}
-                    {{#if puedeConfirmar}}
-                      <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
-                      <br>
+                    {{#if isInvitado}}
+                        <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-success">Agregar a equipo B</button> 
+                        <br>
                     {{/if}}
                   {{else}}
+                    {{#if isEquipoB}}
+                        <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-danger">Eliminar de equipo B</button> 
+                    {{/if}}
                     <h3>Equipo B completo</h3>                   
                   {{/if}}     
                   </div>
@@ -124,7 +151,9 @@
               {{#if lleno}}
                 {{#unless isConfirmado}}
                   {{#unless isSuplente}}
-                    <button type="button" name="suplente" id="suplente" class="btn btn-default">Agregar a la lista de suplentes</button> 
+                    {{#unless isNoJuega}}
+                        <button type="button" name="suplente" id="suplente" class="btn btn-default">Agregar a la lista de suplentes</button>
+                    {{/unless}} 
                   {{/unless}}
                 {{/unless}}
               {{/if}}
@@ -139,10 +168,12 @@
             Sin suplentes
           {{/if}} 
           <br>   
-          
-          <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
-          <br>
-          
+          {{#unless isNoJuega}}
+            <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
+            <br>
+          {{else}}
+            Dijiste que no querías jugar, pero puedes comunicarte con el organizador para que vuelva a invitarte.
+          {{/unless}}
           <div>
           {{#if isHostHostSecundario}}
             <h4>Invitar más jugadores.</h4>
@@ -151,8 +182,23 @@
                 
                 {{#each jugadoresNoInvitados}}
                                 
-                  <input type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
-                
+                  <input type="checkbox" id="checkboxFriends" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
+
+                  {{#if isHost}}
+                    <div id="checkboxRolesDiv">
+                        <input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host <br>
+                    </div>
+                        <!--Se agrega este script para ocultar o mostrar el checkbox host dependiendo si el amigo fue seleccionado o no. Falta ver como hacer para que funcione bien, queda comentado-->
+                    <script> 
+                        var elem = document.getElementById('checkboxRolesDiv'),
+                        checkBox = document.getElementById('checkboxFriends');
+                        checkBox.checked = false;
+                        checkBox.onchange = function doruc() {
+                        elem.style.display = this.checked ? 'list-item' : 'none';
+                        };
+                        checkBox.onchange();
+                    </script>
+                  {{/if}}
                 {{/each}} 
 
                 <button type="button" name="invitarJugadores" id="invitarJugadores" class="btn btn-default">Invitar</button>

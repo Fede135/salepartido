@@ -4,6 +4,11 @@ Template.showProfile.onRendered(function() {
   } else {
     $('#alertPerfilEditado').hide();
   }
+  if (Session.get('alertNoJuega')) {
+    $('#alertNoJuega').show()
+  } else {
+    $('#alertNoJuega').hide();
+  }
 });
 
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
@@ -448,5 +453,6 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
 
 Template.showProfile.onDestroyed(function() {
   Session.set('alertPerfilEditado', undefined);
+  Session.set('alertNoJuega', undefined);
 })
 
