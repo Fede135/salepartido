@@ -101,10 +101,10 @@ Template.confirmarPartido.helpers({
 
     },
 
-    jugadoresNoInvitados: function(){
+    jugadoresNoInvitados: function() {
         var usuario = Meteor.users.findOne({_id: Meteor.userId()});
-        var array = usuario.profile.friends;    
-        if(array != undefined){
+        var array = usuario && usuario.profile.friends;    
+        if(array != undefined) {
             var arrayJugadoresId = [];    
             array.forEach(function (e) {
               var id = e.id;
@@ -126,7 +126,7 @@ Template.confirmarPartido.helpers({
         
 
             var porInvitar = _.difference(arrayJugadoresId,invitadosId, equipo, partido.suplentes);
-            if (porInvitar.length != 0){
+            if (porInvitar.length != 0) {
               var invitar = [];
               porInvitar.forEach(function(e){
                 var use = Meteor.users.findOne({_id: e});        
@@ -134,7 +134,7 @@ Template.confirmarPartido.helpers({
             });
               return invitar
 
-            } else{
+            } else {
                 return false;
             }
         } else {
