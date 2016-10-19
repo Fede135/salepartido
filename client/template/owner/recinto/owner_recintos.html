@@ -3,36 +3,36 @@
     <div class="container-fluid">        
         <h1 align="center">Tus Recintos</h1>            
         <row>
-        <button type="button" class="btn btn-propio" name="uploadRecinto" id="uploadRecinto" style= "margin-left: 5%"> Crear recintos </button>
+        <button type="button" class="btn btn-propio" name="uploadRecinto" id="uploadRecinto" style="margin-left: 5.0%;"> Crear recintos </button>
         <br>
         </row>
         <br>
         <row>
-            <div class="table-responsive-owner" >
-                <table class="table-owner">
+            <div class="table-responsive" >
+                <table class="table table-striped" id="tableOwner">
                     <thead>
                         <tr>
-                            <th><h4>Nombre del recinto</h4></th>
-                            <th><h4>Fecha de creación</h4></th>
-                            <th><h4>Promedio de calificación</h4></th>
-                            <th><h4>Visualizar</h4></th>
-                            <th><h4>Editar</h4></th>
-                            <th><h4>Eliminar</h4></th>
+                            <th><h4 align="center">Nombre del recinto</h4></th>
+                            <th><h4 align="center">Fecha de creación</h4></th>
+                            <th><h4 align="center">Promedio de calificación</h4></th>
+                            <th><h4 align="center">Visualizar</h4></th>
+                            <th><h4 align="center">Editar</h4></th>
+                            <th><h4 align="center">Eliminar</h4></th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each recinto}}
                         <tr>
-                            <td><h5>{{this.nombre_recinto}}</h5></td>
-                            <td><h5>{{this.createdAtString}}</h5></td>
+                            <td><h5 align="center">{{this.nombre_recinto}}</h5></td>
+                            <td><h5 align="center">{{this.createdAtString}}</h5></td>
                             {{#if calificacion}}
-                            <td><h5>{{calificacion}}</h5></td>
+                            <td><h5 align="center">{{calificacion}}</h5></td>
                             {{else}}
-                            <td><h5>Sin calificar</h5></td>
+                            <td><h5 align="center">Sin calificar</h5></td>
                             {{/if}}
-                            <td><button type="button" name= "dashboardRecinto" id="dashboardRecinto"> <i class="fa fa-undo fa-lg" aria-hidden="true"></i> </button></td>
-                            <td><button type="button" name="editRecinto" id="editRecinto" > <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
-                            <td>{{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess        beforeRemove=beforeRemove}}
+                            <td class="text-center"><button type="button" name= "dashboardRecinto" id="dashboardRecinto"> <i class="fa fa-undo fa-lg" aria-hidden="true"></i> </button></td>
+                            <td class="text-center"><button type="button" name="editRecinto" id="editRecinto" > <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
+                            <td class="text-center">{{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess        beforeRemove=beforeRemove}}
                             <i class="fa fa-times fa-lg" aria-hidden="true"></i>
                             {{/quickRemoveButton}}</td>
                         </tr>

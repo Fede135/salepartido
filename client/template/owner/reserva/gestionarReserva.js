@@ -18,10 +18,9 @@ Template.gestionarReserva.onRendered(function () {
   this.$('#datetimepicker').datetimepicker({
     locale: 'es',
     format: 'L',
-    minDate: moment(),
     showClear: true,
-
   }); 
+  
 });
 
 Template.gestionarReserva.events({

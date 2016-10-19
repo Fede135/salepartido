@@ -98,62 +98,15 @@ h3 {
   line-height: 33px;
   color:black;
 }
-/*owner*/
-
-.table-responsive-owner {
-    max-width: 90%;
-    min-height: .01%;
-    overflow-x: auto;
-    margin: 0px auto;
-    border: 3px solid #1bb3af;
-}
-.table-owner > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 3px solid #1bb3af;
-    background: white;
-    width: 10%;
-}
 
 
-.table-responsive-canchas{
+#tableOwner.table {
+    width: 90%;
     max-width: 100%;
-    min-height: .01%;
-    overflow-x: auto;
-    margin: 0px auto;
-    border: 3px solid #1bb3af;
+    margin-bottom: 20px;
+    margin-left: 5%;
 }
 
-
-.table-responsive-canchas h4{
-    font-family: Aldrich;
-}
-
-.table-responsive-dashboard{
-    max-width: 90%;
-    min-height: .01%;
-    overflow-x: auto;
-    margin: 0px 15px;
-    border-collapse: collapse;
-    
-}
-
-.table-dashboard > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 3px solid black;
-    background: white;
-    border: 2px solid black;
-
-}
-
-
-.table-dashboard > thead > tr > td, .table-dashboard > tbody > tr > td, .table-dashboard > tfoot > tr > td {
-    padding: 9px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    background: white;
-    width: 10%;
-    border: 2px solid black;
-}
 /*Alert*/
 
 .alert-labeled{

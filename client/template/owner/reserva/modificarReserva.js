@@ -58,6 +58,15 @@ Template.modificarReserva.events({
     $target.val($item.text()); 
   },
 
+  'click #cancelar': function (event){
+
+        event.preventDefault;
+        var nomRecinto= this.nom_recinto;
+        var recinto = nomRecinto &&  Recintos.findOne({'nombre_recinto': nomRecinto});
+        var recintoId = recinto && recinto._id;
+        Router.go('dashboard', {_id: recintoId});
+  },
+
   'click #actualizarReserva': function(e) {
         
         var reserva = Session.get('reserva');
@@ -113,7 +122,8 @@ Template.modificarReserva.events({
             'estado':reserva.estado
           }
         });
- 
+        
+
         $('#alertReservaActualizada').show();
         
         var recinto = nombre_recinto && Recintos.findOne({'nombre_recinto':nombre_recinto});
