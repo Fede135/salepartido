@@ -24,6 +24,9 @@ Template.showCommentsPlayers.helpers({
 
 Template.showCommentsPlayers.events({
   'click #deleteComment': function() {
+    $('#eliminarComentarioModal').modal('hide');
+    console.log("antes del update", this._id);
+    console.log(CommentsForPlayers.update({_id: this._id}, {$set: {status: "Borrado"}}));
     CommentsForPlayers.update({_id: this._id}, {$set: {status: "Borrado"}});
   }
 });
