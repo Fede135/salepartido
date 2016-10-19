@@ -3,7 +3,6 @@ AutoForm.addHooks(
   {
     before: {
       insert: function(doc) {
-        console.log(doc);
         var docFiltrado = doc.commentToEnclosure.replace(/puto|pajero|cagón|culiado|pija|puta|concha|conchudo|conchuda|cagon/gi, function filtrar(x) {
           var len= x.length;
           var arr = []

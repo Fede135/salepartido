@@ -10,11 +10,11 @@
                   <a href="#" name="crearReserva" id="crearReserva" class="list-group-item">
                       <i class="fa fa-file-text-o"></i> Crear reserva
                   </a>
-                  <a href="#" class="list-group-item">
+                  <a href="#" class="list-group-item" name="reservasHoy" id="reservasHoy">
                       <i class="fa fa-folder-open-o"></i> Reservas hoy
                   </a>
-                  <a href="#" class="list-group-item">
-                      <i class="fa fa-folder"></i> Visualizar proximas reservas
+                  <a href="#" name="gestionReserva" id="gestionReserva"  class="list-group-item">
+                      <i class="fa fa-folder"></i> Gestionar reservas
                   </a>
                   <a href="#" name="gestionCanchas" id="gestionCanchas" class="list-group-item">
                       <i class="fa fa-comment-o"></i> Gestionar canchas
@@ -28,42 +28,24 @@
                   </a>
                 </div>        
             </div>
-    <div class="col-sm-8 col-md-9">
-        
-      {{#if abrirReserva}}
-        {{> crearReserva}}
-      {{/if}}
+            <div class="col-sm-8 col-md-9">
+              {{#if tablaReserva}}
+                {{> reservasHoy}}
+              {{/if}}
 
-      {{#if abrirCanchas}}
-        {{> gestionCancha}}
-      {{/if}}
-<!--
-          <div class="table-responsive-dashboard" >
-            <table class="table-dashboard" id="tabla">
-                <thead>
-                   <tr>
-                        <th><h4>Hora</h4></th>
-                        {{#each canchas}}
-                        <th id="{{this.numero}}."> <h4>Cancha {{this.numero}}</h4> </th>
-                        {{/each}}
-                    </tr>
-                </thead>
-                <tbody id='demo'>
-                  {{#each horas}}
-                    <tr id="{{this}}hs">
-                      <td><h5>{{this}}</h5></td>                      
-                    </tr>
-                  {{/each}}
-                </tbody>
-            </table>
-        </div>  
-        
-		-->    
-     
+              {{#if abrirReserva}}
+                {{> crearReserva}}
+              {{/if}}
 
-  	    
-  	 
-      </div>
-    </div>
+              {{#if abrirCanchas}}
+                {{> gestionCancha}}
+              {{/if}}
+
+              {{#if gestionReservas}}
+                {{> gestionarReserva}}
+              {{/if}}            
+
+            </div>
+        </div>
     </div>
 </template>

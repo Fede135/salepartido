@@ -8,6 +8,7 @@
   color: #4d3f92;
 }
 
+
 .carousel-inner { 
 	text-align: center; 
 	width: 100%;/* la imagen ocupa todo el carrousel*/
@@ -16,8 +17,6 @@
 
 .carousel .item > img { 
 	display: inline-block; 
-	width: 100%;/* la imagen ocupa todo el carrousel*/
-	height: 100%;
 }
 
 .container {
@@ -25,6 +24,17 @@
     margin: 0px auto;
    /* box-sizing:border-box;
     padding: */
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: ubun;
+    color: black;
+}
+#login-dropdown-list a{
+  color: white;
+}
+#login-other-options a{
+  color: black;
 }
 
 label {
@@ -35,6 +45,8 @@ label {
     color: black;
     font-size: 22px;
 }
+
+
 
 input[type="checkbox"] {
     position: absolute;
@@ -61,17 +73,15 @@ input[type="radio"] {
 }
 
 h1 {
-  font-family: Aldrich;
   font-size: 40px;
   font-style: normal;
   font-variant: normal;
   font-weight: 400;
   line-height: 48px;
-  color:white;
+  color:black;
 }
 
 h2 {
-  font-family: Aldrich;
   font-size: 30px;
   font-style: normal;
   font-variant: normal;
@@ -81,79 +91,22 @@ h2 {
 }
 
 h3 {
-  font-family: Aldrich;
   font-size: 25px;
   font-style: normal;
   font-variant: normal;
   font-weight: 400;
   line-height: 33px;
-  color:white;
-}
-/*owner*/
-
-.table-responsive-owner {
-    max-width: 90%;
-    min-height: .01%;
-    overflow-x: auto;
-    margin: 0px auto;
-    border: 3px solid #1bb3af;
-}
-.table-owner > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 3px solid #1bb3af;
-    background: white;
-    width: 10%;
+  color:black;
 }
 
 
-.table-responsive-canchas{
+#tableOwner.table {
+    width: 90%;
     max-width: 100%;
-    min-height: .01%;
-    overflow-x: auto;
-    margin: 0px auto;
-    border: 3px solid #1bb3af;
-}
-.table-canchas > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 3px solid #1bb3af;
-    background: white;
-    width: 10%;
+    margin-bottom: 20px;
+    margin-left: 5%;
 }
 
-h1, h2, h3, h4, h5, h6 .table-canchas {
-    font-family: inherit;
-    font-weight: 500;
-    line-height: 1.1;
-    color: #555;
-}
-
-
-.table-responsive-dashboard{
-    max-width: 90%;
-    min-height: .01%;
-    overflow-x: auto;
-    margin: 0px auto;
-    border-collapse: collapse;
-    
-}
-
-.table-dashboard > thead > tr > th {
-    vertical-align: bottom;
-    border-bottom: 3px solid black;
-    background: white;
-    border: 2px solid black;
-
-}
-
-
-.table-dashboard > thead > tr > td, .table-dashboard > tbody > tr > td, .table-dashboard > tfoot > tr > td {
-    padding: 9px;
-    line-height: 1.42857143;
-    vertical-align: top;
-    background: white;
-    width: 10%;
-    border: 2px solid black;
-}
 /*Alert*/
 
 .alert-labeled{
@@ -530,10 +483,6 @@ body
     color: white;
 }
 
-a {
-    color: white;
-    text-decoration: none;
-}
 #habla_topbar_div {
     background: #1bb3af
 }

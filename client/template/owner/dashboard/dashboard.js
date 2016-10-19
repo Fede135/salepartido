@@ -1,14 +1,16 @@
 Template.dashboard.helpers({
 
-  
+    tablaReserva: function(){
 
+      var tabla = Session.get('tabla') && true;
+    return tabla;
+    },
 
-/*		var recintoId = this._id;
-		var recinto = recintoId && Recintos.findOne({'_id': recintoId});
-		var nombRecinto = recinto && recinto.nombre_recinto;    
-		var reservas = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada"});	
-		return reservas;*/
-	
+    gestionReservas: function(){
+
+      var reservas = Session.get('reserva') && true;
+      return reservas;	
+    },
 
     abrirReserva: function(){
 
@@ -30,27 +32,32 @@ Template.dashboard.helpers({
       var recintoId = this._id;
       var canchas = recintoId && Canchas.find({'recintoId':recintoId, 'estado_cancha.estado_de_cancha': "Habilitada"});
       return canchas;
-    },
-
-    horas: function(){
-      var horas = [9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,0,1];
-      return horas;
     }   
 
 });
 
 Template.dashboard.events({
 
-	'click #modificarReserva': function (event) {
-		Router.go('modificarReserva', {_id: this._id});
-	},
-  
   'click #gestionCanchas': function(event){
 
      Session.clear();
      var canchas = true;
 
      Session.set('canchas', canchas);
+  },
+
+  'click #reservasHoy': function(event){
+
+    Session.clear();
+    var tabla = true;
+    Session.set('tabla', tabla);
+  },
+
+  'click #gestionReserva': function(event){
+
+    Session.clear();
+    var reserva = true;
+    Session.set('reserva', reserva);
   },
 
 	'click #crearReserva': function(event){
@@ -75,23 +82,17 @@ Template.dashboard.events({
 		});
 
 		alert("Reserva jugada");
-	},
-
-	'click #cancelarReserva': function(event){
-
-		Reserva.update({_id: this._id}, {$set: {'estado': "Cancelada"}});
-		alert("Reserva cancelada");
-
-  	}
-  	 
+	} 	 
   	 
 });
 
-Template.dashboard.onCreated(function() {
-
-    
-  
+Template.dashboard.onRendered(function() {
+    var tabla = true;
+    Session.set('tabla', tabla);
+   
 });
+
+
 
 
 /*Meteor.setInterval(function () {

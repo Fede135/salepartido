@@ -5,32 +5,32 @@
         <br>
         </row>
         <br>
-            <div class="table-responsive-canchas" >
-                <table class="table-owner">
-                    <thead>
+            <div class="table-responsive" >
+                <table class="table table-hover" >
+                    <thead class="thead-inverse">
                         <tr>
-                            <th><h4>Número</h4></th>
-                            <th><h4>Tamaño</h4></th>
-                            <th><h4>Tipo de cancha</h4></th>
-                            <th><h4>Estado</h4></th>
-                            <th><h4>Descripción</h4></th>
-                            <th><h4>Creación</h4></th>
-                            <th><h4>Editar</h4></th>
-                            <th><h4>Eliminar</h4></th>
+                            <th><h4 align="center">Número</h4></th>
+                            <th><h4 align="center">Tamaño</h4></th>
+                            <th><h4 align="center">Tipo de cancha</h4></th>
+                            <th><h4 align="center">Estado</h4></th>
+                            <th><h4 align="center">Descripción</h4></th>
+                            <th><h4 align="center">Creación</h4></th>
+                            <th><h4 align="center">Editar</h4></th>
+                            <th><h4 align="center">Eliminar</h4></th>
                         </tr>
                     </thead>
                     <tbody>
                         {{#each canchasRecinto}}
                         <tr>
-                            <td><h5  align="center">{{this.numero}}</h5></td>
-                            <td><h5>{{this.jugadores.cantidad_de_jugadores}}</h5></td>
-                            <td><h5>{{this.tipo_cancha.tipo_de_cancha}}</h5></td>
-                            <td><h5>{{this.estado_cancha.estado_de_cancha}}</h5></td>
-                            <td><h5>{{this.descripcion}}</h5></td>
-                            <td><h5>{{this.createdAtString}}</h5></td>
+                            <td><h5 align="center">{{this.numero}}</h5></td>
+                            <td><h5 align="center">{{this.jugadores.cantidad_de_jugadores}}</h5></td>
+                            <td><h5 align="center">{{this.tipo_cancha.tipo_de_cancha}}</h5></td>
+                            <td><h5 align="center">{{this.estado_cancha.estado_de_cancha}}</h5></td>
+                            <td><h5 align="center">{{this.descripcion}}</h5></td>
+                            <td><h5 align="center">{{this.createdAtString}}</h5></td>
                             
-                            <td><button type="button" name="editCancha" id="editCancha" > <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
-                            <td>{{#quickRemoveButton collection="Canchas" _id=this._id onError=onError onSuccess=onSuccess        beforeRemove=beforeRemove}}
+                            <td class="text-center"><button type="button" name="editCancha" id="editCancha" > <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
+                            <td class="text-center">{{#quickRemoveButton collection="Canchas" _id=this._id onError=onError onSuccess=onSuccess        beforeRemove=beforeRemove}}
                             <i class="fa fa-times fa-lg" aria-hidden="true"></i>
                             {{/quickRemoveButton}}</td>
                         </tr>

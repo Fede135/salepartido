@@ -1,126 +1,118 @@
 <template name="showRecinto">
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row">
-			<div class="col-lg-6">
-					<h1>Nombre recinto:{{recinto.nombre_recinto}} </h1>
-					<br>
-					{{#if promedio}}
-						Promedio de calificaciones: {{promedio}}
-						{{> starsRating rating=promedio class="estrella" size='sm'}}
-								
-					{{else}}
-						{{> starsRating rating=0 class="estrella" size='sm'}}
-						<br>
-					{{/if}}		
-					{{#if isOwner}}
-							{{#if promedio}}
-								{{#if countUsers}}
-									Cantidad de usuarios que han calificado : {{countUsers}}
-								{{else}}
-									Cantidad de usuarios que han calificado : 0
-								{{/if}}
-								<br>
-							{{else}}
-								Ningun usuario ha votado todavía.
-								<br>
-							{{/if}}
-					{{else}}
-														
-							{{#if tieneVoto}}
-								Ya votaste este recinto...
-							{{else}}
-								¿Desea calificar al recinto?
-								{{> starsRating id='rating' class="estrella" mutable=true size='lg'}}
-							{{/if}}
-							
-					{{/if}}
-						<br>
-						<div>
-						<h4>Dirección: {{recinto.direccion_recinto}}</h4>
-						<br>
-						<h4>Telefono fijo : {{recinto.telefono_recinto.fijo}}</h4>
-						<br>
-
-						<h4>Telefono celular1: {{recinto.telefono_recinto.celular_1}}</h4>
-						<br>
-						<h4>Telefono celular2: {{recinto.telefono_recinto.celular_2}}</h4>:
-						<br>
-						</div>
-						<div>
-						<h4>Servicios</h4>
-							<br>
-							Estacionamiento: {{recinto.servicios.estacionamiento}}
-							<br>
-							Baños: {{recinto.servicios.baños}}
-							<br>
-							Camarines: {{recinto.servicios.camarines}}
-							<br>
-							Cantina: {{recinto.servicios.cantina}}
-							<br>
-						</div>
-						<div>
-						<h4>Canchas:</h4>
-						<div>
-							{{#if cancha}}
-								{{#each cancha}}
-							<div>
-								NUMERO: {{this.numero}}
-								<br>
-								CANTIDAD DE JUGADORES: {{this.jugadores.cantidad_de_jugadores}}
-								<br>
-								TIPO DE CANCHA: {{this.tipo_cancha.tipo_de_cancha}}
-								<br>
-								ESTADO CANCHA: {{this.estado_cancha.estado_de_cancha}}
-								<br>
-								DESCRIPCION: {{this.descripcion}}
-							</div>
-							<br>
-								{{/each}}
-							{{/if}}
-						</div>
-						</div>
-			</div>
-		
-			<div class="col-lg-6">
-				
-				<div id="contenedor">
+			<div id="contenedor">
 				<div id="myCarousel" class="carousel slide" data-ride ="carousel">
-						<ol class="carousel-indicators">
-							<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-							<li data-target="#myCarousel" data-slide-to="1"></li>
-							<li data-target="#myCarousel" data-slide-to="2"></li>
-							<li data-target="#myCarousel" data-slide-to="3"></li>
-							<!-- <li data-target="#myCarousel" data-slide-to="4"></li> -->
-						</ol>
-						<!-- Carousel items -->
-						<div class="carousel-inner" role="listbox">
-							<!-- <div class="active item"><img  src="img/banner598x374-1.jpg" alt="banner1" /></div> -->
-							<div class="active item"><img src={{imagen1}} alt="Imagen1" height="420" width="600" class="img-responsive"></div>
-							<div class="item"><img src={{imagen2}} alt="Imagen2" height="420" width="600" class="img-responsive"></div>
-							<div class="item"><img src={{imagen3}} alt="Imagen3" height="420" width="600" class="img-responsive"></div>
-							<div class="item"><img src={{imagen4}} alt="Imagen4" height="420" width="600" class="img-responsive"></div>
-						</div>
-						<!-- Carousel nav -->
-						<a class="carousel-control left" href="#myCarousel" role="button" data-slide="prev"><!-- &lsaquo; -->
-							<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-							<span class ="sr-only">Anterior</span>
-						</a>
-						<a class="carousel-control right" href="#myCarousel" role="button" data-slide="next"><!-- &rsaquo; -->
-							<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-							<span class ="sr-only">Próxima</span>
-						</a>
+					<ol class="carousel-indicators">
+						<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+						<li data-target="#myCarousel" data-slide-to="1"></li>
+						<li data-target="#myCarousel" data-slide-to="2"></li>
+						<li data-target="#myCarousel" data-slide-to="3"></li>
+						<!-- <li data-target="#myCarousel" data-slide-to="4"></li> -->
+					</ol>
+					<!-- Carousel items -->
+					<div class="carousel-inner" role="listbox">
+						<!-- <div class="active item"><img  src="img/banner598x374-1.jpg" alt="banner1" /></div> -->
+						<div class="active item"><img src={{imagen1}} alt="Imagen1" height="420" width="600" class="img-responsive"></div>
+						<div class="item"><img src={{imagen2}} alt="Imagen2" height="420" width="600" class="img-responsive"></div>
+						<div class="item"><img src={{imagen3}} alt="Imagen3" height="420" width="600" class="img-responsive"></div>
+						<div class="item"><img src={{imagen4}} alt="Imagen4" height="420" width="600" class="img-responsive"></div>
 					</div>
+					<!-- Carousel nav -->
+					<a class="carousel-control left" href="#myCarousel" role="button" data-slide="prev"><!-- &lsaquo; -->
+					<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+					<span class ="sr-only">Anterior</span>
+					</a>
+					<a class="carousel-control right" href="#myCarousel" role="button" data-slide="next"><!-- &rsaquo; -->
+					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+					<span class ="sr-only">Próxima</span>
+					</a>
 				</div>
 			</div>
-	</div> 
-
-	{{#if isOwner}}
-	
-	<br><br> 
-	{{else}} 
-		{{> enterCommentsForEnclosures}}
-	<br><br>
-	 {{/if}} 
-	 	{{> showCommentsEnclosure}}
+		</div>
+		<div class="row">
+			<h1 align="center">Nombre del recinto: {{recinto.nombre_recinto}} </h1>
+		</div>
+		<div class="row">
+			<div class="col-md-4">
+				{{#if promedio}}
+					<h4><strong>Promedio de calificaciones: {{promedio}}</strong></h4>
+					{{> starsRating rating=promedio class="estrella" size='lg'}}								
+				{{else}}
+					{{> starsRating rating=0 class="estrella" size='lg'}}
+				{{/if}}		
+				<h4><strong>Dirección: {{recinto.direccion_recinto}}</strong></h4>
+				<h4><strong>Telefono fijo : {{recinto.telefono_recinto.fijo}}</strong></h4>
+				<h4><strong>Telefono celular1: {{recinto.telefono_recinto.celular_1}}</strong></h4>
+				<h4><strong>Telefono celular2: {{recinto.telefono_recinto.celular_2}}</strong></h4>
+			</div>
+			<div class="col-md-3">
+				<h4><strong>Servicios</strong></h4>
+				<strong>Estacionamiento: {{recinto.servicios.estacionamiento}}</strong>
+				<br>
+				<strong>Baños: {{recinto.servicios.baños}}</strong>
+				<br>
+				<strong>Camarines: {{recinto.servicios.camarines}}</strong>
+				<br>
+				<strong>Cantina: {{recinto.servicios.cantina}}</strong>				
+			</div>
+			<br>
+			<div class="col-md-5">
+				{{> showCommentsEnclosure}}
+			</div>	
+		</div>
+		<div class="row">
+			<legend align="center"> <h3><strong>Canchas</strong></h3></legend>
+			{{#if cancha}}
+				{{#each cancha}}
+					<div class="col-md-3">
+						<strong>Número:</strong> {{this.numero}}
+						<br>
+						<strong>Tipo de cancha:</strong> {{this.tipo_cancha.tipo_de_cancha}}					
+						<br>
+						<strong>Cantidad de jugadores:</strong> {{this.jugadores.cantidad_de_jugadores}}
+						<br>
+						<strong>Estado de cancha:</strong> {{this.estado_cancha.estado_de_cancha}}
+						<br>
+						<strong>Descripción:</strong> {{this.descripcion}}
+					</div>
+				{{/each}}
+			{{/if}}
+		</div>
+		<div class="row">
+			<div class="col-md-6">
+				<br>
+				{{#if isOwner}}
+				<br><br> 
+				{{else}} 
+				{{> enterCommentsForEnclosures}}
+				<br><br>
+		 		{{/if}} 
+			</div>
+			<div class="col-md-6">
+				{{#if isOwner}}
+					{{#if promedio}}
+						{{#if countUsers}}
+							<h4><strong>Por el momento, te han calificado: {{countUsers}} usuarios</strong></h4>
+						{{else}}
+							<h4><strong>No tienes calificaciones</strong></h4>Cantidad de usuarios que han calificado : 0
+						{{/if}}
+					<br>
+					{{else}}
+						<h4><strong>Ningun usuario ha votado todavía.</strong></h4>
+					<br>
+					{{/if}}
+				{{else}}
+					{{#if tieneVoto}}
+					<br>
+						<h4><strong>Ya votaste este recinto.</strong></h4>
+					{{else}}
+					<h4><strong>¿Desea calificar al recinto?</strong></h4>
+						{{> starsRating id='rating' class="estrella" mutable=true size='lg'}}
+					<br>
+					{{/if}}
+				{{/if}}
+			</div>
+		</div>
 	</div>
 </template>
