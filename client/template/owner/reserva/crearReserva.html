@@ -1,25 +1,19 @@
 <template name = "crearReserva">
-	
-	    <div class="navbar">
-	  		<h2 align="center">
-		     	Crear reserva     
-			  </h2>
-	    </div>
+	<div class="container-fluid">
+        <legend><h2>Crear reserva</h2></legend>
 	    <div class="form-group">
-	    	<form class="reserva">
-	    		
+	    	<form class="reserva">	    		
 	    			<div class="row">
 	    				<div class="form-group  {{errorClass 'nombreDeLaReserva'}}">	
 		    				<div class="span5 col-md-11">
 						    	<label class="control-label" for="nombreDeLaReserva" >Nombre de la reserva</label>
 							    <div class="controls">
 							    	<input type="text" name="nombreDeLaReserva" id="nombreDeLaReserva" class="form-control" placeholder="Nombre de la reserva" aria-describedby="basic-addon1">
-							    	<span class="help-block">{{errorMessage 'nombreDeLaReserva'}}</span>				
+							    	<span class="help-block">{{errorMessage 'nombreDeLaReserva'}}</span>			
 								</div>
 							</div>
 						</div>		
 					</div>
-					<br>
 					<div class="row">
 	    				<div class="form-group  {{errorClass 'nombreDelCliente'}}">	
 		    				<div class="span5 col-md-11">
@@ -31,16 +25,14 @@
 							</div>
 						</div>		
 					</div>	
-					<div class="row">						
+					<div class="row">	
     	              	<div class="span5 col-md-5">
 					    	<div class="form-group  {{errorClass 'nombreCancha'}}">
-					    		 <br>					    		 
 						     	 <label class="control-label" for="nombreCancha">Seleccionar una cancha</label>
-						     	 <br>
 						     	 <div class="controls">
 						     	 	<div class="input-group">
 						     	 		<div class="input-group-btn">
-	                             			 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar cancha <span class="caret"></span></button>
+	                             			 <button type="button" class="btn btn-propio dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar cancha <span class="caret"></span></button>
 	                              				<ul class="dropdown-menu">
 	                              				{{#each cancha}}
 	                  
@@ -49,14 +41,13 @@
 	                              				{{/each}}    
 	                              				</ul>
 	                          			</div>
-						          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>						          		
+						          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>	
 						          	</div>	
 						          	<span class="help-block">{{errorMessage 'nombreCancha'}}</span>
 						     	</div>
 						   	</div>
 						</div>   	 	 
 				  	</div>
-				  	<br>
 				  	<div class="row">		    	
 			    		<div class="span5 col-md-5">
 					      	<label class="control-label" for="datetimepicker" >Elegí un día para jugar</label>
@@ -84,7 +75,9 @@
 					    </div> 				   
 					</div>	
 				 	<br>  
-					<input type="submit" value="Crear reserva"  class="btn btn-success"/>				
+					<input type="submit" value="Crear reserva"  class="btn btn-propio"/>
+					<button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
 			</form>
-		</div>     
+		</div>
+	</div>	     
 </template>     
