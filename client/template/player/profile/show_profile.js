@@ -378,158 +378,61 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return result;
   },
   cantidadPartidosJugados: function(){
-    var reserva = Reserva.find({estado : "Jugada"}, {sort: {'fecha_de_juego':-1}, limit:3});
-    var arrayPartidos=[];
-    reserva.forEach(function (e) {
-      var recintoId= e._id
-      var partido = Partido.findOne({recinto_id: recintoId});
-      arrayPartidos.push(partido)
-    });
-    var cantidad = arrayPartidos.count();
+    var arrayIdPartido = getGroupsForUser(Meteor.userId(),'jugoPartido');
+    var cantidad = arrayIdPartido.length
     return cantidad;
   },
   partidosJugados: function(){
-    var reserva = Reserva.find({estado : "Jugada"}).fetch();
-    var arrayPartidos=[];
-    if(reserva.length != 0){
-      reserva.forEach(function (e) {
-        var recintoId= e._id
-        var partido = Partido.findOne({recinto_id: recintoId});
-        arrayPartidos.push(partido)
-      });
-      var arrayPartidosJugo=[];
-      if(arrayPartidos.length === 0){
-        return false;
-      }else if(arrayPartidos.length === 1){      
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['jugoPartido'], partidoId)){
-            arrayPartidosJugo.push(partidoId);      
-          }else{
-            return false;
-          }
-        });
-        return arrayPartidosJugo;
-      }else if (arrayPartidos.length === 2){
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['jugoPartido'], partidoId)){
-            arrayPartidosJugo.push(partidoId);      
-          }else{
-            return false;
-          }
-        });
-      }else if (arrayPartidos.length >= 3){
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['jugoPartido'], partidoId)){
-            arrayPartidosJugo.push(partidoId);      
-          }else{
-            return false;
-          }
-        });      
-        var ultimo3 = arrayPartidosJugo.slice(Math.max(arrayPartidosJugo.length - 3, 1));
-        return ultimo3;
-      }
-    }else{
-      return false;
-    }
+    var arrayIdPartido = getGroupsForUser(Meteor.userId(),'jugoPartido');
+    if(arrayIdPartido != 0){      
+
+      var arrayPartidosJugo=[];    
+      arrayIdPartido.forEach(function (e) {
+        var partidos = Partido.findOne({_id:e});
+        arrayPartidosJugo.push(partidos);
+      });    
+
+      var ultimo3 = arrayPartidosJugo.slice(Math.max(arrayPartidosJugo.length - 3, 1));
+      return ultimo3;
+    
+  }else{
+    return false;
+  }
   },
   partidosInvitado: function(){
-    var reserva = Reserva.find({estado : "Reservada"}).fetch();
-    var arrayPartidos=[];
-    if(reserva.length != 0){
-      reserva.forEach(function (e) {
-        var recintoId= e._id
-        var partido = Partido.findOne({recinto_id: recintoId});
-        arrayPartidos.push(partido)
-      });
-      var arrayPartidosInvitado=[];
-      if(arrayPartidos.length === 0){
-        return false;
-      }else if(arrayPartidos.length === 1){      
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['invitado'], partidoId)){
-            arrayPartidosInvitado.push(partidoId);      
-          }else{
-            return false;
-          }
-        });
-        return arrayPartidosInvitado;
-      }else if (arrayPartidos.length === 2){
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['invitado'], partidoId)){
-            arrayPartidosInvitado.push(partidoId);      
-          }else{
-            return false;
-          }
-        });
-      }else if (arrayPartidos.length >= 3){
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['invitado'], partidoId)){
-            arrayPartidosInvitado.push(partidoId);      
-          }else{
-            return false;
-          }
-        });      
-        var ultimo3 = arrayPartidosInvitado.slice(Math.max(arrayPartidosInvitado.length - 3, 1));
-        return ultimo3;
-      }
-    }else{
-      return false;
-    }
+    var arrayIdPartido = getGroupsForUser(Meteor.userId(),'invitado');
+    if(arrayIdPartido != 0){      
+
+      var arrayPartidosInvitado=[];    
+      arrayIdPartido.forEach(function (e) {
+        var partidos = Partido.findOne({_id:e});
+        arrayPartidosInvitado.push(partidos);
+      });    
+
+      var ultimo3 = arrayPartidosInvitado.slice(Math.max(arrayPartidosInvitado.length - 3, 1));
+      return ultimo3;
+    
+  }else{
+    return false;
+  }
   },
 
-
   partidosPendientes: function(){
-    var reserva = Reserva.find({estado : "Reservada"}).fetch();
-    var arrayPartidos=[];
-    if(reserva.length != 0){
-      reserva.forEach(function (e) {
-        var recintoId= e._id
-        var partido = Partido.findOne({recinto_id: recintoId});
-        arrayPartidos.push(partido)
-      });
-      var arrayPartidosPendientes=[];
-      if(arrayPartidos.length === 0){
-        return false;
-      }else if(arrayPartidos.length === 1){      
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['confirmado'], partidoId)){
-            arrayPartidosPendientes.push(partidoId);      
-          }else{
-            return false;
-          }
-        });
-        return arrayPartidosPendientes;
-      }else if (arrayPartidos.length === 2){
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['confirmado'], partidoId)){
-            arrayPartidosPendientes.push(partidoId);      
-          }else{
-            return false;
-          }
-        });
-      }else if (arrayPartidos.length >= 3){
-        arrayPartidos.forEach(function (e) {
-          var partidoId= e._id;
-          if(Roles.userIsInRole( Meteor.userId(),['confirmado'], partidoId)){
-            arrayPartidosPendientes.push(partidoId);      
-          }else{
-            return false;
-          }
-        });      
-        var ultimo3 = arrayPartidosPendientes.slice(Math.max(arrayPartidosPendientes.length - 3, 1));
-        return ultimo3;
-      }
-    }else{
-      return false;
-    }
+     var arrayIdPartido = getGroupsForUser(Meteor.userId(),'confirmado');//ver si busca en los q es host
+    if(arrayIdPartido != 0){      
+
+      var arrayPartidosConfirmado=[];    
+      arrayIdPartido.forEach(function (e) {
+        var partidos = Partido.findOne({_id:e});
+        arrayPartidosConfirmado.push(partidos);
+      });    
+
+      var ultimo3 = arrayPartidosConfirmado.slice(Math.max(arrayPartidosConfirmado.length - 3, 1));
+      return ultimo3;
+    
+  }else{
+    return false;
+  }
   },
   dia: function(){
     var reservaDia = Reserva.findOne({_id: this.reserva_id}).fecha_de_juego;

@@ -26,7 +26,7 @@ Template.organizarPartido.events({
         var dia = new Date(diaMoment);
         var hora = $(e.target).find('[name=datetimepicker3]').val();
         var recinto = $(e.target).find('[name=nombreRecinto]').val();
-
+        //Reserva que se va a guardar si pasa el  if de esta mas abajo
         var reserva = {
             _id:Meteor.ObjectId,
             usuarioId:Meteor.user()._id,            
@@ -43,7 +43,7 @@ Template.organizarPartido.events({
         var errors = validateReserva(reserva);
         if (errors.nombreRecinto || errors.nombreCancha ||  errors.nombreDeLaReserva )
         return Session.set('reservaErrors', errors);
-
+        //se almacenas los valores seleccionados por el jugador
         var selector = {
           
           'nom_recinto':reserva.nom_recinto,
@@ -53,7 +53,7 @@ Template.organizarPartido.events({
           'estado':reserva.estado
           
         };
-
+        //se comprueba que no exita una reserva para el mismo recinto,numero de cancha,hora , dia y estado reservada
 //$gte: newDate()
         if (Reserva.findOne(selector)) {
           $('#alertReservaExistente').show();
@@ -77,7 +77,7 @@ Template.organizarPartido.events({
         });
 
         
-
+        //Coleccion partido asociado a la reserva. 1 a 1
         var partido = { 
           _id:Meteor.ObjectId,
           reserva_id:idReserva,
