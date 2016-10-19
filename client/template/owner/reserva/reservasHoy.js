@@ -24,6 +24,7 @@ Template.reservasHoy.onRendered(function() {
                     var rest1 = _.first(rest)
                     td.appendChild(document.createTextNode(rest1));
                     td.id = rest1+"Hora";
+                    td.setAttribute("class",'text-center');
                     horas.splice(1,1);
                   }
                   else{
@@ -37,9 +38,12 @@ Template.reservasHoy.onRendered(function() {
                     var id = idHora+idCancha;
                     td.appendChild(document.createTextNode(""));
                     td.id= id;
+                    td.setAttribute("class",'text-center');
                   }
                 }
                 td.style.border = '1px solid black';
+                td.setAttribute("class",'text-center');
+
                 
         }
     }
@@ -56,7 +60,8 @@ Template.reservasHoy.onRendered(function() {
     var nomUsuarioRes = resIndividual && resIndividual.nom_usuario;
     var nomUsuarioReservaString = nomUsuarioRes && nomUsuarioRes.toString();
     var tdReserva = nomUsuarioReservaString && document.getElementById(resIndividual.hora_de_juego+"Hora"+resIndividual.num_cancha+"Cancha");
-     tdReserva && tdReserva.appendChild(document.createTextNode(nomUsuarioReservaString));
+    tdReserva && tdReserva.appendChild(document.createTextNode(nomUsuarioReservaString));
+    
 
     }
 });

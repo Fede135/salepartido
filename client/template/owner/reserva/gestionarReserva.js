@@ -52,6 +52,23 @@ Template.gestionarReserva.events({
     Reserva.update({_id: this._id}, {$set: {'estado': "Cancelada"}});
     alert("Reserva cancelada");
 
-  }  	 
+  },
+
+  'click #partidoJugado': function (event) {
+    Reserva.update({_id: this._id}, {$set: {'estado': "Jugada"}});
+    var partido = Partido.findOne({reserva_id: this._id});
+    var jugaron = Roles.getUsersInRole('confirmado', partido._id);
+    jugaron.forEach(function(element) {
+      var jugaronId = element._id;
+      Roles.setUserRoles(jugaronId, 'jugoPartido', partido._id);
+    });
+    var nojugaron = Roles.getUsersInRole(['invitado', 'suplente', 'noJuega'], partido._id)
+    nojugaron.forEach(function(element) {
+      var nojugoId = element._id;
+      Roles.setUserRoles(nojugoId, 'noJugo', partido._id);
+    });
+
+    alert("Reserva jugada");
+  }      	 
 
 });

@@ -5,34 +5,58 @@
 	  <div class="container">
         {{#if recinto}}
             {{#autoForm collection="Recintos" doc=this id="updateRecinto" type="update"}}
-                <fieldset>
-                    
-                    <legend><br><h2>Editar recinto</h2></legend>
-
-                        {{> afQuickField name='nombre_recinto'}}
-
-                        {{> afQuickField name='direccion_recinto'}}
-
-                        {{> afQuickField name='telefono_recinto.teléfono_fijo'}}
-
-                        {{> afQuickField name='telefono_recinto.celular_1'}}
-
-                        {{> afQuickField name='telefono_recinto.celular_2'}}
-
-                        {{> afQuickField name='servicios.estacionamiento' options=servEstacionamiento}}
-
-                        {{> afQuickField name='servicios.baños' options=servBaños}}
-
-                        {{> afQuickField name='servicios.camarines' options=servCamarines}}
-
-                        {{> afQuickField name='servicios.cantina' options=servCantina}}
-
-                        <h3>Cambiar imágenes del recinto</h3>
-          
-                        {{> afQuickField name='imagen1_id' }}
-                        {{> afQuickField name='imagen2_id' }}
-                        {{> afQuickField name='imagen3_id' }}
-                        {{> afQuickField name='imagen4_id' }}
+                <fieldset>                    
+                    <legend style="font-size: 0px;"><br><h2>Editar recinto</h2></legend>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            {{> afQuickField name='nombre_recinto'}}
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            {{> afQuickField name='direccion_recinto'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4 col-md-4">
+                            {{> afQuickField name='telefono_recinto.teléfono_fijo'}}
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            {{> afQuickField name='telefono_recinto.celular_1'}}
+                        </div>
+                        <div class="col-sm-4 col-md-4">
+                            {{> afQuickField name='telefono_recinto.celular_2'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3">
+                            {{> afQuickField name='servicios.estacionamiento' options=servEstacionamiento}}
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            {{> afQuickField name='servicios.baños' options=servBaños}}
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            {{> afQuickField name='servicios.camarines' options=servCamarines}}
+                        </div>
+                        <div class="col-sm-3 col-md-3">
+                            {{> afQuickField name='servicios.cantina' options=servCantina}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <h3 align="center">Cambiar imágenes del recinto</h3>
+                        <div class="col-sm-6 col-md-6">
+                            {{> afQuickField name='imagen1_id' }}
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            {{> afQuickField name='imagen2_id' }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6 col-md-6">
+                            {{> afQuickField name='imagen3_id' }}
+                        </div>
+                        <div class="col-sm-6 col-md-6">
+                            {{> afQuickField name='imagen4_id' }}
+                        </div>
+                    </div>
                 </fieldset>
             <button type="submit" name ="actualizarRecinto" id="actualizarRecinto" class="btn btn-propio">Actualizar</button>
       	    {{/autoForm}}
