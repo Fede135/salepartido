@@ -26,6 +26,12 @@
                           </li>
                         {{/if}}
                       {{/unless}}
+
+                      {{#if isInRole 'owner'}}
+                        <li class ="dropdown">
+                            {{> notifications}}
+                        </li>
+                      {{/if}}  
                           <li class="navbar-brand">{{>loginButtons}}</li>
                           {{#if currentUser}}
                             <li><a alt="Brand" href="{{pathFor 'Home'}}">{{> gravatar}}</a></li>
@@ -39,3 +45,5 @@
 	   		</div>	      
 	 	</div>
 </template>
+
+

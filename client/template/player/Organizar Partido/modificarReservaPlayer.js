@@ -80,6 +80,13 @@ Template.modificarReservaPlayer.events({
 
         e.preventDefault();
 
+        // Guardando los valores originales de la reserva antes de ser actualizada
+        var oldHora = reserva.hora_de_juego;
+        var oldDia = reserva.fecha_de_juego;
+        var oldRecinto = reserva.nom_recinto;
+        var oldCancha = reserva.num_cancha;
+
+        
         var reserva = {
 
             _id: this._id,
@@ -116,7 +123,8 @@ Template.modificarReservaPlayer.events({
 
 
        var idReservaUpdate = Reserva.update({_id: this._id}, {$set: 
-          {            
+          {  
+            'nom_recinto': $('input[name=nombreRecinto]').val(),          
             'num_cancha': $('input[name=nombreCancha]').val(), 
             'hora_de_juego': $('input[name=datetimepicker3]').val(),
             'fecha_de_juego': $('input[name=datetimepicker]').val(),                        
@@ -124,50 +132,37 @@ Template.modificarReservaPlayer.events({
             'estado':reserva.estado
           }
         });
-
-        //updateReservaForOwnerNotification(idReservaUpdate);
-
-
-       /* var partido = { 
-          _id:Meteor.ObjectId,
-          reserva_id:this._id,
-          equipoA:[],
-          equipoB:[],
-        };
-        
-        var partidoId=Partido.insert(partido);*/
-        var reserva = Reserva.findOne({'_id':this._id});
-        var oldHora = reserva.hora_de_juego;
-        var oldDia = reserva.fecha_de_juego;
-        var oldRecinto = reserva.nom_recinto;
-        var partido = Partido.findOne({reserva_id:this._id});
+        var reservaActualizada = Reserva.findOne(this._id);
+        var partido = Partido.findOne({reserva_id:reservaActualizada._id});
         var idPartido = partido._id;
         var arrayInvitados = partido.invitados; 
-        console.log("arrayInvitados", arrayInvitados);       
         var equipoA = partido.equipoA;
         var equipoB = partido.equipoB;
         var confirmados = _.union(equipoA,equipoB);
-        var recinto = $('input[name=nombreRecinto]').val()
-        var hora = +$('input[name=datetimepicker3]').val()         
+        var recintoActualizado = reservaActualizada.nom_recinto;
+        var horaActualizada = reservaActualizada.hora_de_juego;
+        var diaActualizado = reservaActualizada.fecha_de_juego;
+        var canchaActualizada = reservaActualizada.num_cancha;         
         var host = this.usuarioId
         if(confirmados.length != 0) {
           var confirCorreo = [];
           confirmados.forEach(function (e) {
             var id = e.userId;
             var usu = Meteor.users.findOne({_id:id});
-            var correo = usu.emails[0].address;
+            var correo = usu && usu.emails[0].address;
             confirCorreo.push(correo)
           });
 
+          modifyReservaForOwnerNotification(oldHora, oldDia, oldRecinto, oldCancha, reservaActualizada._id, recintoActualizado, horaActualizada, diaActualizado, canchaActualizada )
           modifyInvitationToGameNotificationConfirmados(idPartido, confirCorreo);
           modifyInvitationToGameNotificationInvitados(idPartido, arrayInvitados);          
-          Meteor.call('mailModificacion',confirCorreo,idPartido,diaString,hora,recinto,host,oldHora,oldDia,oldRecinto);
-          Meteor.call('mailModificacion',arrayInvitados,idPartido,diaString,hora,recinto,host,oldHora,oldDia,oldRecinto);
+          Meteor.call('mailModificacion',confirCorreo,idPartido,diaActualizado,horaActualizada,recintoActualizado,host,oldHora,oldDia,oldRecinto);
+          Meteor.call('mailModificacion',arrayInvitados,idPartido,diaActualizado,horaActualizada,recintoActualizado,host,oldHora,oldDia,oldRecinto);
           Session.set('alertReservaActualizada', true);     
           Router.go('confirmarPartido',{_id:idPartido});
         } else { 
           modifyInvitationToGameNotificationInvitados(idPartido, arrayInvitados);
-          Meteor.call('mailModificacion',arrayInvitados,idPartido,diaString,hora,recinto,host,oldHora,oldDia,oldRecinto);
+          Meteor.call('mailModificacion',arrayInvitados,idPartido,diaActualizado,horaActualizada,recintoActualizado,host,oldHora,oldDia,oldRecinto);
           Session.set('alertReservaActualizada', true);       
           Router.go('confirmarPartido',{_id:idPartido});
         }
