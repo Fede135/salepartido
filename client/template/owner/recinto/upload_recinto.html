@@ -7,33 +7,60 @@
         
           <legend><br><h2>Cargar Recinto</h2></legend>
 
-          	{{> afQuickField name='nombre_recinto'}}
-
-          	{{> afQuickField name='direccion_recinto'}}
-
-          	{{> afQuickField name='telefono_recinto.teléfono_fijo'}}
-
-          	{{> afQuickField name='telefono_recinto.celular_1'}}
-
-          	{{> afQuickField name='telefono_recinto.celular_2'}}
-
-          	{{> afQuickField name='servicios.estacionamiento' options="allowed" noselect=true}}
-
-          	{{> afQuickField name='servicios.baños' options="allowed" noselect=true}}
-
-          	{{> afQuickField name='servicios.camarines' options="allowed" noselect=true}}
-
-          	{{> afQuickField name='servicios.cantina' options="allowed" noselect=true}}
-
-          	<h3>Subir imagenes del recinto</h3>
-          	{{> afQuickField name='imagen1_id' }}
-            {{> afQuickField name='imagen2_id' }}
-            {{> afQuickField name='imagen3_id' }}
-            {{> afQuickField name='imagen4_id' }}
-
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                  {{> afQuickField name='nombre_recinto'}}
+                </div>
+                <div class="col-sm-6 col-md-6">
+                  {{> afQuickField name='direccion_recinto'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4 col-md-4">
+                  {{> afQuickField name='telefono_recinto.teléfono_fijo'}}
+                </div>
+                <div class="col-sm-4 col-md-4">
+                  {{> afQuickField name='telefono_recinto.celular_1'}}
+                </div>
+                <div class="col-sm-4 col-md-4">
+                  {{> afQuickField name='telefono_recinto.celular_2'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3 col-md-3">
+                  {{> afQuickField name='servicios.estacionamiento' options="allowed" noselect=true}}
+                </div>
+                <div class="col-sm-3 col-md-3">
+                  {{> afQuickField name='servicios.baños' options="allowed" noselect=true}}
+                </div>
+                <div class="col-sm-3 col-md-3">
+                  {{> afQuickField name='servicios.camarines' options="allowed" noselect=true}}
+                </div>
+                <div class="col-sm-3 col-md-3">
+                  {{> afQuickField name='servicios.cantina' options="allowed" noselect=true}}
+                </div>
+            </div>
+            <div class="row">
+                <legend><h2 align="center">Subir imagenes del recinto</h2></legend>
+                <div class="col-sm-6 col-md-6">
+                  {{> afQuickField name='imagen1_id' }}
+                </div>
+                <div class="col-sm-6 col-md-6">
+                  {{> afQuickField name='imagen2_id' }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                  {{> afQuickField name='imagen3_id' }}
+                </div>
+                <div class="col-sm-6 col-md-6">
+                  {{> afQuickField name='imagen4_id' }}
+                </div>
+            </div>
       </fieldset>
         
           <button type="submit"  id="btn-upload-recinto" class="btn btn-propio">Cargar recinto</button>
+          <button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
 
     {{/autoForm}}      
     <br>
