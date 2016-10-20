@@ -12,7 +12,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            <button id="deleteComment" name="deleteComment" type="button" class="btn btn-primary">Sí</button>
+            <button id="deleteComment" name="deleteComment" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
           </div>
         </div>
       </div>
@@ -36,7 +36,7 @@
                         <tr>
                           {{this.commentToPlayer}}
                           {{#if ownComment}}
-                            <button type="button" class="close" data-toggle="modal" data-target=".bs-example-modal-sm">&times;</button>
+                            <button id="lanzoId" type="button" class="close" data-toggle="modal" data-target=".bs-example-modal-sm">&times;</button>
                           {{/if}}
                         </tr>
                       {{/each}}

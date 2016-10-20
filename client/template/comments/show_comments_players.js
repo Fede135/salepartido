@@ -23,11 +23,17 @@ Template.showCommentsPlayers.helpers({
 });
 
 Template.showCommentsPlayers.events({
+  'click #lanzoId': function () {
+    console.log(this._id);
+    commentId = this._id;
+    Session.set("idComment", commentId);
+    console.log(Session.set("idComment", commentId));
+  },
   'click #deleteComment': function() {
-    $('#eliminarComentarioModal').modal('hide');
-    console.log("antes del update", this._id);
-    console.log(CommentsForPlayers.update({_id: this._id}, {$set: {status: "Borrado"}}));
-    CommentsForPlayers.update({_id: this._id}, {$set: {status: "Borrado"}});
+    Session.get("idComment", commentId);
+    console.log(commentId);
+    console.log(CommentsForPlayers.update({_id: commentId}, {$set: {status: "Borrado"}}));
+    CommentsForPlayers.update({_id: commentId}, {$set: {status: "Borrado"}});
   }
 });
 
