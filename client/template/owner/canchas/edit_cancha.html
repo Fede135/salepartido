@@ -4,21 +4,18 @@
             {{#autoForm collection="Canchas" doc=this id="updateCancha" type="update" }}
             <legend style="font-size: 0px;"><br><h2 align="center">Editar cancha</h2></legend>
                  <div class="row">
-                    <div class="col-sm-6 col-md-6">
-                        {{> afQuickField name='numero'}}
-                    </div>
-                    <div class="col-sm-6 col-md-6">
+                    <div class="col-sm-4 col-md-4">
                         {{> afQuickField name='jugadores.cantidad_de_jugadores' options=cantJugadores}}
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-sm-4 col-md-4">
                         {{> afQuickField name='tipo_cancha.tipo_de_cancha' options=tipoCancha}}
                     </div>
                     <div class="col-sm-4 col-md-4">
                         {{> afQuickField name='estado_cancha.estado_de_cancha' options=estadoCancha}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                </div>
+                <div class="row">
+                    <div class="col-sm-8 col-md-8">
                         {{> afQuickField name='descripcion'}}
                     </div>
                 </div>

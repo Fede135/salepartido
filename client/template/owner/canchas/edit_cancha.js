@@ -28,7 +28,7 @@ Template.editCancha.helpers({
 
 AutoForm.addHooks(
    'updateCancha',
-  {
+{
   after:{
     update: function (error, result) {    	
       if(! error){
@@ -40,3 +40,4 @@ AutoForm.addHooks(
   }
 },
 );
+
