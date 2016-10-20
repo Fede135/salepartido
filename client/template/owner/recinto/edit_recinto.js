@@ -27,22 +27,13 @@ Template.editRecinto.helpers({
 
 });
 
+Template.editRecinto.events({
+  'click #cancelar': function (event){
 
-/*Template.editRecinto.events({
-	
-	'click #actualizarRecinto': function(error, event) {
-
-		if(error){			
-	        alert("Recinto actualizado correctamente.");
-	    	Router.go('ownerRecintos', {_id:Meteor.userId()});
-	    }
-	    else{
-	    	alert("Complete todos los campos");
-	    }
-	}
-
-});*/
-
+        event.preventDefault; 
+    Router.go('ownerRecintos', {_id: Meteor.userId()});
+    }
+});
 
 
 AutoForm.addHooks(

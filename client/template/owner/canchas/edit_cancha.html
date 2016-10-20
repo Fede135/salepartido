@@ -1,33 +1,30 @@
 <template name="editCancha">
-	<div class="container">
-    {{#if canchasRecinto}}
-        {{#autoForm collection="Canchas" doc=this id="updateCancha" type="update" }}
-
-            <h4>Numero de cancha</h4>
-
-            {{> afQuickField name='numero'}}
-
-            <h4>Cantidad de jugadores</h4>
-
-            {{> afQuickField name='jugadores.cantidad_de_jugadores' options=cantJugadores}}
-
-
-            <h4>Tipo de cancha</h4>
-
-            {{> afQuickField name='tipo_cancha.tipo_de_cancha' options=tipoCancha}}
-
-            <h4>Estado cancha</h4>
-
-            {{> afQuickField name='estado_cancha.estado_de_cancha' options=estadoCancha}}
-
-            <h4>Descripcion</h4>
-
-            {{> afQuickField name='descripcion'}}
-                        
-            <br>                        
-                <button type="submit" name="actualizarCancha" id="actualizarCancha" class="btn btn-success">Actualizar</button>                    
-        {{/autoForm}} 
-     {{/if}}           
-     </div>
-
+	<div class="container-fluid">
+        {{#if canchasRecinto}}
+            {{#autoForm collection="Canchas" doc=this id="updateCancha" type="update" }}
+            <legend style="font-size: 0px;"><br><h2 align="center">Editar cancha</h2></legend>
+                 <div class="row">
+                    <div class="col-sm-6 col-md-6">
+                        {{> afQuickField name='numero'}}
+                    </div>
+                    <div class="col-sm-6 col-md-6">
+                        {{> afQuickField name='jugadores.cantidad_de_jugadores' options=cantJugadores}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        {{> afQuickField name='tipo_cancha.tipo_de_cancha' options=tipoCancha}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        {{> afQuickField name='estado_cancha.estado_de_cancha' options=estadoCancha}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        {{> afQuickField name='descripcion'}}
+                    </div>
+                </div>
+                <br>                        
+                <button type="submit" name="actualizarCancha" id="actualizarCancha" class="btn btn-propio">Actualizar</button>                    
+            {{/autoForm}} 
+        {{/if}}           
+    </div>
 </template>

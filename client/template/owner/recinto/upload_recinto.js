@@ -20,3 +20,11 @@ AutoForm.addHooks(
     },
   }  
 });
+
+Template.uploadRecinto.events({
+  'click #cancelar': function (event){
+
+        event.preventDefault; 
+    Router.go('ownerRecintos', {_id: Meteor.userId()});
+    }
+});

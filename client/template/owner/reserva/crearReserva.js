@@ -26,11 +26,8 @@ Template.crearReserva.events({
         var recinto = recintoId && Recintos.findOne({'_id': recintoId});
         var nombRecinto = recinto && recinto.nombre_recinto;
         var diaString = $(e.target).find('[name=datetimepicker]').val();
-        console.log(diaString)        
         var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format("L");
-        console.log(diaMoment)
         var dia = new Date(diaMoment);
-        console.log(dia)
 
         var reserva = {
             _id:Meteor.ObjectId,            
@@ -83,7 +80,8 @@ Template.crearReserva.events({
 
         event.preventDefault;
 
-         Session.set('tabla', true);
+        Session.clear();
+        Session.set('tabla', true);
     },
     
     'click [data-picker-handle]': function (event) {

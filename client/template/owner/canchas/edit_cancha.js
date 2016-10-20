@@ -32,10 +32,9 @@ AutoForm.addHooks(
   after:{
     update: function (error, result) {    	
       if(! error){
-        console.log(result);
       	
        alert("Cancha actualizada correctamente!!");
-       Router.go('gestionCancha', {_id: canchas.recintoId });
+       Router.go('dashboard', {_id: canchas.recintoId });
        }
     }
   }

@@ -70,6 +70,8 @@ Template.dashboard.events({
 });
 
 Template.dashboard.onRendered(function() {
+
+    Session.clear();
     var tabla = true;
     Session.set('tabla', tabla);
    

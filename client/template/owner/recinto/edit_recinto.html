@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <h3 align="center">Cambiar imágenes del recinto</h3>
+                        <legend><h2 align="center">Cambiar imágenes del recinto</h2></legend>
                         <div class="col-sm-6 col-md-6">
                             {{> afQuickField name='imagen1_id' }}
                         </div>
@@ -59,6 +59,7 @@
                     </div>
                 </fieldset>
             <button type="submit" name ="actualizarRecinto" id="actualizarRecinto" class="btn btn-propio">Actualizar</button>
+            <button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
       	    {{/autoForm}}
         {{/if}}
         <br>
