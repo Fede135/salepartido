@@ -8,6 +8,16 @@
   color: #4d3f92;
 }
 
+footer {
+ width: 100%;
+ background:#101010;
+ padding:20px 0;
+ border-top:5px solid #1bb3af;
+}
+
+footer p{
+  color: white;
+}
 
 .carousel-inner { 
 	text-align: center; 
