@@ -1,7 +1,26 @@
 <template name="showCommentsPlayers">
   <div class="container">
-    
-    <!--{{#if fivecomments}}-->
+
+    <!--Modal de esta seguro eliminar comentario-->
+    <div id="eliminarComentarioPlayerModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">¿Estas seguro de...</h4>
+          </div>
+          <div class="modal-body">
+            <p>...que quieres eliminar tu comentario?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button id="deleteComment" name="deleteComment" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--Acordion con 5 primeros comentarios y luego 20-->
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="heading1">
@@ -20,7 +39,7 @@
                         <tr>
                           {{this.commentToPlayer}}
                           {{#if ownComment}}
-                            <button id="deleteComment" name="deleteComment">Borrar</button>
+                            <button id="lanzoCommentId" type="button" class="close" data-toggle="modal" data-target="#eliminarComentarioPlayerModal">&times;</button>
                           {{/if}}
                         </tr>
                       {{/each}}
@@ -51,7 +70,7 @@
                       <tr>
                         {{this.commentToPlayer}}
                         {{#if ownComment}}
-                            <button id="deleteComment" name="deleteComment">Borrar</button>
+                            <button id="lanzoCommentId" type="button" class="close" data-toggle="modal" data-target="#eliminarComentarioPlayerModal">&times;</button>
                         {{/if}}
                       </tr>
                     {{/each}}
@@ -62,7 +81,6 @@
         </div>
         {{/if}} 
       </div>
-    <!--{{/if}}-->
   </div>     
 </template>
 

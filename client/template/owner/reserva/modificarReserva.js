@@ -124,8 +124,7 @@ Template.modificarReserva.events({
           }
         });
         
-
-        $('#alertReservaActualizada').show();
+        Session.set('alertReservaActualizada', true);
         
         var recinto = nombre_recinto && Recintos.findOne({'nombre_recinto':nombre_recinto});
         var recintoId = recinto && recinto._id;

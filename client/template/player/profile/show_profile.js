@@ -527,18 +527,23 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
       Router.go('gestionJugadores', {_id: Meteor.userId()});
     },
 
-    'click #eliminarJugador': function () {
 
-      Meteor.users.update(Meteor.userId(),{ $pull: { 'profile.friends': { id: this._id,}}});
-      alert('Lo eliminaste de tu lista de jugadores');     
-
-    },
 
     'click #modificarReservaPlayer': function () {
       Router.go('modificarReservaPlayer', {_id: this.reserva_id});        
 
     },
-  });
+
+  'click #lanzarIdJugador': function () {
+    var playerId = this._id;
+    Session.set('idPlayer', playerId);
+    
+  },
+  'click #deleteFriend': function () { 
+    var playerId = Session.get('idPlayer');
+    Meteor.users.update(Meteor.userId(),{ $pull: { 'profile.friends': { id: playerId}}});  
+  } 
+});
 
 Template.showProfile.onDestroyed(function() {
   Session.set('alertPerfilEditado', undefined);

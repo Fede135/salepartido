@@ -1,5 +1,17 @@
 Meteor.subscribe('recintoPropio');
 
+Template.ownerRecintos.onRendered(function () {
+	if(Session.get('alertRecintoEditado')){
+		$('#alertRecintoEditado').show();
+	} else {
+		$('#alertRecintoEditado').hide();
+	}
+});
+
+Template.ownerRecintos.onDestroyed(function() {
+	Session.set('alertRecintoEditado', undefined);
+});
+
 Template.ownerRecintos.helpers({
 	recinto: function () {
 		return Recintos.find({ownerId: Meteor.userId()});
@@ -19,31 +31,25 @@ Template.ownerRecintos.helpers({
 			return promedio;
 	}
 	},
-	onError: function () {
-      return function (error) { alert("Se produjo un error"); console.log(error); };
-    },
-    onSuccess: function () {
-      return function (result) { alert("Se ha eliminado correctamente"); console.log(result); };
-    },
-    beforeRemove: function () {
-      return function (collection, id) {
-        var doc = Recintos.findOne(id);
-        if (confirm('Realmente quiere eliminar el recinto  "' + doc.nombre_recinto + '"?')) {
-          this.remove();
-        }
-      };
-    }
-
 });
 
 Template.ownerRecintos.events({
 	'click #uploadRecinto': function (event) {
-		Router.go('uploadRecinto', {_id: this._id});
+	 Router.go('uploadRecinto', {_id: this._id});
 	},
 	'click #editRecinto': function(event) {
 	Router.go('editRecinto', {_id: this._id});
 	},
-	'click #dashboardRecinto':function(event){
+	'click #lanzarIdRecinto': function (event) {
+		var recintoId = this._id;
+		Session.set("idRecintoDeleted", recintoId);
+	},
+	'click #deleteRecinto': function(event) {
+		var recintoId = Session.get('idRecintoDeleted');
+		Recintos.remove(recintoId);
+		$('#alertRecintoEliminado').show();
+	},
+	'click #dashboardRecinto':function(event) {
 		Session.clear();
 		Router.go('dashboard', {_id: this._id});
 	}

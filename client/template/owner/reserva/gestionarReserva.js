@@ -47,16 +47,26 @@ Template.gestionarReserva.events({
     Router.go('modificarReserva', {_id: this._id});
   },
 
-  'click #cancelarReserva': function(event){
+  'click #lanzaIdReserva' : function (event) {
+    var reservaId = this._id;
+    Session.set('idReservaDeleted', reservaId);
+  },
 
-    Reserva.update({_id: this._id}, {$set: {'estado': "Cancelada"}});
-    alert("Reserva cancelada");
+  'click #deleteReserva': function(event){
+    var reservaId = Session.get('idReservaDeleted')
+    Reserva.update({_id: reservaId}, {$set: {'estado': "Cancelada"}});
+    $('#alertReservaEliminada').show();
+  },
 
+  'click #lanzaIdReservaJugada': function (event) {
+    var reservaJugadaId = this._id;
+    Session.set ('reservaJugadaId', reservaJugadaId);
   },
 
   'click #partidoJugado': function (event) {
-    Reserva.update({_id: this._id}, {$set: {'estado': "Jugada"}});
-    var partido = Partido.findOne({reserva_id: this._id});
+    var reservaJugadaId = Session.get('reservaJugadaId');
+    Reserva.update({_id: reservaJugadaId}, {$set: {'estado': "Jugada"}});
+    var partido = Partido.findOne({reserva_id: reservaJugadaId});
     var jugaron = Roles.getUsersInRole('confirmado', partido._id);
     jugaron.forEach(function(element) {
       var jugaronId = element._id;
@@ -67,8 +77,7 @@ Template.gestionarReserva.events({
       var nojugoId = element._id;
       Roles.setUserRoles(nojugoId, 'noJugo', partido._id);
     });
-
-    alert("Reserva jugada");
+    $('#alertReservaJugada').show();
   }      	 
 
 });

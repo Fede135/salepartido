@@ -34,17 +34,13 @@ Template.editRecinto.events({
     Router.go('ownerRecintos', {_id: Meteor.userId()});
     }
 });
-
-
 AutoForm.addHooks(
    'updateRecinto',
   {
   after:{
     update: function (error, result) {    	
       if(! error)
-        console.log(result);
-       
-       alert("Recinto actualizado correctamente!!");
+       Session.set('alertRecintoEditado', true);
        Router.go('ownerRecintos', {_id:Meteor.userId()});
        
     }

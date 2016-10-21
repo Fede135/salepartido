@@ -23,8 +23,13 @@ Template.showCommentsEnclosure.helpers({
 });
 
 Template.showCommentsEnclosure.events({
+  'click #lanzoCommentId': function () {
+    var commentId = this._id;
+    Session.set("idCommentEnclosure", commentId);
+  },
   'click #deleteComment': function() {
-    CommentsForEnclosure.update({_id: this._id}, {$set: {status: "Borrado"}});
+    var commentId = Session.get("idCommentEnclosure");
+    CommentsForEnclosure.update({_id: commentId}, {$set: {status: "Borrado"}});
   }
 });
 

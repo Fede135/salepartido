@@ -56,8 +56,10 @@ Template.crearReserva.events({
         };
 
 
-        if (Reserva.findOne(selector))
-          return alert("Reserva existente");
+        if (Reserva.findOne(selector)) {
+          $('#alertReservaExistente').show();
+          return false;
+        } 
         
         var x= Reserva.insert(reserva);
         
@@ -68,9 +70,11 @@ Template.crearReserva.events({
         
         var partidoId= Partido.insert(partido);
         
-        alert("Reserva creada");
+        
 
         Session.clear();
+        $('#alertReservaCreada').show();
+        // Session.set('alertReservaCreada', true);
         var tabla = true;
         Session.set('tabla', tabla);
                 

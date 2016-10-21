@@ -61,7 +61,7 @@ Template.dashboard.events({
   },
 
 	'click #crearReserva': function(event){
-
+    
     Session.clear();
 		var abrirReserva = true;
 		Session.set('abrirReserva', abrirReserva);
@@ -70,12 +70,27 @@ Template.dashboard.events({
 });
 
 Template.dashboard.onRendered(function() {
+     if(Session.get('alertReservaCreada')) { 
+       $('#alertReservaCreada').show();
+     } else {
+       $('#alertReservaCreada').hide();
+     }
+    if (Session.get('alertReservaActualizada')) {
+      $('#alertReservaActualizada').show();
+    } else {
+      $('#alertReservaActualizada').hide();
+    }
 
     Session.clear();
     var tabla = true;
     Session.set('tabla', tabla);
-   
+    
 });
+
+Template.dashboard.onDestroyed(function() {
+  Session.set('alertReservaCreada', undefined);
+  Session.set('alertReservaActualizada', undefined);
+})
 
 
 

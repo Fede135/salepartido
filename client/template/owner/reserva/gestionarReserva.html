@@ -1,5 +1,62 @@
 <template name="gestionarReserva">
     <div class="container-fluid">
+        <br>
+        <br>
+
+        <!--Alert que muestra que reserva fue cancelada con exito-->
+        <div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaEliminada" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Reserva cancelada</strong> correctamente!
+        </div>
+
+       <!-- Alert de Reserva jugada -->
+        <div class="alert alert-info alert-dismissible" role="alert" id="alertReservaJugada" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            La <strong>reserva</strong> se computó como <strong>jugada.</strong>
+        </div>
+
+        <!--Modal de esta seguro eliminar reserva-->
+        <div id="eliminarReservaModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">¿Estas seguro de...</h4>
+                </div>
+                <div class="modal-body">
+                    <p>...que quieres eliminar esta reserva?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button id="deleteReserva" name="deleteReserva" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal de esta seguro de que el partido se jugo-->
+        <div id="partidoJugadoModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">¿Estas seguro de...</h4>
+                </div>
+                <div class="modal-body">
+                    <p>... que este partido se jugó?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button id="partidoJugado" name="partidoJugado" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                </div>
+                </div>
+            </div>
+        </div>
+
         <legend><h2>Tus reservas</h2></legend>
         <div class="row">               
             <div class="span5 col-md-5">
@@ -37,8 +94,8 @@
                                 <td><h5 align="center">{{this.num_cancha}}</h5></td>
                                 <td><h5 align="center">{{this.hora_de_juego}}</h5></td>
                                 <td class="text-center"><button type="button" name="modificarReserva" id="modificarReserva" align="center"> <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true" align="center"></i></button></td>
-                                <td class="text-center"><button type="button" name="partidoJugado" id="partidoJugado" align="center"> <i class="fa fa-check-circle fa-lg" aria-hidden="true"></i></button></td>
-                                <td class="text-center"><button type="button" name="cancelarReserva" id="cancelarReserva" align="center"><i class="fa fa-times fa-lg" aria-hidden="true" align="center"></i></button>
+                                <td class="text-center"><button type="button" name="lanzaIdReservaJugada" id="lanzaIdReservaJugada" align="center"> <i class="fa fa-check-circle fa-lg" aria-hidden="true" data-toggle="modal" data-target="#partidoJugadoModal"></i></button></td>
+                                <td class="text-center"><button type="button" name="lanzaIdReserva" id="lanzaIdReserva" align="center"><i class="fa fa-times fa-lg" aria-hidden="true" align="center" data-toggle="modal" data-target="#eliminarReservaModal"></i></button>
                                 </td>
                             </tr>
                         {{/each}}
