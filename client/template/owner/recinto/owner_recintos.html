@@ -1,5 +1,41 @@
 <template name="ownerRecintos">
+    <br>
+    <br>
+    <!--Alert que muestra que el recinto fue eliminado con éxito-->
+    <div class="alert alert-danger alert-dismissible" role="alert" id="alertRecintoEliminado" style="display: none">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        El <strong>recinto</strong> fue <strong>eliminado</strong> con éxito!
+    </div>
+    <!--Alert que muestra que el recinto fue editado con éxito-->
+    <div class="alert alert-success alert-dismissible" role="alert" id="alertRecintoEditado" style="display: none">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        El <strong>recinto</strong> fue <strong>editado</strong> con éxito!
+    </div>
+
    
+   <!--Modal de esta seguro eliminar recinto-->
+    <div id="eliminarRecintoModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">¿Estas seguro de...</h4>
+          </div>
+          <div class="modal-body">
+            <p>...que quieres eliminar este recinto?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button id="deleteRecinto" name="deleteRecinto" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container-fluid">        
         <h1 align="center">Tus Recintos</h1>            
         <row>
@@ -32,9 +68,7 @@
                             {{/if}}
                             <td class="text-center"><button type="button" name= "dashboardRecinto" id="dashboardRecinto"> <i class="fa fa-undo fa-lg" aria-hidden="true"></i> </button></td>
                             <td class="text-center"><button type="button" name="editRecinto" id="editRecinto" > <i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></button></td>
-                            <td class="text-center">{{#quickRemoveButton collection="Recintos" _id=this._id onError=onError onSuccess=onSuccess        beforeRemove=beforeRemove}}
-                            <i class="fa fa-times fa-lg" aria-hidden="true"></i>
-                            {{/quickRemoveButton}}</td>
+                            <td class="text-center"><button type="button" name="lanzarIdRecinto" id="lanzarIdRecinto" > <i class="fa fa-times fa-lg" aria-hidden="true" data-toggle="modal" data-target="#eliminarRecintoModal"></i></button></td>
                         </tr>
                         {{/each}}
                     </tbody>

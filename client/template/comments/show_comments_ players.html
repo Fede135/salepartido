@@ -1,6 +1,8 @@
 <template name="showCommentsPlayers">
   <div class="container">
-    <div id="eliminarComentarioModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+
+    <!--Modal de esta seguro eliminar comentario-->
+    <div id="eliminarComentarioPlayerModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
       <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -17,7 +19,8 @@
         </div>
       </div>
     </div>
-    <!--{{#if fivecomments}}-->
+
+<!--Acordion con 5 primeros comentarios y luego 20-->
       <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
           <div class="panel-heading" role="tab" id="heading1">
@@ -36,7 +39,7 @@
                         <tr>
                           {{this.commentToPlayer}}
                           {{#if ownComment}}
-                            <button id="lanzoId" type="button" class="close" data-toggle="modal" data-target=".bs-example-modal-sm">&times;</button>
+                            <button id="lanzoCommentId" type="button" class="close" data-toggle="modal" data-target="#eliminarComentarioPlayerModal">&times;</button>
                           {{/if}}
                         </tr>
                       {{/each}}
@@ -67,7 +70,7 @@
                       <tr>
                         {{this.commentToPlayer}}
                         {{#if ownComment}}
-                            <button id="deleteComment" name="deleteComment">Borrar</button>
+                            <button id="lanzoCommentId" type="button" class="close" data-toggle="modal" data-target="#eliminarComentarioPlayerModal">&times;</button>
                         {{/if}}
                       </tr>
                     {{/each}}
@@ -78,7 +81,6 @@
         </div>
         {{/if}} 
       </div>
-    <!--{{/if}}-->
   </div>     
 </template>
 

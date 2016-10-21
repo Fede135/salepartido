@@ -27,33 +27,13 @@ Template.editRecinto.helpers({
 
 });
 
-
-/*Template.editRecinto.events({
-	
-	'click #actualizarRecinto': function(error, event) {
-
-		if(error){			
-	        alert("Recinto actualizado correctamente.");
-	    	Router.go('ownerRecintos', {_id:Meteor.userId()});
-	    }
-	    else{
-	    	alert("Complete todos los campos");
-	    }
-	}
-
-});*/
-
-
-
 AutoForm.addHooks(
    'updateRecinto',
   {
   after:{
     update: function (error, result) {    	
       if(! error)
-        console.log(result);
-       
-       alert("Recinto actualizado correctamente!!");
+       Session.set('alertRecintoEditado', true);
        Router.go('ownerRecintos', {_id:Meteor.userId()});
        
     }

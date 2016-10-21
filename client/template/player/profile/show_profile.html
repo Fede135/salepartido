@@ -1,20 +1,41 @@
 <template name = "showProfile"> 
     <div class="container">
+      <br>
+      <br>
       <!--Alert que muestra que el perfil fue editado con exito-->
       <div class="alert alert-success alert-dismissible" role="alert" id="alertPerfilEditado" style="display: none">
  				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
-  			Tu perfil fue actualizado!
+  			Tu perfil fue <strong>actualizado!</strong>
 			</div>
 
       <!--Alert de Eliminado de un equipo -->
-        <div class="alert alert-danger alert-dismissible" role="alert" id="alertNoJuega" style="display: none">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <strong>Te diste de baja del partido!</strong> Si cambias de opinion habla con algún organizador para que vuelvan a invitarte.
+      <div class="alert alert-danger alert-dismissible" role="alert" id="alertNoJuega" style="display: none">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Te diste de baja del partido!</strong> Si cambias de opinion habla con algún organizador para que vuelvan a invitarte.
+      </div>
+
+      <!--Modal de esta seguro eliminar comentario-->
+      <div id="eliminarAmigoModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">¿Estas seguro de...</h4>
+            </div>
+            <div class="modal-body">
+              <p>...que quieres eliminarlo de tus amigos?</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+              <button id="deleteFriend" name="deleteFriend" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+            </div>
+          </div>
         </div>
+      </div>
       
       <!--muestro datos del usuario-->
       <div class="row">{{user.profile.name}}</div>
@@ -31,7 +52,8 @@
       <legend>Jugadores de Facebook</legend>
           {{#if amigosfb}}
           {{#each amigosfb}}
-            <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}},{{this.profile.player.position}}</a> <button type="button" name="eliminarJugador" id="eliminarJugador"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            <ul><a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
+            {{this.profile.player.position}} <button type="button" id="lanzarIdJugador" data-toggle="modal" data-target="#eliminarAmigoModal" class="glyphicon glyphicon-remove close" aria-hidden="true"></button><br></ul>
           {{/each}} 
           {{else}}
             No tienes amigos de Facebook
@@ -40,8 +62,8 @@
       <legend>Jugadores de la Aplicación</legend>        
           {{#if amigosapp}}
           {{#each amigosapp}}
-            <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
-            {{this.profile.player.position}} <button type="button" name="eliminarJugador" id="eliminarJugador"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button> <br>
+            <ul><a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
+            {{this.profile.player.position}} <button type="button" id="lanzarIdJugador" data-toggle="modal" data-target="#eliminarAmigoModal" class="glyphicon glyphicon-remove close" aria-hidden="true"></button><br></ul>
           {{/each}}
           {{else}}
             No tienes amigos de la aplicación
@@ -52,8 +74,8 @@
       <legend>Jugadores de la Aplicación</legend>        
           {{#if amigosapp}}
           {{#each amigosapp}}
-            <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
-            {{this.profile.player.position}} <button type="button" name="eliminarJugador" id="eliminarJugador"> <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button><br>
+            <ul><a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>         
+            {{this.profile.player.position}} <button type="button" id="lanzarIdJugador" data-toggle="modal" data-target="#eliminarAmigoModal" class="glyphicon glyphicon-remove close" aria-hidden="true"></button><br></ul> 
           {{/each}}
           {{else}}
             No tienes amigos de la aplicación

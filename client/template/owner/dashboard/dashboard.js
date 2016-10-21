@@ -61,7 +61,7 @@ Template.dashboard.events({
   },
 
 	'click #crearReserva': function(event){
-
+    
     Session.clear();
 		var abrirReserva = true;
 		Session.set('abrirReserva', abrirReserva);

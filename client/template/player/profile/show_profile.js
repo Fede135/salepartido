@@ -430,11 +430,9 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
       Router.go('editProfile', {_id: Meteor.userId()});
   },
 
-  'click #addJugadores': function() {
+'click #addJugadores': function() {
       var agregadoId = use;
       var agregaId = Meteor.userId();
-      //console.log('El que agrega',agregaId);
-      //console.log('Agregado',agregadoId);
       Meteor.call('addJugadores',agregaId, agregadoId);
   },
 
@@ -442,13 +440,15 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
       Router.go('gestionJugadores', {_id: Meteor.userId()});
   },
 
-  'click #eliminarJugador': function () {
+  'click #lanzarIdJugador': function () {
+    var playerId = this._id;
+    Session.set('idPlayer', playerId);
     
-    Meteor.users.update(Meteor.userId(),{ $pull: { 'profile.friends': { id: this._id,}}});
-    alert('Lo eliminaste de tu lista de jugadores');
-        
-    
-  }
+  },
+  'click #deleteFriend': function () { 
+    var playerId = Session.get('idPlayer');
+    Meteor.users.update(Meteor.userId(),{ $pull: { 'profile.friends': { id: playerId}}});  
+  } 
 });
 
 Template.showProfile.onDestroyed(function() {

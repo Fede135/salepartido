@@ -1,3 +1,21 @@
+Template.gestionCancha.onRendered(function() {
+  if(Session.get('alertCanchaCreada')) {
+    $('#alertCanchaCreada').show();
+  } else {
+    $('#alertCanchaCreada').hide();
+  }
+  if(Session.get('alertCanchaEditada')) {
+    $('#alertCanchaEditada').show();
+  } else {
+    $('#alertCanchaEditada').hide();
+  }
+});
+
+Template.gestionCancha.onDestroyed( function() {
+  Session.set('alertCanchaCreada', undefined);
+  Session.set('alertCanchaEditada', undefined);
+});
+
 Template.gestionCancha.helpers({
 
 	canchasRecinto : function(){
@@ -5,22 +23,6 @@ Template.gestionCancha.helpers({
 			return canchas;
 
 	},
-
-	onError: function () {
-      return function (error) { alert("Se produjo un error"); console.log(error); };
-    },
-    onSuccess: function () {
-      return function (result) { alert("Se ha eliminado correctamente"); console.log(result); };
-    },
-    beforeRemove: function () {
-      return function (collection, id) {
-        var doc = Canchas.findOne(id);
-        if (confirm('Realmente quiere eliminar la cancha número: ' + doc.numero + '?')) {
-          this.remove();
-        }
-      };
-    }
-
 });
 	
 Template.gestionCancha.events({
@@ -31,6 +33,16 @@ Template.gestionCancha.events({
   'click #crearCancha': function(event) {
       Router.go('cargarCancha', {_id: this._id}); //ID DEL RECINTO
   },
+  
+  'click #lanzaIdCancha': function (event) {
+		var canchaId = this._id;
+		Session.set("idCanchaDeleted", canchaId);
+	},
+  'click #deleteCancha': function(event) {
+		var canchaId = Session.get('idCanchaDeleted');
+		Canchas.remove(canchaId);
+		$('#alertCanchaEliminada').show();
+	},
 
 });
 	
