@@ -20,6 +20,11 @@
                    <ul class="nav navbar-nav navbar-right">
                      {{#unless isInRole 'owner'}}
                         {{#if emailsVerified}}
+                         <form class="navbar-form navbar-left">
+                            <div class="form-group">
+                               {{> search}}
+                            </div>
+                         </form>
                           <li><a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a></li>
                           <li class="dropdown">
                             {{> notifications}}
