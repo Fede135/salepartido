@@ -121,6 +121,10 @@ h3 {
   color:black;
 }
 
+.row {
+    margin-right: 0px;
+    margin-left: 0px;
+}
 
 #tableOwner.table {
     width: 90%;
