@@ -1,0 +1,99 @@
+<template name="reportes">
+	<div class="container">
+		<div class="row">
+			<div><!-- hacer responsive -->				
+				<table>
+					<caption>Usuarios/Cantidad de reservas</caption>
+					<thead>
+						<tr><!-- Primer fila -->
+							<th>Usuario</th>
+							<th>Cantidad</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{{#each cantJugadoresReservaron}}
+						<tr>
+							<td>{{this.usuario.profile.name}}</td>
+							<td>{{this.cantidad}}</td>
+
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row">
+			<div><!-- hacer responsive -->				
+				<table>
+					<caption>Usuarios/Reservas Canceladas</caption>
+					<thead>
+						<tr><!-- Primer fila -->
+							<th>Usuario</th>
+							<th>Cantidad</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{{#each jugadoresCancelaron}}
+						<tr>
+							<td>{{this.usuario.profile.name}}</td>
+							<td>{{this.cantidad}}</td>
+
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="span5 col-md-5">
+		<label class="control-label" for="datetimepickerDesde" >Desde</label>
+			<div class="controls">
+				<div class='input-group date'>
+					<input name="datetimepickerDesde" id="datetimepickerDesde" type="button" value="" class="form-control"/>
+					<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepickerDesde">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</span>	
+				</div>  	
+			</div>
+		</div>
+		<div class="span5 col-md-5">
+		<label class="control-label" for="datetimepickerHasta" >Hasta</label>
+			<div class="controls">
+				<div class='input-group date'>
+					<input name="datetimepickerHasta" id="datetimepickerHasta" type="button" value="" class="form-control"/>
+					<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepickerHasta">
+						<i class="glyphicon glyphicon-calendar"></i>
+					</span>	
+				</div>  	
+			</div>
+		</div>  
+		<br>
+		<br>
+		<!-- <button type="button" name="verReporte" id="verReporte" class="btn btn-default">Ver reporte</button> -->
+		<div class="row">
+			<div><!-- hacer responsive -->				
+				<table>
+					<caption>Cantidad de reservas</caption>
+					<thead>
+						<tr><!-- Primer fila -->
+							<th>Estado</th>
+							<th>Cantidad</th>
+
+						</tr>
+					</thead>
+					<tbody>
+						{{#each cantReservas}}
+						<tr>
+							<td>{{this.tipo}}</td>
+							<td>{{this.cantidad}}</td>
+
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</template>

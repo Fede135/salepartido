@@ -24,6 +24,7 @@ Template.organizarPartido.events({
         var diaString = $(e.target).find('[name=datetimepicker]').val();        
         var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
         var dia = new Date(diaMoment);
+        console.log('dia',dia);
         var hora = $(e.target).find('[name=datetimepicker3]').val();
         var recinto = $(e.target).find('[name=nombreRecinto]').val();
         //Reserva que se va a guardar si pasa el  if de esta mas abajo

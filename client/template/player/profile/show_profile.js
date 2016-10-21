@@ -9,7 +9,7 @@ Template.showProfile.onRendered(function() {
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
   user : function() {
     use = this._id;
-
+    
     return Meteor.users.findOne({_id: this._id});
   },
 
@@ -378,17 +378,17 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return result;
   },
   cantidadPartidosJugados: function(){
-    var arrayIdPartido = getGroupsForUser(Meteor.userId(),'jugoPartido');
+    var arrayIdPartido = Roles.getGroupsForUser(use,['jugoPartido']);
     var cantidad = arrayIdPartido.length
     return cantidad;
   },
   partidosJugados: function(){
-    var arrayIdPartido = getGroupsForUser(Meteor.userId(),'jugoPartido');
-    if(arrayIdPartido != 0){      
-
+    var arrayIdPartido = Roles.getGroupsForUser(use,['jugoPartido']);
+    console.log('jugados',arrayIdPartido);
+    if(arrayIdPartido.length != 0){
       var arrayPartidosJugo=[];    
       arrayIdPartido.forEach(function (e) {
-        var partidos = Partido.findOne({_id:e});
+        var partidos = Partido.findOne({_id: e});
         arrayPartidosJugo.push(partidos);
       });    
 
@@ -396,16 +396,18 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       return ultimo3;
     
   }else{
+    console.log('else, partidos jugados')
     return false;
   }
   },
   partidosInvitado: function(){
-    var arrayIdPartido = getGroupsForUser(Meteor.userId(),'invitado');
-    if(arrayIdPartido != 0){      
+    var arrayIdPartido = Roles.getGroupsForUser(use,['invitado']);
+    console.log('invitado',arrayIdPartido);
+    if(arrayIdPartido.length != 0) {      
 
       var arrayPartidosInvitado=[];    
       arrayIdPartido.forEach(function (e) {
-        var partidos = Partido.findOne({_id:e});
+        var partidos = Partido.findOne({_id: e});
         arrayPartidosInvitado.push(partidos);
       });    
 
@@ -413,24 +415,27 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       return ultimo3;
     
   }else{
+    console.log('else, partidos invitado')
     return false;
   }
   },
 
   partidosPendientes: function(){
-     var arrayIdPartido = getGroupsForUser(Meteor.userId(),'confirmado');//ver si busca en los q es host
-    if(arrayIdPartido != 0){      
+     var arrayIdPartido = Roles.getGroupsForUser(use,['confirmado']);//ver si busca en los q es host
+     console.log('pendientes',arrayIdPartido);
+    if(arrayIdPartido.length != 0 ){      
 
       var arrayPartidosConfirmado=[];    
       arrayIdPartido.forEach(function (e) {
-        var partidos = Partido.findOne({_id:e});
+        var partidos = Partido.findOne({_id: e});
         arrayPartidosConfirmado.push(partidos);
-      });    
+      });   
 
       var ultimo3 = arrayPartidosConfirmado.slice(Math.max(arrayPartidosConfirmado.length - 3, 1));
       return ultimo3;
     
   }else{
+    console.log('else, partidos pendientes')
     return false;
   }
   },
