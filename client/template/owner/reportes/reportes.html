@@ -1,8 +1,8 @@
 <template name="reportes">
 	<div class="container">
-
 		<div class="row">
-			<div class="span5 col-md-5">
+			<legend>Rango de fechas</legend>
+			<div class=" col-md-6">
 				<label class="control-label" for="datetimepickerDesde" >Desde</label>
 				<div class="controls">
 					<div class='input-group date'>
@@ -12,8 +12,7 @@
 						</span>	
 					</div>  	
 				</div>
-			</div>
-			<div class="span5 col-md-5">
+				<br>
 				<label class="control-label" for="datetimepickerHasta" >Hasta</label>
 				<div class="controls">
 					<div class='input-group date'>
@@ -23,19 +22,16 @@
 						</span>	
 					</div>  	
 				</div>
-			</div> 
-		</div> 
-		<br>
-		<br>
-		<!-- <button type="button" name="verReporte" id="verReporte" class="btn btn-default">Ver reporte</button> -->
-		<div class="row">
-			
-				<div><!-- hacer responsive -->				
+			</div>
+			<div class="col-md-6">
+				<div><!-- hacer responsive -->		
+				{{#if cantReservas}}		
 					<table>
 						<caption>Cantidad de reservas</caption>
 						<thead>
 							<tr><!-- Primer fila -->
 								<th>Estado</th>
+								<br>
 								<th>Cantidad</th>
 
 
@@ -45,64 +41,260 @@
 							{{#each cantReservas}}
 							<tr>
 								<td>{{this.tipo}}</td>
+								<br>
 								<td>{{this.cantidad}}</td>
 							</tr>
 							{{/each}}
 						</tbody>
 					</table>
+				{{else}}
+				<h3>Seleccione un rango de fechas.</h3>
+				{{/if}}
 				</div>
-			</div>
-			<br>
-			<br>
-			<div class="row">
-			<div class="col-md-6">
+				
+			</div> 
+		</div> 
+		<br>
+		<br>	
+
+		<div class="row">
+			<legend>Historico de la cantidad de reservas por rango de hora</legend>
+			<p>Rango horario:</p>
+			<li>Mañana de 9hs. a 12hs.</li>
+			<li>Siesta de 13hs a 16hs.</li>
+			<li>Tarde de 17hs a 20hs.</li>
+			<li>Noche de 21hs. a 1hs.</li>
+			<br>			
+			<div class="col-md-4">
 				<div><!-- hacer responsive -->				
 					<table>
-						<caption>Usuarios/Cantidad de reservas</caption>
+						<caption>Concretadas</caption>
 						<thead>
 							<tr><!-- Primer fila -->
-								<th>Usuario</th>
-								<th>Cantidad</th>
-
+								<th>Rango</th>
+								<br>
+								<th>Cantidad</th>						
 							</tr>
 						</thead>
 						<tbody>
-							{{#each cantJugadoresReservaron}}
+							{{#each cantConcretadasPorHoras}}
 							<tr>
-								<td>{{this.usuario.profile.name}}</td>
+								<td>{{this.rango}}</td>
+								<br>
 								<td>{{this.cantidad}}</td>
-
 							</tr>
 							{{/each}}
 						</tbody>
 					</table>
 				</div>
 			</div>
-		
-
-		<div class="col-md-6">
-			<div><!-- hacer responsive -->				
-				<table>
-					<caption>Usuarios/Reservas Canceladas</caption>
-					<thead>
-						<tr><!-- Primer fila -->
-							<th>Usuario</th>
-							<th>Cantidad</th>
-
-						</tr>
-					</thead>
-					<tbody>
-						{{#each jugadoresCancelaron}}
-						<tr>
-							<td>{{this.usuario.profile.name}}</td>
-							<td>{{this.cantidad}}</td>
-
-						</tr>
-						{{/each}}
-					</tbody>
-				</table>
+			<div class="col-md-4">
+				<div><!-- hacer responsive -->				
+					<table>
+						<caption>Canceladas</caption>
+						<thead>
+							<tr><!-- Primer fila -->
+								<th>Rango</th>
+								<br>
+								<th>Cantidad</th>						
+							</tr>
+						</thead>
+						<tbody>
+							{{#each cantCanceladasPorHoras}}
+							<tr>
+								<td>{{this.rango}}</td>
+								<br>
+								<td>{{this.cantidad}}</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div><!-- hacer responsive -->				
+					<table>
+						<caption>Total</caption>
+						<thead>
+							<tr><!-- Primer fila -->
+								<th>Rango</th>
+								<br>
+								<th>Cantidad</th>						
+							</tr>
+						</thead>
+						<tbody>
+							{{#each cantPorHoras}}
+							<tr>
+								<td>{{this.rango}}</td>
+								<br>
+								<td>{{this.cantidad}}</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			
+		</div>
+		<br>
+		<br>
+		<div class="row">
+			<legend>Historico cantidad de reservas por dia</legend>
+			<div class="col-md-6">
+				<div><!-- hacer responsive -->				
+					<table>
+						<caption>Concretadas</caption>
+						<thead>
+							<tr><!-- Primer fila -->
+								<th>Dia de la semana</th>
+								<br>
+								<th>Cantidad</th>						
+							</tr>
+						</thead>
+						<tbody>
+							{{#each concretadasPorDia}}
+							<tr>
+								<td>{{this.dia}}</td>
+								<br>
+								<td>{{this.cantidad}}</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div><!-- hacer responsive -->				
+					<table>
+						<caption>Canceladas</caption>
+						<thead>
+							<tr><!-- Primer fila -->
+								<th>Dia de la semana</th>
+								<br>
+								<th>Cantidad</th>						
+							</tr>
+						</thead>
+						<tbody>
+							{{#each canceladasPorDia}}
+							<tr>
+								<td>{{this.dia}}</td>
+								<br>
+								<td>{{this.cantidad}}</td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
+		<div class="row">
+			<legend>Historico de reservas concretadas y canceladas por usuarios.</legend>
+			<div class="col-md-6">
+				<legend>A través de Sale Partido</legend>
+				<div class="col-md-3">
+					<div><!-- hacer responsive -->				
+						<table>
+							<caption>Concretadas</caption>
+							<thead>
+								<tr><!-- Primer fila -->
+									<th>Usuario</th>
+									<br>
+									<th>Cantidad</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								{{#each cantJugadoresReservaron}}
+								<tr>
+									<td>{{this.usuario.profile.name}}</td>
+									<br>
+									<td>{{this.cantidad}}</td>
+
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>					
+
+				<div class="col-md-3">
+					<div><!-- hacer responsive -->				
+						<table>
+							<caption>Canceladas</caption>
+							<thead>
+								<tr><!-- Primer fila -->
+									<th>Usuario</th>
+									<br>
+									<th>Cantidad</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								{{#each jugadoresCancelaron}}
+								<tr>
+									<td>{{this.usuario.profile.name}}</td>
+									<br>
+									<td>{{this.cantidad}}</td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<legend>A través del administrador</legend>
+				<div class="col-md-3">
+					<div><!-- hacer responsive -->				
+						<table>
+							<caption>Concretadas</caption>
+							<thead>
+								<tr><!-- Primer fila -->
+									<th>Usuario</th>
+									<br>
+									<th>Cantidad</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								{{#each cantJugadoresReservaronP}}
+								<tr>
+									<td>{{this.usuario}}</td>
+									<br>
+									<td>{{this.cantidad}}</td>
+
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>					
+				
+				<div class="col-md-3">
+					<div><!-- hacer responsive -->				
+						<table>
+							<caption>Canceladas</caption>
+							<thead>
+								<tr><!-- Primer fila -->
+									<th>Usuario</th>
+									<br>
+									<th>Cantidad</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								{{#each jugadoresCancelaronP}}
+								<tr>
+									<td>{{this.usuario.profile.name}}</td>
+									<br>
+									<td>{{this.cantidad}}</td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

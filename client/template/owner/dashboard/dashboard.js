@@ -47,6 +47,11 @@ Template.dashboard.events({
   	'click #gestionCanchas': function(event){
 		Router.go('gestionCancha', {_id: this._id});
   	},
+
+  	'click #reportes': function(event){
+		Router.go('reportes', {_id: this._id});
+  	},
+  	
   	 
   	 
 });
