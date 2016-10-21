@@ -29,18 +29,13 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
   amigosfb: function () {  
     var usuario = Meteor.users.findOne({_id: use});
     var array = usuario.profile.friends;          
-        //console.log('array friends',array);
         if(array){
           var length = array.length;
-          //console.log('longitud array',length);
           var arrayAmigos= [];
           for(i=0; i<length; i++ ){
-            //console.log(! array[i].fb);
             if(array[i].fb){
               var amigosId = array[i].id;
-              //console.log('idAmigos',amigosId);
               var amigo = Meteor.users.findOne({_id : amigosId});
-              //console.log('objeto',amigo)
               arrayAmigos.push(amigo);
             }
           } 
@@ -53,18 +48,13 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       amigosapp: function (){
         var usuario = Meteor.users.findOne({_id: use});
         var array = usuario.profile.friends;          
-      //console.log('array friends',array);
       if(array){
         var length = array.length;
-        //console.log('longitud array',length);
         var arrayAmigos= [];
         for(i=0; i<length; i++ ){
-          //console.log(! array[i].fb);
           if(! array[i].fb){
             var amigosId = array[i].id;
-            //console.log('idAmigos',amigosId);
             var amigo = Meteor.users.findOne({_id : amigosId});
-            //console.log('objeto',amigo)
             arrayAmigos.push(amigo);
           }
         } 
@@ -355,7 +345,6 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
 
       isOwner : function () {
         var dueño = Roles.userIsInRole(Meteor.userId(), 'owner', 'Roles.GLOBAL_GROUP');
-        console.log(dueño);
         return dueño;
 
       },
@@ -365,9 +354,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         var ve = Meteor.users.findOne({_id:Meteor.userId()});
         var array = ve.profile.friends; 
         if(array){        
-      //console.log(array);
       var length = array.length;
-      //console.log(length);
       var result = false;
       for(i=0; i<length; i++ ){
         if(use === array[i].id){
@@ -384,7 +371,6 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
   },
   partidosJugados: function(){
     var arrayIdPartido = Roles.getGroupsForUser(use,['jugoPartido']);
-    console.log('jugados',arrayIdPartido);
     if(arrayIdPartido.length != 0){
       var arrayPartidosJugo=[];    
       arrayIdPartido.forEach(function (e) {
@@ -396,13 +382,11 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       return ultimo3;
     
   }else{
-    console.log('else, partidos jugados')
     return false;
   }
   },
   partidosInvitado: function(){
     var arrayIdPartido = Roles.getGroupsForUser(use,['invitado']);
-    console.log('invitado',arrayIdPartido);
     if(arrayIdPartido.length != 0) {      
 
       var arrayPartidosInvitado=[];    
@@ -415,14 +399,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       return ultimo3;
     
   }else{
-    console.log('else, partidos invitado')
     return false;
   }
   },
 
   partidosPendientes: function(){
      var arrayIdPartido = Roles.getGroupsForUser(use,['confirmado']);//ver si busca en los q es host
-     console.log('pendientes',arrayIdPartido);
     if(arrayIdPartido.length != 0 ){      
 
       var arrayPartidosConfirmado=[];    
@@ -435,7 +417,6 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       return ultimo3;
     
   }else{
-    console.log('else, partidos pendientes')
     return false;
   }
   },
@@ -474,72 +455,61 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
   'click #resistencia': function(){
     var tipo = "resistencia";
     var ratingResistencia = $('#resistencia').data('userrating');
-    //console.log(ratingResistencia);
     Meteor.call('calif',use,ratingResistencia,tipo);
   },
 
   'click #fairplay': function(){
     var tipo = "fairplay";
     var ratingFairplay = $('#fairplay').data('userrating');
-    //console.log(ratingFairplay);
     Meteor.call('calif',use,ratingFairplay,tipo);
   },
 
   'click #puntualidad': function(){
     var tipo = "puntualidad";
     var ratingPunt = $('#puntualidad').data('userrating');
-    //console.log(ratingPunt);
     Meteor.call('calif',use,ratingPunt,tipo);
   },
 
   'click #burradas': function(){
     var tipo = "burradas";
     var ratingBurradas = $('#burradas').data('userrating');
-    //console.log(ratingBurradas);
     Meteor.call('calif',use,ratingBurradas,tipo);
   },
    //Posicion arquero
    'click #reflejos': function(){
     var tipo = "reflejos";
     var ratingReflejos = $('#reflejos').data('userrating');
-    //console.log(ratingReflejos);
     Meteor.call('calif',use,ratingReflejos,tipo);
   },
   'click #atajadas': function(){
     var tipo = "atajadas";
     var ratingAtajadas = $('#atajadas').data('userrating');
-    //console.log(ratingAtajadas);
     Meteor.call('calif',use,ratingAtajadas,tipo);
   },
    //Otras posiciones
    'click #pase': function(){
     var tipo = "pase";
     var ratingPase = $('#pase').data('userrating');
-    //console.log(ratingPase);
     Meteor.call('calif',use,ratingPase,tipo);
   },
   'click #defensa': function(){
     var tipo = "defensa";
     var ratingDefensa = $('#defensa').data('userrating');
-    //console.log(ratingDefensa);
     Meteor.call('calif',use,ratingDefensa,tipo);
   },
   'click #gambeta': function(){
     var tipo = "gambeta";
     var ratingGambeta = $('#gambeta').data('userrating');
-    //console.log(ratingGambeta);
     Meteor.call('calif',use,ratingGambeta,tipo);
   },
   'click #rematearco': function(){
     var tipo = "remate";
     var ratingRematearco = $('#rematearco').data('userrating');
-    //console.log(ratingRematearco);
     Meteor.call('calif',use,ratingRematearco,tipo);
   },
   'click #velocidad': function(){
     var tipo = "velocidad";
     var ratingVelocidad = $('#velocidad').data('userrating');
-    //console.log(ratingVelocidad);
     Meteor.call('calif',use,ratingVelocidad,tipo);
   },
 
@@ -550,8 +520,6 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
   'click #addJugadores': function() {
     var agregadoId = use;
     var agregaId = Meteor.userId();
-      //console.log('El que agrega',agregaId);
-      //console.log('Agregado',agregadoId);
       Meteor.call('addJugadores',agregaId, agregadoId);
     },
 
