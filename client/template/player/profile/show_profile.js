@@ -438,7 +438,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
  },
  isHost :function(){
       //this._id es el id del partido que viene del each de partidos pendientes
-      if(Roles.userIsInRole( Meteor.userId(),['host','hostSecundario'], this._id)){
+      if(Roles.userIsInRole( Meteor.userId(),'host', this._id)){
         return true;
       }else{
         return false;
