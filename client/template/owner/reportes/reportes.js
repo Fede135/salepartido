@@ -1,15 +1,13 @@
 Template.reportes.onRendered(function () {
   this.$('#datetimepickerDesde').datetimepicker({
     locale: 'es',
-    format: 'L',
-   // minDate: moment(),
+    format: 'L',   
     showClear: true,
   });
 
   this.$('#datetimepickerHasta').datetimepicker({
     locale: 'es',
-    format: 'L',
-    //minDate: moment(),
+    format: 'L',    
     showClear: true,
   });
 
@@ -57,41 +55,10 @@ Template.reportes.events({
 			console.log(fechaHasta);
 			Session.set('fechaHasta', fechaHasta);
 		});
-	},
-        //var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
-       // var dia = new Date(diaMoment);
-        //---------hasta------------------
-        /*var diaStringHasta = $(e.target).find('[name=datetimepickerHasta]').val();        
-        var diaMomentHasta = moment(diaStringHasta, 'DD/MM/YYYY', true).format();
-        var diaHasta = new Date(diaMomentHasta);
-        console.log('hasta',diaHasta)
-        var reservas = Reserva.find({nom_recinto: "Recinto 1",fecha_de_juegoD : {"$gte" :diaDesde, "$lte" : diaHasta}});
-        var cantidadReservasTotal= reservas.count();
-        console.log(reservas);*/
+	},        
    
 
  });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 Template.reportes.helpers({
@@ -198,10 +165,8 @@ cantReservas: function(){
 		var reservas = Reserva.find({nom_recinto: "Recinto 1",'fecha_de_juegoD' : {"$gte" : start, "$lte" : end}});		
 		var arrayReservas = reservas.fetch();
 		var countReservas = reservas.count();
-		console.log(reservas);
-		
+		console.log(arrayReservas);
 
-	}
 		//--------------Reservas pendientes
 		var reservasPendientes = Reserva.find({nom_recinto: "Recinto 1",fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Reservada"});
 		var cantidadReservasReservadas= reservasPendientes.count();
@@ -212,7 +177,7 @@ cantReservas: function(){
 		var reservasJugadas = Reserva.find({nom_recinto: "Recinto 1",fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Jugada"});
 		var cantidadReservasJugadas= reservasJugadas.count();
 
-		var array1 = _.zip(['Pendientes','Canceladas','Jugadas'],[cantidadReservasReservadas,cantidadReservasCanceladas,cantidadReservasJugadas]);
+		var array1 = _.zip(['Pendientes','Canceladas','Jugadas','TOTAL'],[cantidadReservasReservadas,cantidadReservasCanceladas,cantidadReservasJugadas,countReservas]);
 		console.log(array1);
 		var res = [];
 		array1.forEach(function(e){
@@ -222,8 +187,13 @@ cantReservas: function(){
 		console.log(res);
 		return res;
 		//para buscar los usuarios q mas reservaron y los q ams cancelaron usar el codigo de arriba
-	
+	}
 
-	},
+},
 
+});
+
+Template.reportes.onDestroyed(function() {
+  Session.set('fechaDesde', fechaDesde);
+  Session.set('fechaHasta', fechaHasta);
 });
