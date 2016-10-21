@@ -18,7 +18,7 @@
              La <strong>cancha</strong> fue <strong>editada</strong> con éxito!
         </div>
 
-        <!--Alert que muestra que cancha ue eliminada con exito-->
+        <!--Alert que muestra que cancha fue eliminada con exito-->
         <div class="alert alert-danger alert-dismissible" role="alert" id="alertCanchaEliminada" style="display: none">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -28,21 +28,21 @@
 
         <!--Modal de esta seguro eliminar cancha-->
         <div id="eliminarCanchaModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">¿Estas seguro de...</h4>
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">¿Estas seguro de...</h4>
+                </div>
+                <div class="modal-body">
+                    <p>...que quieres eliminar este cancha?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    <button id="deleteCancha" name="deleteCancha" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                </div>
+                </div>
             </div>
-            <div class="modal-body">
-                <p>...que quieres eliminar este cancha?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button id="deleteCancha" name="deleteCancha" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
-            </div>
-            </div>
-        </div>
         </div>
 
         <row>

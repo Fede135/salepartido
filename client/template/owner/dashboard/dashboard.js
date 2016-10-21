@@ -72,8 +72,22 @@ Template.dashboard.events({
 Template.dashboard.onRendered(function() {
     var tabla = true;
     Session.set('tabla', tabla);
-   
+    // if(Session.get('alertReservaCreada')) { 
+    //   $('#alertReservaCreada').show();
+    // } else {
+    //   $('#alertReservaCreada').hide();
+    // }
+    if (Session.get('alertReservaActualizada')) {
+      $('#alertReservaActualizada').show();
+    } else {
+      $('#alertReservaActualizada').hide();
+    }
 });
+
+Template.dashboard.onDestroyed(function() {
+  Session.set('alertReservaCreada', undefined);
+  Session.set('alertReservaActualizada', undefined);
+})
 
 
 

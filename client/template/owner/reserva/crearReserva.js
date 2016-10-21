@@ -73,9 +73,11 @@ Template.crearReserva.events({
         
         var partidoId= Partido.insert(partido);
         
-        $('#alertReservaCreada').show();
+        
 
         Session.clear();
+        $('#alertReservaCreada').show();
+        // Session.set('alertReservaCreada', true);
         var tabla = true;
         Session.set('tabla', tabla);
                 
