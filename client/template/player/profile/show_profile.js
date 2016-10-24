@@ -4,6 +4,11 @@ Template.showProfile.onRendered(function() {
   } else {
     $('#alertPerfilEditado').hide();
   }
+  if (Session.get('alertNoJuega')) {
+    $('#alertNoJuega').show();
+  } else {
+    $('#alertNoJuega').hide();
+  }
 });
 
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
@@ -395,8 +400,8 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         arrayPartidosInvitado.push(partidos);
       });    
 
-      var ultimo3 = arrayPartidosInvitado.slice(Math.max(arrayPartidosInvitado.length - 3, 1));
-      return ultimo3;
+      var ultimo2 = arrayPartidosInvitado.slice(Math.max(arrayPartidosInvitado.length - 2, 1));
+      return ultimo2;
     
   }else{
     return false;
@@ -413,8 +418,8 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         arrayPartidosConfirmado.push(partidos);
       });   
 
-      var ultimo3 = arrayPartidosConfirmado.slice(Math.max(arrayPartidosConfirmado.length - 3, 1));
-      return ultimo3;
+      var ultimo2 = arrayPartidosConfirmado.slice(Math.max(arrayPartidosConfirmado.length - 2, 1));
+      return ultimo2;
     
   }else{
     return false;
@@ -438,14 +443,19 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
  },
  isHost :function(){
       //this._id es el id del partido que viene del each de partidos pendientes
-      if(Roles.userIsInRole( Meteor.userId(),'host', this._id)){
+      if(Roles.userIsInRole( Meteor.userId(),'host', this._id)) {
         return true;
-      }else{
+      } else {
         return false;
       }
     },
-
-  });
+isInvitado : function() {
+  return Roles.userIsInRole (Meteor.userId(), 'invitado', this._id);
+},
+isConfirmado : function() {
+  return Roles.userIsInRole (Meteor.userId(), 'confirmado', this._id);
+}
+});
 
 Template.showProfile.events({  //al hacer click en el boton editar se redirige al template editProfile y se le pasa el _id del usuario del cual quiere editar su perfil
 
@@ -527,17 +537,32 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
       Router.go('gestionJugadores', {_id: Meteor.userId()});
     },
 
-
-
-    'click #modificarReservaPlayer': function () {
-      Router.go('modificarReservaPlayer', {_id: this.reserva_id});        
-
+    'click #lanzaIdPartido': function () {
+      var idPartido = this._id;
+      Session.set("idPartido", idPartido );      
+    },
+    'click #confirmarPartido' : function() {
+      Router.go("confirmarPartido", {_id: this._id});
     },
 
   'click #lanzarIdJugador': function () {
     var playerId = this._id;
     Session.set('idPlayer', playerId);
-    
+  },
+  'click #modificarHorario': function () {
+    var idPartido = Session.get("idPartido");
+    var partido = Partido.findOne({_id: idPartido});
+    $('#redirigirPartidosModal').on('hidden.bs.modal', function() {
+            Router.go("modificarReservaPlayer", {_id : partido.reserva_id });
+        })
+        .modal('hide');
+  },
+  'click #jugarPartido': function () {
+    var idPartido = Session.get('idPartido');
+    $('#redirigirPartidosModal').on('hidden.bs.modal', function() {
+            Router.go("confirmarPartido", {_id : idPartido });
+        })
+        .modal('hide');
   },
   'click #deleteFriend': function () { 
     var playerId = Session.get('idPlayer');
@@ -547,4 +572,5 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
 
 Template.showProfile.onDestroyed(function() {
   Session.set('alertPerfilEditado', undefined);
+  Session.set('alertNoJuega', undefined);
 })

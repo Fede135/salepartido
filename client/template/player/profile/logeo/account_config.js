@@ -1,4 +1,5 @@
 Accounts.ui.config({ 
+  forceEmailLowercase: true,
   requestPermissions: {
     facebook: ['public_profile','email','user_friends']
   }, 
@@ -89,3 +90,18 @@ Accounts.onLogin(function (){
 
 
 //Meteor.logingIn()
+
+
+accountsUIBootstrap3.map('es', {
+  errorMessages: {
+      genericTitle: "Hay un error.",
+      userNotFound: "Usuario inexistente.",
+      invalidEmail: "Correo electrónico inválido.",
+      incorrectPassword: "Contraseña incorrecta.",
+      //usernameTooShort: "Username must be at least 3 characters long",
+      passwordTooShort: "La contraseña debe tener como mínimo 6 caracteres.",
+      passwordsDontMatch: "Las contraseñas no son las mismas.",
+      newPasswordSameAsOld: "La contraseña nueva y la vieja deben ser diferentes.",
+      signupsForbidden: "Ingreso restringido."
+ 	} 
+});
