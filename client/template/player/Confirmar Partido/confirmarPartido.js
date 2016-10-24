@@ -328,7 +328,10 @@ Template.confirmarPartido.events({
         Partido.update(this._id, { $pull: { invitados: Meteor.userId()}});
         Roles.addUsersToRoles(Meteor.userId(), 'noJuega', this._id);
         Session.set('alertNoJuega', true);
-        Router.go('showProfile', {_id:Meteor.userId()});
+        $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
+            Router.go('showProfile', {_id:Meteor.userId()});
+        })
+        .modal('hide');
         }
         if( Roles.userIsInRole( Meteor.userId(),'confirmado', this._id) ) {
             Roles.removeUsersFromRoles(Meteor.userId(),'confirmado',this._id);
@@ -364,7 +367,10 @@ Template.confirmarPartido.events({
                 }
                 Roles.addUsersToRoles(Meteor.userId(), 'noJuega', this._id);
                 Session.set('alertNoJuega', true);
-                Router.go('showProfile', {_id:Meteor.userId()});
+                $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
+                    Router.go('showProfile', {_id:Meteor.userId()});
+                })
+                .modal('hide');
                 
                 
             }
@@ -385,8 +391,10 @@ Template.confirmarPartido.events({
                 }
                 Roles.addUsersToRoles(Meteor.userId(), 'noJuega', this._id);
                 Session.set('alertNoJuega', true);
-                Router.go('showProfile', {_id:Meteor.userId()});
-                
+                $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
+                    Router.go('showProfile', {_id:Meteor.userId()});
+                })
+                .modal('hide');                
             }
             
         }
@@ -421,8 +429,10 @@ Template.confirmarPartido.events({
                 fromSupleteToConfirmadoNotification(this._id, primerSuplente._id);
                 Meteor.call('mailSuplente',this._id,reserva_id,primerSuplente._id);
                 }
-                Router.go('showProfile', {_id:Meteor.userId()});
-                
+                $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
+                    Router.go('showProfile', {_id:Meteor.userId()});
+                })
+                .modal('hide'); 
                 
             }
             
@@ -440,8 +450,10 @@ Template.confirmarPartido.events({
                 fromSupleteToConfirmadoNotification(this._id, primerSuplente._id);
                 Meteor.call('mailSuplente',this._id,reserva_id,primerSuplente._id);
                 }
-                Router.go('showProfile', {_id:Meteor.userId()});
-                
+                $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
+                    Router.go('showProfile', {_id:Meteor.userId()});
+                })
+                .modal('hide'); 
             }
         
         }
@@ -495,9 +507,7 @@ Template.confirmarPartido.events({
                 $('#alertSuplente').show();
             }
         }               
-    }, 
-
-    
+    },
 });
 
 Template.confirmarPartido.onDestroyed( function() {

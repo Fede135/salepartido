@@ -5,7 +5,7 @@
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            Tu perfil fue <strong>actualizado!</strong>
+            Tu <strong>perfil </strong>fue <strong>actualizado!</strong>
         </div>
 
         <!--Alert de Eliminado de un equipo -->
@@ -19,19 +19,36 @@
         <!--Modal de esta seguro eliminar comentario-->
         <div id="eliminarAmigoModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
             <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">¿Estas seguro de...</h4>
-                </div>
-                <div class="modal-body">
-                <p>...que quieres eliminarlo de tus amigos?</p>
-                </div>
-                <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                <button id="deleteFriend" name="deleteFriend" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">¿Estas seguro de...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>...que quieres eliminarlo de tus amigos?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button id="deleteFriend" name="deleteFriend" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                    </div>
                 </div>
             </div>
+        </div>
+
+        <!--Modal de para mostrar que editar, dependiendo de el rol-->
+        <div id="redirigirPartidosModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ir a... </h4>
+                    </div>
+                    <div class="modal-body">
+                        <button id="modificarHorario" type="button" class="btn btn-primary" data-dismiss="modal">Modificar reserva</button>
+                        <button id="jugarPartido" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar Partido</button>
+                    </div>
+                    
+                </div>
             </div>
         </div>
         
@@ -194,73 +211,104 @@
               {{#if ownProfile}}
                   <div class="row">
                       {{#if partidosInvitado}}
-                          <table>
-                              <caption>Partidos a los que estas invitado</caption>
-                              <thead> 
-                                  <tr><!-- Primer fila -->
-                                      <th>Dia</th>
-                                      <th>Hora</th>
-                                      <th>Recinto</th>
-                                      <th>Cancha</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                {{#each partidosInvitado}}
-                                    <tr>
-                                      <td>{{dia}}</td>
-                                      <td>{{hora}}</td>
-                                      <td>{{recinto}}</td>
-                                      <td>{{cancha}}</td>
+                      <div class="table-responsive">
+                            <table class="table table-striped" name="tabla">
+                                <caption>Partidos a los que estas invitado</caption>
+                                <thead> 
+                                    <tr><!-- Primer fila -->
+                                        <th>Dia</th>
+                                        <th>Hora</th>
+                                        <th>Recinto</th>
+                                        <th>Cancha</th>
+                                        {{#if isHost}}
+                                            <th>Editar</th>
+                                        {{else}}
+                                            {{#if isInvitado}}
+                                                <th>Ir</th>
+                                            {{/if}}
+                                        {{/if}}      
                                     </tr>
-                                {{/each}}
-                              </tbody>
-                          </table>
-                          <a href="{{pathFor 'partidos' _id=this._id}}">Ver más</a>
-                      {{else}}
-                        <h4>No te han invitado a ningún partido.Organizá uno!</h4>
-                      {{/if}}
+                                </thead>
+                                <tbody>
+                                    {{#each partidosInvitado}}
+                                        <tr>
+                                        <td>{{dia}}</td>
+                                        <td>{{hora}}</td>
+                                        <td>{{recinto}}</td>
+                                        <td>{{cancha}}</td>
+                                        <td> 
+                                            {{#if isHost}}
+                                                <span id="lanzaIdPartido" class="glyphicon glyphicon-wrench" aria-hidden="true" data-toggle="modal" data-target="#redirigirPartidosModal"></span>
+                                            {{else}}
+                                                {{#if isInvitado}}
+                                                    <span id="confirmarPartido" class="glyphicon glyphicon-menu-right close" aria-hidden="true"></span>
+                                                {{/if}}  
+                                            {{/if}}
+                                        </td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                      </div>
+                            <a href="{{pathFor 'partidos' _id=this._id}}">Ver más</a>
+                        {{else}}
+                            <h4>No te han invitado a ningún partido.Organizá uno!</h4>
+                        {{/if}}
                   </div>
                   <div class="row">
                       {{#if partidosPendientes}}
-                          <table>
-                              <caption>Partidos pendientes</caption>
-                              <thead>
-                                  <tr><!-- Primer fila -->
-                                      <th>Dia</th>
-                                      <th>Hora</th>
-                                      <th>Recinto</th>
-                                      <th>Cancha</th>
-                                      <th>Editar</th>
-                                  </tr>
-                              </thead>
-                              <tbody>
-                                {{#each partidosPendientes}}
-                                  <tr>
-                                      <td>{{dia}}</td>
-                                      <td>{{hora}}</td>
-                                      <td>{{recinto}}</td>
-                                      <td>{{cancha}}</td>
-                                      <td> 
-                                          {{#if isHost}}
-                                            <button type="button" name="modificarReservaPlayer" id="modificarReservaPlayer"> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
-                                          {{else}}
-                                            No puedes editar.
-                                          {{/if}}
-                                      </td>
-                                  </tr>
-                                {{/each}}
-                              </tbody>
-                          </table>
+                          <div class="table-responsive">
+                            <table class="table table-striped" name="tabla">
+                                <caption>Partidos por jugar</caption>
+                                <thead>
+                                    <tr><!-- Primer fila -->
+                                        <th>Dia</th>
+                                        <th>Hora</th>
+                                        <th>Recinto</th>
+                                        <th>Cancha</th>
+                                        <th>
+                                        {{#if isHost}}
+                                            Editar
+                                        {{else}}
+                                            {{#if isInvitado}}
+                                                Ir
+                                            {{/if}}
+                                        {{/if}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each partidosPendientes}}
+                                    <tr>
+                                        <td>{{dia}}</td>
+                                        <td>{{hora}}</td>
+                                        <td>{{recinto}}</td>
+                                        <td>{{cancha}}</td>
+                                        <td> 
+                                            {{#if isHost}}
+                                                <span id="lanzaIdPartido" class="glyphicon glyphicon-wrench" aria-hidden="true" data-toggle="modal" data-target="#redirigirPartidosModal"></span>
+                                            {{else}}
+                                                {{#if isConfirmado}}
+                                                    <span id="confirmarPartido" class="glyphicon glyphicon-menu-right close" aria-hidden="true"></span>
+                                                {{/if}}  
+                                            {{/if}}
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                          </div>
                       {{else}}
                         <h4>No tenes partidos pendientes</h4>
                       {{/if}}
                   </div>
-                  <div class="row">
+                  <!--<div class="row">
                       {{#if partidosJugados}}
-                          <table>
-                              <caption>Pertidos jugados</caption>
+                          <div class="table-responsive">
+                            <table class="table table-striped" name="tabla">
+                              <caption>Partidos jugados</caption>
                               <thead>
-                                  <tr><!-- Primer fila -->
+                                  <tr>
                                       <th>Dia</th>
                                       <th>Hora</th>
                                       <th>Recinto</th>
@@ -277,11 +325,12 @@
                                     </tr>
                                 {{/each}}
                               </tbody>
-                          </table>
+                            </table>
+                          </div>
                       {{else}}
                         <h4>No has jugado ningún partido</h4>
                       {{/if}}
-                  </div>
+                  </div>-->
                 {{else}}
                 
                 {{/if}}

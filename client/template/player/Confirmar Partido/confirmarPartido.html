@@ -4,6 +4,26 @@
       <div class="container">
         <br>
         <br>
+
+        <!--Modal de esta seguro que no quiere jugar-->
+       <div id="seguroDeNoJugar" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">¿Estas seguro de...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>...que desea rechazar la invitación ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button id="noJuega" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Alert de reserva creada-->
         <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaCreada" style="display: none">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -171,7 +191,7 @@
           {{/if}} 
           <br>   
           {{#unless isNoJuega}}
-            <button type="button" name="noJuega" id="noJuega" class="btn btn-danger">No quiero jugar</button>
+            <button type="button" id="lanzaIdPartido" class="btn btn-danger" data-toggle="modal" data-target="#seguroDeNoJugar">No quiero jugar</button>
             <br>
           {{else}}
             Dijiste que no querías jugar, pero puedes comunicarte con el organizador para que vuelva a invitarte.
@@ -192,7 +212,7 @@
                     </div>
                         <!--Se agrega este script para ocultar o mostrar el checkbox host dependiendo si el amigo fue seleccionado o no. Falta ver como hacer para que funcione bien, queda comentado-->
                     <script> 
-                        var elem = document.getElementById('checkboxRolesDiv{{this._id}}'),
+                        var elem = document.getElementById('checkboxRolesDiv{{this._id}}');
                         checkBox = document.getElementById('checkboxFriends{{this._id}}');
                         checkBox.checked = false;
                         checkBox.onchange = function doruc() {
