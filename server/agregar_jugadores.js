@@ -9,5 +9,4 @@ Meteor.methods({
 			
 		});	
 	}
-
 });

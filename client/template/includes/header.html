@@ -1,53 +1,51 @@
 <template name="header">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-         <a class="navbar-brand" href="{{pathFor 'Home'}}">
-          <img alt="Brand" src="http://localhost:3000/cfs/files/images/ufP2m9eSvPm3wjzE7/logo_salepartido5.png?token=eyJhdXRoVG9rZW4iOiJoa1BhSDhLa0d2NkNxcEpjSzlrVWRWVGV0YloxRlVMdUVuLTFDNlVoRjBIIn0%3D&store=images" width="35px" height="35px" class="img-responsive">
-        </a>   
-        <a class="navbar-brand" href="{{pathFor 'Home'}}">Sale Partido</a>
-      </div>
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-        </ul>
-        {{#if currentUser}}
-          {{#if emailsVerified}}
-        <form class="navbar-form navbar-left">
-          <div class="form-group">
-            {{> search}}
-          </div>
-        </form>
-          {{/if}}
-        {{/if}}
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          {{#unless isInRole 'owner'}}
-            {{#if emailsVerified}}
-            <li><a class="navbar-brand" href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a></li>
-            <li class="dropdown">
-              {{> notifications}}
-            </li>
-            {{/if}}
-          {{/unless}}
-          {{#unless isInRole 'player'}}      <!--Meteor.users.update({_id:"52BjwYmxbWFDTMp7S"}, {$set: {'roles.__global_roles__': ['owner'] }})  Para dar permisos de owner a un usuario, reemplazar id por el del usuario. HACER ESTO EN METEOR SHELL-->
+<!-- Second navbar for sign in -->
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{pathFor 'Home'}}">
+              <img alt="Brand" src="/logo_salepartido5.png" width="35px" height="35px" class="img-responsive" style="">
+          </a> 
+          <a class="navbar-brand" href="{{pathFor 'Home'}}" style=" padding: 22px 15px;">Sale Partido</a>
+        </div>
+    
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse-2">
+          <ul class="nav navbar-nav navbar-right">
+            {{#unless isInRole 'owner'}}
+                {{#if emailsVerified}}
+                    <form class="navbar-form navbar-left">
+                        <div class="form-group" style=" padding: 6px;">
+                            {{> search}}
+                        </div>
+                    </form>
 
-            {{#if emailsVerified}}      <!--Meteor.users.update({_id:"4AmDooTyvfT9WDton"}, {$set: {'emails.0.verified':true}})    Para dar por verificado un mail de un usuario cualquiera-->
-            <li><a class="navbar-brand" href="{{pathFor 'uploadImages'}}">Imagen</a></li>
-            <li class="dropdown">
-              {{> notifications}}
-            </li>  
-            {{/if}}    
-           
-          {{/unless}}
-          <li class="navbar-brand">{{>loginButtons}}</li>
-          {{#if currentUser}}
-          <li><a alt="Brand" href="{{pathFor 'Home'}}">{{> gravatar}}</a></li>
-          {{/if}}
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-    </div>
-  </nav>
+                    <li><a  href="{{pathFor 'organizarPartido'}}" style=" padding: 20px 19px;" >Organizar Partido</a></li>
+                    <li class="collapse" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2" style=" padding: 4px;">
+                        {{> notifications}}
+                    </li>
+                {{/if}}
+           {{/unless}}
+
+           {{#if isInRole 'owner'}}
+                <li class ="dropdown">
+                    {{> notifications}}
+                </li>
+            {{/if}}  
+                <li><a class="btn btn-inverse collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2" style=" padding: 16px 2px;">{{>loginButtons}}</a></li>
+                    {{#if currentUser}}
+                <li><a href="{{pathFor 'Home'}}" width="35px" height="35px">{{> gravatar}}</a></li>
+                    {{/if}}
+          </ul>
+         
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container -->
+    </nav><!-- /.navbar -->
 </template>

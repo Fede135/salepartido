@@ -4,7 +4,6 @@ calif: function(userId,rating,tipo) {
 	check(userId, String);
 	check(rating, Number);
 	check(tipo, String);
-	console.log(tipo);
 	switch(tipo){
 		case "resistencia":
 			var cali = Calificacion_resistencia.findOne({id_user: userId});

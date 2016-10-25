@@ -10,13 +10,18 @@ AutoForm.addHooks(
             upvotes :[],
             votes:[],
         });
-          alert("Recinto creado correctamente");
-                var reci = Recintos.findOne({_id:result});
-                var nombreR = reci.nombre_recinto;
-
-        
-                Router.go('cargarCancha', {_id:result});
-      
+    Session.set('alertRecintoCreado', true);
+    var reci = Recintos.findOne({_id:result});
+    var nombreR = reci.nombre_recinto;
+    Router.go('cargarCancha', {_id:result});
     },
   }  
+});
+
+Template.uploadRecinto.events({
+  'click #cancelar': function (event){
+
+        event.preventDefault; 
+    Router.go('ownerRecintos', {_id: Meteor.userId()});
+    }
 });

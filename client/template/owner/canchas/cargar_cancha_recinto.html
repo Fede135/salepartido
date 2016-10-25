@@ -1,28 +1,40 @@
 <template name="cargarCancha">
-	
-	  <div class = "container">		
-
-          {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
-          <fieldset>
-              <legend><h2>Crear cancha</h2></legend>
-
-          {{> afQuickField name='recintoId' value=this._id}}
-
-          {{> afQuickField name='numero' style="color: orange" label-style="color: green"}}
-
-          {{> afQuickField name='jugadores.cantidad_de_jugadores' options="allowed" noselect=true}} 
-
-          {{> afQuickField name='tipo_cancha.tipo_de_cancha' options="allowed" noselect=true}}
-
-          {{> afQuickField name='estado_cancha.estado_de_cancha' options="allowed" noselect=true}}
-
-         
-          {{> afQuickField name='descripcion' rows=3}}
-
-  
-          </fieldset>
-         <button type="submit" class="btn btn-success">Crear</button>
+    <div class = "container-fluid">       
+        <!--Alert que muestra que el perfil fue editado con exito-->
+        <div class="alert alert-success alert-dismissible" role="alert" id="alertRecintoCreado" style="display: none">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>Recinto creado</strong> correctamente!
+        </div>
+        {{#autoForm collection="Canchas" id="cargarCancha" type="insert"}}
+        <fieldset>
+            <legend style="font-size: 0px;"><br><h2 align="center">Crear cancha</h2></legend>
+            <div class="row">
+                {{> afQuickField name='recintoId' value=this._id}}
+                <div class="col-sm-6 col-md-6">
+                    {{> afQuickField name='numero' style="color: orange" label-style="color: #4d3f92"}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    {{> afQuickField name='jugadores.cantidad_de_jugadores' options="allowed" noselect=true}} 
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    {{> afQuickField name='tipo_cancha.tipo_de_cancha' options="allowed" noselect=true}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-md-6">
+                    {{> afQuickField name='estado_cancha.estado_de_cancha' options="allowed" noselect=true}}
+                </div>
+                <div class="col-sm-6 col-md-6">
+                    {{> afQuickField name='descripcion' rows=4}}
+                </div>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-propio">Crear cancha</button>
         {{/autoForm}}
-
+        <br>
 	  </div>
 </template>

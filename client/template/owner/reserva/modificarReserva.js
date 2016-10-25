@@ -1,3 +1,4 @@
+
 Template.modificarReserva.helpers({
 
 	reserva: function(){
@@ -58,6 +59,15 @@ Template.modificarReserva.events({
     $target.val($item.text()); 
   },
 
+  'click #cancelar': function (event){
+
+        event.preventDefault;
+        var nomRecinto= this.nom_recinto;
+        var recinto = nomRecinto &&  Recintos.findOne({'nombre_recinto': nomRecinto});
+        var recintoId = recinto && recinto._id;
+        Router.go('dashboard', {_id: recintoId});
+  },
+
   'click #actualizarReserva': function(e) {
         
         var reserva = Session.get('reserva');
@@ -98,8 +108,10 @@ Template.modificarReserva.events({
           
         };
 
-        if (Reserva.findOne(selector))
-        return alert("Reserva existente");
+        if (Reserva.findOne(selector)) {
+          $('#alertReservaExistente').show();
+        return false;
+      }
 
 
         Reserva.update({_id: this._id}, {$set: 
@@ -111,8 +123,8 @@ Template.modificarReserva.events({
             'estado':reserva.estado
           }
         });
- 
-        alert("Reserva actualizada");
+        
+        Session.set('alertReservaActualizada', true);
         
         var recinto = nombre_recinto && Recintos.findOne({'nombre_recinto':nombre_recinto});
         var recintoId = recinto && recinto._id;

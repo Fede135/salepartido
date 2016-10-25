@@ -1,37 +1,47 @@
 <template name="dashboardAdmin">
-  <div class="container">
-    <div class="row">
-    <div class="col-xs-12 col-md-8">            
-        <h1>Usuarios dueños</h1>
-        <h2>Cantidad: {{cantidadDueños}}</h2>
-        {{#each usuarioDueños}}
-        <div>
-          <h4>Nombre de usuario: <strong>{{this.profile.name}}</strong></h4>
-        
-          <button type="button" name= "detalles" id="detalles">Ver detalles</button>
-          <button type="button" name= "cambiarRoleAPlayer" id="cambiarRoleAPlayer" >Hacer player</button>
-          <button type="button" name= "eliminarUsuario" id="eliminarUsuario">Eliminar usuario</button>
-          
+  <div class="container-fluid">
+    <!--Alert usuario cambiado a Dueño-->
+        <div class="alert alert-info alert-dismissible" role="alert" id="alertDarDueño" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            El rol de este usuario fue cambiado de Jugador a Dueño.
         </div>
-        {{/each}}
-      </div>
-
-      <div class="col-xs-12 col-md-8">      
-        <h1>Usuarios player</h1>
-        <h2>Cantidad: {{cantidadJugadores}}</h2>
-        {{#each usuarioJugador}}
-
-        <div>
-          <h4>Nombre de usuario: <strong>{{this.profile.name}}</strong></h4>
-          
-          
-          <button type="button" name= "detalles" id="detalles">Ver detalles</button>
-          <button type="button" name= "cambiarRoleADueno" id="cambiarRoleADueno">Hacer dueno</button>
-          <button type="button" name= "eliminarUsuario" id="eliminarUsuario">Eliminar usuario</button>
+        <!--Alert usuario cambiado a Jugador-->
+        <div class="alert alert-info alert-dismissible" role="alert" id="alertDarPlayer" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            El rol de este usuario fue cambiado de Dueño a Jugador.
         </div>
+          <h1>Usuarios dueños</h1>
+          {{#each usuarioDueños}}
+          
+          <div class="row">
+              <div class="span5 col-md-6">
+                <h4>Nombre de usuario: <strong>{{this.profile.name}}</strong></h4>
+              </div>
+          <div class="span5 col-md-6">
+                
+              <button type="button" name= "cambiarRoleAPlayer" id="cambiarRoleAPlayer" >Hacer player</button>
+              <button type="button" name= "eliminarPlayer" id="eliminarPlayer">Eliminar usuario</button>
+          </div>
+          </div>
 
-        {{/each}}
-      </div>
-    </div>
-  </div>
+          {{/each}}
+          <br>
+          <h1>Usuarios jugador</h1>
+            {{#each usuarioJugador}}
+            <div class="row">
+              <div class="span5 col-md-6">
+                <h4>Nombre de usuario: <strong>{{this.profile.name}}</strong></h4>
+              </div>
+              <div class="span5 col-md-6">
+            
+              <button type="button" name= "cambiarRoleADueno" id="cambiarRoleADueno">Hacer dueño</button>
+              <button type="button" name= "eliminarDueno" id="eliminarDueno">Eliminar usuario</button>
+              </div>
+            </div>
+            {{/each}}  
+  </div>  
 </template>

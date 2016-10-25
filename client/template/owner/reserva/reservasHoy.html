@@ -1,0 +1,17 @@
+<template name="reservasHoy">
+	<div class="table-responsive">
+        <legend><h2>Reservas para hoy</h2></legend>
+        <table class="table table-hover" name="tabla" id="tabla">
+            <thead>
+                <tr>
+                    <th style="border: 1px solid black; background: grey;"><h4 align="center" style="color:white;font-weight:bold">Hora</h4></th>
+					{{#each canchas}}
+                    <th id="{{this.numero}}Cancha" style="border: 1px solid black; background: grey;"><h4 align="center" style="background:grey; color:white; font-weight:bold">Cancha {{this.numero}}</h4></th>
+                	{{/each}}
+            	</tr>
+            </thead>
+            <tbody>
+        	</tbody>
+        </table>
+    </div>  
+</template>

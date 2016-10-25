@@ -23,8 +23,13 @@ Template.showCommentsPlayers.helpers({
 });
 
 Template.showCommentsPlayers.events({
+  'click #lanzoCommentId': function () {
+    var commentId = this._id;
+    Session.set("idCommentPlayer", commentId);
+  },
   'click #deleteComment': function() {
-    CommentsForPlayers.update({_id: this._id}, {$set: {status: "Borrado"}});
+    var commentId = Session.get("idCommentPlayer");
+    CommentsForPlayers.update({_id: commentId}, {$set: {status: "Borrado"}});
   }
 });
 

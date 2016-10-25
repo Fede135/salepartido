@@ -19,12 +19,14 @@ Template.dashboardAdmin.helpers({
 
 Template.dashboardAdmin.events({
 
-	'click #cambiarRoleADueño': function (e) {
+
+	'click #cambiarRoleADueno': function (e) {
+		
 		e.preventDefault;
 		
 		Meteor.users.update({_id: this._id}, {$set: {'roles.__global_roles__': ['owner']}});
 	
-		alert("Este usuario "+this.profile.name+" es dueno ahora");
+		$('#alertDarDueño').show();
 		
 	},
 
@@ -34,7 +36,25 @@ Template.dashboardAdmin.events({
 		
 		Meteor.users.update({_id: this._id}, {$set: {'roles.__global_roles__': ['player']}});
 	
-		alert("Este usuario "+this.profile.name+" es jugador ahora");
-		"cambiarRoleAPlayer"
+		$('#alertDarPlayer').show();
+	},
+
+	'click #eliminarPlayer': function (e) {
+		
+		e.preventDefault;
+		
+		Meteor.users.remove({_id: this._id});
+	
+		alert("Este usuario "+this.profile.name+" ha sido eliminado");
+		
+	},
+
+	'click #eliminarDueno': function (e) {
+		
+		e.preventDefault;
+		
+		Meteor.users.remove({_id: this._id});
+	
+		alert("Este usuario "+this.profile.name+" ha sido eliminado");
 	}
 });

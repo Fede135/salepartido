@@ -1,24 +1,27 @@
 <template name="modificarReserva">
-	<div class="container">
-		<div class="navbar">
-            <h2 align="center">
-            Modificar reserva
-            </h2>
-        </div>	
+	<div class="container-fluid">
+		<!--Alert de reserva existente-->
+			<div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none">
+ 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+  			<strong>Reserva existente!!</strong>Ya existe otra reserva en el horario que desea.
+			</div>
+
+		<legend><h2 align="center">Modificar reserva</h2></legend>	
         <div class="row">
-        	<div class="span5 col-md-4">
+        	<div class="col-sm-4 col-md-4">
         		<h4>Dia de juego: <strong>{{reserva.fecha_de_juego}}</strong></h4>
         	</div>
-        	<div class="span5 col-md-4">	
+        	<div class="col-sm-4 col-md-4">	
         		<h4>Hora de juego: <strong>{{reserva.hora_de_juego}}</strong></h4>
         	</div>
-        	<div class="span5 col-md-4">
+        	<div class="col-sm-4 col-md-4">
         		<h4>Cancha elegida: <strong>{{reserva.num_cancha}}</strong></h4>
         	</div>
         </div>
-        <br>
 		<div class="row">		    	
-			<div class="span5 col-md-5">
+			<div class="col-sm-5 col-md-5">
 			<label class="control-label" for="datetimepicker" >Elegí un día para jugar</label>
 			 	<div class="controls">
 			   		<div class='input-group date'>
@@ -29,9 +32,9 @@
 			       	</div>  	
 			   	</div>
 			</div> 	 				    
-			<div class="span5 col-md-1">
+			<div class="col-sm-1 col-md-1">
 			</div>				    
-			<div class='span5 col-md-5'>
+			<div class='col-sm-5 col-md-5'>
 			<label class="control-label" for="datetimepicker3">Elegí un horario para jugar</label>
 			   	<div class="controls">
 			   		<div class='input-group date'>
@@ -52,7 +55,7 @@
 				     <div class="controls">
 				     	<div class="input-group">
 				     		<div class="input-group-btn">
-	                		    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar cancha <span class="caret"></span></button>
+	                		    <button type="button" class="btn btn-propio dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cancha <span class="caret"></span></button>
 	                   			<ul class="dropdown-menu">
 	                   				{{#each cancha}}
 	                 
@@ -69,6 +72,7 @@
 			</div>   	 	 
 		</div>
 		<br>		
-		<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-success">Actualizar</button>
+		<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-propio">Actualizar</button>
+		<button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
 	</div>			
 </template>	    	

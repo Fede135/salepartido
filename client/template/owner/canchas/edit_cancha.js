@@ -28,16 +28,15 @@ Template.editCancha.helpers({
 
 AutoForm.addHooks(
    'updateCancha',
-  {
+{
   after:{
     update: function (error, result) {    	
       if(! error){
-        console.log(result);
-      	
-       alert("Cancha actualizada correctamente!!");
+       Session.set('alertCanchaEditada', true);
        Router.go('gestionCancha', {_id: canchas.recintoId });
        }
     }
   }
 },
 );
+
