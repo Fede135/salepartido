@@ -374,22 +374,22 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     var cantidad = arrayIdPartido.length
     return cantidad;
   },
-  partidosJugados: function(){
-    var arrayIdPartido = Roles.getGroupsForUser(use,'jugoPartido');
-    if(arrayIdPartido.length != 0){
-      var arrayPartidosJugo=[];    
-      arrayIdPartido.forEach(function (e) {
-        var partidos = Partido.findOne({_id: e});
-        arrayPartidosJugo.push(partidos);
-      });    
+  // partidosJugados: function(){
+  //   var arrayIdPartido = Roles.getGroupsForUser(use,'jugoPartido');
+  //   if(arrayIdPartido.length != 0){
+  //     var arrayPartidosJugo=[];    
+  //     arrayIdPartido.forEach(function (e) {
+  //       var partidos = Partido.findOne({_id: e});
+  //       arrayPartidosJugo.push(partidos);
+  //     });    
 
-      var ultimo3 = arrayPartidosJugo.slice(Math.max(arrayPartidosJugo.length - 3, 1));
-      return ultimo3;
+  //     var ultimo3 = arrayPartidosJugo.slice(Math.max(arrayPartidosJugo.length - 3, 1));
+  //     return ultimo3;
     
-  }else{
-    return false;
-  }
-  },
+  // }else{
+  //   return false;
+  // }
+  // },
   partidosInvitado: function(){
     var arrayIdPartido = Roles.getGroupsForUser(use,'invitado');
     if(arrayIdPartido.length != 0) {      
@@ -399,17 +399,16 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         var partidos = Partido.findOne({_id: e});
         arrayPartidosInvitado.push(partidos);
       });    
-
-      var ultimo2 = arrayPartidosInvitado.slice(Math.max(arrayPartidosInvitado.length - 2, 1));
-      return ultimo2;
-    
-  }else{
-    return false;
-  }
+      var arrayPartidosInvitadoOrdenado = _.sortBy(arrayPartidosInvitado, 'horario');
+      var primeros2 = arrayPartidosInvitadoOrdenado.slice(0,2);
+      return primeros2;
+    } else { 
+      return false;
+    }
   },
 
   partidosPendientes: function(){
-     var arrayIdPartido = Roles.getGroupsForUser(use,'confirmado');//ver si busca en los q es host
+    var arrayIdPartido = Roles.getGroupsForUser(use,'confirmado');//ver si busca en los q es host
     if(arrayIdPartido.length != 0 ){      
 
       var arrayPartidosConfirmado=[];    
@@ -417,13 +416,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         var partidos = Partido.findOne({_id: e});
         arrayPartidosConfirmado.push(partidos);
       });   
-
-      var ultimo2 = arrayPartidosConfirmado.slice(Math.max(arrayPartidosConfirmado.length - 2, 1));
-      return ultimo2;
-    
-  }else{
-    return false;
-  }
+      var arrayPartidosConfirmadoOrdenado = _.sortBy(arrayPartidosConfirmado, 'horario');
+      var primeros2 = arrayPartidosConfirmadoOrdenado.slice(0,2);
+      return primeros2;
+    } else {
+      return false;
+    }
   },
   dia: function(){
     var reservaDia = Reserva.findOne({_id: this.reserva_id}).fecha_de_juego;

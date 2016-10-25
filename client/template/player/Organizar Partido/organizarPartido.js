@@ -21,11 +21,14 @@ Template.organizarPartido.events({
         
         e.preventDefault();
 
-        var diaString = $(e.target).find('[name=datetimepicker]').val();        
+        var diaString = $(e.target).find('[name=datetimepicker]').val();
         var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
         var dia = new Date(diaMoment);
         var hora = $(e.target).find('[name=datetimepicker3]').val();
         var recinto = $(e.target).find('[name=nombreRecinto]').val();
+        //calculo fecha y hora de partido
+        var horarioPartido = new Date(dia.getFullYear(),dia.getMonth(), dia.getDate(), hora, 0, 0);
+        
 
         var reserva = {
             _id:Meteor.ObjectId,
@@ -85,7 +88,8 @@ Template.organizarPartido.events({
           invitados: arrayAmigos,          
           equipoA:[],
           equipoB:[],
-          suplentes:[]
+          suplentes:[],
+          horario : horarioPartido,
         };
         
         var partidoId = Partido.insert(partido);

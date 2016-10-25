@@ -2,33 +2,45 @@ Template.partidos.helpers({
 
   partidosInvitado: function() {
     var partidosArray = Roles.getGroupsForUser(this._id, 'invitado');
-    var partidos = [];
-    partidosArray.forEach(function(e) {
-      var partido = Partido.findOne({_id: e});
-      partidos.push(partido);
-    });
-    return partidos;
+    if(partidosArray.length != 0 ) { 
+      var partidos = [];
+      partidosArray.forEach(function(e) {
+        var partido = Partido.findOne({_id: e});
+        partidos.push(partido);
+      });
+      return _.sortBy(partidos, 'horario');
+    } else {
+       return false; 
+    }
   },
 
   partidosPendientes: function() {
     var partidosArray = Roles.getGroupsForUser(this._id, 'confirmado');
-    var partidos = [];
-    partidosArray.forEach(function(e) {
-      var partido = Partido.findOne({_id: e});
-      partidos.push(partido);
-    });
-    return partidos;
-  },
+    if(partidosArray.length != 0 ) {
+      var partidos = []; 
+      partidosArray.forEach(function(e) {
+        var partido = Partido.findOne({_id: e});
+        partidos.push(partido);
+      });
+      return _.sortBy(partidos, 'horario');
+    } else {
+     return false; 
+    }
+},
 
   partidosJugados: function() {
     var partidosArray = Roles.getGroupsForUser(this._id, 'jugoPartido');
-    var partidos = [];
-    partidosArray.forEach(function(e) {
-      var partido = Partido.findOne({_id: e});
-      partidos.push(partido);
-    });
-    return partidos;
-  },
+    if(partidosArray.length != 0 ) {
+      var partidos = []; 
+      partidosArray.forEach(function(e) {
+        var partido = Partido.findOne({_id: e});
+        partidos.push(partido);
+      });
+      return _.sortBy(partidos, 'horario');
+    } else {
+      return false;
+    }
+},
    
   dia: function(){
     var reservaDia = Reserva.findOne({_id: this.reserva_id}).fecha_de_juego;

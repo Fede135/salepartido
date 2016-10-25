@@ -77,6 +77,7 @@ Template.modificarReservaPlayer.events({
         var diaString = $('input[name=datetimepicker]').val();        
         var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
         var dia = new Date(diaMoment);
+        
 
         e.preventDefault();
 
@@ -115,14 +116,15 @@ Template.modificarReservaPlayer.events({
             
           };
 
+        
+
         if (Reserva.findOne(selector)) {
           $('#alertReservaExistente').show();
           return false;
         }
         
-
-
-       var idReservaUpdate = Reserva.update({_id: this._id}, {$set: 
+       
+       Reserva.update({_id: this._id}, {$set: 
           {  
             'nom_recinto': $('input[name=nombreRecinto]').val(),          
             'num_cancha': $('input[name=nombreCancha]').val(), 
@@ -135,6 +137,10 @@ Template.modificarReservaPlayer.events({
         var reservaActualizada = Reserva.findOne(this._id);
         var partido = Partido.findOne({reserva_id:reservaActualizada._id});
         var idPartido = partido._id;
+        //calculo fecha y hora de partido y actualizo
+        var horarioPartido = new Date(dia.getFullYear(),dia.getMonth(), dia.getDate(), reservaActualizada.hora_de_juego, 0, 0);
+        Partido.update({_id:partido._id}, {$set: {horario: horarioPartido}});
+        //-------------
         var arrayInvitados = partido.invitados; 
         var equipoA = partido.equipoA;
         var equipoB = partido.equipoB;
