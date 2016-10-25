@@ -1,124 +1,117 @@
 <template name="modificarReservaPlayer">
-	<div class="container">
+	<div class="container-fluid">
 		<!--Alert de reserva existente-->
-			<div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none">
- 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+		<div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none">
+ 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
   			<strong>Reserva existente!!</strong>Ya existe otra reserva en el horario que desea.
-			</div>
-	    <div class="navbar">
-	  		<h2 align="center">
-		     	Modificar organizacion de partido 
-			  </h2>
+		</div>
+	    
+	    <div class="row">
+	  		<legend>
+	  			<h1 align="center">
+		     		Modificar Organización de Partido 
+			 	</h1>
+			</legend>  
 	    </div>
 	    <div class="row">
-        	<div class="span5 col-md-4">
-        		<h4>Dia de juego: <strong>{{reserva.fecha_de_juego}}</strong></h4>
+        	<div class="col-sm-3 col-md-3">
+        		<h4>Día de juego: <strong>{{reserva.fecha_de_juego}}</strong></h4>
         	</div>
-        	<div class="span5 col-md-4">	
+        	<div class="col-sm-3 col-md-3">	
         		<h4>Hora de juego: <strong>{{reserva.hora_de_juego}}</strong></h4>
         	</div>
-        	<div class="span5 col-md-4">
+        	<div class="col-sm-3 col-md-3">
         		<h4>Cancha elegida: <strong>{{reserva.num_cancha}}</strong></h4>
         	</div>
-        </div>
-        <div class="row">
-        	<div class="span5 col-md-4">
+        	<div class="col-sm-3 col-md-3">
         		<h4>Recinto: <strong>{{reserva.nom_recinto}}</strong></h4>
         	</div>
         </div>
-        <br>
 	    {{#if reserva}}
 	    <div class="form-group">
 	    	<form class="reserva">
-	    		<div class="well"> 							
-					<div class="row">						
-					    <div class="span5 col-md-5">
-					    	<div class="form-group  {{errorClass 'nombreRecinto'}}">
-						      	<br>
-						      	<label class="control-label" for="nombreRecinto">Seleccionar un recinto</label>
-						      	<br>
-						      	<div class="controls">
-						      		<div class="input-group">
-						          		<div class="input-group-btn">
-						          			<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar un recinto <span class="caret"></span></button>
-	                              					<ul class="dropdown-menu">
-	                              					{{#each recinto}}
-	                  
-	                              					<li><a data-for-recinto="#nombreRecinto" data-for-id="{{_id}}">{{this.nombre_recinto}}</a></li>
-	                  
-	                              					{{/each}}
-	                    
-	                              					</ul>
-	                          			</div>         		
-						          		<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>						          		
-						          	</div>
-						          	<span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
-						     	</div>
-						    </div> 
-					    </div>	 				   
-					    <div class="span5 col-md-1">
-    	              	</div>    	              	
-					    <div class="span5 col-md-5">
-					    	<div class="form-group  {{errorClass 'nombreCancha'}}">
-					    		 <br>
-						     	 <label class="control-label" for="nombreCancha">Seleccionar una cancha</label>
-						     	 <br>
-						     	 <div class="controls">
-						     	 	<div class="input-group">
-						     	 		<div class="input-group-btn">
-	                             			 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar una cancha <span class="caret"></span></button>
-	                              				<ul class="dropdown-menu">
-	                              				{{#each cancha}}
-	                  
-	                             				 <li><a data-for-cancha = "#nombreCancha">{{this.numero}}</a></li>
-	                  
-	                              				{{/each}}    
-	                              				</ul>
-	                          			</div>
-						          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>						          		
-						          	</div>	
-						          	<span class="help-block">{{errorMessage 'nombreCancha'}}</span>
-						     	</div>
-						   	</div>
-						</div>   	 	 
-				  	</div>
-				  	<br>
-				  	<div class="row">		    	
-			    		<div class="span5 col-md-5">
-					      	<label class="control-label" for="datetimepicker" >Elegí un día para jugar</label>
+				<div class="row">						
+				    <div class="col-sm-5 col-md-5">
+					    <div class="form-group  {{errorClass 'nombreRecinto'}}">
+					      	<h2>Seleccionar un recinto</h2>
 					      	<div class="controls">
-					      		<div class='input-group date'>
-					        	  	<input name="datetimepicker" id="datetimepicker" type="button" value="" class="form-control"/>
-					        	  	<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
-					        	  		<i class="glyphicon glyphicon-calendar"></i>
-					        	  	</span>	
-					        	</div>  	
-					     	</div>
-					    </div> 	 				    
-				    	<div class="span5 col-md-1">
-				    	</div>				    
-				    	<div class='span5 col-md-5'>
-					     	<label class="control-label" for="datetimepicker3">Elegí un horario para jugar</label>
-					     	<div class="controls">
-					     		<div class='input-group date'>
-					          		<input name="datetimepicker3" id="datetimepicker3" type="button" value="" class="form-control"/>
-					          		<span class="input-group-addon" data-picker-handle="#datetimepicker3">
-					          			<i class="glyphicon glyphicon-time"></i>
-                            		</span>
+					      		<div class="input-group">
+					          		<div class="input-group-btn">
+					          			<button type="button" class="btn btn-propio dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recinto <span class="caret"></span></button>
+                       					<ul class="dropdown-menu">
+
+                           					{{#each recinto}}
+                           					<li><a data-for-recinto="#nombreRecinto" data-for-id="{{_id}}">{{this.nombre_recinto}}</a></li>
+                           					{{/each}}
+                  
+                       					</ul>
+	                          		</div>         		
+						          	<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>			        		
+						        </div>
+						        <span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
+						    </div>
+						</div> 
+					</div>	 				   
+					<div class="col-sm-1 col-md-1">
+    	            </div>    	              	
+					<div class="col-sm-5 col-md-5">
+					    <div class="form-group  {{errorClass 'nombreCancha'}}">
+						    <h2>Seleccionar una cancha</h2>
+	  			     	 	<div class="controls">
+						     	<div class="input-group">
+						     		<div class="input-group-btn">
+	                           			 <button type="button" class="btn btn-propio dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cancha <span class="caret"></span></button>
+	                        			<ul class="dropdown-menu">
+	                        
+	                          				{{#each cancha}}
+	                  	     				<li><a data-for-cancha = "#nombreCancha">{{this.numero}}</a></li>
+                              				{{/each}}    
+                           				</ul>
+                          			</div>
+					          		<input name="nombreCancha" id="nombreCancha" type="button" value="" class="form-control"/>						          		
 					          	</div>	
-					        </div>
-					    </div> 				   
+					          	<span class="help-block">{{errorMessage 'nombreCancha'}}</span>
+					     	</div>
+					   	</div>
+					</div>   	 	 
+			  	</div>
+			  	<div class="row">		    	
+		    		<div class="col-sm-5 col-md-5">
+					    <h2>Elegí un día para jugar</h2>
+					    <div class="controls">
+					    	<div class='input-group date'>
+					       	  	<input name="datetimepicker" id="datetimepicker" type="button" value="" class="form-control"/>
+					        	<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepicker">
+					       			<i class="glyphicon glyphicon-calendar"></i>
+					      		</span>	
+					      	</div>  	
+					    </div>
+					</div> 	 				    
+				    <div class="col-sm-1 col-md-1">
+				    </div>				    
+				    <div class='col-sm-5 col-md-5'>
+						<h2>Elegí un horario para jugar</h2>
+					    <div class="controls">
+					    	<div class='input-group date'>
+					        	<input name="datetimepicker3" id="datetimepicker3" type="button" value="" class="form-control"/>
+					        	<span class="input-group-addon" data-picker-handle="#datetimepicker3">
+					        		<i class="glyphicon glyphicon-time"></i>
+                            	</span>
+					        </div>	
+					    </div>
+					</div> 				   
+				</div>
+				<div class="row">
+					<div class="col-sm-1 col-md-1" style="margin-top: 10px;">
+						<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-propio">Actualizar</button>
 					</div>
-				
-					<br>
-					
-					<br>		
-					<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-success">Actualizar</button>				
+					<div class="col-sm-1 col-md-1" style="margin-top: 10px;">
+						<button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
+					</div>
 				</div>				
 			</form>
-
 		</div>
 		{{/if}}     		
     </div>

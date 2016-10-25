@@ -41,6 +41,13 @@ Template.modificarReservaPlayer.onDestroyed( function(){
 
 Template.modificarReservaPlayer.events({
 
+'click #cancelar': function (event){
+
+    event.preventDefault;
+
+    Router.go('showProfile', {_id: Meteor.userId()}); 
+},
+
 'click [data-picker-handle]': function (event) {
 
     var datetimepicker = $(event.currentTarget).data('pickerHandle');   

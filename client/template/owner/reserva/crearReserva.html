@@ -1,7 +1,5 @@
 <template name = "crearReserva">
 	<div class="container-fluid">
-		<br>
-		<br>
 		<!-- Alert de Reserva existente -->
     <div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -15,7 +13,7 @@
 	    	<form class="reserva">	    		
 	    			<div class="row">
 	    				<div class="form-group  {{errorClass 'nombreDeLaReserva'}}">	
-		    				<div class="span5 col-md-11">
+		    				<div class="col-sm-6 col-md-6">
 						    	<label class="control-label" for="nombreDeLaReserva" >Nombre de la reserva</label>
 							    <div class="controls">
 							    	<input type="text" name="nombreDeLaReserva" id="nombreDeLaReserva" class="form-control" placeholder="Nombre de la reserva" aria-describedby="basic-addon1">
@@ -26,7 +24,7 @@
 					</div>
 					<div class="row">
 	    				<div class="form-group  {{errorClass 'nombreDelCliente'}}">	
-		    				<div class="span5 col-md-11">
+		    				<div class="col-sm-6 col-md-6">
 						    	<label class="control-label" for="nombreDelCliente" >Nombre del cliente</label>
 							    <div class="controls">
 							    	<input type="text" name="nombreDelCliente" id="nombreDelCliente" class="form-control" placeholder="Nombre del cliente" aria-describedby="basic-addon1">
@@ -36,13 +34,13 @@
 						</div>		
 					</div>	
 					<div class="row">	
-    	              	<div class="span5 col-md-5">
+    	              	<div class="col-sm-6 col-md-6">
 					    	<div class="form-group  {{errorClass 'nombreCancha'}}">
 						     	 <label class="control-label" for="nombreCancha">Seleccionar una cancha</label>
 						     	 <div class="controls">
 						     	 	<div class="input-group">
 						     	 		<div class="input-group-btn">
-	                             			 <button type="button" class="btn btn-propio dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar cancha <span class="caret"></span></button>
+	                             			 <button type="button" class="btn btn-propio dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cancha <span class="caret"></span></button>
 	                              				<ul class="dropdown-menu">
 	                              				{{#each cancha}}
 	                  
@@ -59,7 +57,7 @@
 						</div>   	 	 
 				  	</div>
 				  	<div class="row">		    	
-			    		<div class="span5 col-md-5">
+			    		<div class="col-sm-6 col-md-6">
 					      	<label class="control-label" for="datetimepicker" >Elegí un día para jugar</label>
 					      	<div class="controls">
 					      		<div class='input-group date'>
@@ -70,9 +68,9 @@
 					        	</div>  	
 					     	</div>
 					    </div> 	 				    
-				    	<div class="span5 col-md-1">
+				    	<div class="col-sm-1 col-md-1">
 				    	</div>				    
-				    	<div class='span5 col-md-5'>
+				    	<div class='col-sm-5 col-md-5'>
 					     	<label class="control-label" for="datetimepicker3">Elegí un horario para jugar</label>
 					     	<div class="controls">
 					     		<div class='input-group date'>
