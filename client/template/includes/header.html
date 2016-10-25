@@ -11,9 +11,9 @@
             <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="{{pathFor 'Home'}}">
-              <img alt="Brand" src="/logo_salepartido5.png" width="35px" height="35px" class="img-responsive">
+              <img alt="Brand" src="/logo_salepartido5.png" width="35px" height="35px" class="img-responsive" style="">
           </a> 
-          <a class="navbar-brand" href="{{pathFor 'Home'}}">Sale Partido</a>
+          <a class="navbar-brand" href="{{pathFor 'Home'}}" style=" padding: 22px 15px;">Sale Partido</a>
         </div>
     
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -27,8 +27,8 @@
                         </div>
                     </form>
 
-                    <li><a  href="{{pathFor 'organizarPartido'}}" >Organizar Partido</a></li>
-                    <li class="collapse" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2">
+                    <li><a  href="{{pathFor 'organizarPartido'}}" style=" padding: 20px 19px;" >Organizar Partido</a></li>
+                    <li class="collapse" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2" style=" padding: 4px;">
                         {{> notifications}}
                     </li>
                 {{/if}}
@@ -39,9 +39,9 @@
                     {{> notifications}}
                 </li>
             {{/if}}  
-                <li><a class="btn btn-inverse collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2" style=" padding: 16px;">{{>loginButtons}}</a></li>
+                <li><a class="btn btn-inverse collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2" style=" padding: 16px 2px;">{{>loginButtons}}</a></li>
                     {{#if currentUser}}
-                <li><a href="{{pathFor 'Home'}}" style="float: right;">{{> gravatar}}</a></li>
+                <li><a href="{{pathFor 'Home'}}" width="35px" height="35px">{{> gravatar}}</a></li>
                     {{/if}}
           </ul>
          

@@ -1,5 +1,6 @@
 /* CSS declarations go here */
 
+ 
 .estrella .current-rating {
   color: #1bb3af;
 }
@@ -24,7 +25,7 @@ footer {
 }
 .btn-Facebook {
   color: #fff;
-  background-color: #1bb3af;
+  background-color: #4d3f92;
 }
 
 footer p{
@@ -89,6 +90,16 @@ input[type="radio"] {
     color: white;
     background-color: #1bb3af;
     border-color: #1bb3af;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.btn-propioV {
+    color: white;
+    background-color: #4d3f92;
+    border-color: #4d3f92;
 
     margin-left: auto;
     margin-right: auto;

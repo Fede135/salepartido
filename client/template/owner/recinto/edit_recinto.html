@@ -1,12 +1,9 @@
 <template name="editRecinto">
-   <!-- <style type="text/css">
-    body {background: #2b2b2b;}
-    </style>-->
-	  <div class="container">
+	  <div class="container-fluid">
         {{#if recinto}}
             {{#autoForm collection="Recintos" doc=this id="updateRecinto" type="update"}}
                 <fieldset>                    
-                    <legend style="font-size: 0px;"><br><h2>Editar recinto</h2></legend>
+                    <legend style="font-size: 0px; margin-top: 15px;"><h2 align="center">Editar recinto</h2></legend>
                     <div class="row">
                         <div class="col-sm-6 col-md-6">
                             {{> afQuickField name='nombre_recinto'}}
@@ -58,10 +55,15 @@
                         </div>
                     </div>
                 </fieldset>
-            <button type="submit" name ="actualizarRecinto" id="actualizarRecinto" class="btn btn-propio">Actualizar</button>
-            <button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
+                <div class="row">
+                    <div class="col-sm-1 col-md-1">
+                        <button type="submit" name ="actualizarRecinto" id="actualizarRecinto" class="btn btn-propio" style="margin-bottom: 10px;">Actualizar</button>
+                    </div>
+                    <div class="col-sm-1 col-md-1">
+                        <button type="button" class="btn btn-propioV" name = "cancelar" id="cancelar" style="margin-bottom: 10px;">Cancelar</button>
+                    </div>
+                </div>
       	    {{/autoForm}}
         {{/if}}
-        <br>
     </div>
 </template>

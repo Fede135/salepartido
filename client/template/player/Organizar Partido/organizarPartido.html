@@ -1,43 +1,40 @@
 <template name = "organizarPartido">
-	<div class="container">
-	    <div class="navbar">
-	  		<h2 align="center">
-		     	Organizar Partido      
-			  </h2>
+	<div class="container-fluid">
+	    <div class="row">
+	    	<div class="col-sm-12 col-md-12">
+                <legend align="center"><h1>Organizar partido</h1></legend>
+            </div>
 	    </div>
-			<!--Alert de reserva existente-->
-			<div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none">
- 				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+		<!--Alert de reserva existente-->
+		<div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none">
+ 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
   			<strong>Reserva existente!!</strong>Ya existe otra reserva en el horario que desea.
-			</div>
-			
+		</div>
 	    <div class="form-group">
 	    	<form class="reserva">
-	    		<div class="well">
 	    			<div class="row">
 	    				<div class="form-group  {{errorClass 'nombreDeLaReserva'}}">	
-		    				<div class="span5 col-md-11">
-						    	<label class="control-label" for="nombreDeLaReserva" >Nombre de la reserva</label>
+		    				<div class="col-sm-8 col-md-8">
+						    	<h2>Nombre de la reserva</h2>
 							    <div class="controls">
 							    	<input type="text" name="nombreDeLaReserva" id="nombreDeLaReserva" class="form-control" placeholder="Nombre de la reserva" aria-describedby="basic-addon1">
 							    	<span class="help-block">{{errorMessage 'nombreDeLaReserva'}}</span>				
 								</div>
 							</div>
+						</div>
+						<div class="col-sm-4 col-md-4">
 						</div>		
 					</div> 	
-					<br>	    							
 					<div class="row">						
-					    <div class="span5 col-md-5">
+					    <div class="col-sm-5 col-md-5">
 					    	<div class="form-group  {{errorClass 'nombreRecinto'}}">
-						      	<br>
-						      	<label class="control-label" for="nombreRecinto">Seleccionar un recinto</label>
-						      	<br>
+						      	<h2>Seleccionar un recinto</h2>
 						      	<div class="controls">
 						      		<div class="input-group">
 						          		<div class="input-group-btn">
-						          			<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar un recinto <span class="caret"></span></button>
+						          			<button type="button" class="btn btn-propio dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Recinto <span class="caret"></span></button>
 	                              					<ul class="dropdown-menu">
 	                              					{{#each recinto}}
 	                  
@@ -47,23 +44,21 @@
 	                    
 	                              					</ul>
 	                          			</div>         		
-						          		<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>						          		
+						          		<input name="nombreRecinto" id="nombreRecinto" type="button" value="" class="form-control"/>        		
 						          	</div>
 						          	<span class="help-block">{{errorMessage 'nombreRecinto'}}</span>
 						     	</div>
 						    </div> 
 					    </div>	 				   
-					    <div class="span5 col-md-1">
+					    <div class="col-sm-1 col-md-1">
     	              	</div>    	              	
-					    <div class="span5 col-md-5">
+					    <div class="col-sm-5 col-md-5">
 					    	<div class="form-group  {{errorClass 'nombreCancha'}}">
-					    		 <br>
-						     	 <label class="control-label" for="nombreCancha">Seleccionar una cancha</label>
-						     	 <br>
+						     	 <h2>Seleccionar una cancha</h2>
 						     	 <div class="controls">
 						     	 	<div class="input-group">
 						     	 		<div class="input-group-btn">
-	                             			 <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Seleccionar una cancha <span class="caret"></span></button>
+	                             			 <button type="button" class="btn btn-propio dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Cancha <span class="caret"></span></button>
 	                              				<ul class="dropdown-menu">
 	                              				{{#each cancha}}
 	                  
@@ -79,10 +74,9 @@
 						   	</div>
 						</div>   	 	 
 				  	</div>
-				  	<br>
 				  	<div class="row">		    	
-			    		<div class="span5 col-md-5">
-					      	<label class="control-label" for="datetimepicker" >Elegí un día para jugar</label>
+			    		<div class="col-sm-5 col-md-5">
+					      	<h2>Elegí un día para jugar</h2>
 					      	<div class="controls">
 					      		<div class='input-group date'>
 					        	  	<input name="datetimepicker" id="datetimepicker" type="button" value="" class="form-control"/>
@@ -92,10 +86,10 @@
 					        	</div>  	
 					     	</div>
 					    </div> 	 				    
-				    	<div class="span5 col-md-1">
+				    	<div class="col-sm-1 col-md-1">
 				    	</div>				    
-				    	<div class='span5 col-md-5'>
-					     	<label class="control-label" for="datetimepicker3">Elegí un horario para jugar</label>
+				    	<div class="col-sm-5 col-md-5">
+					     	<h2>Elegí un horario para jugar</h2>
 					     	<div class="controls">
 					     		<div class='input-group date'>
 					          		<input name="datetimepicker3" id="datetimepicker3" type="button" value="" class="form-control"/>
@@ -104,40 +98,36 @@
                             		</span>
 					          	</div>	
 					        </div>
-					    </div> 	
-
-					    <br>  
-				 		<div class="span5 col-md-5">
-							
-
-							<h4>Invitar Amigos</h4>
+					    </div>
+					</div> 	
+					<div class="row">
+						<div class="col-sm-5 col-md-5">
+							<h2>Invitar Amigos</h2>
+				            <ul class="list-unstyled">
+		 		                <li><input type="checkbox" class="all"><h4 style="margin-left: 15px">Todos</h4></li>
 								{{#each amigos}}
-							<div class="checkbox">										
-									<input id="checkboxFriends" type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
-									
-									<div id="checkboxRolesDiv">
-										<input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host <br>
-									</div>
-									<!--Se agrega este script para ocultar o mostrar el checkbox host dependiendo si el amigo fue seleccionado o no. Falta ver como hacer para que funcione bien, queda comentado-->
-									<script> 
-										var elem = document.getElementById('checkboxRolesDiv'),
-										checkBox = document.getElementById('checkboxFriends');
-										checkBox.checked = false;
-										checkBox.onchange = function doruc() {
-										elem.style.display = this.checked ? 'block' : 'none';
-										};
-										checkBox.onchange();
-									</script>
-							</div>
-								{{/each}} 
-							
-				 		</div> 	   
 
-					</div>
-					<br>					
-				 	<input type="submit" value="Crear reserva" class="btn btn-success"/>
-												
-				</div>				
+					            <li><input class="checkbox" id="checkboxFriends{{this._id}}" type="checkbox" name="friend"  value="{{#each this.emails}}{{this.address}}{{/each}}">
+					            	<h4 style="margin-left: 15px;">{{this.profile.name}}, {{this.profile.player.position}}</h4>
+					            </li>
+					            {{#if checkedado}}
+					             <div id="checkboxRolesDiv">
+									<input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host 
+								</div>
+								{{/if}}								
+								{{/each}} 
+
+				            </ul>
+				        </div>
+			 		</div> 
+				 	<div class="row">
+						<div class="col-sm-1 col-md-1" style="margin-top: 10px;">
+							<button type="submit" name="crear" id="crear" class="btn btn-propio">Reservar</button>
+						</div>
+						<div class="col-sm-1 col-md-1" style="margin-top: 10px;">
+							<button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
+						</div>
+					</div>	
 			</form>			
 		</div>     		
     </div>
