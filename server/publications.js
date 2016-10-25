@@ -1,4 +1,4 @@
-eteor.publish('reservas', function(){
+Meteor.publish('reservas', function(){
 
 	return Reserva.find();
 });
