@@ -1,1 +1,86 @@
-show_comments_ players.html
+<template name="showCommentsPlayers">
+  <div class="container-fluid">
+
+    <!--Modal de esta seguro eliminar comentario-->
+    <div id="eliminarComentarioPlayerModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title">¿Estas seguro de...</h4>
+          </div>
+          <div class="modal-body">
+            <p>...que quieres eliminar tu comentario?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            <button id="deleteComment" name="deleteComment" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<!--Acordion con 5 primeros comentarios y luego 20-->
+    <!--{{#if fivecomments}}-->
+      <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading1">
+            <h4 class="panel-title"> 
+              <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                Últimos comentarios
+              </a>
+            </h4>
+          </div>
+            <div id="collapse1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="heading1">
+              <div class="panel-body table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    {{#if fivecomments}}
+                      {{#each fivecomments}}
+                        <tr>
+                          {{this.commentToPlayer}}
+                          {{#if ownComment}}
+                            <button id="lanzoCommentId" type="button" class="close" data-toggle="modal" data-target="#eliminarComentarioPlayerModal">&times;</button>
+                          {{/if}}
+                        </tr>
+                      {{/each}}
+                    {{else}}
+                      <tr>
+                        No hay comentarios
+                      </tr>
+                    {{/if}}  
+                  </tbody>           
+                </table>
+              </div>
+            </div>
+        </div>
+        {{#if comments20}}
+        <div class="panel panel-default">
+          <div class="panel-heading" role="tab" id="heading2">
+            <h4 class="panel-title"> 
+              <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapse2">
+                Ver más
+              </a>
+            </h4>
+          </div>
+            <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+              <div class="panel-body table-responsive">
+                <table class="table table-striped">
+                  <tbody>
+                    {{#each comments20}}
+                      <tr>
+                        {{this.commentToPlayer}}
+                        {{#if ownComment}}
+                            <button id="lanzoCommentId" type="button" class="close" data-toggle="modal" data-target="#eliminarComentarioPlayerModal">&times;</button>
+                        {{/if}}
+                      </tr>
+                    {{/each}}
+                  </tbody>
+                </table>          
+              </div>
+            </div>        
+        </div>
+        {{/if}} 
+      </div>
+  </div>     
+</template>

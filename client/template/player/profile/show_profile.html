@@ -1,1 +1,648 @@
-show_profile.html
+<template name = "showProfile"> 
+    <div class="container-fluid">
+        <!--Alert que muestra que el perfil fue editado con exito-->
+        <div class="alert alert-success alert-dismissible" role="alert" id="alertPerfilEditado" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            Tu <strong>perfil </strong>fue <strong>actualizado!</strong>
+        </div>
+
+        <!--Alert de Eliminado de un equipo -->
+        <div class="alert alert-danger alert-dismissible" role="alert" id="alertNoJuega" style="display: none">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <strong>Te diste de baja del partido!</strong> Si cambias de opinion habla con algún organizador para que vuelvan a invitarte.
+        </div>
+
+        <!--Modal de esta seguro eliminar comentario-->
+        <div id="eliminarAmigoModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">¿Estas seguro de...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>...que quieres eliminarlo de tus amigos?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button id="deleteFriend" name="deleteFriend" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--Modal de para mostrar que editar, dependiendo de el rol-->
+        <div id="redirigirPartidosModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Ir a... </h4>
+                    </div>
+                    <div class="modal-body">
+                        <button id="modificarHorario" type="button" class="btn btn-primary" data-dismiss="modal">Modificar reserva</button>
+                        <button id="jugarPartido" type="button" class="btn btn-primary" data-dismiss="modal">Confirmar Partido</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <!--muestro datos del usuario-->
+        <div class="row">
+              <div class="col-sm-12 col-md-12">
+                <legend align="center"><h1>{{user.profile.name}}</h1></legend>
+              </div>
+        </div>
+        <div class="row">
+              <div class="col-sm-2 col-md-2">
+                  <h4><strong>Edad: </strong>{{age}}</h4>
+              </div>
+              <div class="col-sm-2 col-md-2">
+                  <h4><strong>Altura: </strong>{{user.profile.player.height}}</h4>
+              </div>
+              <div class="col-sm-2 col-md-2">
+                  <h4><strong>Peso: </strong>{{user.profile.player.weight}}</h4>
+              </div>
+              <div class="col-sm-4 col-md-4">
+                  <h4><strong>Posición: </strong>{{user.profile.player.position}}</h4>
+              </div>
+        </div>
+        <div class="row">
+              <div class="col-sm-1 col-md-1">
+              </div>
+              <div class="col-sm-2 col-md-2">
+                  <h4><strong>Pie hábil: </strong>{{user.profile.player.foot}}</h4>
+              </div>
+              <div class="col-sm-3 col-md-3">
+                  <h4><strong>De: </strong>{{place}}</h4>
+              </div>
+              <div class="col-sm-2 col-md-2">
+                  {{#if ownProfile}}
+                    <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
+                      <button class="btn btn-propio" id="login-buttons-edit-profile">Editar Perfil</button>
+                  {{/if}}
+              </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12">
+              <legend align="left"><h2>Calificaciones y partidos</h2></legend>
+            </div>
+        </div>
+        {{#if ownProfile}}
+        <div class="row">
+            <div class="col-sm-6 col-md-7">
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Puntualidad</h3>
+                        {{prompuntualidad}}
+                        {{#if prompuntualidad}}
+                            {{> starsRating rating=prompuntualidad class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Resistencia</h3>
+                        {{promresistencia}}
+                        {{#if promresistencia}}
+                            {{> starsRating rating=promresistencia class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Fair Play</h3>
+                        {{promfairplay}}
+                        {{#if promfairplay}}
+                            {{> starsRating rating=promfairplay class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}} 
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Burradas</h3>
+                        {{promburradas}}
+                        {{#if promburradas}}
+                            {{> starsRating rating=promburradas class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Pase</h3>
+                        {{prompase}}
+                        {{#if prompase}}
+                            {{> starsRating rating=prompase class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Defensa</h3>
+                        {{promdefensa}}
+                        {{#if tieneVotoDef}}
+                            {{> starsRating rating=promdefensa class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Gambeta</h3>
+                        {{promgambeta}}
+                        {{#if tieneVotoGam}}
+                            {{> starsRating rating=promgambeta class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Remate al arco</h3>
+                        {{promrematearco}}
+                        {{#if tieneVotoRema}}
+                            {{> starsRating rating=promrematearco class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Velocidad</h3>
+                        {{promvelocidad}}
+                        {{#if tieneVotoVel}}
+                            {{> starsRating rating=promvelocidad class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                </div>
+                <div class="row">
+                    {{#if arquero}}
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Reflejos</h3>
+                        {{promreflejos}}
+                        {{#if promreflejos}}
+                            {{> starsRating rating=promreflejos class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}                       
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Atajadas</h3>
+                        {{promatajadas}}
+                        {{#if promatajadas}}
+                            {{> starsRating rating=promatajadas class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                        <br>
+                    </div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-5">
+              {{#if ownProfile}}
+                  <div class="row">
+                      {{#if partidosInvitado}}
+                      <div class="table-responsive">
+                            <table class="table table-striped" name="tabla">
+                                <caption>Partidos a los que estas invitado</caption>
+                                <thead> 
+                                    <tr><!-- Primer fila -->
+                                        <th>Dia</th>
+                                        <th>Hora</th>
+                                        <th>Recinto</th>
+                                        <th>Cancha</th>
+                                        {{#if isHost}}
+                                            <th>Editar</th>
+                                        {{else}}
+                                            {{#if isInvitado}}
+                                                <th>Ir</th>
+                                            {{/if}}
+                                        {{/if}}      
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each partidosInvitado}}
+                                        <tr>
+                                        <td>{{dia}}</td>
+                                        <td>{{hora}}</td>
+                                        <td>{{recinto}}</td>
+                                        <td>{{cancha}}</td>
+                                        <td> 
+                                            {{#if isHost}}
+                                                <span id="lanzaIdPartido" class="glyphicon glyphicon-wrench" aria-hidden="true" data-toggle="modal" data-target="#redirigirPartidosModal"></span>
+                                            {{else}}
+                                                {{#if isInvitado}}
+                                                    <span id="confirmarPartido" class="glyphicon glyphicon-menu-right close" aria-hidden="true"></span>
+                                                {{/if}}  
+                                            {{/if}}
+                                        </td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                      </div>
+                            <a href="{{pathFor 'partidos' _id=this._id}}">Ver todos</a>
+                        {{else}}
+                            <h4>No te han invitado a ningún partido.Organizá uno!</h4>
+                        {{/if}}
+                  </div>
+                  <div class="row">
+                      {{#if partidosPendientes}}
+                          <div class="table-responsive">
+                            <table class="table table-striped" name="tabla">
+                                <caption>Partidos por jugar</caption>
+                                <thead>
+                                    <tr><!-- Primer fila -->
+                                        <th>Dia</th>
+                                        <th>Hora</th>
+                                        <th>Recinto</th>
+                                        <th>Cancha</th>
+                                        <th>
+                                        {{#if isHost}}
+                                            Editar
+                                        {{else}}
+                                            {{#if isInvitado}}
+                                                Ir
+                                            {{/if}}
+                                        {{/if}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each partidosPendientes}}
+                                    <tr>
+                                        <td>{{dia}}</td>
+                                        <td>{{hora}}</td>
+                                        <td>{{recinto}}</td>
+                                        <td>{{cancha}}</td>
+                                        <td> 
+                                            {{#if isHost}}
+                                                <span id="lanzaIdPartido" class="glyphicon glyphicon-wrench" aria-hidden="true" data-toggle="modal" data-target="#redirigirPartidosModal"></span>
+                                            {{else}}
+                                                {{#if isConfirmado}}
+                                                    <span id="confirmarPartido" class="glyphicon glyphicon-menu-right close" aria-hidden="true"></span>
+                                                {{/if}}  
+                                            {{/if}}
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                          </div>
+                      {{else}}
+                        <h4>No tenes partidos pendientes</h4>
+                      {{/if}}
+                  </div>
+                  <!--<div class="row">
+                      {{#if partidosJugados}}
+                          <div class="table-responsive">
+                            <table class="table table-striped" name="tabla">
+                              <caption>Partidos jugados</caption>
+                              <thead>
+                                  <tr>
+                                      <th>Dia</th>
+                                      <th>Hora</th>
+                                      <th>Recinto</th>
+                                      <th>Cancha</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                {{#each partidosJugados}}
+                                    <tr>
+                                      <td>{{dia}}</td>
+                                      <td>{{hora}}</td>
+                                      <td>{{recinto}}</td>
+                                      <td>{{cancha}}</td>
+                                    </tr>
+                                {{/each}}
+                              </tbody>
+                            </table>
+                          </div>
+                      {{else}}
+                        <h4>No has jugado ningún partido</h4>
+                      {{/if}}
+                  </div>-->
+                {{else}}
+                
+                {{/if}}
+            </div>
+        </div>
+        <div class="row">
+            {{#if isUserFacebook}}
+              <div class="col-sm-12 col-md-12">
+              <legend>Jugadores de Facebook</legend>
+              </div>
+                {{#if amigosfb}}
+                <div class="col-sm-6 col-md-6">
+                    <div class="table-responsive">        
+                        <table class="table table-striped" name="tabla">
+                            <thead>
+                                <tr>
+                                  <th>Jugador</th>
+                                  <th>Posición</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {{#each amigosfb}}
+                                <tr>
+                                  <td> <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a> </td>
+                                  <td>{{this.profile.player.position}}</td>
+                                  <td><button type="button" id="lanzarIdJugador" data-toggle="modal" data-target="#eliminarAmigoModal" class="glyphicon glyphicon-remove close" aria-hidden="true"></button></td>
+                                </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>    
+                </div>
+                {{else}}<!-- if amigosfb -->
+                  <div class="col-sm-12 col-md-12">
+                    No tienes amigos de Facebook
+                  </div>  
+                {{/if}}<!-- if amigosfb -->
+                <div class="col-sm-12 col-md-12">
+                <br>
+                <legend>Jugadores de la Aplicación</legend>
+                </div>
+                  {{#if amigosapp}}
+                  <div class="col-sm-6 col-md-6">
+                      <div class="table-responsive">        
+                          <table class="table table-striped" name="tabla">
+                              <thead>
+                                  <tr>
+                                    <th>Jugador</th>
+                                    <th>Posición</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  {{#each amigosapp}}
+                                  <tr>
+                                      <td> <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a></td>
+                                      <td>{{this.profile.player.position}}</td>
+                                      <td><button type="button" id="lanzarIdJugador" data-toggle="modal" data-target="#eliminarAmigoModal" class="glyphicon glyphicon-remove close" aria-hidden="true"></button></td>
+                                  </tr>
+                                  {{/each}}
+                              </tbody>
+                          </table>
+                      </div>
+                  </div>
+                  {{else}}<!-- if amigosapp -->
+                  <div class="col-sm-12 col-md-12">
+                      No tienes amigos de la aplicación
+                  </div>    
+                  {{/if}}<!-- if amigosapp -->        
+            {{else}}<!-- If isUserFacebook -->
+              <div class="col-sm-12 col-md-12">
+              <br>
+              <legend>Jugadores de la Aplicación</legend>
+              </div>
+                  {{#if amigosapp}}
+                  <div class="col-sm-6 col-md-6">
+                      <div class="table-responsive">        
+                          <table class="table table-striped" name="tabla">     
+                              <thead>
+                                  <tr>
+                                      <th>Jugador</th>
+                                      <th>Posición</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  {{#each amigosapp}}
+                                  <tr>
+                                      <td> <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a> </td>
+                                      <td>{{this.profile.player.position}}</td>
+                                      <td><button type="button" id="lanzarIdJugador" data-toggle="modal" data-target="#eliminarAmigoModal" class="glyphicon glyphicon-remove close" aria-hidden="true"></button></td>
+                                  </tr>
+                                  {{/each}}
+                              </tbody>
+                          </table>
+                      </div>    
+                  </div>
+                  {{else}}
+                  <div class="col-sm-12 col-md-12">
+                      No tienes amigos de la aplicación
+                  </div>
+                  {{/if}}     
+            {{/if}}
+        </div>
+        {{else}}
+        <div class="row">
+          <div class="col-sm-12 col-md-12">
+          {{#if isFriend}} 
+              Ya esta en tu lista de jugadores.
+          {{else}}          
+              <button type="button" name="addJugadores" id="addJugadores" class="btn btn-default">Agregar a tu lista de Jugadores</button>
+          {{/if}}
+          </div> 
+        </div>
+        <div class="row">
+            {{#if arquero}}
+                {{#if isOwner}}
+                <div class="row">
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Puntualidad</h3>
+                        {{prompuntualidad}}                   
+                        {{#if tieneVotoPunt}}
+                            {{> starsRating rating=prompuntualidad class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                </div>
+                {{else}}
+                <div class="row">
+                  <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Puntualidad</h3>
+                        {{prompuntualidad}}
+                        {{#if tieneVotoPunt}}
+                            {{> starsRating rating=prompuntualidad class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Resistencia</h3>
+                        {{promresistencia}}
+                        {{#if tieneVotoRes}}
+                            {{> starsRating rating=promresistencia class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Fair Play</h3>
+                        {{promfairplay}}
+                        {{#if tieneVotoFair}}
+                            {{> starsRating rating=promfairplay class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='fairplay' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                      <h3>Burradas</h3>
+                      {{promburradas}}
+                        {{#if tieneVotoBurr}}
+                            {{> starsRating rating=promburradas class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                  </div>  
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Reflejos</h3>
+                        {{promreflejos}}
+                        {{#if promreflejos}}
+                            {{> starsRating rating=promreflejos class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}                       
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Atajadas</h3>
+                        {{promatajadas}}
+                        {{#if promatajadas}}
+                            {{> starsRating rating=promatajadas class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                        <br>
+                    </div>
+                  </div>
+                </div>        
+                {{/if}}
+            {{else}}
+                {{#if isOwner}}
+                <div class="row">
+                    <div class="col-sm-3 col-md-3">
+                         <!-- calificaciones comunes a todas las posiciones-->
+                        <h3>Puntualidad</h3>
+                        {{prompuntualidad}}
+                        {{#if tieneVotoPunt}}
+                            {{> starsRating rating=prompuntualidad class="estrella" size='lg'}}
+                        {{else}}
+                           {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                     </div>    
+                </div>
+                {{else}}
+                <div class="row">
+                  <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Puntualidad</h3>
+                        {{prompuntualidad}}
+                        {{#if prompuntualidad}}
+                            {{> starsRating rating=prompuntualidad class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Resistencia</h3>
+                        {{promresistencia}}
+                        {{#if promresistencia}}
+                            {{> starsRating rating=promresistencia class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Fair Play</h3>
+                        {{promfairplay}}
+                        {{#if promfairplay}}
+                            {{> starsRating rating=promfairplay class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}} 
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Burradas</h3>
+                        {{promburradas}}
+                        {{#if promburradas}}
+                            {{> starsRating rating=promburradas class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Pase</h3>
+                        {{prompase}}
+                        {{#if prompase}}
+                            {{> starsRating rating=prompase class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Defensa</h3>
+                        {{promdefensa}}
+                        {{#if tieneVotoDef}}
+                            {{> starsRating rating=promdefensa class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                  </div>                      
+                </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-12">
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Gambeta</h3>
+                        {{promgambeta}}
+                        {{#if tieneVotoGam}}
+                            {{> starsRating rating=promgambeta class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Remate al arco</h3>
+                        {{promrematearco}}
+                        {{#if tieneVotoRema}}
+                            {{> starsRating rating=promrematearco class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
+                        <h3>Velocidad</h3>
+                        {{promvelocidad}}
+                        {{#if tieneVotoVel}}
+                            {{> starsRating rating=promvelocidad class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+
+                    </div>
+                  </div>  
+                </div>
+                {{/if}}     
+            {{/if}}
+        </div>
+        {{/if}}
+        {{#unless ownProfile}}
+            <br>
+            {{> enterCommentsForPlayers}}
+            <br>
+            <br>
+        {{/unless}}
+         {{> showCommentsPlayers}} 
+        <br>
+        <br>
+    </div>
+</template>
