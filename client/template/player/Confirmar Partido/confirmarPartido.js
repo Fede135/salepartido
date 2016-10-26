@@ -43,9 +43,7 @@ Template.confirmarPartido.helpers({
         var tamañoA = arrayA.length;
         var tamañoB = arrayB.length;
         var ab = tamañoA + tamañoB;
-        //console.log('numero',porEquipo);
         var total = porEquipo * 2;
-        //console.log(total);
         if(ab === total){ 
             return true;
         }else{
@@ -85,12 +83,9 @@ Template.confirmarPartido.helpers({
 
     suplente : function(){
         var arraySuplente = Partido.findOne(this._id).suplentes;
-        //console.log('suplentes',arraySuplente)
         if(arraySuplente === undefined || arraySuplente.length === 0){
-            //console.log('if')
             return false;
         }else{
-            //console.log('else')
             var array = [];
             arraySuplente.forEach(function(e){
                 var usu = Meteor.users.findOne({_id:e});
@@ -165,7 +160,6 @@ Template.confirmarPartido.helpers({
     },
 
     isConfirmado: function(){
-        //console.log('isconfirmado',Roles.userIsInRole( Meteor.userId(),['confirmado'], this._id));
         return Roles.userIsInRole( Meteor.userId(),'confirmado', this._id);
     },
 
@@ -174,13 +168,39 @@ Template.confirmarPartido.helpers({
     },
 
     isSuplente: function(){
-        //console.log('isusplente',Roles.userIsInRole( Meteor.userId(),['suplente'], this._id));
         return Roles.userIsInRole( Meteor.userId(),'suplente', this._id);
 
     },
     isNoJuega : function() {
         return Roles.userIsInRole( Meteor.userId(),'noJuega', this._id);    
-    }
+    },
+
+    isPorJugar : function() {
+        var partido = Partido.findOne(this._id);
+        var reserva = Reserva.findOne(partido.reserva_id);
+        if(reserva.estado == "Reservada") {
+            return true;
+        } else {
+            return false;
+        }
+    },
+
+    isCancelada : function () {
+        var partido = Partido.findOne(this._id);
+        var reserva = Reserva.findOne(partido.reserva_id);
+        if(reserva.estado == "Cancelada"){
+            return true;
+        }
+    },
+
+    isJugada : function () {
+        var partido = Partido.findOne(this._id);
+        var reserva = Reserva.findOne(partido.reserva_id);
+        if(reserva.estado == "Jugada") {
+            return true;
+        }
+    },
+
 
 });
 
@@ -484,7 +504,6 @@ Template.confirmarPartido.events({
         Meteor.call('mailReserva',arrayJugadores, idpartido,dia,hora,recinto,organizador);
         //----------Notifica solo a los nuevos que se agregan----------
         createInvitationToGameNotificationOnlyOthers(idpartido, arrayJugadores);
-        console.log("arrayJugadores antes de gameRoles",arrayJugadores)
         Meteor.call('gameRolesConfirmar', idpartido, arrayJugadores, arrayHostSecundario);
         $('#alertNuevosJugadores').show();
     }, 
@@ -508,6 +527,32 @@ Template.confirmarPartido.events({
             }
         }               
     },
+    'click #cancelarReserva': function (event){
+      var partido = Partido.findOne(this._id);
+      var reserva = Reserva.findOne({'_id': partido.reserva_id});
+      // Guardando los valores originales de la reserva antes de ser actualizada
+      var oldHora = reserva.hora_de_juego;
+      var oldDia = reserva.fecha_de_juego;
+      var oldRecinto = reserva.nom_recinto;
+      var oldCancha = reserva.num_cancha;
+      Reserva.update({_id: reserva._id},{$set: {estado: 'Cancelada'}});
+      var jugadores = Roles.getUsersInRole(['invitado', 'suplente', 'confirmado'], partido._id);
+      var jugadoresId = [];
+      jugadores.forEach(function (e) {
+        var jugadorId = e._id;
+        jugadoresId.push(jugadorId);
+      })
+      cancelacionReservaForOwnerNotification(oldHora, oldDia, oldRecinto, oldCancha, reserva._id);
+      cancelacionReservaPlayersNotification(partido._id, jugadoresId);
+      jugadoresId.forEach(function (e) {
+        Roles.setUserRoles(e, 'noJugo', partido._id);
+      });
+      Session.set('alertReservaCancelada', true);
+      $('#cancelarReservaModal').on('hidden.bs.modal', function() {
+            Router.go("showProfile", {_id : Meteor.userId() });
+        })
+        .modal('hide'); 
+  },
 });
 
 Template.confirmarPartido.onDestroyed( function() {

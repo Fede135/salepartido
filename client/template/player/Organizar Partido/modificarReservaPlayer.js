@@ -41,27 +41,24 @@ Template.modificarReservaPlayer.onDestroyed( function(){
 
 Template.modificarReservaPlayer.events({
 
-'click #cancelar': function (event){
-
-    event.preventDefault;
-
-    Router.go('showProfile', {_id: Meteor.userId()}); 
-},
-
-'click [data-picker-handle]': function (event) {
-
-    var datetimepicker = $(event.currentTarget).data('pickerHandle');   
-    $(datetimepicker).data('DateTimePicker').toggle();
-
+  'click #cancelarReserva': function (event){
+    Router.go("showProfile", {_id : Meteor.userId() });
   },
- 
- 'click [data-for-cancha]': function(event){
 
-    var $item=$(event.currentTarget);
-    var $target=$($item.data('forCancha'));
+  'click [data-picker-handle]': function (event) {
 
-    $target.val($item.text()); 
-  },
+      var datetimepicker = $(event.currentTarget).data('pickerHandle');   
+      $(datetimepicker).data('DateTimePicker').toggle();
+
+    },
+  
+  'click [data-for-cancha]': function(event){
+
+      var $item=$(event.currentTarget);
+      var $target=$($item.data('forCancha'));
+
+      $target.val($item.text()); 
+    },
 
   'click [data-for-recinto]': function(event){
     
