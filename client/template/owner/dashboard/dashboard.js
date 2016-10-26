@@ -19,6 +19,14 @@ Template.dashboard.helpers({
 
     },
 
+     abrirReportes: function(){
+
+      var reportesGet = Session.get('reportes') && true;
+      return reportesGet;
+
+    },
+
+
     abrirCanchas: function(){
 
     	var recinto_Id = Session.get('canchas') && this._id;
@@ -41,30 +49,36 @@ Template.dashboard.events({
   'click #gestionCanchas': function(event){
 
      Session.clear();
-     var canchas = true;
 
-     Session.set('canchas', canchas);
+     Session.set('canchas', true);
+  },
+
+  'click #reportes': function(event){
+
+     Session.clear();
+     
+     Session.set('reportes', true);
   },
 
   'click #reservasHoy': function(event){
 
     Session.clear();
-    var tabla = true;
-    Session.set('tabla', tabla);
+
+    Session.set('tabla', true);
   },
 
   'click #gestionReserva': function(event){
 
     Session.clear();
-    var reserva = true;
-    Session.set('reserva', reserva);
+
+    Session.set('reserva', true);
   },
 
 	'click #crearReservaTemplate': function(event){
     
     Session.clear();
-		var abrirReserva = true;
-		Session.set('abrirReserva', abrirReserva);
+
+		Session.set('abrirReserva', true);
   }
     	 
 });

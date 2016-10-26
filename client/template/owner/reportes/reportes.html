@@ -1,298 +1,252 @@
 <template name="reportes">
-	<div class="container">
+	<div class="container-fluid" style="margin-top: -30px;">
 		<div class="row">
-			<legend>Rango de fechas</legend>
-			<div class=" col-md-6">
-				<label class="control-label" for="datetimepickerDesde" >Desde</label>
-				<div class="controls">
-					<div class='input-group date'>
-						<input name="datetimepickerDesde" id="datetimepickerDesde" type="button" value="" class="form-control"/>
-						<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepickerDesde">
-							<i class="glyphicon glyphicon-calendar"></i>
-						</span>	
-					</div>  	
+			<legend><h2 align="center">Rango de fechas para sus reservas</h2></legend>
+			<div class="col-sm-6 col-md-6">	
+				<div class="row" style="margin-top: 35px;">
+					<label class="control-label" for="datetimepickerDesde" >Desde</label>
+					<div class="controls">
+						<div class='input-group date'>
+							<input name="datetimepickerDesde" id="datetimepickerDesde" type="button" value="" class="form-control"/>
+							<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepickerDesde">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</span>	
+						</div>  	
+					</div>
 				</div>
-				<br>
-				<label class="control-label" for="datetimepickerHasta" >Hasta</label>
-				<div class="controls">
-					<div class='input-group date'>
-						<input name="datetimepickerHasta" id="datetimepickerHasta" type="button" value="" class="form-control"/>
-						<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepickerHasta">
-							<i class="glyphicon glyphicon-calendar"></i>
-						</span>	
-					</div>  	
-				</div>
+				<div class="row" style="margin-top: 45px;">
+					<label class="control-label" for="datetimepickerHasta" >Hasta</label>
+					<div class="controls">
+						<div class='input-group date'>
+							<input name="datetimepickerHasta" id="datetimepickerHasta" type="button" value="" class="form-control"/>
+							<span class="input-group-addon" id="datetimepicker-handle" data-picker-handle="#datetimepickerHasta">
+								<i class="glyphicon glyphicon-calendar"></i>
+							</span>	
+						</div>  	
+					</div>
+				</div>	
 			</div>
-			<div class="col-md-6">
-				<div><!-- hacer responsive -->		
+			<div class="col-sm-6 col-md-6">
 				{{#if cantReservas}}		
-					<table>
-						<caption>Cantidad de reservas</caption>
-						<thead>
-							<tr><!-- Primer fila -->
-								<th>Estado</th>
-								<br>
-								<th>Cantidad</th>
-
-
+			 		<table class="table table-hover" name="tabla" id="tabla">
+      			 		<thead>
+           					<tr style="border: 1px solid black; background: grey;">
+               			   		<th><h4 align="center" style="color:white;font-weight:bold">Estado</h4></th>
+               			   		<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>				
 							</tr>
 						</thead>
 						<tbody>
-							{{#each cantReservas}}
+						{{#each cantReservas}}
 							<tr>
-								<td>{{this.tipo}}</td>
-								<br>
-								<td>{{this.cantidad}}</td>
+								<td><h4 align="center">{{this.tipo}}</h4></td>
+								<td><h4 align="center">{{this.cantidad}}</h4></td>
 							</tr>
-							{{/each}}
+						{{/each}}
 						</tbody>
 					</table>
 				{{else}}
-				<h3>Seleccione un rango de fechas.</h3>
+					<div class="row" style="margin-top: 110px;">
+						<h3>Seleccione un rango de fechas.</h3>
+					</div>
 				{{/if}}
-				</div>
-				
-			</div> 
+			</div>
 		</div> 
-		<br>
-		<br>	
-
-		<div class="row">
-			<legend>Historico de la cantidad de reservas por rango de hora</legend>
+		<div class="row" style="margin-top: 10px;">
+			<legend align="center">Historico de la cantidad de reservas por rango de hora</legend>
 			<p>Rango horario:</p>
 			<li>Mañana de 9hs. a 12hs.</li>
 			<li>Siesta de 13hs a 16hs.</li>
 			<li>Tarde de 17hs a 20hs.</li>
 			<li>Noche de 21hs. a 1hs.</li>
-			<br>			
-			<div class="col-md-4">
-				<div><!-- hacer responsive -->				
-					<table>
-						<caption>Concretadas</caption>
-						<thead>
-							<tr><!-- Primer fila -->
-								<th>Rango</th>
-								<br>
-								<th>Cantidad</th>						
-							</tr>
-						</thead>
-						<tbody>
-							{{#each cantConcretadasPorHoras}}
-							<tr>
-								<td>{{this.rango}}</td>
-								<br>
-								<td>{{this.cantidad}}</td>
-							</tr>
-							{{/each}}
-						</tbody>
-					</table>
+			<div class="row">
+				<div class="col-sm-4 col-md-4">
+					<div class="row">				
+						<table class="table table-hover" name="tabla" id="tabla">
+							<caption><h4 align="center">Concretadas</h4></caption>
+							<thead>
+								<tr style="border: 1px solid black; background: grey;">
+									<th><h4 align="center" style="color:white;font-weight:bold">Rango</h4></th>
+									<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>						
+								</tr>
+							</thead>
+							<tbody>
+								{{#each cantConcretadasPorHoras}}
+								<tr>
+									<td><h4 align="center">{{this.rango}}</h4></td>
+									<td><h4 align="center">{{this.cantidad}}</h4></td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div><!-- hacer responsive -->				
-					<table>
-						<caption>Canceladas</caption>
-						<thead>
-							<tr><!-- Primer fila -->
-								<th>Rango</th>
-								<br>
-								<th>Cantidad</th>						
-							</tr>
-						</thead>
-						<tbody>
-							{{#each cantCanceladasPorHoras}}
-							<tr>
-								<td>{{this.rango}}</td>
-								<br>
-								<td>{{this.cantidad}}</td>
-							</tr>
-							{{/each}}
-						</tbody>
-					</table>
+				<div class="col-sm-4 col-md-4">
+					<div class="row">				
+						<table class="table table-hover" name="tabla" id="tabla">
+							<caption><h4 align="center">Canceladas</h4></caption>
+							<thead>
+								<tr style="border: 1px solid black; background: grey;">
+									<th><h4 align="center" style="color:white;font-weight:bold">Rango</h4></th>
+									<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>						
+								</tr>
+							</thead>
+							<tbody>
+								{{#each cantCanceladasPorHoras}}
+								<tr>
+									<td><h4 align="center">{{this.rango}}</h4></td>
+									<td><h4 align="center">{{this.cantidad}}</h4></td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
-			<div class="col-md-4">
-				<div><!-- hacer responsive -->				
-					<table>
-						<caption>Total</caption>
-						<thead>
-							<tr><!-- Primer fila -->
-								<th>Rango</th>
-								<br>
-								<th>Cantidad</th>						
-							</tr>
-						</thead>
-						<tbody>
-							{{#each cantPorHoras}}
-							<tr>
-								<td>{{this.rango}}</td>
-								<br>
-								<td>{{this.cantidad}}</td>
-							</tr>
-							{{/each}}
-						</tbody>
-					</table>
+				<div class="col-sm-4 col-md-4">
+					<div class="row">				
+						<table class="table table-hover" name="tabla" id="tabla">
+							<caption><h4 align="center">Total</h4></caption>
+							<thead>
+								<tr style="border: 1px solid black; background: grey;">
+									<th><h4 align="center" style="color:white;font-weight:bold">Rango</h4></th>
+									<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>						
+								</tr>
+							</thead>
+							<tbody>
+								{{#each cantPorHoras}}
+								<tr>
+									<td><h4 align="center">{{this.rango}}</h4></td>
+									<td><h4 align="center">{{this.cantidad}}</h4></td>
+								</tr>
+								{{/each}}
+							</tbody>
+						</table>
+					</div>
 				</div>
-			</div>
-			
+			</div>			
 		</div>
-		<br>
-		<br>
 		<div class="row">
-			<legend>Historico cantidad de reservas por dia</legend>
-			<div class="col-md-6">
-				<div><!-- hacer responsive -->				
-					<table>
-						<caption>Concretadas</caption>
-						<thead>
-							<tr><!-- Primer fila -->
-								<th>Dia de la semana</th>
-								<br>
-								<th>Cantidad</th>						
-							</tr>
-						</thead>
-						<tbody>
-							{{#each concretadasPorDia}}
-							<tr>
-								<td>{{this.dia}}</td>
-								<br>
-								<td>{{this.cantidad}}</td>
-							</tr>
-							{{/each}}
-						</tbody>
-					</table>
-				</div>
+			<legend align="center">Historico cantidad de reservas por dia</legend>
+			<div class="col-sm-6 col-md-6">
+				<table class="table table-hover" name="tabla" id="tabla">
+					<caption><h4 align="center">Concretadas</h4></caption>
+					<thead>
+						<tr style="border: 1px solid black; background: grey;">						
+							<th><h4 align="center" style="color:white;font-weight:bold">Dia de la semana</h4></th>
+							<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>						
+						</tr>
+					</thead>
+					<tbody>
+						{{#each concretadasPorDia}}
+						<tr>
+							<td><h4 align="center">{{this.dia}}</h4></td>
+							<td><h4 align="center">{{this.cantidad}}</h4></td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
 			</div>
-			<div class="col-md-6">
-				<div><!-- hacer responsive -->				
-					<table>
-						<caption>Canceladas</caption>
-						<thead>
-							<tr><!-- Primer fila -->
-								<th>Dia de la semana</th>
-								<br>
-								<th>Cantidad</th>						
-							</tr>
-						</thead>
-						<tbody>
-							{{#each canceladasPorDia}}
-							<tr>
-								<td>{{this.dia}}</td>
-								<br>
-								<td>{{this.cantidad}}</td>
-							</tr>
-							{{/each}}
-						</tbody>
-					</table>
-				</div>
+			<div class="col-sm-6 col-md-6">
+				<table class="table table-hover" name="tabla" id="tabla">
+					<caption><h4 align="center">Canceladas</h4></caption>
+					<thead>
+						<tr style="border: 1px solid black; background: grey;">
+							<th><h4 align="center" style="color:white;font-weight:bold">Dia de la semana</h4></th>
+							<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>						
+						</tr>
+					</thead>
+					<tbody>
+						{{#each canceladasPorDia}}
+						<tr>
+							<td><h4 align="center">{{this.dia}}</h4></td>
+							<td><h4 align="center">{{this.cantidad}}</h4></td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
 			</div>
 		</div>
 		<div class="row">
 			<legend>Historico de reservas concretadas y canceladas por usuarios.</legend>
-			<div class="col-md-6">
-				<legend>A través de Sale Partido</legend>
-				<div class="col-md-3">
-					<div><!-- hacer responsive -->				
-						<table>
-							<caption>Concretadas</caption>
-							<thead>
-								<tr><!-- Primer fila -->
-									<th>Usuario</th>
-									<br>
-									<th>Cantidad</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								{{#each cantJugadoresReservaron}}
-								<tr>
-									<td>{{this.usuario.profile.name}}</td>
-									<br>
-									<td>{{this.cantidad}}</td>
-
-								</tr>
-								{{/each}}
-							</tbody>
-						</table>
-					</div>
+			<div class="row">
+				<legend align="center">A través de Sale Partido</legend>
+				<div class="col-sm-6 col-md-6">
+					<table class="table table-hover" name="tabla" id="tabla">	
+						<caption><h4 align="center">Concretadas</h4></caption>
+						<thead>
+							<tr style="border: 1px solid black; background: grey;">
+								<th><h4 align="center" style="color:white;font-weight:bold">Usuario</h4></th>
+								<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each cantJugadoresReservaron}}
+							<tr>
+								<td><h4 align="center">{{this.usuario.profile.name}}</h4></td>
+								<td><h4 align="center">{{this.cantidad}}</h4></td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
 				</div>					
-
-				<div class="col-md-3">
-					<div><!-- hacer responsive -->				
-						<table>
-							<caption>Canceladas</caption>
-							<thead>
-								<tr><!-- Primer fila -->
-									<th>Usuario</th>
-									<br>
-									<th>Cantidad</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								{{#each jugadoresCancelaron}}
-								<tr>
-									<td>{{this.usuario.profile.name}}</td>
-									<br>
-									<td>{{this.cantidad}}</td>
-								</tr>
-								{{/each}}
-							</tbody>
-						</table>
-					</div>
+				<div class="col-sm-6 col-md-6">
+					<table class="table table-hover" name="tabla" id="tabla">
+						<caption><h4 align="center">Canceladas</h4></caption>
+						<thead>
+							<tr style="border: 1px solid black; background: grey;">
+								<th><h4 align="center" style="color:white;font-weight:bold">Usuario</h4></th>
+								<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each jugadoresCancelaron}}
+							<tr>
+								<td><h4 align="center">{{this.usuario.profile.name}}</h4></td>
+								<td><h4 align="center">{{this.cantidad}}</h4></td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
 				</div>
-			</div>
-			<div class="col-md-6">
-				<legend>A través del administrador</legend>
-				<div class="col-md-3">
-					<div><!-- hacer responsive -->				
-						<table>
-							<caption>Concretadas</caption>
-							<thead>
-								<tr><!-- Primer fila -->
-									<th>Usuario</th>
-									<br>
-									<th>Cantidad</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								{{#each cantJugadoresReservaronP}}
-								<tr>
-									<td>{{this.usuario}}</td>
-									<br>
-									<td>{{this.cantidad}}</td>
-
-								</tr>
-								{{/each}}
-							</tbody>
-						</table>
-					</div>
-				</div>					
-				
-				<div class="col-md-3">
-					<div><!-- hacer responsive -->				
-						<table>
-							<caption>Canceladas</caption>
-							<thead>
-								<tr><!-- Primer fila -->
-									<th>Usuario</th>
-									<br>
-									<th>Cantidad</th>
-
-								</tr>
-							</thead>
-							<tbody>
-								{{#each jugadoresCancelaronP}}
-								<tr>
-									<td>{{this.usuario.profile.name}}</td>
-									<br>
-									<td>{{this.cantidad}}</td>
-								</tr>
-								{{/each}}
-							</tbody>
-						</table>
-					</div>
+			</div>	
+			<div class="row" style="margin-top: 10px;">
+				<legend align="center">A través del administrador</legend>
+				<div class="col-sm-6 col-md-6">
+					<table class="table table-hover" name="tabla" id="tabla">
+						<caption><h4 align="center">Concretadas</h4></caption>
+						<thead>
+							<tr style="border: 1px solid black; background: grey;">
+								<th><h4 align="center" style="color:white;font-weight:bold">Usuario</h4></th>
+								<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each cantJugadoresReservaronP}}
+							<tr>
+								<td><h4 align="center">{{this.usuario}}</h4></td>
+								<td><h4 align="center">{{this.cantidad}}</h4></td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+				<div class="col-sm-6 col-md-6">
+					<table class="table table-hover" name="tabla" id="tabla">
+						<caption><h4 align="center">Canceladas</h4></caption>
+						<thead>
+							<tr style="border: 1px solid black; background: grey;">
+								<th><h4 align="center" style="color:white;font-weight:bold">Usuario</h4></th>
+								<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each jugadoresCancelaronP}}
+							<tr>
+								<td><h4 align="center">{{this.usuario}}</h4></td>
+								<td><h4 align="center">{{this.cantidad}}</h4></td>
+							</tr>
+							{{/each}}
+						</tbody>
+					</table>
 				</div>
 			</div>
 		</div>

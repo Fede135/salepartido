@@ -18,8 +18,8 @@
                   <a href="#" name="gestionCanchas" id="gestionCanchas" class="list-group-item">
                       <i class="fa fa-comment-o"></i> Gestionar canchas
                   </a>
-                  <a href="#" class="list-group-item">
-                      <i class="fa fa-bar-chart-o"></i> Estadisticas
+                  <a href="#" name="reportes" id="reportes" class="list-group-item">
+                      <i class="fa fa-bar-chart-o"></i> Reportes
                   </a>
                 </div>        
             </div>
@@ -57,7 +57,12 @@
 
               {{#if gestionReservas}}
                 {{> gestionarReserva}}
+              {{/if}}
+
+              {{#if abrirReportes}}
+                {{> reportes}}
               {{/if}}            
+            
 
             </div>
         </div>
