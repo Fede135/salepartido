@@ -1,10 +1,15 @@
 /* CSS declarations go here */
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: transparent;
+    border-color: #337ab7;
+}
 .modal-header {
   background: #101010;
 }
 .modal-header h4 {
   color: white;
 }
+
 .close{
   color: white;
 }
@@ -73,6 +78,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: ubun;
     color: black;
 }
+
 #login-dropdown-list a{
   color: white;
 }
@@ -575,6 +581,7 @@ span.blue {
 
 @media screen and (max-width: 900px){
 
+
   #banner h2
 {
   font-size: 2em; 
@@ -601,6 +608,11 @@ span.blue {
     background-size: cover;
     padding: 2em 0em;
   }
+
+#login-other-options a {
+    color: white;
+}
+
 }
 
 

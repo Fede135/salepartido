@@ -31,7 +31,23 @@
 			</div>
 		</div>
 		<div class="row">
-			<h1 align="center">Nombre del recinto: {{recinto.nombre_recinto}} </h1>
+			<div class="col-sm-8 col-md-8">
+				<div class="row">
+					<h1 align="left">{{recinto.nombre_recinto}}</h1>
+				</div>
+			</div>
+			<div class="col-sm-4 col-md-4">	
+				<div class="row">
+					{{#unless isOwner}}
+						{{#if tieneVoto}}
+							<h4><strong>Ya votaste este recinto.</strong></h4>
+						{{else}}
+						<h4><strong>¿Desea calificar al recinto?</strong></h4>
+							{{> starsRating id='rating' class="estrella" mutable=true size='lg'}}
+						{{/if}}
+					{{/unless}}
+				</div>
+			</div>
 		</div>
 		<div class="row">
 			<div class="col-sm-4 col-md-4">
@@ -56,28 +72,38 @@
 				<br>
 				<strong>Cantina: {{recinto.servicios.cantina}}</strong>				
 			</div>
-			<div class="col-sm-5 col-md-5" >
+			<div class="col-sm-5 col-md-5">
+				<div class="row"  style="margin-top:10px;">
 				{{> showCommentsEnclosure}}
+				</div>
 			</div>	
 		</div>
-		<div class="row">
+		<div class="row" style="margin-top: -20px;">
 			<legend align="center"> <h3><strong>Canchas</strong></h3></legend>
-			{{#if cancha}}
-				{{#each cancha}}
-					<div class="col-sm-3 col-md-3">
-						<strong>Número:</strong> {{this.numero}}
-						<br>
-						<strong>Tipo de cancha:</strong> {{this.tipo_cancha.tipo_de_cancha}}
-						<br>
-						<strong>Cantidad de jugadores:</strong> {{this.jugadores.cantidad_de_jugadores}}
-						<br>
-						<strong>Estado de cancha:</strong> {{this.estado_cancha.estado_de_cancha}}
-						<br>
-						<strong>Descripción:</strong> {{this.descripcion}}
-					</div>
-					
-				{{/each}}
-			{{/if}}
+           		<div class="table-responsive" >
+               		<table class="table table-striped" id="tableOwner" style="overflow-x: scroll; white-space: nowrap;">
+                   		<thead>
+                       		<tr>
+                       			{{#if cancha}}
+									{{#each cancha}}
+                       				<th style="">
+										<strong>Número:</strong> {{this.numero}}
+										<br>
+										<strong>Tipo de cancha:</strong> {{this.tipo_cancha.tipo_de_cancha}}
+										<br>
+										<strong>Cantidad de jugadores:</strong> {{this.jugadores.cantidad_de_jugadores}}
+										<br>
+										<strong>Estado de cancha:</strong> {{this.estado_cancha.estado_de_cancha}}
+										<br>
+										<strong>Descripción:</strong> {{this.descripcion}}
+										<br>
+									</th>
+									{{/each}}
+								{{/if}}
+							</tr>
+						</thead>
+					</table>
+				</div>
 		</div>
 		<div class="row"  style="margin-bottom: 10px; margin-top: 16px;">
 			<div class="col-sm-6 col-md-6">
@@ -95,13 +121,6 @@
 						{{/if}}
 					{{else}}
 						<h4><strong>Ningun usuario ha votado todavía.</strong></h4>
-					{{/if}}
-				{{else}}
-					{{#if tieneVoto}}
-						<h4><strong>Ya votaste este recinto.</strong></h4>
-					{{else}}
-					<h4><strong>¿Desea calificar al recinto?</strong></h4>
-						{{> starsRating id='rating' class="estrella" mutable=true size='lg'}}
 					{{/if}}
 				{{/if}}
 			</div>
