@@ -164,16 +164,16 @@ Template.modificarReservaPlayer.events({
             var usu = Meteor.users.findOne({_id:id});
             var correo = usu && usu.emails[0].address;
             confirCorreo.push(correo)
-          });
-
+          });          
           modifyReservaForOwnerNotification(oldHora, oldDia, oldRecinto, oldCancha, reservaActualizada._id, recintoActualizado, horaActualizada, diaActualizado, canchaActualizada )
           modifyInvitationToGameNotificationConfirmados(idPartido, confirCorreo);
           modifyInvitationToGameNotificationInvitados(idPartido, arrayInvitados);          
-          Meteor.call('mailModificacion',confirCorreo,idPartido,diaActualizado,horaActualizada,recintoActualizado,host,oldHora,oldDia,oldRecinto);
+          Meteor.call('mailModificacion',confirCorreo,idPartido,diaActualizado,horaActualizada,recintoActualizado,host,oldHora,oldDia,oldRecinto);          
           Meteor.call('mailModificacion',arrayInvitados,idPartido,diaActualizado,horaActualizada,recintoActualizado,host,oldHora,oldDia,oldRecinto);
           Session.set('alertReservaActualizada', true);     
           Router.go('confirmarPartido',{_id:idPartido});
         } else { 
+          
           modifyInvitationToGameNotificationInvitados(idPartido, arrayInvitados);
           Meteor.call('mailModificacion',arrayInvitados,idPartido,diaActualizado,horaActualizada,recintoActualizado,host,oldHora,oldDia,oldRecinto);
           Session.set('alertReservaActualizada', true);       

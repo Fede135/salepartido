@@ -139,6 +139,23 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
       }
     },
       //Comun a todas las posiciones
+      promconducta: function(){
+        var cali = Calificacion_conducta.findOne({id_user:this._id});
+        if(cali){
+          var array = cali.votes;
+          var promedio = 0;
+
+          for( i=0; i<array.length; i++ ){
+            promedio += array[i];
+          }
+          promedio = promedio / array.length;
+          if(promedio){
+            return promedio;
+          }else{
+            return 0;
+          }
+        }
+      },
       promresistencia: function(){
         var cali = Calificacion_resistencia.findOne({id_user:this._id});
         if(cali){
@@ -298,7 +315,10 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         }
       },
 
-
+      tieneVotoConducta: function () {
+        var aconducta = Calificacion_conducta.findOne({id_user:this._id, upvotes: Meteor.userId() });
+        return aconducta;
+      },
       tieneVotoRe: function () {
         var re = Calificacion_reflejo.findOne({id_user:this._id, upvotes: Meteor.userId() });
         if(re)
@@ -459,7 +479,12 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
 
 
   //Codigo para las calificaciones
-  //Todas las posiciones
+  //Todas las posiciones  
+  'click #conducta': function(){
+    var tipo = "conducta";
+    var ratingConducta = $('#conducta').data('userrating');
+    Meteor.call('calif',use,ratingConducta,tipo);
+  },
   'click #resistencia': function(){
     var tipo = "resistencia";
     var ratingResistencia = $('#resistencia').data('userrating');
@@ -531,15 +556,15 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
       Meteor.call('addJugadores',agregaId, agregadoId);
     },
 
-    'click #gestionJugador': function(event) {
+  'click #gestionJugador': function(event) {
       Router.go('gestionJugadores', {_id: Meteor.userId()});
     },
 
-    'click #lanzaIdPartido': function () {
+  'click #lanzaIdPartido': function () {
       var idPartido = this._id;
       Session.set("idPartido", idPartido );      
     },
-    'click #confirmarPartido' : function() {
+  'click #confirmarPartido' : function() {
       Router.go("confirmarPartido", {_id: this._id});
     },
 

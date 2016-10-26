@@ -98,6 +98,15 @@
             <div class="col-sm-6 col-md-7">
                 <div class="row">
                     <div class="col-sm-4 col-md-4">
+                        <h3>Conducta</h3>
+                        {{promconducta}}
+                        {{#if promconducta}}
+                            {{> starsRating rating=promconducta class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-4 col-md-4">
                         <h3>Puntualidad</h3>
                         {{prompuntualidad}}
                         {{#if prompuntualidad}}
@@ -150,7 +159,8 @@
                         {{#if tieneVotoDef}}
                             {{> starsRating rating=promdefensa class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}}
+                            {{> starsRating rating=0 size='lg'}}
+                            <!-- {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
                     </div>                    
                 </div>
@@ -161,7 +171,8 @@
                         {{#if tieneVotoGam}}
                             {{> starsRating rating=promgambeta class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}}
+                            {{> starsRating rating=0 size='lg'}}
+                            <!-- {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -170,7 +181,8 @@
                         {{#if tieneVotoRema}}
                             {{> starsRating rating=promrematearco class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}}
+                            {{> starsRating rating=0 size='lg'}}
+                            <!-- {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -179,7 +191,8 @@
                         {{#if tieneVotoVel}}
                             {{> starsRating rating=promvelocidad class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}}
+                            {{> starsRating rating=0 size='lg'}}
+                            <!-- {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
                     </div>
                 </div>
@@ -417,6 +430,15 @@
                 {{#if isOwner}}
                 <div class="row">
                     <div class="col-sm-3 col-md-3">
+                        <h3>Conducta</h3>
+                        {{prompuntualidad}}                   
+                        {{#if tieneVotoPunt}}
+                            {{> starsRating rating=promconducta class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='conducta' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
                         <h3>Puntualidad</h3>
                         {{prompuntualidad}}                   
                         {{#if tieneVotoPunt}}
@@ -429,6 +451,15 @@
                 {{else}}
                 <div class="row">
                   <div class="col-sm-12 col-md-12">
+                      <div class="col-sm-3 col-md-3">
+                        <h3>Conducta</h3>
+                        {{prompuntualidad}}                   
+                        {{#if tieneVotoPunt}}
+                            {{> starsRating rating=promconducta class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='conducta' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
                     <div class="col-sm-3 col-md-3">
                         <h3>Puntualidad</h3>
                         {{prompuntualidad}}
@@ -495,6 +526,15 @@
                 {{#if isOwner}}
                 <div class="row">
                     <div class="col-sm-3 col-md-3">
+                        <h3>Conducta</h3>
+                        {{prompuntualidad}}                   
+                        {{#if tieneVotoPunt}}
+                            {{> starsRating rating=promconducta class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='conducta' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
                          <!-- calificaciones comunes a todas las posiciones-->
                         <h3>Puntualidad</h3>
                         {{prompuntualidad}}
@@ -514,7 +554,7 @@
                         {{#if prompuntualidad}}
                             {{> starsRating rating=prompuntualidad class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating rating=0 size='lg'}}
+                            {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -523,7 +563,7 @@
                         {{#if promresistencia}}
                             {{> starsRating rating=promresistencia class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating rating=0 size='lg'}}
+                            {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -532,7 +572,7 @@
                         {{#if promfairplay}}
                             {{> starsRating rating=promfairplay class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating rating=0 size='lg'}}
+                            {{> starsRating id='fairplay' class="estrella" mutable=true size='lg'}}
                         {{/if}} 
                     </div>
                   </div>
@@ -545,7 +585,7 @@
                         {{#if promburradas}}
                             {{> starsRating rating=promburradas class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating rating=0 size='lg'}}
+                            {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
                     <div class="col-sm-4 col-md-4">
@@ -554,7 +594,7 @@
                         {{#if prompase}}
                             {{> starsRating rating=prompase class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating rating=0 size='lg'}}
+                            {{> starsRating id='pase' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
                     <div class="col-sm-4 col-md-4">
