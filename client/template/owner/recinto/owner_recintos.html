@@ -1,13 +1,13 @@
 <template name="ownerRecintos">
     <!--Alert que muestra que el recinto fue eliminado con éxito-->
-    <div class="alert alert-danger alert-dismissible" role="alert" id="alertRecintoEliminado" style="display: none; margin-top: 15px;">
+    <div class="alert alert-danger alert-dismissible" role="alert" id="alertRecintoEliminado" style="display: none; margin-top: -20px;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
         El <strong>recinto</strong> fue <strong>eliminado</strong> con éxito!
     </div>
     <!--Alert que muestra que el recinto fue editado con éxito-->
-    <div class="alert alert-success alert-dismissible" role="alert" id="alertRecintoEditado" style="display: none; margin-top: 15px;">
+    <div class="alert alert-success alert-dismissible" role="alert" id="alertRecintoEditado" style="display: none; margin-top: -20px;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -26,8 +26,8 @@
             <p>...que quieres eliminar este recinto?</p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-            <button id="deleteRecinto" name="deleteRecinto" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+            <button type="button" class="btn btn-propioV" data-dismiss="modal">No</button>
+            <button id="deleteRecinto" name="deleteRecinto" type="button" class="btn btn-propio" data-dismiss="modal">Sí</button>
           </div>
         </div>
       </div>

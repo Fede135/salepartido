@@ -6,6 +6,15 @@ Template.cargarCancha.onRendered( function () {
   }
 });
 
+Template.cargarCancha.events({
+  
+  'click #cancelar': function (event){
+
+        event.preventDefault;
+        Router.go('dashboard', {_id: this._id});
+    },
+});
+
 Template.cargarCancha.onDestroyed( function() {
   Session.set('alertRecintoCreado', undefined);
 });

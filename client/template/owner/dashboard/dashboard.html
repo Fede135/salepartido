@@ -1,26 +1,12 @@
 <template name="dashboard">
     <div class="container-fluid">
-      <!-- Alert de Reserva creada -->
-    <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaCreada" style="display: none; margin-top: 15px;">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        La <strong>reserva</strong> fue <strong>creada</strong> con éxito!!
-    </div>
-     <!-- Alert de Reserva actualizada -->
-    <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaActualizada" style="display: none; margin-top: 15px;">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-        La <strong>reserva</strong> fue <strong>actualizada</strong> con éxito!!
-    </div>
         <div class="row">
 		        <div class="col-sm-4 col-md-3">
                 <div class="list-group">
                   <a class="list-group-item">
                        {{>search}}
                   </a>
-                  <a href="#" name="crearReserva" id="crearReserva" class="list-group-item">
+                  <a href="#" name="crearReservaTemplate" id="crearReservaTemplate" class="list-group-item">
                       <i class="fa fa-file-text-o"></i> Crear reserva
                   </a>
                   <a href="#" class="list-group-item" name="reservasHoy" id="reservasHoy">
@@ -32,16 +18,31 @@
                   <a href="#" name="gestionCanchas" id="gestionCanchas" class="list-group-item">
                       <i class="fa fa-comment-o"></i> Gestionar canchas
                   </a>
-                  <a href="{{pathFor 'uploadImages'}}" class="list-group-item">
-                      <i class="fa fa-user"></i> Images
-                  </a>
-                  
                   <a href="#" class="list-group-item">
                       <i class="fa fa-bar-chart-o"></i> Estadisticas
                   </a>
                 </div>        
             </div>
             <div class="col-sm-8 col-md-9">
+                <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaCreada" style="display: none; margin-top: -20px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    La <strong>reserva</strong> fue <strong>creada</strong> con éxito!!
+                </div>
+                <!-- Alert de Reserva actualizada -->
+                <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaActualizada" style="display: none; margin-top: -20px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    La <strong>reserva</strong> fue <strong>actualizada</strong> con éxito!!
+                </div>
+                <div class="alert alert-success alert-dismissible" role="alert" id="alertCanchaActualizada" style="display: none; margin-top: -20px;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    La <strong>cancha</strong> fue <strong>actualizada</strong> con éxito!!
+                </div>
               {{#if tablaReserva}}
                 {{> reservasHoy}}
               {{/if}}

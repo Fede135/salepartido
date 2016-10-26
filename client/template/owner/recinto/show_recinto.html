@@ -34,7 +34,7 @@
 			<h1 align="center">Nombre del recinto: {{recinto.nombre_recinto}} </h1>
 		</div>
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-sm-4 col-md-4">
 				{{#if promedio}}
 					<h4><strong>Promedio de calificaciones: {{promedio}}</strong></h4>
 					{{> starsRating rating=promedio class="estrella" size='lg'}}								
@@ -46,7 +46,7 @@
 				<h4><strong>Telefono celular1: {{recinto.telefono_recinto.celular_1}}</strong></h4>
 				<h4><strong>Telefono celular2: {{recinto.telefono_recinto.celular_2}}</strong></h4>
 			</div>
-			<div class="col-md-3">
+			<div class="col-sm-3 col-md-3">
 				<h4><strong>Servicios</strong></h4>
 				<strong>Estacionamiento: {{recinto.servicios.estacionamiento}}</strong>
 				<br>
@@ -56,8 +56,7 @@
 				<br>
 				<strong>Cantina: {{recinto.servicios.cantina}}</strong>				
 			</div>
-			<br>
-			<div class="col-md-5">
+			<div class="col-sm-5 col-md-5" >
 				{{> showCommentsEnclosure}}
 			</div>	
 		</div>
@@ -65,10 +64,10 @@
 			<legend align="center"> <h3><strong>Canchas</strong></h3></legend>
 			{{#if cancha}}
 				{{#each cancha}}
-					<div class="col-md-3">
+					<div class="col-sm-3 col-md-3">
 						<strong>Número:</strong> {{this.numero}}
 						<br>
-						<strong>Tipo de cancha:</strong> {{this.tipo_cancha.tipo_de_cancha}}					
+						<strong>Tipo de cancha:</strong> {{this.tipo_cancha.tipo_de_cancha}}
 						<br>
 						<strong>Cantidad de jugadores:</strong> {{this.jugadores.cantidad_de_jugadores}}
 						<br>
@@ -80,17 +79,13 @@
 				{{/each}}
 			{{/if}}
 		</div>
-		<div class="row">
-			<div class="col-md-6">
-				<br>
-				{{#if isOwner}}
-				<br><br> 
-				{{else}} 
-				{{> enterCommentsForEnclosures}}
-				<br><br>
-		 		{{/if}} 
+		<div class="row"  style="margin-bottom: 10px; margin-top: 16px;">
+			<div class="col-sm-6 col-md-6">
+				{{#unless isOwner}}
+					{{> enterCommentsForEnclosures}}
+		 		{{/unless}} 
 			</div>
-			<div class="col-md-6">
+			<div class="col-sm-6 col-md-6">
 				{{#if isOwner}}
 					{{#if promedio}}
 						{{#if countUsers}}
@@ -98,19 +93,15 @@
 						{{else}}
 							<h4><strong>No tienes calificaciones</strong></h4>Cantidad de usuarios que han calificado : 0
 						{{/if}}
-					<br>
 					{{else}}
 						<h4><strong>Ningun usuario ha votado todavía.</strong></h4>
-					<br>
 					{{/if}}
 				{{else}}
 					{{#if tieneVoto}}
-					<br>
 						<h4><strong>Ya votaste este recinto.</strong></h4>
 					{{else}}
 					<h4><strong>¿Desea calificar al recinto?</strong></h4>
 						{{> starsRating id='rating' class="estrella" mutable=true size='lg'}}
-					<br>
 					{{/if}}
 				{{/if}}
 			</div>

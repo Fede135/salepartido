@@ -1,7 +1,7 @@
 <template name="gestionarReserva">
     <div class="container-fluid">
         <!--Alert que muestra que reserva fue cancelada con exito-->
-        <div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaEliminada" style="display: none">
+        <div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaEliminada" style="display: none; margin-top: -20px;">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -9,7 +9,7 @@
         </div>
 
        <!-- Alert de Reserva jugada -->
-        <div class="alert alert-info alert-dismissible" role="alert" id="alertReservaJugada" style="display: none">
+        <div class="alert alert-info alert-dismissible" role="alert" id="alertReservaJugada" style="display: none; margin-top: -20px;">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -25,11 +25,11 @@
                     <h4 class="modal-title">¿Estas seguro de...</h4>
                 </div>
                 <div class="modal-body">
-                    <p>...que quieres eliminar esta reserva?</p>
+                    <p>...que quieres cancelar esta reserva?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button id="deleteReserva" name="deleteReserva" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                    <button type="button" class="btn btn-propioV" data-dismiss="modal">No</button>
+                    <button id="deleteReserva" name="deleteReserva" type="button" class="btn btn-propio" data-dismiss="modal">Sí</button>
                 </div>
                 </div>
             </div>
@@ -47,16 +47,16 @@
                     <p>... que este partido se jugó?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-                    <button id="partidoJugado" name="partidoJugado" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                    <button type="button" class="btn btn-propioV" data-dismiss="modal">No</button>
+                    <button id="partidoJugado" name="partidoJugado" type="button" class="btn btn-propio" data-dismiss="modal">Sí</button>
                 </div>
                 </div>
             </div>
         </div>
 
-        <legend><h2>Tus reservas</h2></legend>
+        <legend><h2 style="margin-top: -11px;">Tus reservas</h2></legend>
         <div class="row">               
-            <div class="span5 col-md-5">
+            <div class="col-sm-5 col-md-5">
                 <label class="control-label" for="datetimepicker" >Elegí un día para filtrar</label>
                 <div class="controls">
                     <div class='input-group date'>
