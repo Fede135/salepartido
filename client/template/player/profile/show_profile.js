@@ -102,7 +102,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     var today = new Date();
     var diffMs = birth && Math.abs(today.getTime() - birth.getTime());
     var diffDays = diffMs && Math.ceil(diffMs / (1000*3600*24));
-    var age = diffDays && ("Edad: " + Math.floor(diffDays / 361));
+    var age = diffDays && ( Math.floor(diffDays / 361));
 
     return age;
   },
