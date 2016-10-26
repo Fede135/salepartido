@@ -5,6 +5,16 @@ calif: function(userId,rating,tipo) {
 	check(rating, Number);
 	check(tipo, String);
 	switch(tipo){
+		case "conducta":
+			var cali = Calificacion_conducta.findOne({id_user: userId});
+			if (_.include(cali.upvotes, this.userId)) 
+				throw new Meteor.Error('invalid', 'El usuario ya ha calificado');	  
+
+			Calificacion_conducta.update(cali._id, {      
+				$addToSet: {upvotes: this.userId},      
+				$push: {votes: rating}   
+			});  
+			break;
 		case "resistencia":
 			var cali = Calificacion_resistencia.findOne({id_user: userId});
 			if (_.include(cali.upvotes, this.userId)) 
