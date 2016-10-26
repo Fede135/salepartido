@@ -41,27 +41,47 @@ Template.modificarReservaPlayer.onDestroyed( function(){
 
 Template.modificarReservaPlayer.events({
 
-'click #cancelar': function (event){
-
-    event.preventDefault;
-
-    Router.go('showProfile', {_id: Meteor.userId()}); 
-},
-
-'click [data-picker-handle]': function (event) {
-
-    var datetimepicker = $(event.currentTarget).data('pickerHandle');   
-    $(datetimepicker).data('DateTimePicker').toggle();
-
+  'click #cancelarReserva': function (event){
+      var reserva = Session.get('reserva');
+      // Guardando los valores originales de la reserva antes de ser actualizada
+      var oldHora = reserva.hora_de_juego;
+      var oldDia = reserva.fecha_de_juego;
+      var oldRecinto = reserva.nom_recinto;
+      var oldCancha = reserva.num_cancha;
+      Reserva.update({_id: this._id},{$set: {estado: 'cancelada'}});
+      var partido = Partido.findOne({reserva_id: this._id});
+      var jugadores = Roles.getUsersInRole(['invitado', 'suplente', 'confirmado'], partido._id);
+      var jugadoresId = [];
+      jugadores.forEach(function (e) {
+        var jugadorId = e._id;
+        jugadoresId.push(jugadorId);
+      })
+      cancelacionReservaForOwnerNotification(oldHora, oldDia, oldRecinto, oldCancha, reserva._id);
+      cancelacionReservaPlayersNotification(partido._id, jugadoresId);
+      jugadoresId.forEach(function (e) {
+        Roles.setUserRoles(e, 'noJugo', partido._id);
+      });
+      Session.set('alertReservaCancelada', true);
+      $('#cancelarReservaModal').on('hidden.bs.modal', function() {
+            Router.go("showProfile", {_id : Meteor.userId() });
+        })
+        .modal('hide'); 
   },
- 
- 'click [data-for-cancha]': function(event){
 
-    var $item=$(event.currentTarget);
-    var $target=$($item.data('forCancha'));
+  'click [data-picker-handle]': function (event) {
 
-    $target.val($item.text()); 
-  },
+      var datetimepicker = $(event.currentTarget).data('pickerHandle');   
+      $(datetimepicker).data('DateTimePicker').toggle();
+
+    },
+  
+  'click [data-for-cancha]': function(event){
+
+      var $item=$(event.currentTarget);
+      var $target=$($item.data('forCancha'));
+
+      $target.val($item.text()); 
+    },
 
   'click [data-for-recinto]': function(event){
     

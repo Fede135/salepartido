@@ -484,7 +484,6 @@ Template.confirmarPartido.events({
         Meteor.call('mailReserva',arrayJugadores, idpartido,dia,hora,recinto,organizador);
         //----------Notifica solo a los nuevos que se agregan----------
         createInvitationToGameNotificationOnlyOthers(idpartido, arrayJugadores);
-        console.log("arrayJugadores antes de gameRoles",arrayJugadores)
         Meteor.call('gameRolesConfirmar', idpartido, arrayJugadores, arrayHostSecundario);
         $('#alertNuevosJugadores').show();
     }, 
