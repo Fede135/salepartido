@@ -82,10 +82,16 @@
                   <h4><strong>De: </strong>{{place}}</h4>
               </div>
               <div class="col-sm-2 col-md-2">
-                  {{#if ownProfile}}
-                    <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
-                      <button class="btn btn-propio" id="login-buttons-edit-profile">Editar Perfil</button>
-                  {{/if}}
+                    {{#if ownProfile}}
+                        <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
+                        <button class="btn btn-propio" id="login-buttons-edit-profile">Editar Perfil</button>
+                    {{else}}
+                        {{#if isFriend}} 
+                            Ya esta en tu lista de jugadores.
+                        {{else}}          
+                            <button type="button" name="addJugadores" id="addJugadores" class="btn btn-propio">Agregar a tu lista de Jugadores</button>
+                        {{/if}}
+                    {{/if}}
               </div>
         </div>
         <div class="row">
@@ -97,7 +103,7 @@
         <div class="row">
             <div class="col-sm-6 col-md-7">
                 <div class="row">
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Conducta</h3>
                         {{promconducta}}
                         {{#if promconducta}}
@@ -106,7 +112,7 @@
                             {{> starsRating rating=0 size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Puntualidad</h3>
                         {{prompuntualidad}}
                         {{#if prompuntualidad}}
@@ -115,7 +121,7 @@
                             {{> starsRating rating=0 size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Resistencia</h3>
                         {{promresistencia}}
                         {{#if promresistencia}}
@@ -124,7 +130,7 @@
                             {{> starsRating rating=0 size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Fair Play</h3>
                         {{promfairplay}}
                         {{#if promfairplay}}
@@ -135,7 +141,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3 ">
                         <h3>Burradas</h3>
                         {{promburradas}}
                         {{#if promburradas}}
@@ -144,7 +150,7 @@
                             {{> starsRating rating=0 size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Pase</h3>
                         {{prompase}}
                         {{#if prompase}}
@@ -153,7 +159,7 @@
                             {{> starsRating rating=0 size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Defensa</h3>
                         {{promdefensa}}
                         {{#if tieneVotoDef}}
@@ -162,10 +168,8 @@
                             {{> starsRating rating=0 size='lg'}}
                             <!-- {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
-                    </div>                    
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 col-md-4">
+                    </div> 
+                    <div class="col-sm-3 col-md-3">
                         <h3>Gambeta</h3>
                         {{promgambeta}}
                         {{#if tieneVotoGam}}
@@ -174,8 +178,20 @@
                             {{> starsRating rating=0 size='lg'}}
                             <!-- {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
-                    </div>
-                    <div class="col-sm-4 col-md-4">
+                    </div>                   
+                </div>
+                <div class="row"> 
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Velocidad</h3>
+                        {{promvelocidad}}
+                        {{#if tieneVotoVel}}
+                            {{> starsRating rating=promvelocidad class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                            <!-- {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}} -->
+                        {{/if}}
+                    </div>                   
+                    <div class="col-sm-3 col-md-3">
                         <h3>Remate al arco</h3>
                         {{promrematearco}}
                         {{#if tieneVotoRema}}
@@ -185,16 +201,7 @@
                             <!-- {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
-                        <h3>Velocidad</h3>
-                        {{promvelocidad}}
-                        {{#if tieneVotoVel}}
-                            {{> starsRating rating=promvelocidad class="estrella" size='lg'}}
-                        {{else}}
-                            {{> starsRating rating=0 size='lg'}}
-                            <!-- {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}} -->
-                        {{/if}}
-                    </div>
+                    
                 </div>
                 <div class="row">
                     {{#if arquero}}
@@ -417,21 +424,12 @@
         </div>
         {{else}}
         <div class="row">
-          <div class="col-sm-12 col-md-12">
-          {{#if isFriend}} 
-              Ya esta en tu lista de jugadores.
-          {{else}}          
-              <button type="button" name="addJugadores" id="addJugadores" class="btn btn-default">Agregar a tu lista de Jugadores</button>
-          {{/if}}
-          </div> 
-        </div>
-        <div class="row">
             {{#if arquero}}
                 {{#if isOwner}}
                 <div class="row">
                     <div class="col-sm-3 col-md-3">
                         <h3>Conducta</h3>
-                        {{prompuntualidad}}                   
+                        {{promconducta}}                   
                         {{#if tieneVotoPunt}}
                             {{> starsRating rating=promconducta class="estrella" size='lg'}}
                         {{else}}
@@ -453,7 +451,7 @@
                   <div class="col-sm-12 col-md-12">
                       <div class="col-sm-3 col-md-3">
                         <h3>Conducta</h3>
-                        {{prompuntualidad}}                   
+                        {{promconducta}}                   
                         {{#if tieneVotoPunt}}
                             {{> starsRating rating=promconducta class="estrella" size='lg'}}
                         {{else}}
@@ -527,7 +525,7 @@
                 <div class="row">
                     <div class="col-sm-3 col-md-3">
                         <h3>Conducta</h3>
-                        {{prompuntualidad}}                   
+                        {{promconducta}}                   
                         {{#if tieneVotoPunt}}
                             {{> starsRating rating=promconducta class="estrella" size='lg'}}
                         {{else}}
