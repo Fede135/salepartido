@@ -1,7 +1,7 @@
 <template name="modificarReserva">
 	<div class="container-fluid">
 		<!--Alert de reserva existente-->
-			<div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none">
+			<div class="alert alert-danger alert-dismissible" role="alert" id="alertReservaExistente" style="display: none; margin-top: -15px; ">
  				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
@@ -47,7 +47,7 @@
 			</div> 				   
 		</div>
 		<div class="row">						
-    	   	<div class="span5 col-md-5">
+    	   	<div class='col-sm-5 col-md-5'>
 			  	<div class="form-group  {{errorClass 'nombreCancha'}}">
 			 		 <br>					    		 
 			     	 <label class="control-label" for="nombreCancha">Seleccionar una cancha</label>
@@ -71,8 +71,13 @@
 			  	</div>
 			</div>   	 	 
 		</div>
-		<br>		
-		<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-propio">Actualizar</button>
-		<button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
-	</div>			
+		<div class="row">
+			<div class="col-sm-1 col-md-1">
+				<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-propio">Actualizar</button>
+			</div>
+			<div class="col-sm-1 col-md-1">
+				<button type="button" class="btn btn-propioV" name = "cancelar" id="cancelar">Cancelar</button>
+			</div>
+		</div>
+	</div>				
 </template>	    	

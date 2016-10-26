@@ -1,6 +1,17 @@
 /* CSS declarations go here */
+.modal-header {
+  background: #101010;
+}
+.modal-header h4 {
+  color: white;
+}
+.close{
+  color: white;
+}
 
- 
+.modal-footer {
+  background: #101010;
+} 
 .estrella .current-rating {
   color: #1bb3af;
 }
@@ -23,6 +34,15 @@ footer {
 #just-verified-dismiss-button{
   background: #1bb3af;
 }
+
+#login-buttons-open-change-password{
+  background-color: #4d3f92;
+  color: white;
+}
+#login-buttons-logout{
+  background-color: #1bb3af;
+}
+
 .btn-Facebook {
   color: #fff;
   background-color: #4d3f92;

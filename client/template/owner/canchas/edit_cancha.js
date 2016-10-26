@@ -24,19 +24,28 @@ Template.editCancha.helpers({
             return "updateOrgForm-" + this._id;
          },
 });
+
+Template.editCancha.events({
 	
+	'click #cancelar': function (event){
+
+        event.preventDefault;
+        Router.go('dashboard', {_id: canchas.recintoId});
+    },
+});
 
 AutoForm.addHooks(
    'updateCancha',
-{
-  after:{
-    update: function (error, result) {    	
-      if(! error){
-       Session.set('alertCanchaEditada', true);
-       Router.go('gestionCancha', {_id: canchas.recintoId });
-       }
-    }
-  }
-},
+	{
+	after:{
+    	update: function (error, result) {    	
+      
+	      	if(! error){
+    			Session.set('alertCanchaActualizada', true);
+	    	   	Router.go('dashboard', {_id: canchas.recintoId});
+       		}	
+    	}
+  	}
+	},
 );
 

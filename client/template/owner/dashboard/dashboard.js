@@ -60,7 +60,7 @@ Template.dashboard.events({
     Session.set('reserva', reserva);
   },
 
-	'click #crearReserva': function(event){
+	'click #crearReservaTemplate': function(event){
     
     Session.clear();
 		var abrirReserva = true;
@@ -80,7 +80,11 @@ Template.dashboard.onRendered(function() {
     } else {
       $('#alertReservaActualizada').hide();
     }
-
+    if (Session.get('alertCanchaActualizada')) {
+      $('#alertCanchaActualizada').show();
+    } else {
+      $('#alertCanchaActualizada').hide();
+    }
     Session.clear();
     var tabla = true;
     Session.set('tabla', tabla);
