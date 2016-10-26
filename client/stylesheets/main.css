@@ -36,6 +36,15 @@ footer {
   background: #1bb3af;
 }
 
+#login-buttons-do-change-password{
+  background: #1bb3af;
+}
+
+#login-buttons-cancel-change-password{
+  background: #4d3f92;
+  color: white;
+}
+
 #just-verified-dismiss-button{
   background: #1bb3af;
 }

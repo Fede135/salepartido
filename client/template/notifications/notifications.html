@@ -1,21 +1,25 @@
 <template name="notifications">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notificaciones
-    {{#if notificationCount}}
-      <span class="badge badge-inverse">{{notificationCount}}</span>
-    {{/if}}
-    <b class="caret"></b>
-  </a>
-  <ul class="notification dropdown-menu">
-    {{#if notificationCount}}
-      {{#each notifications}}
-      <li>
-        <a href="{{this.link}}">{{this.text}}</a>
-        </li>
-      {{/each}}
-    {{else}}
-     <li><span>No hay nuevas notificaciones</span></li>
-    {{/if}}
-    <a href="{{pathFor 'allNotifications'}}">Ver todas</a>
-  </ul>
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notificaciones
+        {{#if notificationCount}}
+            <span class="badge badge-inverse">{{notificationCount}}</span>
+        {{/if}}
+        <b class="caret"></b>
+    </a>
+    <ul class="notification dropdown-menu">
+        {{#if notificationCount}}
+            {{#each notifications}}
+                <li>
+                    <a href="{{this.link}}">{{this.text}}</a>
+                </li>
+            {{/each}}
+        {{else}}
+            <div class="row" style="margin-left:20px;">
+                <strong>No hay nuevas notificaciones</strong>
+            </div>
+        {{/if}}
+        <div class="row" style="margin-left:20px;">
+            <a href="{{pathFor 'allNotifications'}}">Ver todas</a>
+        </div>
+    </ul>
 </template>
 

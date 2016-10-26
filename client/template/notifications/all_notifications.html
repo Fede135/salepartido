@@ -1,13 +1,20 @@
 <template name="allNotifications">
-  <br>
-  <br>
-  {{#if notificationCount}}
-    {{#each notifications}}
-      <li>{{this.fecha}} 
-        <a href="{{this.link}}">{{this.text}}</a>
-      </li> 
-    {{/each}}  
-  {{else}}
-    No hay notificiaciones
-  {{/if}}
+    <div class="container-fluid">
+        <div class="row">
+            <legend><h1 align="center">Notificaciones</h1></legend>
+        </div>
+        <div class="row">
+            <div class="col-sm-10 col-md-10">
+                {{#if notificationCount}}
+                    {{#each notifications}}
+                        <li><strong>{{this.fecha}}</strong>
+                            <a href="{{this.link}}">{{this.text}}</a>
+                        </li> 
+                    {{/each}}  
+                {{else}}
+                    No hay notificiaciones
+                {{/if}}
+            </div>
+        </div>
+    </div>
 </template>
