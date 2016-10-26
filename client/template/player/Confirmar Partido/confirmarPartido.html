@@ -1,4 +1,3 @@
-
 <template name = "confirmarPartido">
     <div class="container-fluid">
         <!--Modal de esta seguro que no quiere jugar-->
@@ -19,6 +18,26 @@
                 </div>
             </div>
         </div>
+
+        <!--Modal de esta seguro cancelar reserva-->
+		<div id="cancelarReservaModal" class="modal fade bs-examplxe-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">¿Estas seguro de...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>...que quieres cancelar la reserva?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                        <button id="cancelarReserva" name="cancelarReserva" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
+                    </div>
+                </div>
+            </div>
+		</div>
+
         <!--Alert de reserva creada-->
         <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaCreada" style="display: none; margin-top: 15px;">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -66,6 +85,7 @@
                 <h2 align="center">Confirmar partido</h2>
             </legend>
         </div>
+
         <div class="row">
             <div class="col-sm-4 col-md-4">
                 <h4>El usuario que te invitó es <strong>{{reservaSeleccionada.nom_usuario}}</strong></h4>
@@ -89,7 +109,7 @@
             </div>
             <div class="col-sm-4 col-md-4">
             </div>
-        </div>
+    </div>
         <div class="row">
             <div class="col-sm-5 col-md-5">
                 <div class="row">
@@ -97,9 +117,11 @@
                         <h3 align="center">Equipo A</h3>
                     </legend>
                 </div>
-                <div class="row">
-                    <h4>Lugares disponibles: <strong>{{disponibleA}}</strong></h4>
-                </div>
+                {{#if isPorJugar}}
+                    <div class="row">
+                        <h4>Lugares disponibles: <strong>{{disponibleA}}</strong></h4>
+                    </div>
+                {{/if}}
                 <div class="row">
                   <ul>
 
@@ -111,21 +133,22 @@
                 </div>
                 <div class="row">
                     <div class="btn-group" role="group" aria-label="...">
-
-                    {{#if disponibleA}}
-                        {{#if isInvitado}}
-                            <button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-propio">Agregar a equipo A</button> 
+                      {{#if isPorJugar}}        
+                        {{#if disponibleA}}
+                            {{#if isInvitado}}
+                                <button type="button" name="agregarEquipoA" id="agregarEquipoA" class="btn btn-propio">Agregar a equipo A</button> 
+                            {{/if}}
+                            {{#if isEquipoA}}
+                                <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-propioV">Eliminar de equipo A</button> 
+                            {{/if}}
+                        {{else}}
+                            {{#if isEquipoA}}
+                                <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-propioV">Eliminar de equipo A</button> 
+                            {{/if}}
+                        
+                            <h3>Equipo A completo</h3>                     
                         {{/if}}
-                        {{#if isEquipoA}}
-                            <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-propioV">Eliminar de equipo A</button> 
-                        {{/if}}
-                    {{else}}
-                        {{#if isEquipoA}}
-                            <button type="button" name="eliminarEquipoA" id="eliminarEquipoA" class="btn btn-propioV">Eliminar de equipo A</button> 
-                        {{/if}}
-                    
-                        <h3>Equipo A completo</h3>                     
-                    {{/if}}
+                      {{/if}} 
                     </div>
                 </div>  
             </div>  
@@ -138,7 +161,9 @@
                     </legend>
                 </div>
                 <div class="row">
-                    <h4>Lugares disponibles: <strong>{{disponibleB}}</strong></h4>
+                    {{#if isPorJugar}}
+                        <h4>Lugares disponibles: <strong>{{disponibleB}}</strong></h4>
+                    {{/if}}    
                 </div>
                 <div class="row">
                 <ul>
@@ -151,36 +176,39 @@
                 </div>
                 <div class="row">
                     <div class="btn-group" role="group" aria-label="...">
-                  
-                    {{#if disponibleB}}
-                        {{#if isEquipoB}}
-                            <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-propioV">Eliminar de equipo B</button> 
-                        {{/if}}
-                        {{#if isInvitado}}
-                            <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-propio">Agregar a equipo B</button> 
-                        {{/if}}
-                    {{else}}
-                        {{#if isEquipoB}}
-                            <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-propioV">Eliminar de equipo B</button> 
-                       {{/if}}
-                  
-                       <h3>Equipo B completo</h3>                   
-                    {{/if}}     
-                </div>
+                        {{#if isPorJugar}}
+                            {{#if disponibleB}}
+                                {{#if isEquipoB}}
+                                    <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-propioV">Eliminar de equipo B</button> 
+                                {{/if}}
+                                {{#if isInvitado}}
+                                    <button type="button" name="agregarEquipoB" id="agregarEquipoB" class="btn btn-propio">Agregar a equipo B</button> 
+                                {{/if}}
+                            {{else}}
+                                {{#if isEquipoB}}
+                                    <button type="button" name="eliminarEquipoB" id="eliminarEquipoB" class="btn btn-propioV">Eliminar de equipo B</button> 
+                            {{/if}}
+                        
+                            <h3>Equipo B completo</h3>                   
+                            {{/if}}
+                        {{/if}}     
+                    </div>
                 </div>         
             </div>
         </div>
         <div class="row">
-            <div class="col-sm-5 col-md-5">    
-                {{#if lleno}}
-                    {{#unless isConfirmado}}
-                        {{#unless isSuplente}}
-                            {{#unless isNoJuega}}
-                                <button type="button" name="suplente" id="suplente" class="btn btn-propio">Agregar a la lista de suplentes</button>
-                            {{/unless}} 
+            <div class="col-sm-5 col-md-5">
+                {{#if isPorJugar}}
+                    {{#if lleno}}
+                        {{#unless isConfirmado}}
+                            {{#unless isSuplente}}
+                                {{#unless isNoJuega}}
+                                    <button type="button" name="suplente" id="suplente" class="btn btn-propio">Agregar a la lista de suplentes</button>
+                                {{/unless}} 
+                            {{/unless}}
                         {{/unless}}
-                    {{/unless}}
-                {{/if}}
+                    {{/if}}
+                {{/if}}    
             </div>    
         </div>
         <div class="row">
@@ -200,11 +228,25 @@
             </div>
             <div class="col-sm-5 col-md-5">
                 <div class="row">
+                  {{#if isPorJugar}}  
                     <legend>
                         <h3 align="left">Invitar más jugadores.</h3>
                     </legend>
+                  {{else}}
+                    {{#if isJugada}}
+                        <legend>
+                            <h3 align="left">Este partido ya se jugó. </h3>
+                        </legend>
+                     {{/if}}
+                     {{#if isCancelada}}
+                        <legend>
+                            <h3 align="left">Este partido fue cancelado. </h3>
+                        </legend>
+                     {{/if}}   
+                  {{/if}}  
                 </div>
                 <div class="row">
+                  {{#if isPorJugar}}  
                     {{#if isHostHostSecundario}}
                       
                           {{#if jugadoresNoInvitados}}
@@ -236,22 +278,32 @@
                                   <h4 align="left">Ya invitaste a todos tus jugadores.</h4>
                               </div>
                           {{/if}}  
-                    {{/if}}         
+                    {{/if}}
+                  {{/if}}           
                 </div>
             </div>
         </div>         
         <div class="row">
             <div class="col-sm-5 col-md-5">
                 <div class="row">
-                    {{#unless isNoJuega}}
-                        <button type="button" name="noJuega" id="noJuega" class="btn btn-propioV">No quiero jugar</button>
-                        <br>
-                    {{else}}
-                        <h4 style="margin-bottom: 20px;">
-                          <strong>Dijiste que no querías jugar, pero puedes comunicarte con el organizador para que vuelva a invitarte.</strong>
-                        </h4>  
-                    {{/unless}}
+                    {{#if isPorJugar}}
+                        {{#unless isNoJuega}}
+                            <button type="button" name="noJuega" id="noJuega" class="btn btn-propioV">No quiero jugar</button>
+                            <br>
+                        {{else}}
+                            <h4 style="margin-bottom: 20px;">
+                            <strong>Dijiste que no querías jugar, pero puedes comunicarte con el organizador para que vuelva a invitarte.</strong>
+                            </h4>  
+                        {{/unless}}
+                    {{/if}}    
                 </div>
+                {{#if isPorJugar}}
+                  {{#if isHost}}
+                    <div class="col-sm-1 col-md-1" style="margin-top: 10px;">
+                      <button type="button" class="btn btn-propio" name = "cancelar" id="lanzaIdReserva" data-toggle="modal" data-target="#cancelarReservaModal">Cancelar</button>
+                    </div>
+                  {{/if}}
+                {{/if}}   
             </div>
         </div>  
     </div>  

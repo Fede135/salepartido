@@ -8,25 +8,6 @@
   			<strong>Reserva existente!!</strong>Ya existe otra reserva en el horario que desea.
 		</div>
 
-		<!--Modal de esta seguro cancelar reserva-->
-		<div id="cancelarReservaModal" class="modal fade bs-examplxe-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-				<div class="modal-dialog modal-sm" role="document">
-						<div class="modal-content">
-								<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h4 class="modal-title">¿Estas seguro de...</h4>
-								</div>
-								<div class="modal-body">
-										<p>...que quieres cancelar la reserva?</p>
-								</div>
-								<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-										<button id="cancelarReserva" name="cancelarReserva" type="button" class="btn btn-primary" data-dismiss="modal">Sí</button>
-								</div>
-						</div>
-				</div>
-		</div>
-	    
 	    <div class="row">
 	  		<legend>
 	  			<h1 align="center">
@@ -127,7 +108,7 @@
 						<button type="submit" name="actualizarReserva" id="actualizarReserva" class="btn btn-propio">Actualizar</button>
 					</div>
 					<div class="col-sm-1 col-md-1" style="margin-top: 10px;">
-						<button type="button" class="btn btn-propio" name = "cancelar" id="lanzaIdReserva" data-toggle="modal" data-target="#cancelarReservaModal">Cancelar</button>
+						<button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
 					</div>
 				</div>				
 			</form>

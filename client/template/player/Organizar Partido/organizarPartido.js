@@ -179,7 +179,6 @@ Template.organizarPartido.events({
 Template.organizarPartido.helpers({
 	
   checkedado:function(){
-    console.log(Session.get('checkBox'))
     return Session.get('checkBox') && true;
   },
 
