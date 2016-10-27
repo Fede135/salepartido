@@ -104,19 +104,24 @@
 						<div class="col-sm-5 col-md-5">
 							<h2>Invitar Amigos</h2>
 				            <ul class="list-unstyled">
-		 		                <li><input type="checkbox" class="all"><h4 style="margin-left: 15px">Todos</h4></li>
 								{{#each amigos}}
-
-					            <li><input class="checkbox" id="checkboxFriends{{this._id}}" type="checkbox" name="friend"  value="{{#each this.emails}}{{this.address}}{{/each}}">
-					            	<h4 style="margin-left: 15px;">{{this.profile.name}}, {{this.profile.player.position}}</h4>
-					            </li>
-					            {{#if checkedado}}
-					             <div id="checkboxRolesDiv">
-									<input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host 
-								</div>
-								{{/if}}								
+									<div class="checkbox">										
+										<input id="checkboxFriends" type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
+										<div id="checkboxRolesDiv">
+											<input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host <br>
+										</div>
+										<!--Se agrega este script para ocultar o mostrar el checkbox host dependiendo si el amigo fue seleccionado o no. Falta ver como hacer para que funcione bien, queda comentado-->
+										<script> 
+											var elem = document.getElementById('checkboxRolesDiv'),
+											checkBox = document.getElementById('checkboxFriends');
+											checkBox.checked = false;
+											checkBox.onchange = function doruc() {
+											elem.style.display = this.checked ? 'block' : 'none';
+											};
+											checkBox.onchange();
+										</script>
+									</div>
 								{{/each}} 
-
 				            </ul>
 				        </div>
 			 		</div> 

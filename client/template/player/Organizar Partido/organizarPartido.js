@@ -12,15 +12,6 @@ Template.organizarPartido.onRendered(function () {
     disabledHours: [ 2 , 3 , 4 , 5 , 6 , 7 , 8 ],
     showClear: true
   });
-
-/*  var elem = document.getElementById('checkboxRolesDiv');
-                  checkBox = document.getElementById('checkboxFriends');
-                  checkBox.checked = false;
-                  checkBox.onchange = function doruc() {
-                  elem.style.display = this.checked ? 'block' : 'none';
-                  };
-                  checkBox.onchange();
-*/
 });
 
 
@@ -31,19 +22,9 @@ Template.organizarPartido.events({
     event.preventDefault;
 
     Router.go('showProfile', {_id: Meteor.userId()}); 
+
     },
 
-    'click .checkbox': function(e){
-      
-        var checkbox = $(e.target).val();
-        Session.set('checkBox', checkbox);
-        /*e.preventDefault();
-        
-        $('.checkbox').on('dp.change', function (event) {
-        
-        console.log(event)
-    });*/
-    },
     
    'submit form': function(e,t) {
         
@@ -177,10 +158,6 @@ Template.organizarPartido.events({
 
 Template.organizarPartido.helpers({
 	
-  checkedado:function(){
-    return Session.get('checkBox') && true;
-  },
-
   recinto: function () {
     return Recintos.find();
   },

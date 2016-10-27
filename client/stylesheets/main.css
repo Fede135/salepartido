@@ -10,6 +10,14 @@
   color: white;
 }
 
+#login-buttons-email-address-verified-modal .modal-dialog {
+}
+
+#back-to-login-link{
+  background: #4d3f92;
+  color: white;
+}
+
 .close{
   color: white;
 }
@@ -590,7 +598,9 @@ span.blue {
 
 @media screen and (max-width: 900px){
 
-
+#login-buttons-email-address-verified-modal .modal-dialog {
+    width: 90%;
+}
   #banner h2
 {
   font-size: 2em; 
@@ -640,4 +650,8 @@ span.blue {
     background-size: cover;
     padding: 2em 0em;
   }
+
+#login-buttons-email-address-verified-modal .modal-dialog {
+    width: 90%;
+}
 }
