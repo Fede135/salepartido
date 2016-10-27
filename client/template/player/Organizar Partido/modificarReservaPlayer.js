@@ -41,7 +41,7 @@ Template.modificarReservaPlayer.onDestroyed( function(){
 
 Template.modificarReservaPlayer.events({
 
-  'click #cancelarReserva': function (event){
+  'click #cancelar': function (event){
     Router.go("showProfile", {_id : Meteor.userId() });
   },
 

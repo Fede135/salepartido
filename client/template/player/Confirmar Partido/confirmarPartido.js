@@ -536,19 +536,23 @@ Template.confirmarPartido.events({
       var oldRecinto = reserva.nom_recinto;
       var oldCancha = reserva.num_cancha;
       Reserva.update({_id: reserva._id},{$set: {estado: 'Cancelada'}});
+      var host = Roles.getUsersInRole('host', partido._id);
       var jugadores = Roles.getUsersInRole(['invitado', 'suplente', 'confirmado'], partido._id);
       var jugadoresId = [];
       jugadores.forEach(function (e) {
         var jugadorId = e._id;
         jugadoresId.push(jugadorId);
       })
+       
       cancelacionReservaForOwnerNotification(oldHora, oldDia, oldRecinto, oldCancha, reserva._id);
       cancelacionReservaPlayersNotification(partido._id, jugadoresId);
+
       jugadoresId.forEach(function (e) {
         Roles.setUserRoles(e, 'noJugo', partido._id);
       });
       Session.set('alertReservaCancelada', true);
       $('#cancelarReservaModal').on('hidden.bs.modal', function() {
+      		//Meteor.call('mailCancelar',jugadoresId,oldHora,oldDia,oldRecinto,oldCancha,host);
             Router.go("showProfile", {_id : Meteor.userId() });
         })
         .modal('hide'); 

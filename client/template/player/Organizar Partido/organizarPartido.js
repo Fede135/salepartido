@@ -126,7 +126,11 @@ Template.organizarPartido.events({
         
         
        //---------Para mandar mail a los que quiera invitar------- 
-        Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,horamail,recinto,organizador);
+       if(arrayAmigos.length != 0){
+          Meteor.call('mailReserva',arrayAmigos,partidoId,diaString,horamail,recinto,organizador);
+       }else{
+        alert("Icardi, vas a jugar solo?")
+       }
 
         
         //Envia notificaciones de confirmar partido a invitados
