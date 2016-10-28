@@ -26,6 +26,7 @@ Template.gestionCancha.helpers({
 });
 	
 Template.gestionCancha.events({
+
 	'click #editCancha': function(event) {
 	 Router.go('editCancha', {_id: this._id});//ID DE LA CANCHA
 	},
@@ -38,6 +39,7 @@ Template.gestionCancha.events({
 		var canchaId = this._id;
 		Session.set("idCanchaDeleted", canchaId);
 	},
+
   'click #deleteCancha': function(event) {
 		var canchaId = Session.get('idCanchaDeleted');
 		Canchas.remove(canchaId);
