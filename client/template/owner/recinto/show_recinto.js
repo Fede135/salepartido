@@ -58,7 +58,11 @@ Template.showRecinto.helpers({
 				promedio += array[i];
 			}
 			promedio = promedio / array.length;
-			return promedio;
+			if(promedio){
+            return promedio.toFixed(2);
+          }else{
+            return 0;
+          }
 		}
 	},
 

@@ -119,7 +119,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         promedio = promedio / array.length;
         
         if(promedio){
-          return promedio;
+          return promedio.toFixed(2);
         }else{
           return 0;
         }   
@@ -137,7 +137,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
         }
         promedio = promedio / array.length;
         if(promedio){
-          return promedio;
+          return promedio.toFixed(2);
         }else{
           return 0;
         }
@@ -155,7 +155,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -172,7 +172,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -190,7 +190,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -207,7 +207,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -224,7 +224,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -242,7 +242,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -260,7 +260,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           promedio = promedio / array.length;
           
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -277,7 +277,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -295,7 +295,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
@@ -313,7 +313,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
           promedio = promedio / array.length;
           if(promedio){
-            return promedio;
+            return promedio.toFixed(2);
           }else{
             return 0;
           }
