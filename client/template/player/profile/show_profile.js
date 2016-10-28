@@ -487,7 +487,7 @@ Template.showProfile.events({  //al hacer click en el boton editar se redirige a
   //Todas las posiciones  
   'click #conducta': function(){
     var tipo = "conducta";
-    var ratingConducta = $('#conducta').data('userrating');
+    var ratingConducta= $('#conducta').data('userrating');
     Meteor.call('calif',use,ratingConducta,tipo);
   },
   'click #resistencia': function(){

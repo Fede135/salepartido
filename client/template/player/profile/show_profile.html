@@ -112,7 +112,85 @@
         {{#if ownProfile}}
         <div class="row">
             <div class="col-sm-6 col-md-7">
+                {{#if arquero}}
+                <div class="row" >
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Conducta</h3>
+                        {{promconducta}}
+                        {{#if promconducta}}
+                            {{> starsRating rating=promconducta class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Puntualidad</h3>
+                        {{prompuntualidad}}
+                        {{#if prompuntualidad}}
+                            {{> starsRating rating=prompuntualidad class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Resistencia</h3>
+                        {{promresistencia}}
+                        {{#if promresistencia}}
+                            {{> starsRating rating=promresistencia class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Fair Play</h3>
+                        {{promfairplay}}
+                        {{#if promfairplay}}
+                            {{> starsRating rating=promfairplay class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}} 
+                    </div>
+                </div>
                 <div class="row">
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Reflejos</h3>
+                        {{promreflejos}}
+                        {{#if promreflejos}}
+                            {{> starsRating rating=promreflejos class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}                       
+                    </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Atajadas</h3>
+                        {{promatajadas}}
+                        {{#if promatajadas}}
+                            {{> starsRating rating=promatajadas class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                    <div class="col-sm-3 col-md-3 ">
+                        <h3>Burradas</h3>
+                        {{promburradas}}
+                        {{#if promburradas}}
+                            {{> starsRating rating=promburradas class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                   <div class="col-sm-3 col-md-3">
+                        <h3>Pase</h3>
+                        {{prompase}}
+                        {{#if prompase}}
+                            {{> starsRating rating=prompase class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating rating=0 size='lg'}}
+                        {{/if}}
+                    </div>
+                </div>
+                {{else}}
+                <div class="row" >
                     <div class="col-sm-3 col-md-3">
                         <h3>Conducta</h3>
                         {{promconducta}}
@@ -160,7 +238,7 @@
                             {{> starsRating rating=0 size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-3 col-md-3">
+                   <div class="col-sm-3 col-md-3">
                         <h3>Pase</h3>
                         {{prompase}}
                         {{#if prompase}}
@@ -172,72 +250,45 @@
                     <div class="col-sm-3 col-md-3">
                         <h3>Defensa</h3>
                         {{promdefensa}}
-                        {{#if tieneVotoDef}}
+                        {{#if promdefensa}}
                             {{> starsRating rating=promdefensa class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating rating=0 size='lg'}}
-                            <!-- {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
-                    </div> 
+                        </div> 
                     <div class="col-sm-3 col-md-3">
                         <h3>Gambeta</h3>
                         {{promgambeta}}
-                        {{#if tieneVotoGam}}
+                        {{#if promgambeta}}
                             {{> starsRating rating=promgambeta class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating rating=0 size='lg'}}
-                            <!-- {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
-                    </div>                   
+                    </div> 
                 </div>
                 <div class="row"> 
                     <div class="col-sm-3 col-md-3">
                         <h3>Velocidad</h3>
                         {{promvelocidad}}
-                        {{#if tieneVotoVel}}
+                        {{#if promvelocidad}}
                             {{> starsRating rating=promvelocidad class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating rating=0 size='lg'}}
-                            <!-- {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
                     </div>                   
                     <div class="col-sm-3 col-md-3">
                         <h3>Remate</h3>
                         {{promrematearco}}
-                        {{#if tieneVotoRema}}
+                        {{#if promrematearco}}
                             {{> starsRating rating=promrematearco class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating rating=0 size='lg'}}
-                            <!-- {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}} -->
                         {{/if}}
                     </div>
-                    {{#if arquero}}
-                    <div class="col-sm-3 col-md-3">
-                        <h3>Reflejos</h3>
-                        {{promreflejos}}
-                        {{#if promreflejos}}
-                            {{> starsRating rating=promreflejos class="estrella" size='lg'}}
-                        {{else}}
-                            {{> starsRating rating=0 size='lg'}}
-                        {{/if}}                       
-                    </div>
-                    <div class="col-sm-3 col-md-3">
-                        <h3>Atajadas</h3>
-                        {{promatajadas}}
-                        {{#if promatajadas}}
-                            {{> starsRating rating=promatajadas class="estrella" size='lg'}}
-                        {{else}}
-                            {{> starsRating rating=0 size='lg'}}
-                        {{/if}}
-                        <br>
-                    </div>
-                    {{/if}}
-                    
                 </div>
-                
+                {{/if}}
             </div>
             <div class="col-sm-6 col-md-5">
-              {{#if ownProfile}}
                   <div class="row">
                       {{#if partidosInvitado}}
                       <div class="table-responsive" style="margin-top: 15px;">
@@ -331,13 +382,14 @@
                         <h4>No tenes partidos pendientes</h4>
                       {{/if}}
                   </div>
-              {{/if}}
             </div>
         </div>
         <div class="row">
             {{#if isUserFacebook}}
               <div class="col-sm-12 col-md-12">
-              <legend>Jugadores de Facebook</legend>
+                    <div class="row" style="margin-top: 15px;">
+                        <legend>Jugadores de Facebook</legend>
+                    </div>
               </div>
                 {{#if amigosfb}}
                 <div class="col-sm-6 col-md-6">
@@ -367,8 +419,9 @@
                   </div>  
                 {{/if}}<!-- if amigosfb -->
                 <div class="col-sm-12 col-md-12">
-                <br>
-                <legend>Jugadores de la Aplicación</legend>
+                    <div class="row" style="margin-top: 15px;">
+                        <legend>Jugadores de la Aplicación</legend>
+                    </div>
                 </div>
                   {{#if amigosapp}}
                   <div class="col-sm-6 col-md-6">
@@ -394,14 +447,17 @@
                   </div>
                   {{else}}<!-- if amigosapp -->
                   <div class="col-sm-12 col-md-12">
-                      No tienes amigos de la aplicación
+                        <div class="row" style="margin-top: 15px;">
+                           <strong>No tienes amigos de la aplicación</strong>
+                        </div>
                   </div>    
                   {{/if}}<!-- if amigosapp -->        
             {{else}}<!-- If isUserFacebook -->
-              <div class="col-sm-12 col-md-12">
-              <br>
-              <legend>Jugadores de la Aplicación</legend>
-              </div>
+                <div class="col-sm-12 col-md-12">
+                    <div class="row" style="margin-top: 15px;">
+                        <legend>Jugadores de la Aplicación</legend>
+                    </div>
+                </div>
                   {{#if amigosapp}}
                   <div class="col-sm-6 col-md-6">
                       <div class="table-responsive">        
@@ -435,14 +491,14 @@
         <div class="row">
             {{#if arquero}}
                 {{#if isOwner}}
-                <div class="row">
+                <div class="row" >
                     <div class="col-sm-3 col-md-3">
                         <h3>Conducta</h3>
                         {{promconducta}}                   
-                        {{#if tieneVotoPunt}}
+                        {{#if tieneVotoConducta}}
                             {{> starsRating rating=promconducta class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating id='conducta' class="estrella" mutable=true size='lg'}}
+                           {{> starsRating id='conducta' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
                     <div class="col-sm-3 col-md-3">
@@ -457,16 +513,6 @@
                 </div>
                 {{else}}
                 <div class="row">
-                  <div class="col-sm-12 col-md-12">
-                      <div class="col-sm-3 col-md-3">
-                        <h3>Conducta</h3>
-                        {{promconducta}}                   
-                        {{#if tieneVotoPunt}}
-                            {{> starsRating rating=promconducta class="estrella" size='lg'}}
-                        {{else}}
-                            {{> starsRating id='conducta' class="estrella" mutable=true size='lg'}}
-                        {{/if}}
-                    </div>
                     <div class="col-sm-3 col-md-3">
                         <h3>Puntualidad</h3>
                         {{prompuntualidad}}
@@ -503,42 +549,47 @@
                             {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                  </div>  
                 </div>
-                <div class="row">
-                  <div class="col-sm-12 col-md-12">
+                <div class="row" style="margin-bottom: 10px;">
                     <div class="col-sm-3 col-md-3">
                         <h3>Reflejos</h3>
                         {{promreflejos}}
-                        {{#if promreflejos}}
+                        {{#if tieneVotoRe}}
                             {{> starsRating rating=promreflejos class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating rating=0 size='lg'}}
+                            {{> starsRating id='reflejos' class="estrella" mutable=true size='lg'}}
                         {{/if}}                       
                     </div>
                     <div class="col-sm-3 col-md-3">
                         <h3>Atajadas</h3>
                         {{promatajadas}}
-                        {{#if promatajadas}}
+                        {{#if tieneVotoAt}}
                             {{> starsRating rating=promatajadas class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating rating=0 size='lg'}}
+                            {{> starsRating id='atajadas' class="estrella" mutable=true size='lg'}}
                         {{/if}}
-                        <br>
                     </div>
-                  </div>
+                    <div class="col-sm-3 col-md-3">
+                        <h3>Pase</h3>
+                        {{prompase}}
+                        {{#if tieneVotoPa}}
+                            {{> starsRating rating=prompase class="estrella" size='lg'}}
+                        {{else}}
+                            {{> starsRating id='pase' class="estrella" mutable=true size='lg'}}
+                        {{/if}}
+                    </div>
                 </div>        
                 {{/if}}
             {{else}}
                 {{#if isOwner}}
-                <div class="row">
+                <div class="row" style="margin-bottom: 15px;">
                     <div class="col-sm-3 col-md-3">
                         <h3>Conducta</h3>
-                        {{promconducta}}                   
-                        {{#if tieneVotoPunt}}
+                        {{promconducta}}
+                        {{#if tieneVotoConducta}}
                             {{> starsRating rating=promconducta class="estrella" size='lg'}}
                         {{else}}
-                            {{> starsRating id='conducta' class="estrella" mutable=true size='lg'}}
+                           {{> starsRating id='conducta' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
                     <div class="col-sm-3 col-md-3">
@@ -554,57 +605,54 @@
                 </div>
                 {{else}}
                 <div class="row">
-                  <div class="col-sm-12 col-md-12">
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Puntualidad</h3>
                         {{prompuntualidad}}
-                        {{#if prompuntualidad}}
+                        {{#if tieneVotoPunt}}
                             {{> starsRating rating=prompuntualidad class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating id='puntualidad' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Resistencia</h3>
                         {{promresistencia}}
-                        {{#if promresistencia}}
+                        {{#if tieneVotoRes}}
                             {{> starsRating rating=promresistencia class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating id='resistencia' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Fair Play</h3>
                         {{promfairplay}}
-                        {{#if promfairplay}}
+                        {{#if tieneVotoFair}}
                             {{> starsRating rating=promfairplay class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating id='fairplay' class="estrella" mutable=true size='lg'}}
-                        {{/if}} 
+                        {{/if}}
                     </div>
-                  </div>
-                </div>
-                <div class="row">
-                  <div class="col-sm-12 col-md-12">
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Burradas</h3>
                         {{promburradas}}
-                        {{#if promburradas}}
+                        {{#if tieneVotoBurr}}
                             {{> starsRating rating=promburradas class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating id='burradas' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Pase</h3>
                         {{prompase}}
-                        {{#if prompase}}
+                        {{#if tieneVotoPa}}
                             {{> starsRating rating=prompase class="estrella" size='lg'}}
                         {{else}}
                             {{> starsRating id='pase' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Defensa</h3>
                         {{promdefensa}}
                         {{#if tieneVotoDef}}
@@ -613,11 +661,7 @@
                             {{> starsRating id='defensa' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                  </div>                      
-                </div>
-                <div class="row">
-                  <div class="col-sm-12 col-md-12">
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Gambeta</h3>
                         {{promgambeta}}
                         {{#if tieneVotoGam}}
@@ -626,7 +670,7 @@
                             {{> starsRating id='gambeta' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Remate al arco</h3>
                         {{promrematearco}}
                         {{#if tieneVotoRema}}
@@ -635,7 +679,9 @@
                             {{> starsRating id='rematearco' class="estrella" mutable=true size='lg'}}
                         {{/if}}
                     </div>
-                    <div class="col-sm-4 col-md-4">
+                </div>
+                <div class="row">
+                    <div class="col-sm-3 col-md-3">
                         <h3>Velocidad</h3>
                         {{promvelocidad}}
                         {{#if tieneVotoVel}}
@@ -643,18 +689,20 @@
                         {{else}}
                             {{> starsRating id='velocidad' class="estrella" mutable=true size='lg'}}
                         {{/if}}
-
                     </div>
-                  </div>  
                 </div>
                 {{/if}}     
             {{/if}}
         </div>
         {{/if}}
+        <div class="row" style="margin-top: 15px;">
+            {{> showCommentsPlayers}} 
+        </div>            
         {{#unless ownProfile}}
-            <br>
-            {{> enterCommentsForPlayers}}
+            <div class="row">
+                {{> enterCommentsForPlayers}}
+            </div>
         {{/unless}}
-         {{> showCommentsPlayers}} 
+            
     </div>
 </template>

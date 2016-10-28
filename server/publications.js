@@ -99,6 +99,11 @@ Meteor.publish('calificacion_velocidad', function(){
 
 	return Calificacion_velocidad.find();
 });
+
+Meteor.publish('calificacion_conducta', function(){
+
+	return Calificacion_conducta.find();
+});
 //recinto
 Meteor.publish('calificaciones', function(){
 
