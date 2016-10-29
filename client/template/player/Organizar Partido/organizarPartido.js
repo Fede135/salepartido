@@ -22,7 +22,6 @@ Template.organizarPartido.events({
     event.preventDefault;
 
     Router.go('showProfile', {_id: Meteor.userId()}); 
-
     },
 
     
@@ -78,12 +77,12 @@ Template.organizarPartido.events({
         createReservaForOwnerNotification(idReserva);
         
         //----------Guarda en arrayAmigos los amigos seleccionados para invitar---------
-        var selectedFriends = t.findAll( "input[name=friend]:checked");
+        var selectedFriends = t.findAll( "input[name=user]:checked");
         var arrayAmigos = _.map(selectedFriends, function(item) {
               return item.defaultValue;
         });
         //----------Guarda en arrayHost los amigos seleccionados para darle permisos de hostSecundario---------
-        var selectedHost = t.findAll( "input[name=gameRoles]:checked");
+        var selectedHost = t.findAll( "input[name=host]:checked");
         var arrayHostSecundario = _.map(selectedHost, function(item) {
               return item.defaultValue;
         });
@@ -153,11 +152,23 @@ Template.organizarPartido.events({
     $target.val($item.text()); 
     
   },
+
+  'change [data-toggle-target]': function (event, template) {
+    // Y acá en donde puse $(this) deberías reemplazarlo por $(event.currentTarget)
+    var target     = $(event.currentTarget).data('toggleTarget');
+    var $hostInput = $('[data-toggle-visibility="' + target + '"]');
+    var isChecked  = $(event.currentTarget).is(':checked');
+
+    if (isChecked) {
+        $hostInput.removeClass('hidden');
+    } else {
+        $hostInput.addClass('hidden');
+    }
+  }
    
   });
 
 Template.organizarPartido.helpers({
-	
   recinto: function () {
     return Recintos.find();
   },

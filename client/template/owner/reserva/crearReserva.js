@@ -74,7 +74,7 @@ Template.crearReserva.events({
 
         Session.clear();
         $('#alertReservaCreada').show();
-        // Session.set('alertReservaCreada', true);
+        Session.set('alertReservaCreada', true);
         var tabla = true;
         Session.set('tabla', tabla);
                 
