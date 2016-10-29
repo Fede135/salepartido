@@ -250,29 +250,21 @@
                     {{#if isHostHostSecundario}}
                       
                           {{#if jugadoresNoInvitados}}
-                              <div claas="checkbox">
                               {{#each jugadoresNoInvitados}}
-                                      
-                                  <input type="checkbox" id="checkboxFriends{{this._id}}" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> <h4 style="margin-left: 15px;">{{this.profile.name}},{{this.profile.player.position}}</h4>
 
-                                  {{#if isHost}}
-                                  <div id="checkboxRolesDiv{{this._id}}">
-                                  <input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each   this.emails}}{{this.address}}{{/each}}">  Host <br>
+                                  <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}}
+                                    </label>
+                                  </div>    
+                                  
+                                  <div class="checkbox hidden" data-toggle-visibility="{{_id}}">
+                                    <label>
+                                        <input type="checkbox" name="host" value="{{#each this.emails}}{{this.address}}{{/each}}"> Host
+                                    </label>
                                   </div>
-                                  <!--Se agrega este script para ocultar o mostrar el checkbox host dependiendo si el amigo fue seleccionado o no. Falta ver como hacer para que funcione bien, queda comentado-->
-                                  <script> 
-                                    var elem = document.getElementById('checkboxRolesDiv{{this._id}}'),
-                                    var checkBox{{this._id}} = document.getElementById('checkboxFriends{{this._id}}');
-                                    checkBox.checked = false;
-                                    checkBox.onchange = function doruc() {
-                                    elem.style.display = this.checked ? 'block' : 'none';
-                                    };
-                                    checkBox.onchange();
-                                </script>
-                                  {{/if}}
                               {{/each}} 
                               <button type="button" name="invitarJugadores" id="invitarJugadores" class="btn btn-propio" style="margin-bottom:10px;">Invitar</button>
-                              </div>
                           {{else}}
                               <div>
                                   <h4 align="left">Ya invitaste a todos tus jugadores.</h4>

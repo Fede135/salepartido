@@ -495,7 +495,7 @@ Template.confirmarPartido.events({
               return item.defaultValue;
         });
         
-        var selectedHost = t.findAll( "input[name=gameRoles]:checked");
+        var selectedHost = t.findAll( "input[name=host]:checked");
         var arrayHostSecundario = _.map(selectedHost, function(item) {
               return item.defaultValue;
         });
@@ -553,6 +553,21 @@ Template.confirmarPartido.events({
         })
         .modal('hide'); 
   },
+
+
+  'change [data-toggle-target]': function (event, template) {
+    // Y acá en donde puse $(this) deberías reemplazarlo por $(event.currentTarget)
+    var target     = $(event.currentTarget).data('toggleTarget');
+    var $hostInput = $('[data-toggle-visibility="' + target + '"]');
+    var isChecked  = $(event.currentTarget).is(':checked');
+
+    if (isChecked) {
+        $hostInput.removeClass('hidden');
+    } else {
+        $hostInput.addClass('hidden');
+    }
+  }
+
 });
 
 Template.confirmarPartido.onDestroyed( function() {
