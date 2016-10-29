@@ -106,17 +106,18 @@
 				            <ul class="list-unstyled">
 		 		                <li><input type="checkbox" class="all"><h4 style="margin-left: 15px">Todos</h4></li>
 								{{#each amigos}}
-
-					            <li><input class="checkbox" id="checkboxFriends{{this._id}}" type="checkbox" name="friend"  value="{{#each this.emails}}{{this.address}}{{/each}}">
-					            	<h4 style="margin-left: 15px;">{{this.profile.name}}, {{this.profile.player.position}}</h4>
-					            </li>
-					            {{#if checkedado}}
-					             <div id="checkboxRolesDiv">
-									<input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host 
-								</div>
-								{{/if}}								
+									<div class="checkbox">
+										<label>
+												<input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}}
+										</label>
+									</div>    
+									
+									<div class="checkbox hidden" data-toggle-visibility="{{_id}}">
+										<label>
+												<input type="checkbox" name="host" value="{{#each this.emails}}{{this.address}}{{/each}}"> Host
+										</label>
+							    </div>
 								{{/each}} 
-
 				            </ul>
 				        </div>
 			 		</div> 

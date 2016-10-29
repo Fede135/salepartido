@@ -12,15 +12,6 @@ Template.organizarPartido.onRendered(function () {
     disabledHours: [ 2 , 3 , 4 , 5 , 6 , 7 , 8 ],
     showClear: true
   });
-
-/*  var elem = document.getElementById('checkboxRolesDiv');
-                  checkBox = document.getElementById('checkboxFriends');
-                  checkBox.checked = false;
-                  checkBox.onchange = function doruc() {
-                  elem.style.display = this.checked ? 'block' : 'none';
-                  };
-                  checkBox.onchange();
-*/
 });
 
 
@@ -31,18 +22,6 @@ Template.organizarPartido.events({
     event.preventDefault;
 
     Router.go('showProfile', {_id: Meteor.userId()}); 
-    },
-
-    'click .checkbox': function(e){
-      
-        var checkbox = $(e.target).val();
-        Session.set('checkBox', checkbox);
-        /*e.preventDefault();
-        
-        $('.checkbox').on('dp.change', function (event) {
-        
-        console.log(event)
-    });*/
     },
     
    'submit form': function(e,t) {
@@ -97,12 +76,12 @@ Template.organizarPartido.events({
         createReservaForOwnerNotification(idReserva);
         
         //----------Guarda en arrayAmigos los amigos seleccionados para invitar---------
-        var selectedFriends = t.findAll( "input[name=friend]:checked");
+        var selectedFriends = t.findAll( "input[name=user]:checked");
         var arrayAmigos = _.map(selectedFriends, function(item) {
               return item.defaultValue;
         });
         //----------Guarda en arrayHost los amigos seleccionados para darle permisos de hostSecundario---------
-        var selectedHost = t.findAll( "input[name=gameRoles]:checked");
+        var selectedHost = t.findAll( "input[name=host]:checked");
         var arrayHostSecundario = _.map(selectedHost, function(item) {
               return item.defaultValue;
         });
@@ -172,14 +151,23 @@ Template.organizarPartido.events({
     $target.val($item.text()); 
     
   },
+
+  'change [data-toggle-target]': function (event, template) {
+    // Y acá en donde puse $(this) deberías reemplazarlo por $(event.currentTarget)
+    var target     = $(event.currentTarget).data('toggleTarget');
+    var $hostInput = $('[data-toggle-visibility="' + target + '"]');
+    var isChecked  = $(event.currentTarget).is(':checked');
+
+    if (isChecked) {
+        $hostInput.removeClass('hidden');
+    } else {
+        $hostInput.addClass('hidden');
+    }
+  }
    
   });
 
 Template.organizarPartido.helpers({
-	
-  checkedado:function(){
-    return Session.get('checkBox') && true;
-  },
 
   recinto: function () {
     return Recintos.find();
