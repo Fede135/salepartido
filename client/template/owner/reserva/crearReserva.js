@@ -5,7 +5,6 @@ Template.crearReserva.onRendered(function () {
     format: 'L',
     minDate: moment(),
     showClear: true,
-    daysOfWeekDisabled: [1, 7],
   });
 
   this.$('#datetimepicker3').datetimepicker({
@@ -26,8 +25,8 @@ Template.crearReserva.events({
         var recinto = recintoId && Recintos.findOne({'_id': recintoId});
         var nombRecinto = recinto && recinto.nombre_recinto;
         var diaString = $(e.target).find('[name=datetimepicker]').val();
-        var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format("L");
-        var dia = new Date(diaMoment);
+        var diaMoment = moment(diaString, 'DD/MM/YYYY', true);
+        var dia = diaMoment.toDate();
 
         var reserva = {
             _id:Meteor.ObjectId,            

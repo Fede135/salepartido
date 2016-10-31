@@ -75,8 +75,8 @@ Template.modificarReserva.events({
       	var nombre_recinto = reserva && reserva.nom_recinto;
       	var nom_usuario = reserva && reserva.nom_usuario;
         var diaString = $('input[name=datetimepicker]').val();        
-        var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
-        var dia = new Date(diaMoment);
+        var diaMoment = moment(diaString, 'DD/MM/YYYY', true);
+        var dia = diaMoment.toDate();
 
         e.preventDefault();
 
