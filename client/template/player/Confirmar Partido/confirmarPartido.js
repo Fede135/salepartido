@@ -495,7 +495,7 @@ Template.confirmarPartido.events({
               return item.defaultValue;
         });
         
-        var selectedHost = t.findAll( "input[name=gameRoles]:checked");
+        var selectedHost = t.findAll( "input[name=host]:checked");
         var arrayHostSecundario = _.map(selectedHost, function(item) {
               return item.defaultValue;
         });
@@ -544,7 +544,7 @@ Template.confirmarPartido.events({
         jugadoresId.push(jugadorId);
       })
 
-    Meteor.call('mailCancelar',jugadoresId,oldHora,oldDia,oldRecinto,oldCancha);
+      Meteor.call('mailCancelar',jugadoresId,oldHora,oldDia,oldRecinto,oldCancha);
       cancelacionReservaForOwnerNotification(oldHora, oldDia, oldRecinto, oldCancha, reserva._id);
       cancelacionReservaPlayersNotification(partido._id, jugadoresId);      
       jugadoresId.forEach(function (e) {
@@ -558,6 +558,21 @@ Template.confirmarPartido.events({
         .modal('hide'); 
 
   },
+
+
+  'change [data-toggle-target]': function (event, template) {
+    // Y acá en donde puse $(this) deberías reemplazarlo por $(event.currentTarget)
+    var target     = $(event.currentTarget).data('toggleTarget');
+    var $hostInput = $('[data-toggle-visibility="' + target + '"]');
+    var isChecked  = $(event.currentTarget).is(':checked');
+
+    if (isChecked) {
+        $hostInput.removeClass('hidden');
+    } else {
+        $hostInput.addClass('hidden');
+    }
+  }
+
 });
 
 Template.confirmarPartido.onDestroyed( function() {

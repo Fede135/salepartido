@@ -105,22 +105,17 @@
 							<h2>Invitar Amigos</h2>
 				            <ul class="list-unstyled">
 								{{#each amigos}}
-									<div class="checkbox">										
-										<input id="checkboxFriends" type="checkbox" name="friend" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}} <br>
-										<div id="checkboxRolesDiv">
-											<input id="checkboxRoles" type="checkbox" name="gameRoles" value="{{#each this.emails}}{{this.address}}{{/each}}">  Host <br>
-										</div>
-										<!--Se agrega este script para ocultar o mostrar el checkbox host dependiendo si el amigo fue seleccionado o no. Falta ver como hacer para que funcione bien, queda comentado-->
-										<script> 
-											var elem = document.getElementById('checkboxRolesDiv'),
-											checkBox = document.getElementById('checkboxFriends');
-											checkBox.checked = false;
-											checkBox.onchange = function doruc() {
-											elem.style.display = this.checked ? 'block' : 'none';
-											};
-											checkBox.onchange();
-										</script>
-									</div>
+									<div class="checkbox">
+										<label>
+												<input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}}
+										</label>
+									</div>    
+									
+									<div class="checkbox hidden" data-toggle-visibility="{{_id}}">
+										<label>
+												<input type="checkbox" name="host" value="{{#each this.emails}}{{this.address}}{{/each}}"> Permiso para invitar a sus amigos
+										</label>
+							    </div>
 								{{/each}} 
 				            </ul>
 				        </div>
