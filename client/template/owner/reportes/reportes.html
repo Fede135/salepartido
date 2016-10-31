@@ -170,6 +170,7 @@
 			<div class="row">
 				<legend align="center">A través de Sale Partido</legend>
 				<div class="col-sm-6 col-md-6">
+				{{#if cantJugadoresReservaron}}
 					<table class="table table-hover" name="tabla" id="tabla">	
 						<caption><h4 align="center">Concretadas</h4></caption>
 						<thead>
@@ -187,8 +188,12 @@
 							{{/each}}
 						</tbody>
 					</table>
+				{{else}}
+				<h2>Sin Informes</h2>
+				{{/if}}
 				</div>					
 				<div class="col-sm-6 col-md-6">
+				{{#if jugadoresCancelaron}}
 					<table class="table table-hover" name="tabla" id="tabla">
 						<caption><h4 align="center">Canceladas</h4></caption>
 						<thead>
@@ -206,11 +211,15 @@
 							{{/each}}
 						</tbody>
 					</table>
+				{{else}}
+				<h2>Sin Informes</h2>
+				{{/if}}
 				</div>
 			</div>	
 			<div class="row" style="margin-top: 10px;">
 				<legend align="center">A través del administrador</legend>
 				<div class="col-sm-6 col-md-6">
+				{{#if cantJugadoresReservaronP}}
 					<table class="table table-hover" name="tabla" id="tabla">
 						<caption><h4 align="center">Concretadas</h4></caption>
 						<thead>
@@ -228,8 +237,12 @@
 							{{/each}}
 						</tbody>
 					</table>
+				{{else}}
+				<h2>Sin Informes</h2>
+				{{/if}}
 				</div>
 				<div class="col-sm-6 col-md-6">
+					{{#if jugadoresCancelaronP}}
 					<table class="table table-hover" name="tabla" id="tabla">
 						<caption><h4 align="center">Canceladas</h4></caption>
 						<thead>
@@ -247,8 +260,21 @@
 							{{/each}}
 						</tbody>
 					</table>
+					{{else}}
+					<h2>Sin Informes</h2>
+					{{/if}}
 				</div>
 			</div>
+			<!-- Total por rango de horas -->
+			<div class="ct-chart1 ct-perfect-fourth"></div> 
+			
+			<div class="ct-chart ct-perfect-fourth"></div>
+
+			<div class="ct-chart2 ct-perfect-fourth"></div>
+
+			<div class="ct-chart3 ct-perfect-fourth"></div>
+
+			<div class="ct-chart4 ct-perfect-fourth"></div>
 		</div>
 	</div>
 </template>
