@@ -40,21 +40,21 @@ Template.dashboardAdmin.events({
 	},
 
 	'click #eliminarPlayer': function (e) {
-		
 		e.preventDefault;
-		
-		Meteor.users.remove({_id: this._id});
-	
-		alert("Este usuario "+this.profile.name+" ha sido eliminado");
-		
+		Session.set('userId', this._id);
 	},
 
 	'click #eliminarDueno': function (e) {
-		
 		e.preventDefault;
-		
-		Meteor.users.remove({_id: this._id});
-	
-		alert("Este usuario "+this.profile.name+" ha sido eliminado");
+		Session.set('userId', this._id);
+	},
+
+	'click #deleteUser' : function (e) {
+		var userId = Session.get('userId');
+	  Meteor.users.remove({_id: userId});
+		$('#alertEliminarUser').show();
+
 	}
+
 });
+
