@@ -91,6 +91,7 @@ Accounts.onLogin(function (){
 
 //Meteor.logingIn()
 
+T9n.setLanguage("es");
 
 accountsUIBootstrap3.map('es', {
   errorMessages: {

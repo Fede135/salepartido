@@ -15,6 +15,10 @@ Template.dashboardAdmin.helpers({
 	cantidadJugadores: function(){
 		return Meteor.users.find({'roles.__global_roles__': ['player']}).count();
 	},
+
+	emailsVerified: function () {
+		return Meteor.users.findOne({_id: this._id, 'emails.0.verified': true});
+	},
 });
 
 Template.dashboardAdmin.events({
@@ -54,6 +58,17 @@ Template.dashboardAdmin.events({
 	  Meteor.users.remove({_id: userId});
 		$('#alertEliminarUser').show();
 
+	},
+
+	'click #verificarEmail' : function (e) {
+		var userId = Session.get('userId');
+		console.log(userId);
+	  Meteor.users.update({_id: userId}, {$set: {'emails.0.verified':true}});	
+		$('#alertVerificarEmail').show();
+	},
+
+	'click #lanzaId' : function (e) {
+		Session.set('userId', this._id);
 	}
 
 });
