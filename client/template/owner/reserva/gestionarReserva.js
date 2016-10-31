@@ -5,13 +5,12 @@ Template.gestionarReserva.helpers({
 		var recinto = recinto_Id && Recintos.findOne({'_id': recinto_Id});
     var nombRecinto = recinto && recinto.nombre_recinto;
     var dia = Session.get('dia');
-    	
-        var diaMoment=moment(dia).format('L');
-        var dia=new Date(diaMoment);
-        var reservas=nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada", 'fecha_de_juegoD':dia}); 
+    var diaMoment = moment(dia, 'DD/MM/YYYY', true);
+    var diaDate = diaMoment.toDate();
+    var reservas=nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada", 'fecha_de_juegoD':diaDate}); 
     	
 		return reservas;
-	}
+  }
 });
 
 Template.gestionarReserva.onRendered(function () {
@@ -35,7 +34,7 @@ Template.gestionarReserva.events({
   'click #datetimepicker': function(event){
 
   	event.preventDefault();
-  	$('#datetimepicker').on('dp.change', function (event) {
+  	$('#datetimepicker').on('dp.hide', function (event) {
   		var fecha = event.date.format('L');
   		var diaMoment = moment(fecha, 'DD/MM/YYYY', true).format();
        var dia = new Date(diaMoment); 

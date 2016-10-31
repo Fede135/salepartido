@@ -361,25 +361,20 @@ canceladasPorDia: function(){
 },
 cantReservas: function(){	
 	
-	if(Session.get('fechaHasta') && Session.get('fechaHasta')){
+	if( Session.get('fechaDesde') && Session.get('fechaHasta')){
 		var diaStringD = Session.get('fechaDesde');	
-		var diaMomentD = moment(diaStringD, 'DD/MM/YYYY', true).format();	
-		diaDesde = new Date(diaMomentD);
-	//console.log('desde',diaDesde)
-	
+		var diaMomentD = moment(diaStringD, 'DD/MM/YYYY', true);
+        var diaDesde = diaMomentD.toDate();
 		var diaStringH= Session.get('fechaHasta');	
-		var diaMomentH = moment(diaStringH, 'DD/MM/YYYY', true).format();	
-		diaHasta = new Date(diaMomentH);
+		var diaMomentH = moment(diaStringH, 'DD/MM/YYYY', true);
+        var diaHasta = diaMomentH.toDate();
 		var start = diaDesde;	
-		//console.log(start)
 		var end = diaHasta;
-		//console.log(end)
 		var idRecinto = this._id
 		var recinto = Recintos.findOne({_id: idRecinto}).nombre_recinto;
 		var reservas = Reserva.find({nom_recinto:recinto,'fecha_de_juegoD' : {"$gte" : start, "$lte" : end}});		
 		var arrayReservas = reservas.fetch();
 		var countReservas = reservas.count();
-		//console.log(arrayReservas);
 
 		//--------------Reservas pendientes
 		var reservasPendientes = Reserva.find({nom_recinto:recinto,fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Reservada"});
@@ -436,7 +431,7 @@ Template.reportes.events({
 'click #datetimepickerDesde': function (event) {		
 
 	event.preventDefault();
-	$('#datetimepickerDesde').on('dp.change', function(event){
+	$('#datetimepickerDesde').on('dp.hide', function(event){
 		var fechaDesde= event.date.format('L');
 			//console.log(fechaDesde);
 			Session.set('fechaDesde', fechaDesde);
