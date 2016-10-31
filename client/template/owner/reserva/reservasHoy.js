@@ -51,8 +51,7 @@ Template.reservasHoy.onRendered(function() {
 
     var recinto = recinto_Id && Recintos.findOne({'_id': recinto_Id});
     var nombRecinto = recinto && recinto.nombre_recinto;
-    var diaMoment = moment().format("L");
-    var dia = new Date(diaMoment);
+    var dia = moment().startOf('day').toDate();
     var reservasArray = nombRecinto && Reserva.find({'nom_recinto':nombRecinto, 'estado': "Reservada", 'fecha_de_juegoD':dia}).fetch();
     var cantReservas = reservasArray && reservasArray.length;
     for(var z=0 ; z <= cantReservas ; z++){

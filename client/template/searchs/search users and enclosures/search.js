@@ -13,7 +13,7 @@ Template.search.helpers({
           // },
           field: "profile.name",
           matchAll: true,
-          //filter: {'roles.__global_roles__':'player'}, //preguntar como hacer para buscar solo en usuarios con rol player.
+          filter: {'roles.__global_roles__':'player'}, 
           template: Template.userDataPill,  
           noMatchTemplate: Template.searchEmpty
         },

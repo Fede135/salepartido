@@ -30,8 +30,8 @@ Template.organizarPartido.events({
         e.preventDefault();
 
         var diaString = $(e.target).find('[name=datetimepicker]').val();
-        var diaMoment = moment(diaString, 'DD/MM/YYYY', true).format();
-        var dia = new Date(diaMoment);
+        var diaMoment = moment(diaString, 'DD/MM/YYYY', true);
+        var dia = diaMoment.toDate();
         var hora = $(e.target).find('[name=datetimepicker3]').val();
         var recinto = $(e.target).find('[name=nombreRecinto]').val();
         //calculo fecha y hora de partido

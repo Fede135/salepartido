@@ -24,5 +24,3 @@ Meteor.startup(function () {
 		Meteor.users.update({_id:id}, {$set: {'emails':[emails]}});
 	}	 
 });
-
-

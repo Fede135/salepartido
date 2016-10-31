@@ -3,3 +3,6 @@ Tracker.autorun(function () {
     Router.go('/')
   };
 })
+Meteor.startup(function () {
+	moment.locale('es');
+});

@@ -109,7 +109,7 @@ minimongo@1.0.9
 mizzao:autocomplete@0.5.1
 mobile-experience@1.0.1
 mobile-status-bar@1.0.6
-momentjs:moment@2.15.1
+momentjs:moment@2.15.2
 mongo@1.1.1
 mongo-id@1.0.1
 mongo-livedata@1.0.9
@@ -131,7 +131,6 @@ reactive-var@1.0.6
 reload@1.1.4
 retry@1.0.4
 routepolicy@1.0.6
-rzymek:fullcalendar@2.7.2
 rzymek:moment-locale-es@2.14.1
 sacha:spin@2.3.1
 service-configuration@1.0.5
