@@ -6,6 +6,12 @@ Template.cargarCancha.onRendered( function () {
   }
 });
 
+Template.cargarCancha.helpers({
+  ocupada : function(){
+     return _.pluck(Canchas.find({'recintoId':this._id}).fetch(), 'numero');
+  }
+})
+
 Template.cargarCancha.events({
   
   'click #cancelar': function (event){
@@ -13,6 +19,9 @@ Template.cargarCancha.events({
         event.preventDefault;
         Router.go('dashboard', {_id: this._id});
     },
+    'keyup [name="numero"]' : function (event, template) {
+      AutoForm.removeStickyValidationError('cargarCancha', 'numero');
+    }
 });
 
 Template.cargarCancha.onDestroyed( function() {
@@ -25,12 +34,14 @@ AutoForm.addHooks(
   before:{
     insert: function(doc,result){
       if(Canchas.findOne({'recintoId':doc.recintoId, 'numero':doc.numero})){
-        $('#alertCanchaExistente').show();
-        return false 
+        AutoForm.addStickyValidationError('cargarCancha', 'numero', 'notUnique', doc.numero);
       } else {
         return doc;
         }
     }
+  },
+  beginSubmit: function () {
+     AutoForm.removeStickyValidationError('cargarCancha', 'numero');
   },
   after:{
     insert: function (error, result) {
