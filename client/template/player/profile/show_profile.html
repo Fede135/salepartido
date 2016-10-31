@@ -96,11 +96,13 @@
                         <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
                         <button class="btn btn-propio" id="login-buttons-edit-profile">Editar Perfil</button>
                     {{else}}
+                        {{#unless isOwner}}
                         {{#if isFriend}} 
                             Ya esta en tu lista de jugadores.
                         {{else}}          
                             <button type="button" name="addJugadores" id="addJugadores" class="btn btn-propio">Agregar a tu lista de Jugadores</button>
                         {{/if}}
+                        {{/unless}}
                     {{/if}}
               </div>
         </div>

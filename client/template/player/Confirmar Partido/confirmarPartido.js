@@ -542,6 +542,7 @@ Template.confirmarPartido.events({
         var jugadorId = e._id;
         jugadoresId.push(jugadorId);
       })
+      Meteor.call('mailCancelar',jugadoresId,oldHora,oldDia,oldRecinto,oldCancha);
       cancelacionReservaForOwnerNotification(oldHora, oldDia, oldRecinto, oldCancha, reserva._id);
       cancelacionReservaPlayersNotification(partido._id, jugadoresId);
       jugadoresId.forEach(function (e) {
