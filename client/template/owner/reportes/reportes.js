@@ -10,17 +10,19 @@ this.$('#datetimepickerDesde').datetimepicker({
 		format: 'L',    
 		showClear: true,
 	});	
-//Total por rango de hora
+//Total por rango de hora -------------------------------------
 	var data1 = { 
 		labels: ['Mañana','Siesta','Tarde','Noche'],  
 		series: [totalRangoHora.call(this.data)]
 	};
 	var options1 = {
-		width: 500,
-		height: 400
+		width: 300,
+		height: 200
 	};
-	new Chartist.Line('.ct-chart1', data1, options1);
-// Cancelar por rango de hora 
+	new Chartist.Bar('.ct-chart1', data1, options1,{
+  distributeSeries: true
+});
+// Cancelar por rango de hora ------------------------------------
 	var data = { 
 		labels: ['Mañana','Siesta','Tarde','Noche'],  
 		series: [CanceladasRangoHoras.call(this.data)]
@@ -29,8 +31,10 @@ this.$('#datetimepickerDesde').datetimepicker({
 		width: 300,
 		height: 200
 	};			
-	new Chartist.Line('.ct-chart', data,options);
-//Concretadas por rango de hora
+	new Chartist.Bar('.ct-chart', data,options,{
+  distributeSeries: true
+});
+//Concretadas por rango de hora-------------------------------
 	var data2 = { 
 		labels: ['Mañana','Siesta','Tarde','Noche'],  
 		series: [ConcretadasRangoHoras.call(this.data)]
@@ -39,21 +43,22 @@ this.$('#datetimepickerDesde').datetimepicker({
 		width: 300,
 		height: 200
 	};			
-	new Chartist.Line('.ct-chart2', data2,options2);
-	//Concretadas por dia
+	new Chartist.Bar('.ct-chart2', data2,options2,{
+  distributeSeries: true
+});
+	//Concretadas por dia----------------------------------------
 	var data3 = { 
 		labels: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],  
 		series: [concretadasDia.call(this.data)]
 	};
 	var options3 = {
 		width: 300,
-		height: 200
-		
-	};			
+		height: 200		
+	};		
 	new Chartist.Bar('.ct-chart3', data3,options3,{
   distributeSeries: true
 });
-	//Canceladas por dia
+	//Canceladas por dia-----------------------------------------
 	var data4 = { 
 		labels: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],  
 		series: [canceladasDia.call(this.data)]
@@ -62,10 +67,37 @@ this.$('#datetimepickerDesde').datetimepicker({
 		width: 300,
 		height: 200
 		
-	};			
+	};		
 	new Chartist.Bar('.ct-chart4', data4,options4,{
   distributeSeries: true
 });
+	//PRUEBA --------------------------------
+/*var data8 = {
+		labels: ['Mañana','Siesta','Tarde','Noche'],  
+		series: totalRangoHora.call(this.data)  
+};
+
+var options8 = {
+	width: 300,
+	height: 200
+ 
+};*/
+
+/*var responsiveOptions = [
+  ['screen and (min-width: 640px)', {
+    chartPadding: 30,
+    labelOffset: 100,
+    labelDirection: 'explode',
+    labelInterpolationFnc: function(value) {
+      return value;
+    }
+  }],
+  ['screen and (min-width: 1024px)', {
+    labelOffset: 80,
+    chartPadding: 20
+  }]
+];*/
+/*new Chartist.Pie('.ct-chart1', data8, options8);*/
 });
 var totalRangoHora = function(){
 	var idRecinto = this._id;

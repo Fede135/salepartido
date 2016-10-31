@@ -1,4 +1,14 @@
 /* CSS declarations go here */
+.ct-series-a .ct-bar {
+  /* Colour of your bars */
+  stroke: #4d3f92 ;
+  /* The width of your bars */
+  stroke-width: 20px;
+  /* Yes! Dashed bars! */
+  stroke-dasharray: 20px;
+  /* Maybe you like round corners on your bars? */
+  stroke-linecap: square;
+}
 .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
     background-color: transparent;
     border-color: #337ab7;
