@@ -340,9 +340,66 @@ Template.confirmarPartido.events({
           
         }     
     },
-   
-
+    
     'click #noJuega': function(event) {
+        if( Roles.userIsInRole( Meteor.userId(),'host', this._id) ) {
+            var reserva_id = Partido.findOne(this._id).reserva_id;
+            var reserva = Reserva.findOne({'_id': reserva_id});
+            var nomrecinto = reserva.nom_recinto;
+            var numcancha = reserva.num_cancha;
+            var recinto = Recintos.findOne({'nombre_recinto': nomrecinto});
+            var recintoId = recinto._id;
+            var cancha = Canchas.findOne({'recintoId': recintoId, 'numero': numcancha});
+            var cantJugadores = cancha.jugadores.cantidad_de_jugadores;
+            var porEquipo = _.first(cantJugadores);
+            var numero = + porEquipo;
+            var partido = Partido.findOne(this._id);        
+            var equipoA = _.pluck(partido.equipoA, 'userId' );
+            var cantA = equipoA.length;
+            var equipoB = _.pluck(partido.equipoB, 'userId' );
+            var cantB = equipoB.length;
+            
+            if (_.contains(equipoA, Meteor.userId())) {
+                var p = Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
+                var cantA =  _.pluck(p.equipoA, 'userId' ).length;
+                var arraySuplentes= Partido.findOne(this._id).suplentes;
+                if(cantA < numero && arraySuplentes.length !=0) {
+                var primerSuplente = _.first(arraySuplentes);
+                var primerSuplente = Meteor.users.findOne({_id:primerSuplente});
+                Partido.update(this._id, { $pull: { suplentes: primerSuplente._id}});
+                Partido.update(this._id, { $addToSet: { equipoA: { userId: primerSuplente._id, nombre: primerSuplente.profile.name}}});            
+                Roles.removeUsersFromRoles(primerSuplente._id,'suplente',this._id);
+                Roles.addUsersToRoles(primerSuplente,'confirmado', this._id);
+                fromSupleteToConfirmadoNotification(this._id, primerSuplente._id);
+                Meteor.call('mailSuplente',this._id,reserva_id,primerSuplente._id);
+                }
+            };
+            
+            if (_.contains(equipoB, Meteor.userId())) {
+                var p = Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
+                var cantB = _.pluck(p.equipoB, 'userId' ).length;
+                var arraySuplentes= Partido.findOne(this._id).suplentes;
+                if(cantB < numero && arraySuplentes.length !=0) {  
+                var primerSuplente = _.first(arraySuplentes);
+                var primerSuplente = Meteor.users.findOne({_id:primerSuplente});
+                Partido.update(this._id, { $pull: { suplentes: primerSuplente._id}});
+                Partido.update(this._id, { $addToSet: { equipoB: { userId: primerSuplente._id, nombre: primerSuplente.profile.name}}});
+                Roles.removeUsersFromRoles(primerSuplente._id,'suplente',this._id);
+                Roles.addUsersToRoles(primerSuplente,'confirmado', this._id);
+                fromSupleteToConfirmadoNotification(this._id, primerSuplente._id);
+                Meteor.call('mailSuplente',this._id,reserva_id,primerSuplente._id);
+                }
+            };
+
+            Roles.setUserRoles(Meteor.userId(), ['host', 'invitado'], this._id)
+            $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
+                    Router.go('showProfile', {_id:Meteor.userId()});
+                })
+                .modal('hide');
+
+            return true; 
+        };
+
         if( Roles.userIsInRole( Meteor.userId(),'invitado', this._id) ) {
         Roles.removeUsersFromRoles(Meteor.userId(),'invitado',this._id);
         Partido.update(this._id, { $pull: { invitados: Meteor.userId()}});
@@ -390,9 +447,7 @@ Template.confirmarPartido.events({
                 $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
                     Router.go('showProfile', {_id:Meteor.userId()});
                 })
-                .modal('hide');
-                
-                
+                .modal('hide');   
             }
             
             if (_.contains(equipoB, Meteor.userId())) {
@@ -416,66 +471,17 @@ Template.confirmarPartido.events({
                 })
                 .modal('hide');                
             }
-            
         }
-        if( Roles.userIsInRole( Meteor.userId(),'host', this._id) ) {
-            var reserva_id = Partido.findOne(this._id).reserva_id;
-            var reserva = Reserva.findOne({'_id': reserva_id});
-            var nomrecinto = reserva.nom_recinto;
-            var numcancha = reserva.num_cancha;
-            var recinto = Recintos.findOne({'nombre_recinto': nomrecinto});
-            var recintoId = recinto._id;
-            var cancha = Canchas.findOne({'recintoId': recintoId, 'numero': numcancha});
-            var cantJugadores = cancha.jugadores.cantidad_de_jugadores;
-            var porEquipo = _.first(cantJugadores);
-            var numero = + porEquipo;
-            var partido = Partido.findOne(this._id);        
-            var equipoA = _.pluck(partido.equipoA, 'userId' );
-            var cantA = equipoA.length;
-            var equipoB = _.pluck(partido.equipoB, 'userId' );
-            var cantB = equipoB.length;
-            
-            if (_.contains(equipoA, Meteor.userId())) {
-                var p = Partido.update(this._id, { $pull: { equipoA: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
-                var cantA =  _.pluck(p.equipoA, 'userId' ).length;
-                var arraySuplentes= Partido.findOne(this._id).suplentes;
-                if(cantA < numero && arraySuplentes.length !=0) {
-                var primerSuplente = _.first(arraySuplentes);
-                var primerSuplente = Meteor.users.findOne({_id:primerSuplente});
-                Partido.update(this._id, { $pull: { suplentes: primerSuplente._id}});
-                Partido.update(this._id, { $addToSet: { equipoA: { userId: primerSuplente._id, nombre: primerSuplente.profile.name}}});            
-                Roles.removeUsersFromRoles(primerSuplente._id,'suplente',this._id);
-                Roles.addUsersToRoles(primerSuplente,'confirmado', this._id);
-                fromSupleteToConfirmadoNotification(this._id, primerSuplente._id);
-                Meteor.call('mailSuplente',this._id,reserva_id,primerSuplente._id);
-                }
-                $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
-                    Router.go('showProfile', {_id:Meteor.userId()});
-                })
-                .modal('hide'); 
-                
-            }
-            
-            if (_.contains(equipoB, Meteor.userId())) {
-                var p = Partido.update(this._id, { $pull: { equipoB: { userId: Meteor.user()._id, nombre: Meteor.user().profile.name}}});
-                var cantB = _.pluck(p.equipoB, 'userId' ).length;
-                var arraySuplentes= Partido.findOne(this._id).suplentes;
-                if(cantB < numero && arraySuplentes.length !=0) {  
-                var primerSuplente = _.first(arraySuplentes);
-                var primerSuplente = Meteor.users.findOne({_id:primerSuplente});
-                Partido.update(this._id, { $pull: { suplentes: primerSuplente._id}});
-                Partido.update(this._id, { $addToSet: { equipoB: { userId: primerSuplente._id, nombre: primerSuplente.profile.name}}});
-                Roles.removeUsersFromRoles(primerSuplente._id,'suplente',this._id);
-                Roles.addUsersToRoles(primerSuplente,'confirmado', this._id);
-                fromSupleteToConfirmadoNotification(this._id, primerSuplente._id);
-                Meteor.call('mailSuplente',this._id,reserva_id,primerSuplente._id);
-                }
-                $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
-                    Router.go('showProfile', {_id:Meteor.userId()});
-                })
-                .modal('hide'); 
-            }
         
+        if (Roles.userIsInRole(Meteor.userId(), 'suplente', this._id)){
+          Roles.removeUsersFromRoles(Meteor.userId(),'suplente',this._id);
+          Partido.update(this._id, { $pull: { suplentes: Meteor.userId()}});
+          Roles.addUsersToRoles(Meteor.userId(), 'noJuega', this._id);
+           Session.set('alertNoJuega', true);
+            $('#seguroDeNoJugar').on('hidden.bs.modal', function() {
+                Router.go('showProfile', {_id:Meteor.userId()});
+            })
+            .modal('hide');
         }
     },
 
@@ -558,7 +564,6 @@ Template.confirmarPartido.events({
         .modal('hide'); 
 
   },
-
 
   'change [data-toggle-target]': function (event, template) {
     // Y acá en donde puse $(this) deberías reemplazarlo por $(event.currentTarget)
