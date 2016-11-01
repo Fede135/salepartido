@@ -55,6 +55,8 @@ footer {
  background:#101010;
  padding:20px 0;
  border-top:5px solid #1bb3af;
+ position: absolute;
+ bottom: 0;
 }
 
 #login-buttons-password{
@@ -490,21 +492,14 @@ h3 {
 }
 
 /*Home*/
-html, body
-{
-  height: 100%;
+html {
+  min-height: 100%;
+  position: relative;
 }
-
-body
-{
-  margin: 0px;
-  padding: 0px;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-size: 11pt;
-  font-weight: 300;
-  color: #6c6c6c
+body {
+  margin: 0;
+  margin-bottom: 0px;
 }
-
   .button
 {
   display: inline-block;
