@@ -17,6 +17,11 @@ AutoForm.addHooks(
         };
         return docModificado;
        }
-    }
+    },
+     after: {
+      insert: function (error, result) {
+        createCommentForEnclosureNotification(result);
+      }
+    } 
   }
 )
