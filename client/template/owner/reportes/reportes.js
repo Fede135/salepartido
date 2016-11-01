@@ -441,7 +441,7 @@ Template.reportes.events({
 'click #datetimepickerHasta': function (event) {		
 
 	event.preventDefault();
-	$('#datetimepickerHasta').on('dp.change', function(event){
+	$('#datetimepickerHasta').on('dp.hide', function(event){
 		var fechaHasta= event.date.format('L');
 			//console.log(fechaHasta);
 			Session.set('fechaHasta', fechaHasta);
