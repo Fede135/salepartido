@@ -28,26 +28,26 @@
 			</div>
 			<div class="col-sm-6 col-md-6">
 				{{#if cantReservas}}		
-			 		<table class="table table-hover" name="tabla" id="tabla">
-      			 		<thead>
-           					<tr style="border: 1px solid black; background: grey;">
-               			   		<th><h4 align="center" style="color:white;font-weight:bold">Estado</h4></th>
-               			   		<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>				
-							</tr>
-						</thead>
-						<tbody>
+				<table class="table table-hover" name="tabla" id="tabla">
+					<thead>
+						<tr style="border: 1px solid black; background: grey;">
+							<th><h4 align="center" style="color:white;font-weight:bold">Estado</h4></th>
+							<th><h4 align="center" style="color:white;font-weight:bold">Cantidad</h4></th>				
+						</tr>
+					</thead>
+					<tbody>
 						{{#each cantReservas}}
-							<tr>
-								<td><h4 align="center">{{this.tipo}}</h4></td>
-								<td><h4 align="center">{{this.cantidad}}</h4></td>
-							</tr>
+						<tr>
+							<td><h4 align="center">{{this.tipo}}</h4></td>
+							<td><h4 align="center">{{this.cantidad}}</h4></td>
+						</tr>
 						{{/each}}
-						</tbody>
-					</table>
+					</tbody>
+				</table>
 				{{else}}
-					<div class="row" style="margin-top: 110px;">
-						<h3>Seleccione un rango de fechas.</h3>
-					</div>
+				<div class="row" style="margin-top: 110px;">
+					<h3>Seleccione un rango de fechas.</h3>
+				</div>
 				{{/if}}
 			</div>
 		</div> 
@@ -122,7 +122,18 @@
 						</table>
 					</div>
 				</div>
-			</div>			
+			</div>	
+			<div class="row">
+				<div class="col-sm-4 col-md-4">
+					<div class="ct-chart2 ct-perfect-fourth"></div>
+				</div>
+				<div class="col-sm-4 col-md-4">
+					<div class="ct-chart ct-perfect-fourth"></div>
+				</div>
+				<div class="col-sm-4 col-md-4">
+					<div class="ct-chart1 ct-perfect-fourth"></div> 
+				</div>
+			</div>		
 		</div>
 		<div class="row">
 			<legend align="center">Historico cantidad de reservas por dia</legend>
@@ -166,11 +177,19 @@
 			</div>
 		</div>
 		<div class="row">
+			<div class="col-sm-6 col-md-6">
+				<div class="ct-chart3 ct-perfect-fourth"></div>
+			</div>
+			<div class="col-sm-6 col-md-6">
+				<div class="ct-chart4 ct-perfect-fourth"></div>
+			</div>
+		</div>
+		<div class="row">
 			<legend>Historico de reservas concretadas y canceladas por usuarios.</legend>
 			<div class="row">
 				<legend align="center">A través de Sale Partido</legend>
 				<div class="col-sm-6 col-md-6">
-				{{#if cantJugadoresReservaron}}
+					{{#if cantJugadoresReservaron}}
 					<table class="table table-hover" name="tabla" id="tabla">	
 						<caption><h4 align="center">Concretadas</h4></caption>
 						<thead>
@@ -188,12 +207,12 @@
 							{{/each}}
 						</tbody>
 					</table>
-				{{else}}
-				<h2>Sin Informes</h2>
-				{{/if}}
+					{{else}}
+					<h2>Sin Informes</h2>
+					{{/if}}
 				</div>					
 				<div class="col-sm-6 col-md-6">
-				{{#if jugadoresCancelaron}}
+					{{#if jugadoresCancelaron}}
 					<table class="table table-hover" name="tabla" id="tabla">
 						<caption><h4 align="center">Canceladas</h4></caption>
 						<thead>
@@ -211,15 +230,15 @@
 							{{/each}}
 						</tbody>
 					</table>
-				{{else}}
-				<h2>Sin Informes</h2>
-				{{/if}}
+					{{else}}
+					<h2>Sin Informes</h2>
+					{{/if}}
 				</div>
 			</div>	
 			<div class="row" style="margin-top: 10px;">
 				<legend align="center">A través del administrador</legend>
 				<div class="col-sm-6 col-md-6">
-				{{#if cantJugadoresReservaronP}}
+					{{#if cantJugadoresReservaronP}}
 					<table class="table table-hover" name="tabla" id="tabla">
 						<caption><h4 align="center">Concretadas</h4></caption>
 						<thead>
@@ -237,9 +256,9 @@
 							{{/each}}
 						</tbody>
 					</table>
-				{{else}}
-				<h2>Sin Informes</h2>
-				{{/if}}
+					{{else}}
+					<h2>Sin Informes</h2>
+					{{/if}}
 				</div>
 				<div class="col-sm-6 col-md-6">
 					{{#if jugadoresCancelaronP}}
@@ -264,32 +283,7 @@
 					<h2>Sin Informes</h2>
 					{{/if}}
 				</div>
-			</div>
-			<div class="row">
-			<!-- Total por rango de horas -->
-			<div class="col-sm-6 col-md-6">
-			<div class="ct-chart1 ct-perfect-fourth"></div> 
-			</div>
-			<div class="col-sm-6 col-md-6">
-			<div class="ct-chart ct-perfect-fourth"></div>
-			</div>
-			</div>
-			<div class="row">
-			<div class="col-sm-6 col-md-6">
-			<div class="ct-chart2 ct-perfect-fourth"></div>
-			</div>
-			<div class="col-sm-6 col-md-6">
-			<div class="ct-chart3 ct-perfect-fourth"></div>
-			</div>
-			</div>
-			<div class="row">
-			<div class="col-sm-6 col-md-6">
-			<div class="ct-chart4 ct-perfect-fourth"></div>
-			</div>
-			<div class="col-sm-6 col-md-6">
-			<div class="ct-chart8 ct-perfect-fourth"></div>
-			</div>
-			</div>
+			</div>		
 		</div>
 	</div>
 </template>

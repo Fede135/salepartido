@@ -1,5 +1,5 @@
 Template.reportes.onRendered(function() {
-this.$('#datetimepickerDesde').datetimepicker({
+	this.$('#datetimepickerDesde').datetimepicker({
 		locale: 'es',
 		format: 'L',   
 		showClear: true,
@@ -11,40 +11,40 @@ this.$('#datetimepickerDesde').datetimepicker({
 		showClear: true,
 	});	
 //Total por rango de hora -------------------------------------
-	var data1 = { 
-		labels: ['Mañana','Siesta','Tarde','Noche'],  
-		series: [totalRangoHora.call(this.data)]
-	};
-	var options1 = {
-		width: 300,
-		height: 200
-	};
-	new Chartist.Bar('.ct-chart1', data1, options1,{
-  distributeSeries: true
+var data1 = { 
+	labels: ['Mañana','Siesta','Tarde','Noche'],  
+	series: [totalRangoHora.call(this.data)]
+};
+var options1 = {
+	width: 300,
+	height: 200
+};
+new Chartist.Bar('.ct-chart1', data1,options1,{
+	distributeSeries: true
 });
 // Cancelar por rango de hora ------------------------------------
-	var data = { 
-		labels: ['Mañana','Siesta','Tarde','Noche'],  
-		series: [CanceladasRangoHoras.call(this.data)]
-	};
-	var options = {
-		width: 300,
-		height: 200
-	};			
-	new Chartist.Bar('.ct-chart', data,options,{
-  distributeSeries: true
+var data = { 
+	labels: ['Mañana','Siesta','Tarde','Noche'],  
+	series: [CanceladasRangoHoras.call(this.data)]
+};
+var options = {
+	width: 300,
+	height: 200
+};			
+new Chartist.Bar('.ct-chart', data,options,{
+	distributeSeries: true
 });
 //Concretadas por rango de hora-------------------------------
-	var data2 = { 
-		labels: ['Mañana','Siesta','Tarde','Noche'],  
-		series: [ConcretadasRangoHoras.call(this.data)]
-	};
-	var options2 = {
-		width: 300,
-		height: 200
-	};			
-	new Chartist.Bar('.ct-chart2', data2,options2,{
-  distributeSeries: true
+var data2 = { 
+	labels: ['Mañana','Siesta','Tarde','Noche'],  
+	series: [ConcretadasRangoHoras.call(this.data)]
+};
+var options2 = {
+	width: 300,
+	height: 200
+};			
+new Chartist.Bar('.ct-chart2', data2,options2,{
+	distributeSeries: true
 });
 	//Concretadas por dia----------------------------------------
 	var data3 = { 
@@ -52,52 +52,26 @@ this.$('#datetimepickerDesde').datetimepicker({
 		series: [concretadasDia.call(this.data)]
 	};
 	var options3 = {
-		width: 300,
-		height: 200		
+		width: 400,
+		height: 300		
 	};		
 	new Chartist.Bar('.ct-chart3', data3,options3,{
-  distributeSeries: true
-});
+		distributeSeries: true
+	});
 	//Canceladas por dia-----------------------------------------
 	var data4 = { 
 		labels: ['Domingo','Lunes','Martes','Miercoles','Jueves','Viernes','Sabado'],  
 		series: [canceladasDia.call(this.data)]
 	};
 	var options4 = {
-		width: 300,
-		height: 200
+		width: 400,
+		height: 300
 		
 	};		
 	new Chartist.Bar('.ct-chart4', data4,options4,{
-  distributeSeries: true
-});
-	//PRUEBA --------------------------------
-/*var data8 = {
-		labels: ['Mañana','Siesta','Tarde','Noche'],  
-		series: totalRangoHora.call(this.data)  
-};
-
-var options8 = {
-	width: 300,
-	height: 200
- 
-};*/
-
-/*var responsiveOptions = [
-  ['screen and (min-width: 640px)', {
-    chartPadding: 30,
-    labelOffset: 100,
-    labelDirection: 'explode',
-    labelInterpolationFnc: function(value) {
-      return value;
-    }
-  }],
-  ['screen and (min-width: 1024px)', {
-    labelOffset: 80,
-    chartPadding: 20
-  }]
-];*/
-/*new Chartist.Pie('.ct-chart1', data8, options8);*/
+		distributeSeries: true
+	});
+	
 });
 var totalRangoHora = function(){
 	var idRecinto = this._id;
@@ -724,8 +698,7 @@ Template.reportes.events({
 			//console.log(fechaHasta);
 			Session.set('fechaHasta', fechaHasta);
 		});
-},        
-
+},   
 
 });
 
