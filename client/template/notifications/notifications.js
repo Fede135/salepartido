@@ -11,6 +11,9 @@ Template.notifications.helpers({
 Template.notifications.events({
   'click a': function() {
     Notifications.update(this._id, {$set: {read: true}});
+  },
+  'click #verTodas': function () {
+    Router.go('allNotifications',{_id: Meteor.userId()});
   }
 });
 
