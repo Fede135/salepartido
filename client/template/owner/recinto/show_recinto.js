@@ -82,7 +82,7 @@ Template.showRecinto.helpers({
 	},
 
 	isOwner: function(){
-    return this.ownerId === Meteor.userId();    
+    return Roles.userIsInRole(Meteor.userId(), 'owner', 'Roles.GLOBAL_GROUP');    
   },
 	
 

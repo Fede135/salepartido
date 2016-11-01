@@ -105,17 +105,17 @@
 							<h2>Invitar Amigos</h2>
 				            <ul class="list-unstyled">
 								{{#each amigos}}
-									<div class="checkbox">
-										<label>
+									<div class="checkbox" style="margin-left: 20px;">
+										<h4>
 												<input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}}
-										</label>
+										</h4>
 									</div>    
 									
-									<div class="checkbox hidden" data-toggle-visibility="{{_id}}">
-										<label>
+									<div class="checkbox hidden" data-toggle-visibility="{{_id}}" style="margin-left: 40px;">
+										<h4 style="color: #4d3f92;">
 												<input type="checkbox" name="host" value="{{#each this.emails}}{{this.address}}{{/each}}"> Permiso para invitar a sus amigos
-										</label>
-							    </div>
+										</h4>
+							    	</div>
 								{{/each}} 
 				            </ul>
 				        </div>
@@ -125,7 +125,7 @@
 							<button type="submit" name="crear" id="crear" class="btn btn-propio">Reservar</button>
 						</div>
 						<div class="col-sm-1 col-md-1" style="margin-top: 10px;">
-							<button type="button" class="btn btn-propio" name = "cancelar" id="cancelar">Cancelar</button>
+							<button type="button" class="btn btn-propioV" name = "cancelar" id="cancelar">Cancelar</button>
 						</div>
 					</div>	
 			</form>			
