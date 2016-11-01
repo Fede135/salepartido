@@ -1,19 +1,48 @@
 <template name="dashboardAdmin">
     <div class="container-fluid">
+
+        <!--Modal de esta seguro eliminar usuario-->
+        <div id="eliminarUsuarioModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">¿Estas seguro de...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>...que quieres eliminar el usuario?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-propioV" data-dismiss="modal">No</button>
+                        <button id="deleteUser" type="button" class="btn btn-propio" data-dismiss="modal">Sí</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Alert usuario cambiado a Dueño-->
         <div class="alert alert-info alert-dismissible" role="alert" id="alertDarDueño" style="display: none; margin-top: -20px;">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
              </button>
-             El rol de este usuario fue cambiado de Jugador a Dueño.
+             El rol de este <strong>usuario</strong> fue cambiado de Jugador a <strong>Dueño</strong>.
         </div>
         <!--Alert usuario cambiado a Jugador-->
         <div class="alert alert-info alert-dismissible" role="alert" id="alertDarPlayer" style="display: none; margin-top: -20px;">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-            El rol de este usuario fue cambiado de Dueño a Jugador.
+            El rol de este <strong>usuario</strong> fue cambiado de Dueño a <strong>Jugador</strong>.
         </div>
+
+         <!--Alert usuario cambiado a Jugador-->
+        <div class="alert alert-danger alert-dismissible" role="alert" id="alertEliminarUser" style="display: none; margin-top: -20px;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            El <strong>usuario</strong> se ha <strong>eliminado</strong>.
+        </div>
+
         <div class="row">
             <legend><h1 align="center">Usuarios dueños</h1></legend>
         </div>
@@ -24,7 +53,7 @@
                 </div>
                 <div class="col-sm-4 col-md-4">
                     <button type="button" class="btn btn-propio" name= "cambiarRoleAPlayer" id="cambiarRoleAPlayer">Hacer player</button>
-                    <button type="button" class="btn btn-propio" name= "eliminarPlayer" id="eliminarPlayer">Eliminar usuario</button>
+                    <button type="button" class="btn btn-propio" name= "eliminarPlayer" id="eliminarPlayer" data-toggle="modal" data-target="#eliminarUsuarioModal">Eliminar usuario</button>
                 </div>
             </div>
         {{/each}}
@@ -38,7 +67,7 @@
             </div>
             <div class="col-sm-4 col-md-4">
                 <button type="button" class="btn btn-propio" name= "cambiarRoleADueno" id="cambiarRoleADueno">Hacer dueño</button>
-                <button type="button" class="btn btn-propio" name= "eliminarDueno" id="eliminarDueno">Eliminar usuario</button>
+                <button type="button" class="btn btn-propio" name= "eliminarDueno" id="eliminarDueno" data-toggle="modal" data-target="#eliminarUsuarioModal">Eliminar usuario</button>
             </div>
         </div>
         {{/each}}  
