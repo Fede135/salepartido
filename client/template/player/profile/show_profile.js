@@ -14,6 +14,16 @@ Template.showProfile.onRendered(function() {
   } else {
     $('#alertReservaCancelada').hide();
   }
+  //eliminar de la lista jugadores 
+var arrayFriend = this.data.profile.friends;
+var idU = this.data._id;
+if(arrayFriend){
+  arrayFriend.forEach(function (e,i) {
+    if(!Meteor.users.findOne({_id:e.id})){         
+      Meteor.users.update(idU,{ $pull: { 'profile.friends':{id:e.id} }});
+    }
+  });
+}
 });
 
 Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo el perfil
