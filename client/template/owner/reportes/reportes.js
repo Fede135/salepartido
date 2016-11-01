@@ -292,7 +292,7 @@ Template.reportes.helpers({
 		var cantidadJugadorOrdenado = cantidadJugador.sort();
 		
 		//trae los q mas tienen
-		var ultimo3 = cantidadJugadorOrdenado.slice(Math.max(cantidadJugadorOrdenado.length - 7, 1));
+		var ultimo3 = cantidadJugadorOrdenado.slice(Math.max(cantidadJugadorOrdenado.length - 4, 1));
 		
 		var arrayObjetos= [];
 		ultimo3.forEach(function (a) {
@@ -336,7 +336,7 @@ jugadoresCancelaron: function(){
 		var cantidadJugador = _.zip(cantidadReservas,arrayJugadoresCancelaronUnicos);
 		//lo ordeno de menor a mayor
 		var cantidadJugadorOrdenado = cantidadJugador.sort();
-		var ultimo3 = cantidadJugadorOrdenado.slice(Math.max(cantidadJugadorOrdenado.length - 7, 1));
+		var ultimo3 = cantidadJugadorOrdenado.slice(Math.max(cantidadJugadorOrdenado.length - 4, 1));
 		var arrayObjetos= [];
 		ultimo3.forEach(function (a) {
 			var obje = _.object(['cantidad','usuario'],a);
@@ -372,9 +372,9 @@ cantJugadoresReservaronP : function(){ //personalmente, llamando o yendo al reci
 		var cantidadJugador = _.zip(cantidadReservas,arrayNombreJugadoresUnicos);		
 		var cantidadJugadorOrdenado = cantidadJugador.sort();	
 		//trae los q mas tienen
-		//var ultimo3 = cantidadJugadorOrdenado.slice(Math.max(cantidadJugadorOrdenado.length - 3, 1));	
+		var ultimo3 = cantidadJugadorOrdenado.slice(Math.max(cantidadJugadorOrdenado.length - 4, 1));	
 		var arrayObjetos= [];
-		cantidadJugadorOrdenado.forEach(function (a) {
+		ultimo3.forEach(function (a) {
 			var obje = _.object(['cantidad','usuario'],a);
 			arrayObjetos.push(obje);
 		});
@@ -409,9 +409,9 @@ jugadoresCancelaronP : function(){ //personalmente, llamando o yendo al recinto
 		var cantidadJugador = _.zip(cantidadReservas,arrayNombreJugadoresUnicos);		
 		var cantidadJugadorOrdenado = cantidadJugador.sort();	
 		//trae los q mas tienen
-		//var ultimo3 = cantidadJugadorOrdenado.slice(Math.max(cantidadJugadorOrdenado.length - 3, 1));	
+		var ultimo3 = cantidadJugadorOrdenado.slice(Math.max(cantidadJugadorOrdenado.length - 4, 1));	
 		var arrayObjetos= [];
-		cantidadJugadorOrdenado.forEach(function (a) {
+		ultimo3.forEach(function (a) {
 			var obje = _.object(['cantidad','usuario'],a);
 			arrayObjetos.push(obje);
 		});
