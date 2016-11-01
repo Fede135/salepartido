@@ -252,16 +252,16 @@
                           {{#if jugadoresNoInvitados}}
                               {{#each jugadoresNoInvitados}}
 
-                                  <div class="checkbox">
-                                    <label>
+                                  <div class="checkbox" style="margin-left: 20px;">
+                                    <h4>
                                         <input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}}
-                                    </label>
+                                    </h4>
                                   </div>    
                                   
-                                  <div class="checkbox hidden" data-toggle-visibility="{{_id}}">
-                                    <label>
+                                  <div class="checkbox hidden" data-toggle-visibility="{{_id}}" style="margin-left: 40px;">
+                                    <h4 style="color: #4d3f92;">
                                         <input type="checkbox" name="host" value="{{#each this.emails}}{{this.address}}{{/each}}"> Permiso para invitar a sus amigos
-                                    </label>
+                                    </h4>
                                   </div>
                               {{/each}} 
                               <button type="button" name="invitarJugadores" id="invitarJugadores" class="btn btn-propio" style="margin-bottom:10px;">Invitar</button>
