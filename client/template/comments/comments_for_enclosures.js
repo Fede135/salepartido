@@ -12,7 +12,7 @@ AutoForm.addHooks(
         if (doc.commentToEnclosure == undefined) {
           AutoForm.addStickyValidationError('enterCommentsEnclosure', 'commentToEnclosure', 'required', doc.commentToEnclosure);  
         } else {
-          var docFiltrado = doc.commentToEnclosure.replace(/puto|pajero|cagón|culiado|pija|puta|concha|conchudo|conchuda|cagon|ojete|orto/gi, function filtrar(x) {
+          var docFiltrado = doc.commentToEnclosure.replace(/puto|pajero|cagón|culiado|pija|puta|concha|conchudo|conchuda|cagon|ojete|orto|marica/gi, function filtrar(x) {
             var len= x.length;
             var arr = []
             for (var i = 0; i < len; i++) {

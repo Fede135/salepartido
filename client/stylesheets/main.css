@@ -27,6 +27,15 @@
   color: white;
 }
 
+html {
+  max-height: 100%;
+  position: relative;
+}
+
+body {
+  margin: 0;
+  margin-bottom: 0px;
+}
 #login-buttons-email-address-verified-modal .modal-dialog {
 }
 
@@ -55,7 +64,7 @@ footer {
  background:#101010;
  padding:20px 0;
  border-top:5px solid #1bb3af;
- position: absolute;
+ position: relative;
  bottom: 0;
 }
 
