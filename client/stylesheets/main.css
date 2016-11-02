@@ -28,14 +28,17 @@
 }
 
 html {
-  max-height: 100%;
-  position: relative;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 body {
+  position: relative;
   margin: 0;
-  margin-bottom: 0px;
+  padding-bottom: 8rem;
+  min-height: 100%;
 }
+
 #login-buttons-email-address-verified-modal .modal-dialog {
 }
 
@@ -60,11 +63,12 @@ body {
 }
 
 footer {
- width: 100%;
+ right: 0;
+ left: 0;
  background:#101010;
  padding:20px 0;
  border-top:5px solid #1bb3af;
- position: relative;
+ position: absolute;
  bottom: 0;
 }
 
