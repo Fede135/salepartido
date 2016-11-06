@@ -19,8 +19,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-collapse-2">
           <ul class="nav navbar-nav navbar-right">
-            {{#unless isInRole 'owner'}}
+            {{#if isInRole 'player'}}
                 {{#if emailsVerified}}
+                  {{#if habilitado}}
                     <form class="navbar-form navbar-left">
                         <div class="form-group" style=" padding: 6px;">
                             {{> search}}
@@ -31,8 +32,9 @@
                     <li class="collapse" data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2" style=" padding: 4px;">
                         {{> notifications}}
                     </li>
+                    {{/if}}
                 {{/if}}
-           {{/unless}}
+           {{/if}}
 
            {{#if isInRole 'owner'}}
                 <li class ="dropdown">

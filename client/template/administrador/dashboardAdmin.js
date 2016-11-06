@@ -19,6 +19,9 @@ Template.dashboardAdmin.helpers({
 	emailsVerified: function () {
 		return Meteor.users.findOne({_id: this._id, 'emails.0.verified': true});
 	},
+	habilitado: function () {
+		return Meteor.users.findOne({_id: this._id, 'estado_usuario': "habilitado"});
+	}
 });
 
 Template.dashboardAdmin.events({
@@ -55,16 +58,24 @@ Template.dashboardAdmin.events({
 
 	'click #deleteUser' : function (e) {
 		var userId = Session.get('userId');
-	  Meteor.users.remove({_id: userId});
+	 	Meteor.users.update({_id: userId}, {$set: {'estado_usuario': "suspendido"}});
 		$('#alertEliminarUser').show();
 
 	},
 
 	'click #verificarEmail' : function (e) {
 		var userId = Session.get('userId');
-		console.log(userId);
-	  Meteor.users.update({_id: userId}, {$set: {'emails.0.verified':true}});	
+	  	Meteor.users.update({_id: userId}, {$set: {'emails.0.verified':true}});	
 		$('#alertVerificarEmail').show();
+	},
+	'click #habilitarUsuario': function (e) {
+		e.preventDefault;
+		Session.set('userId', this._id);
+	},
+	'click #habilitarUser' : function (e) {
+		var userId = Session.get('userId');
+	  	Meteor.users.update({_id: userId}, {$set: {'estado_usuario': "habilitado"}});	
+		$('#alertUsuarioHabilitada').show();
 	},
 
 	'click #lanzaId' : function (e) {
