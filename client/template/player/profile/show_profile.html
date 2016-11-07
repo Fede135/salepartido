@@ -65,7 +65,7 @@
         <!--muestro datos del usuario-->
         <div class="row">
               <div class="col-sm-12 col-md-12">
-                <legend align="center"><h1>{{user.profile.name}}</h1></legend>
+                <legend align="center"><h1>{{user.profile.name}},{{promedioGeneral}}</h1></legend>
               </div>
         </div>
         <div class="row">
@@ -78,9 +78,13 @@
               <div class="col-sm-2 col-md-2">
                   <h4><strong>Peso: </strong>{{user.profile.player.weight}}</h4>
               </div>
-              <div class="col-sm-4 col-md-4">
+              <div class="col-sm-3 col-md-3">
                   <h4><strong>Posición: </strong>{{user.profile.player.position}}</h4>
               </div>
+              <!-- <div class="col-sm-3 col-md-3">
+                <img src={{imagenProfile}} alt="Imagen1" height="420" width="600" class="img-circle">
+              </div> -->
+
         </div>
         <div class="row">
               <div class="col-sm-1 col-md-1">

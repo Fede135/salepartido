@@ -33,6 +33,12 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     return Meteor.users.findOne({_id: this._id});
   },
 
+ /* imagenProfile: function(){
+    var idImagen = Meteor.users.findOne({_id: this._id}).profile.imagenProfile_id
+    var url = idImagen1 && ImagesProfile.findOne({_id: idImagen}).url();
+      return url;
+  },*/
+
   isUserFacebook: function(){
     var user = Meteor.users.findOne({_id: this._id});
     if (user && user.services && user.services.facebook){
@@ -240,7 +246,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
         }
       },
-      //Resto de las posiciones
+      
       prompase: function(){
         var cali = Calificacion_pase.findOne({id_user:this._id});
         if(cali){
@@ -258,6 +264,8 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
         }
       },
+
+      //Resto de las posiciones
       promdefensa: function(){
         var cali = Calificacion_defensa.findOne({id_user:this._id});
         if(cali){
@@ -329,6 +337,236 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
           }
         }
       },
+
+  promedioGeneral: function(){
+  var arrayGeneral = [];
+  
+  var calificacionConducta = Calificacion_conducta.findOne({id_user:this._id});
+  if(calificacionConducta){
+    var array = calificacionConducta.votes;
+    var promedioConducta = 0;
+    if(array.length != 0){
+      for( i=0; i<array.length; i++ ){
+        promedioConducta += array[i];
+      }
+      promedioConducta = promedioConducta / array.length;
+      if(promedioConducta != 0 ){
+        promedioConducta = promedioConducta.toFixed(2);
+        arrayGeneral.push(promedioConducta);       
+      }
+    }
+  }
+
+  var calificacionPuntualidad = Calificacion_puntualidad.findOne({id_user:this._id});
+  if(calificacionPuntualidad){
+    var array = calificacionPuntualidad.votes;
+    var promedioPuntualidad = 0;
+    if(array.length != 0){
+      for( i=0; i<array.length; i++ ){
+        promedioPuntualidad += array[i];
+      }
+      promedioPuntualidad = promedioPuntualidad / array.length;
+      //console.log('pormpuntualida',promedioPuntualidad)
+      if(promedioPuntualidad != 0){
+        promedioPuntualidad = promedioPuntualidad.toFixed(2);
+        //console.log('puntuali recortado',promedioPuntualidad)
+         arrayGeneral.push(promedioPuntualidad);
+      }
+    }
+  }
+
+  var calificacionResistencia = Calificacion_resistencia.findOne({id_user:this._id});
+  if(calificacionResistencia){
+    var array = calificacionResistencia.votes;
+    var promedioResistencia = 0;
+    if(array.length != 0){
+      for( i=0; i<array.length; i++ ){
+        promedioResistencia += array[i];
+      }
+      promedioResistencia = promedioResistencia / array.length;
+      if(promedioResistencia != 0){
+        promedioResistencia = promedioResistencia.toFixed(2);
+        arrayGeneral.push(promedioResistencia);
+      }
+    }
+  }
+
+  var calificacionFairplay = Calificacion_fairplay.findOne({id_user:this._id});
+  if(calificacionFairplay){
+    var array = calificacionFairplay.votes;
+    var promedioFairplay = 0;
+    if(array.length != 0){
+      for( i=0; i<array.length; i++ ){
+        promedioFairplay += array[i];
+      }
+      promedioFairplay = promedioFairplay / array.length;
+      if(promedioFairplay != 0){
+        promedioFairplay = promedioFairplay.toFixed(2);
+        arrayGeneral.push(promedioFairplay);
+      }
+    }
+  }
+
+  var califiacionBurradas = Calificacion_burradas.findOne({id_user:this._id});
+  if(califiacionBurradas){
+    var array = califiacionBurradas.votes;
+    var promedioBurrada = 0;
+    if(array.length != 0){
+      for( i=0; i<array.length; i++ ){
+        promedioBurrada += array[i];
+      }
+      promedioBurrada = promedioBurrada / array.length;
+      if(promedioBurrada != 0){
+        promedioBurrada = promedioBurrada.toFixed(2);
+        arrayGeneral.push(promedioBurrada);
+      }
+    }
+  }
+
+  var calificacionPase = Calificacion_pase.findOne({id_user:this._id});
+  if(calificacionPase){
+    var array = calificacionPase.votes;
+    var promedioPase = 0;
+    if(array.length != 0){
+      for( i=0; i<array.length; i++ ){
+        promedioPase += array[i];
+      }
+      promedioPase = promedioPase / array.length;
+      if(promedioPase != 0){
+        promedioPase = promedioPase.toFixed(2);
+        arrayGeneral.push(promedioPase);
+      }
+    }
+  }
+     
+
+  var isArquero = Meteor.users.findOne({_id: this._id, 'profile.player.position':"Arquero"});
+  
+  if(isArquero){
+    var calificacionReflejo = Calificacion_reflejo.findOne({id_user:this._id});
+    if(calificacionReflejo){
+      var array = calificacionReflejo.votes;
+      var promedioReflejo = 0;
+      if(array.length != 0){     
+        for( i=0; i<array.length; i++ ){
+          promedioReflejo += array[i];
+        }
+        promedioReflejo = promedioReflejo / array.length;        
+        if(promedioReflejo != 0){
+          promedioReflejo = promedioReflejo.toFixed(2);
+          arrayGeneral.push(promedioReflejo);
+        }
+      }
+    }
+
+    var calificacionAtajadas = Calificacion_atajadas.findOne({id_user:this._id});
+    if(calificacionAtajadas){
+      var array = calificacionAtajadas.votes;
+      var promedioAtajadas = 0;
+      if(array.length != 0){
+        for( i=0; i<array.length; i++ ){
+          promedioAtajadas += array[i];
+        }
+        promedioAtajadas = promedioAtajadas / array.length;
+        if(promedioAtajadas != 0){
+          promedioAtajadas = promedioAtajadas.toFixed(2);
+          arrayGeneral.push(promedioAtajadas)
+        }
+      }
+    }
+  }else{
+    var calificacionDefensa = Calificacion_defensa.findOne({id_user:this._id});
+    if(calificacionDefensa){
+      var array = calificacionDefensa.votes;
+      var promedioDefensa = 0;
+      if(array.length != 0){
+        for( i=0; i<array.length; i++ ){
+          promedioDefensa += array[i];
+        }
+        promedioDefensa = promedioDefensa / array.length;
+        if(promedioDefensa != 0){
+          promedioDefensa = promedioDefensa.toFixed(2);
+          arrayGeneral.push(promedioDefensa);
+        }
+      }
+    }
+
+    var calificacionGambeta = Calificacion_gambeta.findOne({id_user:this._id});
+    if(calificacionGambeta){
+      var array = calificacionGambeta.votes;
+      var promedioGambeta = 0;
+      if(array.length != 0){
+        for( i=0; i<array.length; i++ ){
+          promedioGambeta += array[i];
+        }
+        promedioGambeta = promedioGambeta / array.length;
+        if(promedioGambeta != 0){
+          promedioGambeta = promedioGambeta.toFixed(2);
+          arrayGeneral.push(promedioGambeta);
+        }
+      }
+    }
+
+    var calificacionTiro = Calificacion_tiroalarco.findOne({id_user:this._id});
+    if(calificacionTiro){
+      var array = calificacionTiro.votes;
+      var promedioTiro = 0;
+      if(array.length != 0){
+        for( i=0; i<array.length; i++ ){
+          promedioTiro += array[i];
+        }
+        promedioTiro = promedioTiro / array.length;
+        if(promedioTiro != 0){
+          promedioTiro= promedioTiro.toFixed(2);
+          arrayGeneral.push(promedioTiro);
+        }
+      }
+    }
+
+    var calificacionVelocidad = Calificacion_velocidad.findOne({id_user:this._id});
+    if(calificacionVelocidad){
+      var array = calificacionVelocidad.votes;
+      var promedioVelocidad = 0;
+      if(array.length != 0){
+        for( i=0; i<array.length; i++ ){
+          promedioVelocidad += array[i];
+        }
+        promedioVelocidad = promedioVelocidad / array.length;
+        if(promedioVelocidad != 0){
+          promedioVelocidad = promedioVelocidad.toFixed(2);
+          arrayGeneral.push(promedioVelocidad);        
+        }
+      }
+    }
+  }
+  //console.log('array promedios',arrayGeneral)
+  var suma = 0;  
+  if(arrayGeneral.length !=0){
+    for( i=0; i<arrayGeneral.length; i++ ){
+      var number = parseFloat(arrayGeneral[i]);
+      suma = suma + number;
+    };     
+    
+    //console.log('suma',suma)
+    if(suma != 0){
+      var promGeneral = suma/arrayGeneral.length; 
+      var promedioString = promGeneral.toFixed(2);         
+      //Meteor.users.update({_id:this._id},{$set : {'profile.promedioGeneral': promGeneral}});
+      if(!Meteor.users.findOne({_id:this._id,'profile.promedioGeneral':promedioString})){
+          //console.log('adeentroo if cliente')
+          Meteor.call('addPromedio',promGeneral,this._id);
+          return promedioString ;
+        }else{
+          return promedioString ;
+        }
+      }else{
+        return 0;
+      }
+  }else{
+    return 0;
+  }
+  
+},
 
       tieneVotoConducta: function () {
         var aconducta = Calificacion_conducta.findOne({id_user:this._id, upvotes: Meteor.userId() });
