@@ -39,7 +39,7 @@
                     {{> notifications}}
                 </li>
             {{/if}}  
-                <li><a class="btn btn-inverse collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2" style=" padding: 16px 2px;">{{>loginButtons}}</a></li>
+                <li><a class="btn btn-inverse collapsed"  data-toggle="collapse" href="#nav-collapse2" aria-expanded="false" aria-controls="nav-collapse2" style=" padding: 16px 2px;" id="loginButton"> {{>loginButtons}}</a></li>
                     {{#if currentUser}}
                 <li><a href="{{pathFor 'Home'}}" width="35px" height="35px">{{> gravatar}}</a></li>
                     {{/if}}

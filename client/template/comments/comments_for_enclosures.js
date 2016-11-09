@@ -1,5 +1,5 @@
 Template.enterCommentsForEnclosures.events({
-  'keyup [name="commentToEnclosure"]' : function (event, template) {
+  'keyup [name="commentToEnclosurediv"]' : function (event, template) {
       AutoForm.removeStickyValidationError('enterCommentsEnclosure', 'commentToEnclosure');
     }
 });
@@ -30,6 +30,10 @@ AutoForm.addHooks(
     },
     beginSubmit: function () {
      AutoForm.removeStickyValidationError('enterCommentsEnclosure', 'commentToEnclosure');
+    },
+
+    onSubmit : function() {
+      AutoForm.removeStickyValidationError('enterCommentsEnclosure', 'commentToEnclosure');
     },
 
     after: {

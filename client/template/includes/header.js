@@ -1,3 +1,11 @@
+Template.header.events({
+	'click #loginButton': function(){
+		if (Meteor.user() && Meteor.user().services && Meteor.user().services.facebook) {
+			$('#login-buttons-open-change-password').addClass('hidden');
+		}	
+	}
+})
+
 Template.header.helpers({
 	emailsVerified: function () {
 		return Meteor.users.findOne({_id: Meteor.userId(), 'emails.0.verified': true});

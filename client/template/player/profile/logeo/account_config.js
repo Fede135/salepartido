@@ -9,7 +9,7 @@ Accounts.ui.config({
     fieldLabel: 'Nombre',
     inputType: 'text',
     visible: true,
-    validate: function(value, errorFunction) {
+  validate: function(value, errorFunction) {
           if (!value) {
             errorFunction("Ingrese su nombre");
             return false;

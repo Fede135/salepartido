@@ -1,7 +1,10 @@
 Template.enterCommentsForPlayers.events({
-  'keyup [name="commentToPlayer"]' : function (event, template) {
+  'keyup [name="commentToPlayerdiv"]' : function (event, template) {
       AutoForm.removeStickyValidationError('enterCommentsPlayers', 'commentToPlayer');
-    }
+    },
+  'focusout [name="commentToPlayerdiv"]' : function (event, template) {
+      AutoForm.removeStickyValidationError('enterCommentsPlayers', 'commentToPlayer');
+    },
 });
 
 AutoForm.addHooks(
