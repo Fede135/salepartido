@@ -5,6 +5,11 @@ Meteor.publish('reservas', function(){
 
 Meteor.publish('recintos', function(){
 	
+	return Recintos.find({'estado_recinto': "Habilitado"});
+});
+
+Meteor.publish('recintosAll', function(){
+	
 	return Recintos.find();
 });
 
