@@ -76,15 +76,25 @@
         </div>
         {{#each usuarioDueños}}
             <div class="row">
-                <div class="col-sm-8 col-md-8">
-                  <h4>Nombre de usuario: <strong>{{this.profile.name}}</strong></h4>
-                </div>
-                <div class="col-sm-4 col-md-4">
-                    <button type="button" class="btn btn-propio" name= "cambiarRoleAPlayer" id="cambiarRoleAPlayer">Hacer Jugador</button>
-                    {{#unless emailsVerified}}
-                        <button type="button" class="btn btn-propio" id="lanzaId" data-toggle="modal" data-target="#verificarCorreoModal">Verificar email</button>
-                    {{/unless}}
-                    <button type="button" class="btn btn-propio" name= "eliminarPlayer" id="eliminarPlayer" data-toggle="modal" data-target="#eliminarUsuarioModal">Eliminar usuario</button>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Nombre de usuario: {{this.profile.name}}</h3>
+                    </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-sm-8 col-md-8">
+                                    <p>id: {{this._id}}</p>
+                                    <p>email: {{#each this.emails}}{{this.address}}{{/each}}</p>
+                                </div>
+                                <div class="col-sm-4 col-md-4">
+                                    <button type="button" class="btn btn-propio" name= "cambiarRoleAPlayer" id="cambiarRoleAPlayer">Hacer Jugador</button>
+                                    {{#unless emailsVerified}}
+                                        <button type="button" class="btn btn-propio" id="lanzaId" data-toggle="modal" data-target="#verificarCorreoModal">Verificar email</button>
+                                    {{/unless}}
+                                    <button type="button" class="btn btn-propio" name= "eliminarPlayer" id="eliminarPlayer" data-toggle="modal" data-target="#eliminarUsuarioModal">Eliminar usuario</button>
+                                </div>
+                            </div>
+                    </div>    
                 </div>
             </div>
         {{/each}}
@@ -93,15 +103,25 @@
         </div>
         {{#each usuarioJugador}}
         <div class="row">
-            <div class="col-sm-8 col-md-8">
-                <h4>Nombre de usuario: <strong>{{this.profile.name}}</strong></h4>
-            </div>
-            <div class="col-sm-4 col-md-4">
-                <button type="button" class="btn btn-propio" name= "cambiarRoleADueno" id="cambiarRoleADueno">Hacer dueño</button>
-                {{#unless emailsVerified}}
-                    <button type="button" class="btn btn-propio" id="lanzaId" data-toggle="modal" data-target="#verificarCorreoModal">Verificar email</button>
-                {{/unless}}    
-                <button type="button" class="btn btn-propio" name= "eliminarDueno" id="eliminarDueno" data-toggle="modal" data-target="#eliminarUsuarioModal">Eliminar usuario</button>
+            <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Nombre de usuario: {{this.profile.name}}</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-8 col-md-8">
+                                <p>id: {{this._id}}</p>
+                                <p>email: {{#each this.emails}}{{this.address}}{{/each}}</p>
+                            </div>
+                            <div class="col-sm-4 col-md-4">
+                                <button type="button" class="btn btn-propio" name= "cambiarRoleADueno" id="cambiarRoleADueno">Hacer dueño</button>
+                                {{#unless emailsVerified}}
+                                <button type="button" class="btn btn-propio" id="lanzaId" data-toggle="modal" data-target="#verificarCorreoModal">Verificar email</button>
+                                {{/unless}}    
+                                <button type="button" class="btn btn-propio" name= "eliminarDueno" id="eliminarDueno" data-toggle="modal" data-target="#eliminarUsuarioModal">Eliminar usuario</button>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
         {{/each}}  
