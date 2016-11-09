@@ -8,13 +8,15 @@
     if (options.profile) { 
       user.profile = options.profile;
       user.profile.name = user.profile.firstName+" "+user.profile.lastName;
+      user.estado_usuario = "habilitado";
       
     };
   } else {
     if(options.profile){
         user.profile = options.profile;
         user.profile.firstName = user.services.facebook.first_name;
-        user.profile.lastName =user.services.facebook.last_name;      
+        user.profile.lastName =user.services.facebook.last_name; 
+        user.estado_usuario = "habilitado";     
         var emails = {
           address: user.services.facebook.email,
           verified : true
