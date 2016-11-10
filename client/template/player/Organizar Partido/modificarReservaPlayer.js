@@ -5,6 +5,11 @@ Template.modificarReservaPlayer.helpers({
     Session.set('reserva', reserva);      
   return reserva;
   },
+
+  reservaCancelada: function () {
+    var reserva = Session.get('reserva');
+    
+  },
 	
   recinto: function () {
     return Recintos.find();

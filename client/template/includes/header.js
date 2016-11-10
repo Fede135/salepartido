@@ -4,9 +4,12 @@ Template.header.events({
 			$('#login-buttons-open-change-password').addClass('hidden');
 		}	
 	}
-})
+});
+
+T9n.setLanguage('es');
 
 Template.header.helpers({
+	
 	emailsVerified: function () {
 		return Meteor.users.findOne({_id: Meteor.userId(), 'emails.0.verified': true});
 	},

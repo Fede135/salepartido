@@ -1,20 +1,9 @@
-Template.enterCommentsForPlayers.events({
-  'keyup [name="commentToPlayerdiv"]' : function (event, template) {
-      AutoForm.removeStickyValidationError('enterCommentsPlayers', 'commentToPlayer');
-    },
-  'focusout [name="commentToPlayerdiv"]' : function (event, template) {
-      AutoForm.removeStickyValidationError('enterCommentsPlayers', 'commentToPlayer');
-    },
-});
-
 AutoForm.addHooks(
   ['enterCommentsPlayers'],
   {
     before: {
       insert: function(doc) {
-        if (doc.commentToPlayer == undefined) {
-          AutoForm.addStickyValidationError('enterCommentsPlayers', 'commentToPlayer', 'required', doc.commentToPlayer);  
-        } else {
+        if (doc.commentToPlayer) {
           var docFiltrado = doc.commentToPlayer.replace(/puto|pajero|cagón|culiado|pija|puta|concha|conchudo|conchuda|cagon|ojete|orto|marica/gi, function filtrar(x) {
             var len= x.length;
             var arr = []
@@ -23,22 +12,21 @@ AutoForm.addHooks(
             }
             return arr.toString().replace(/,/g, "");
           });
-          docModificado = {
+        }
+        var docModificado = {
             commentToPlayer: docFiltrado,
             toUserId: doc.toUserId,
           };
-          return docModificado;
-        }
+          return docModificado; 
       }
     },
-    beginSubmit: function () {
-     AutoForm.removeStickyValidationError('enterCommentsPlayers', 'commentToPlayer');
-    },
-    after: {
-      insert: function (error, result) {
-        createCommentForPlayersNotification(result);
-      }
-    } 
-  },
+  after: {
+    insert: function (error, result) {
+      if(! error){
+       createCommentForPlayersNotification(result);
+      } 
+    }
+  } 
+},
 )
 
