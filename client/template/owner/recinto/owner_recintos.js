@@ -46,9 +46,42 @@ Template.ownerRecintos.events({
 	},
 	'click #deleteRecinto': function(event) {
 		var recintoId = Session.get('idRecintoDeleted');
-		Recintos.remove(recintoId);
+		var recinto = Recintos.findOne({"_id": recintoId});
+		Recintos.update({_id: recintoId}, {$set: {'estado_recinto': "No habilitado"}});
+		var canchasRecinto = Canchas.find({'recintoId': recintoId}).fetch();
+		var cantCanchas = canchasRecinto.length;
+		for (var j = 0; j < cantCanchas; j++) {
+		Canchas.update({_id: canchasRecinto[j]._id}, {$set: {'estado_cancha.estado_de_cancha': "No Habilitada"}});
+		var reservaCanchaRecinto = Reserva.find({'nom_recinto': recinto.nombre_recinto, 'num_cancha': canchasRecinto[j].numero, 'estado': "Reservada"}).fetch();
+		var cantReservaCanchaRecinto = reservaCanchaRecinto.length;
+			for (var z = 0; z < cantReservaCanchaRecinto; z++) {
+			Reserva.update({_id: reservaCanchaRecinto[z]._id}, {$set: {'estado': "Cancelada"}});
+		    var partido = Partido.findOne({'reserva_id': reservaCanchaRecinto[z]._id});
+			var idPartido = partido._id;
+			
+				if (partido){
+				var oldHora = reservaCanchaRecinto[z].hora_de_juego;
+				var oldDia = reservaCanchaRecinto[z].fecha_de_juego;
+				var oldRecinto = reservaCanchaRecinto[z].nom_recinto;
+				var oldCancha = reservaCanchaRecinto[z].num_cancha;
+				var jugadores = Roles.getUsersInRole(['invitado', 'suplente', 'confirmado'], idPartido);
+				var jugadoresId = [];
+				jugadores.forEach(function (e) {
+				var jugadorId = e._id;
+				jugadoresId.push(jugadorId);
+				});
+
+				Meteor.call('mailCancelar',jugadoresId,oldHora,oldDia,oldRecinto,oldCancha);
+				cancelacionReservaPlayersNotificationDeleteOwner(idPartido, jugadoresId);      
+				jugadoresId.forEach(function (e) {
+					Roles.setUserRoles(e, 'noJugo', idPartido);
+				});
+			}	
+		}
+		}
 		$('#alertRecintoEliminado').show();
 	},
+
 	'click #dashboardRecinto':function(event) {
 		Session.clear();
 		Router.go('dashboard', {_id: this._id});
