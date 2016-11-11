@@ -31,13 +31,7 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     use = this._id;
     
     return Meteor.users.findOne({_id: this._id});
-  },
-
- /* imagenProfile: function(){
-    var idImagen = Meteor.users.findOne({_id: this._id}).profile.imagenProfile_id
-    var url = idImagen1 && ImagesProfile.findOne({_id: idImagen}).url();
-      return url;
-  },*/
+  }, 
 
   isUserFacebook: function(){
     var user = Meteor.users.findOne({_id: this._id});
