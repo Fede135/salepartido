@@ -39,6 +39,8 @@ Accounts.ui.config({
 //setear a castellano lo de logeo
 accountsUIBootstrap3.setLanguage('es');
 
+T9n.setLanguage('es');
+
 Tracker.autorun(function () {
   
 });
