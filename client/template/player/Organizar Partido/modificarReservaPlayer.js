@@ -8,7 +8,11 @@ Template.modificarReservaPlayer.helpers({
 
   reservaCancelada: function () {
     var reserva = Session.get('reserva');
-    
+    if (reserva.estado == "Cancelada" || reserva.estado == "Jugada" ){
+      return true;
+    } else {
+      return false;
+    }
   },
 	
   recinto: function () {
