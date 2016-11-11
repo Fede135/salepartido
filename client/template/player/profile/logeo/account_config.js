@@ -9,7 +9,7 @@ Accounts.ui.config({
     fieldLabel: 'Nombre',
     inputType: 'text',
     visible: true,
-    validate: function(value, errorFunction) {
+  validate: function(value, errorFunction) {
           if (!value) {
             errorFunction("Ingrese su nombre");
             return false;
@@ -38,6 +38,21 @@ Accounts.ui.config({
 
 //setear a castellano lo de logeo
 accountsUIBootstrap3.setLanguage('es');
+
+T9n.setLanguage('es');
+
+// AccountsTemplates.removeField('password');
+// AccountsTemplates.addField({
+//     _id: 'password',
+//     type: 'password',
+//     required: true,
+//     minLength: 8,
+//     placeholder: {
+//         signUp: "At least eight characters"
+//     },
+//     //re: /(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/,
+//     //errStr: 'At least 1 digit, 1 lower-case and 1 upper-case',
+// });
 
 Tracker.autorun(function () {
   
@@ -91,7 +106,7 @@ Accounts.onLogin(function (){
 
 //Meteor.logingIn()
 
-T9n.setLanguage("es");
+
 
 accountsUIBootstrap3.map('es', {
   errorMessages: {

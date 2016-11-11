@@ -3,7 +3,7 @@ AutoForm.addHooks(
   {
   after:{
     insert: function (error, result) {
-      if(! error)
+      if(! error) {
         Calificaciones.insert({
             
             id_recinto:result,
@@ -12,8 +12,9 @@ AutoForm.addHooks(
         });
     Session.set('alertRecintoCreado', true);
     var reci = Recintos.findOne({_id:result});
-    var nombreR = reci.nombre_recinto;
+    var nombreR = reci && reci.nombre_recinto;
     Router.go('cargarCancha', {_id:result});
+    }
     },
   }  
 });

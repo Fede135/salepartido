@@ -3,7 +3,7 @@
     forbidClientAccountCreation: false
   });
  
-  Accounts.onCreateUser(function (options, user) {
+  Accounts.onCreateUser(function (options, user, password) {
   if(! user.services.facebook) { 
     if (options.profile) { 
       user.profile = options.profile;
@@ -25,6 +25,7 @@
 
       ;
     }
+    
   }; 
 
   Meteor.setTimeout(function () {
