@@ -38,11 +38,42 @@ AutoForm.addHooks(
    'updateCancha',
 	{
 	after:{
-    	update: function (error, result) {    	
+    	update: function (error, result) {  
+    		if (canchas.estado_cancha.estado_de_cancha == "No Habilitada" || canchas.estado_cancha.estado_de_cancha == "Mantenimiento"){
+	      		console.log("apa")
+	      		var canchaId = canchas._id;
+			    var recintoId = canchas.recintoId;
+			    var recinto = Recintos.findOne({"_id":recintoId});
+			    var nomRecinto = recinto.nombre_recinto;
+			    var reservaCanchaRecinto = Reserva.find({'nom_recinto': recinto.nombre_recinto, 'num_cancha': canchas.numero, 'estado': "Reservada"}).fetch();
+				var cantReservaCanchaRecinto = reservaCanchaRecinto.length;
+			    for (var z = 0; z < cantReservaCanchaRecinto; z++) {
+				Reserva.update({_id: reservaCanchaRecinto[z]._id}, {$set: {'estado': "Cancelada"}});
+				var partido = Partido.findOne({'reserva_id': reservaCanchaRecinto[z]._id});
+				var idPartido = partido._id;
+					if (partido){
+					    var oldHora = reservaCanchaRecinto[z].hora_de_juego;
+					    var oldDia = reservaCanchaRecinto[z].fecha_de_juego;
+					    var oldRecinto = reservaCanchaRecinto[z].nom_recinto;
+					    var oldCancha = reservaCanchaRecinto[z].num_cancha;
+					    var jugadores = Roles.getUsersInRole(['invitado', 'suplente', 'confirmado'], idPartido);
+					    var jugadoresId = [];
+					    jugadores.forEach(function (e) {
+					    var jugadorId = e._id;
+					    jugadoresId.push(jugadorId);
+					    });
+					    Meteor.call('mailCancelar',jugadoresId,oldHora,oldDia,oldRecinto,oldCancha);
+					    cancelacionReservaPlayersNotificationDeleteOwner(idPartido, jugadoresId);      
+					    jugadoresId.forEach(function (e) {
+						    Roles.setUserRoles(e, 'noJugo', idPartido);
+					    });
+				    } 
+				}
+	      	}  	
       
 	      	if(! error){
     			Session.set('alertCanchaActualizada', true);
-	    	   	Router.go('dashboard', {_id: canchas.recintoId});
+	    	    Router.go('dashboard', {_id: canchas.recintoId});
        		}	
     	}
   	}

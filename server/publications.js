@@ -24,7 +24,7 @@ Meteor.publish('commentsForPlayers', function(){
 
 Meteor.publish('canchas', function(){
 	
-	return Canchas.find();
+	return Canchas.find({'estado_cancha.estado_de_cancha': {$ne: "Eliminada"}});
 });
 
 Meteor.publish('partidos', function(){

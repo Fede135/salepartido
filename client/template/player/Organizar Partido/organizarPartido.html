@@ -106,7 +106,9 @@
 								{{#each amigos}}
 									<div class="checkbox" style="margin-left: 20px;">
 										<h4>
-												<input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}}
+												<input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}}--{{this.profile.player.position}}{{> starsRating rating=this.profile.promedioGeneral class="estrella" size='sm'}}
+												
+
 										</h4>
 									</div>    
 									

@@ -12,7 +12,15 @@ Template.confirmarPartido.onRendered(function () {
 })
 
 Template.confirmarPartido.helpers({
-	
+	position:function(){
+        var posi = Meteor.users.findOne({_id:this.userId}).profile.player.position;
+        return posi;
+    },
+    promGeneral:function(){
+        var prom = Meteor.users.findOne({_id:this.userId}).profile.promedioGeneral;
+        return prom;
+
+    },
     reservaSeleccionada: function () {
 
         var partido = Partido.findOne(this._id);

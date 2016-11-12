@@ -64,11 +64,50 @@
         
         <!--muestro datos del usuario-->
         <div class="row">
-              <div class="col-sm-12 col-md-12">
-                <legend align="center"><h1>{{user.profile.name}}</h1></legend>
-              </div>
+             <div class="col-sm-2 col-md-2">
+                {{#if ownProfile}}
+                <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
+                <button class="btn btn-propio" id="login-buttons-edit-profile">Editar Perfil</button>
+                {{else}}
+                {{#unless isOwner}}
+                {{#if isFriend}}
+                <p style="color:#8a9ba8"> 
+                    Ya esta en tu lista de jugadores.
+                </p>
+                {{else}}          
+                <button type="button" name="addJugadores" id="addJugadores" class="btn btn-propio">Agregar a tu lista de Jugadores</button>
+                {{/if}}
+                {{/unless}}
+                {{/if}}
+            </div>
+
+            <div class="col-sm-8 col-md-8">
+                <div class="row" align="center">
+                    {{#if ownProfile}}
+                    {{> gravatarProfile}}
+                    {{else}}
+                    <img src="{{gravatarShow}}" width="140px" height="140px" class="img-rounded">
+                    {{/if}}
+                </div>
+                <div class="row">
+                    <div class="col-sm-7 col-md 7">
+                        <h1 align="right" id="nameUsuario">{{user.profile.name}}
+                        </h1>
+                    </div>
+                    <div class="col-sm-5 col-md-5">
+                        <div class="row" id="promedioProfile">
+                            {{> starsRating rating=promedioGeneral class="estrella" size='lg'}}
+                        </div>
+                    </div>           
+                </div> 
+            </div>
+            <div class="col-sm-2 col-md-2" align="left">
+                <b style="color:#8a9ba8"></b>
+            </div>
+
+
         </div>
-        <div class="row">
+        <div class="row" style="margin-top: 5px;">
               <div class="col-sm-2 col-md-2">
                   <h4><strong>Edad: </strong>{{age}}</h4>
               </div>
@@ -78,9 +117,11 @@
               <div class="col-sm-2 col-md-2">
                   <h4><strong>Peso: </strong>{{user.profile.player.weight}}</h4>
               </div>
-              <div class="col-sm-4 col-md-4">
+              <div class="col-sm-3 col-md-3">
                   <h4><strong>Posición: </strong>{{user.profile.player.position}}</h4>
-              </div>
+              </div>                
+                          
+
         </div>
         <div class="row">
               <div class="col-sm-1 col-md-1">
@@ -91,20 +132,7 @@
               <div class="col-sm-3 col-md-3">
                   <h4><strong>De: </strong>{{place}}</h4>
               </div>
-              <div class="col-sm-2 col-md-2">
-                    {{#if ownProfile}}
-                        <!-- si es su propio perfil muestra el boton para que lo edite y sus amigos-->
-                        <button class="btn btn-propio" id="login-buttons-edit-profile">Editar Perfil</button>
-                    {{else}}
-                        {{#unless isOwner}}
-                        {{#if isFriend}} 
-                            Ya esta en tu lista de jugadores.
-                        {{else}}          
-                            <button type="button" name="addJugadores" id="addJugadores" class="btn btn-propio">Agregar a tu lista de Jugadores</button>
-                        {{/if}}
-                        {{/unless}}
-                    {{/if}}
-              </div>
+              
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-12">
