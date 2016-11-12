@@ -2,7 +2,7 @@
   {{#autoForm collection="CommentsForPlayers" id="enterCommentsPlayers" type="insert"}}
     <div class="container-fluid">
         <fieldset>
-            <label name="commentToPlayerdiv"> {{> afQuickField name="commentToPlayer" rows=3}} </label>
+            {{> afQuickField name="commentToPlayer" rows=3}} 
             {{> afFieldInput name="toUserId" value=_id}}
             <div class="row">
                 <div class="col-sm-1 col-md-1" style="margin-left: -16px;">

@@ -2,7 +2,7 @@
   <div class="container-fluid">
   {{#autoForm collection="CommentsForEnclosure" id="enterCommentsEnclosure" type="insert"}}
   <fieldset>
-    <div name="commentToEnclosurediv"> {{> afQuickField name="commentToEnclosure" rows=3}}</div> 
+    {{> afQuickField name="commentToEnclosure" rows=3}} 
     {{> afFieldInput name="toEnclosureId" value=_id}}
     <div>
       <button type="submit" class="btn btn-propio" align="left">Enviar</button>
