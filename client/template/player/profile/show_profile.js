@@ -32,7 +32,18 @@ Template.showProfile.helpers({   //se busca el usuario del cual se esta viendo e
     
     return Meteor.users.findOne({_id: this._id});
   }, 
-
+  gravatarShow:function(){
+    var userId = this._id;
+    var user = Meteor.users.findOne({_id:userId});    
+    if (! user.emails){
+      var grav = Gravatar.imageUrl("salepartido2016@gmail.com");
+    } else {
+      var grav = Gravatar.imageUrl(_.first(user.emails).address, {
+      default : Gravatar.imageUrl("salepartido2016@gmail.com")
+      });    
+    }    
+    return grav;
+  },
   isUserFacebook: function(){
     var user = Meteor.users.findOne({_id: this._id});
     if (user && user.services && user.services.facebook){

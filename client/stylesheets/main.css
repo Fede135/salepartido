@@ -620,6 +620,13 @@ span.blue {
     padding: 10em 0em;
   }
 }
+#promedioProfile {
+    margin-top: 33px;
+    margin-left: -70px;
+}
+#nameUsuario {
+    margin-right: 55px;
+}
 
 @media screen and (max-width: 900px){
 
@@ -678,5 +685,18 @@ span.blue {
 
 #login-buttons-email-address-verified-modal .modal-dialog {
     width: 90%;
+}
+#promedioProfile {
+  margin-top: -10px;
+  margin-left: 58px;
+}
+#nameUsuario {
+    margin-right: 46px;
+}
+#pictureProfile{
+  margin-top: 17px;
+}
+#login-buttons-edit-profile{
+  margin-left: 91px;
 }
 }

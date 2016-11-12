@@ -122,11 +122,11 @@
                         <h4>Lugares disponibles: <strong>{{disponibleA}}</strong></h4>
                     </div>
                 {{/if}}
-                <div class="row">
+                <div class="row">                
                   <ul>
-
-                      {{#each equipoA}}
-                      <li><strong>{{this.nombre}}</strong></li>
+                    
+                      {{#each equipoA}}                                            
+                      <li><strong>{{this.nombre}}</strong>--{{position}}{{> starsRating rating=promGeneral class="estrella" size='lg'}}</li>
                       {{/each}}
                              
                   </ul>
@@ -254,7 +254,7 @@
 
                                   <div class="checkbox" style="margin-left: 20px;">
                                     <h4>
-                                        <input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}},{{this.profile.player.position}}
+                                        <input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}}--{{this.profile.player.position}}{{> starsRating rating=this.profile.promedioGeneral class="estrella" size='sm'}}
                                     </h4>
                                   </div>    
                                   
