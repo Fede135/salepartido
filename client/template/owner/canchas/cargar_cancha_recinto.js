@@ -9,8 +9,14 @@ Template.cargarCancha.onRendered( function () {
 Template.cargarCancha.helpers({
   ocupada : function(){
      return _.pluck(Canchas.find({'recintoId':this._id}).fetch(), 'numero');
-  }
-})
+  },
+  options : function(){
+    return [{label: "Habilitada", value: "Habilitada"},
+      {label: "No Habilitada", value: "No Habilitada"},
+       {label: "Mantenimiento", value: "Mantenimiento"}];
+     
+}
+});
 
 Template.cargarCancha.events({
   
