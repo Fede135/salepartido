@@ -26,6 +26,7 @@
                 </div>
             </div>
             <div class="row">
+              <legend><h2 align="center">Servicios del recinto</h2></legend>
                 <div class="col-sm-3 col-md-3">
                   {{> afQuickField name='servicios.estacionamiento' options="allowed" noselect=true}}
                 </div>
@@ -40,7 +41,7 @@
                 </div>
             </div>
             <div class="row">
-                <legend><h2 align="center">Subir imagenes del recinto</h2></legend>
+                <legend><h2 align="center">Subir imágenes del recinto</h2></legend>
                 <div class="col-sm-6 col-md-6">
                   {{> afQuickField name='imagen1_id' }}
                 </div>
@@ -66,5 +67,14 @@
           </div>
       </div>
     {{/autoForm}}      
-   </div>      
+    </div>
+    <footer>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-12 widget">
+            <p>Los campos que contienen (*) son obligatorios.</p>
+          </div>
+        </div>
+      </div>  
+    </footer>      
 </template>

@@ -11,7 +11,7 @@
 		<legend><h2 align="center">Modificar reserva</h2></legend>	
         <div class="row">
         	<div class="col-sm-4 col-md-4">
-        		<h4>Dia de juego: <strong>{{reserva.fecha_de_juego}}</strong></h4>
+        		<h4>Día de juego: <strong>{{reserva.fecha_de_juego}}</strong></h4>
         	</div>
         	<div class="col-sm-4 col-md-4">	
         		<h4>Hora de juego: <strong>{{reserva.hora_de_juego}}</strong></h4>
@@ -22,7 +22,7 @@
         </div>
 		<div class="row">		    	
 			<div class="col-sm-5 col-md-5">
-			<label class="control-label" for="datetimepicker" >Elegí un día para jugar</label>
+			<label class="control-label" for="datetimepicker" >Elegí un día para jugar*</label>
 			 	<div class="controls">
 			   		<div class='input-group date'>
 			     	  	<input name="datetimepicker" id="datetimepicker" type="button" value="" class="form-control"/>
@@ -35,7 +35,7 @@
 			<div class="col-sm-1 col-md-1">
 			</div>				    
 			<div class='col-sm-5 col-md-5'>
-			<label class="control-label" for="datetimepicker3">Elegí un horario para jugar</label>
+			<label class="control-label" for="datetimepicker3">Elegí un horario para jugar*</label>
 			   	<div class="controls">
 			   		<div class='input-group date'>
 			      		<input name="datetimepicker3" id="datetimepicker3" type="button" value="" class="form-control"/>
@@ -50,7 +50,7 @@
     	   	<div class='col-sm-5 col-md-5'>
 			  	<div class="form-group  {{errorClass 'nombreCancha'}}">
 			 		 <br>					    		 
-			     	 <label class="control-label" for="nombreCancha">Seleccionar una cancha</label>
+			     	 <label class="control-label" for="nombreCancha">Seleccionar cancha*</label>
 			     	 <br>
 				     <div class="controls">
 				     	<div class="input-group">
@@ -79,5 +79,14 @@
 				<button type="button" class="btn btn-propioV" name = "cancelar" id="cancelar">Cancelar</button>
 			</div>
 		</div>
-	</div>				
+	</div>
+	<footer>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 widget">
+                    <p>Los campos que contienen (*) son obligatorios.</p>
+                </div>
+            </div>
+        </div>  
+    </footer>  				
 </template>	    	
