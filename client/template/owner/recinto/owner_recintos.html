@@ -60,7 +60,9 @@
                             <td><h5 align="center">{{this.nombre_recinto}}</h5></td>
                             <td><h5 align="center">{{this.createdAtString}}</h5></td>
                             {{#if calificacion}}
-                            <td><h5 align="center">{{calificacion}}</h5></td>
+                            <td align="center">
+                                {{> starsRating rating=calificacion class="estrella" size='lg'}}
+                            </td>
                             {{else}}
                             <td><h5 align="center">Sin calificar</h5></td>
                             {{/if}}
