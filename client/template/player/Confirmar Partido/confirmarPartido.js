@@ -209,6 +209,8 @@ Template.confirmarPartido.helpers({
         }
     },
 
+    
+
 
 });
 
