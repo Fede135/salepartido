@@ -126,7 +126,7 @@
                   <ul>
                     
                       {{#each equipoA}}                                            
-                      <li> <a href="{{pathFor 'showProfile' _id=this.userId}}"><strong>{{this.nombre}}</strong> </a>--{{position}}{{> starsRating rating=promGeneral class="estrella" size='lg'}}</li>
+                      <li><a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded"><strong>{{this.nombre}}</strong></a>--{{position}}{{> starsRating rating=promGeneral class="estrella" size='lg'}}</li>
                       {{/each}}
                       
                   </ul>
@@ -169,7 +169,7 @@
             <ul>
 
                 {{#each equipoB}}
-                <li><a href="{{pathFor 'showProfile' _id=this.userId}}"><strong>{{this.nombre}}</strong> </a>--{{position}}{{> starsRating rating=promGeneral class="estrella" size='lg'}}</li>
+                <li>  <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded"><strong>{{this.nombre}}</strong></a>--{{position}}{{> starsRating rating=promGeneral class="estrella" size='lg'}}</li>
                 {{/each}}
                 
             </ul>
@@ -218,7 +218,7 @@
         </legend>
         {{#if suplente}}
         {{#each suplente}}
-        <a href="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>,{{this.profile.player.position}}<br> <!--probar cuando el mauri m pase la bd-->
+        {{this.profile.name}},{{this.profile.player.position}}<br>
         {{/each}}
         {{else}}
         <h4 align="left">Sin suplentes</h4>                        

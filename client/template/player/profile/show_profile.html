@@ -61,7 +61,31 @@
                 </div>
             </div>
         </div>
+
+         <!--Modal de gravatar foto de perfil-->
+        <div id="gravatarPerfilModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Cambia tu imagen de perfil con Gravatar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p> En simples pasos:
+                        <li>Ingresa a Gravatar desde el botón que te dejamos debajo.</li>    
+                        <li>Registrate o ingresa con el mismo email con el cual te registraste a Sale Partido.</li>
+                        <li>Carga tu imagen y listo!!</li>
+                        </p>                        
+                    </div>
+                    <div class="modal-footer">
+                        <a href="https://es.gravatar.com/gravatars/new/computer"><button type="button" class="btn btn-propio" data-dismiss="modal">Ir a Gravatar</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
         
+        
+
         <!--muestro datos del usuario-->
         <div class="row">
              <div class="col-sm-2 col-md-2">
@@ -84,7 +108,7 @@
             <div class="col-sm-8 col-md-8">
                 <div class="row" align="center">
                     {{#if ownProfile}}
-                    {{> gravatarProfile}}
+                    <div data-toggle="modal" data-target="#gravatarPerfilModal">{{> gravatarProfile}}</div>
                     {{else}}
                     <img src="{{gravatarShow}}" width="140px" height="140px" class="img-rounded">
                     {{/if}}

@@ -630,41 +630,46 @@ canceladasPorDia: function(){
 cantReservas: function(){	
 	
 	if( Session.get('fechaDesde') && Session.get('fechaHasta')){
-		var diaStringD = Session.get('fechaDesde');	
-		var diaMomentD = moment(diaStringD, 'DD/MM/YYYY', true);
-        var diaDesde = diaMomentD.toDate();
-		var diaStringH= Session.get('fechaHasta');	
-		var diaMomentH = moment(diaStringH, 'DD/MM/YYYY', true);
-        var diaHasta = diaMomentH.toDate();
-		var start = diaDesde;	
-		var end = diaHasta;
-		var idRecinto = this._id
-		var recinto = Recintos.findOne({_id: idRecinto}).nombre_recinto;
-		var reservas = Reserva.find({nom_recinto:recinto,'fecha_de_juegoD' : {"$gte" : start, "$lte" : end}});		
-		var arrayReservas = reservas.fetch();
-		var countReservas = reservas.count();
+		if (Session.get('fechaDesde') <= Session.get('fechaHasta')){
+			var diaStringD = Session.get('fechaDesde');	
+			var diaMomentD = moment(diaStringD, 'DD/MM/YYYY', true);
+					var diaDesde = diaMomentD.toDate();
+			var diaStringH= Session.get('fechaHasta');	
+			var diaMomentH = moment(diaStringH, 'DD/MM/YYYY', true);
+					var diaHasta = diaMomentH.toDate();
+			var start = diaDesde;	
+			var end = diaHasta;
+			var idRecinto = this._id
+			var recinto = Recintos.findOne({_id: idRecinto}).nombre_recinto;
+			var reservas = Reserva.find({nom_recinto:recinto,'fecha_de_juegoD' : {"$gte" : start, "$lte" : end}});		
+			var arrayReservas = reservas.fetch();
+			var countReservas = reservas.count();
 
-		//--------------Reservas pendientes
-		var reservasPendientes = Reserva.find({nom_recinto:recinto,fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Reservada"});
-		var cantidadReservasReservadas= reservasPendientes.count();
-		//--------------Reservas canceladas
-		var reservasCanceladas = Reserva.find({nom_recinto:recinto,fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Cancelada"});
-		var cantidadReservasCanceladas= reservasCanceladas.count();
-		//--------------Reservas jugadas
-		var reservasJugadas = Reserva.find({nom_recinto:recinto,fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Jugada"});
-		var cantidadReservasJugadas= reservasJugadas.count();
+			//--------------Reservas pendientes
+			var reservasPendientes = Reserva.find({nom_recinto:recinto,fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Reservada"});
+			var cantidadReservasReservadas= reservasPendientes.count();
+			//--------------Reservas canceladas
+			var reservasCanceladas = Reserva.find({nom_recinto:recinto,fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Cancelada"});
+			var cantidadReservasCanceladas= reservasCanceladas.count();
+			//--------------Reservas jugadas
+			var reservasJugadas = Reserva.find({nom_recinto:recinto,fecha_de_juegoD : {"$gte" : start, "$lte" : end},estado:"Jugada"});
+			var cantidadReservasJugadas= reservasJugadas.count();
 
-		var array1 = _.zip(['Pendientes','Canceladas','Jugadas','TOTAL'],[cantidadReservasReservadas,cantidadReservasCanceladas,cantidadReservasJugadas,countReservas]);
-		//console.log(array1);
-		var res = [];
-		array1.forEach(function(e){
-			var objeto = _.object(['tipo','cantidad'],e);
-			res.push(objeto)
-		})
-		//console.log(res);
-		return res;
-		//para buscar los usuarios q mas reservaron y los q ams cancelaron usar el codigo de arriba
-	}else{
+			var array1 = _.zip(['Pendientes','Canceladas','Jugadas','TOTAL'],[cantidadReservasReservadas,cantidadReservasCanceladas,cantidadReservasJugadas,countReservas]);
+			//console.log(array1);
+			var res = [];
+			array1.forEach(function(e){
+				var objeto = _.object(['tipo','cantidad'],e);
+				res.push(objeto)
+			})
+			//console.log(res);
+			return res;
+			//para buscar los usuarios q mas reservaron y los q ams cancelaron usar el codigo de arriba
+	} else {
+		alert ("fecha hasta mayor que fecha desde");
+	}
+
+	} else {
 		return false;
 	}
 
