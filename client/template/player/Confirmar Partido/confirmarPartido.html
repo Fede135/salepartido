@@ -38,6 +38,25 @@
             </div>
         </div>
 
+        <!--Modal de esta seguro sacar jugador del equipo-->
+        <div id="sacarDeEquipoModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+            <div class="modal-dialog modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">¿Estas seguro de...</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>...que desea eliminar a este jugador del equipo?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button  type="button" class="btn btn-propioV" data-dismiss="modal">No</button>
+                        <button id="pasarAInvitado" type="button" class="btn btn-propio" data-dismiss="modal">Si</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!--Alert de reserva creada-->
         <div class="alert alert-success alert-dismissible" role="alert" id="alertReservaCreada" style="display: none; margin-top: -20px;">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -73,13 +92,22 @@
             </button>
             <strong>Te diste de baja!</strong> Igualmente puedes volver a agregarte a un equipo cuando desees, si es que no hay suplentes esperando.
         </div>
-        <!--Alert de Eliminado de un equipo -->
+        <!--Alert de añadido a lista de suplentes -->
         <div class="alert alert-info alert-dismissible" role="alert" id="alertSuplente" style="display: none; margin-top: -20px;">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
             <strong>Te añadiste a la lista de suplentes!</strong> Se te confirmará automaticamente si alguien se da de baja.
         </div>
+        <!--Alert de Eliminado de un equipo x host-->
+        <div class="alert alert-success alert-dismissible" role="alert" id="alertEliminadoXHost" style="display: none; margin-top: -20px;">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            Jugador <strong>eliminado</strong> del equipo correctamente.
+        </div>
+
+
         <div class="row">
             <legend>
                 <h2 align="center">Confirmar partido</h2>
@@ -126,7 +154,13 @@
                   <ul>
                     
                       {{#each equipoA}}                                            
-                      <li><a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded"><strong>{{this.nombre}}</strong></a>--{{position}}{{> starsRating rating=promGeneral class="estrella" size='lg'}}</li>
+                      <li>
+                          <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                          
+                          <button type="button" id="lanzaIdJugador" data-toggle="modal" data-target="#sacarDeEquipoModal" class="glyphicon glyphicon-remove close" style="color:black;" aria-hidden="true"></button>
+                          
+                          {{> starsRating rating=promGeneral class="estrella" size='lg'}}
+                      </li>
                       {{/each}}
                       
                   </ul>
@@ -169,7 +203,13 @@
             <ul>
 
                 {{#each equipoB}}
-                <li>  <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded"><strong>{{this.nombre}}</strong></a>--{{position}}{{> starsRating rating=promGeneral class="estrella" size='lg'}}</li>
+                <li> 
+                    <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                    {{#if isHost}}
+                    <button type="button" id="lanzaIdJugador" data-toggle="modal" data-target="#sacarDeEquipoModal" class="glyphicon glyphicon-remove close" style="display: none; color:black;" aria-hidden="true"></button>
+                    {{/if}}
+                    {{> starsRating rating=promGeneral class="estrella" size='lg'}}
+                </li>
                 {{/each}}
                 
             </ul>
@@ -218,7 +258,7 @@
         </legend>
         {{#if suplente}}
         {{#each suplente}}
-        {{this.profile.name}},{{this.profile.player.position}}<br>
+         <a href ="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>,{{this.profile.player.position}}<br>
         {{/each}}
         {{else}}
         <h4 align="left">Sin suplentes</h4>                        
