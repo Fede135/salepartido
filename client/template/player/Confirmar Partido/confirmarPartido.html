@@ -152,6 +152,7 @@
                 {{/if}}
                 <div class="row">                
                   <ul>
+                      {{#if isPorJugar}}
                       {{#if isHost}}
                       {{#each equipoA}}                                            
                       <li>
@@ -166,6 +167,12 @@
                           <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
                           {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                       </li>
+                      {{/each}}
+                      {{/if}}
+                      {{else}}
+                      {{#each equipoA}}
+                      <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                      {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                       {{/each}}
                       {{/if}}
                       
@@ -207,6 +214,7 @@
         </div>
         <div class="row">
             <ul>
+                {{#if isPorJugar}}
                 {{#if isHost}}
                 {{#each equipoB}}
                 <li> 
@@ -221,6 +229,12 @@
                     <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
                     {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                 </li>
+                {{/each}}
+                {{/if}}
+                {{else}}
+                {{#each equipoB}}
+                <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                 {{/each}}
                 {{/if}}
                 
