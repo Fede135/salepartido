@@ -152,16 +152,22 @@
                 {{/if}}
                 <div class="row">                
                   <ul>
-                    
+                      {{#if isHost}}
                       {{#each equipoA}}                                            
                       <li>
                           <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
-                          
                           <button type="button" id="lanzaIdJugador" data-toggle="modal" data-target="#sacarDeEquipoModal" class="glyphicon glyphicon-remove close" style="color:black;" aria-hidden="true"></button>
-                          
                           {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                       </li>
                       {{/each}}
+                      {{else}}
+                      {{#each equipoA}}
+                      <li>
+                          <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                          {{> starsRating rating=promGeneral class="estrella" size='lg'}}
+                      </li>
+                      {{/each}}
+                      {{/if}}
                       
                   </ul>
               </div>
@@ -201,16 +207,22 @@
         </div>
         <div class="row">
             <ul>
-
+                {{#if isHost}}
                 {{#each equipoB}}
                 <li> 
                     <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
-                    {{#if isHost}}
-                    <button type="button" id="lanzaIdJugador" data-toggle="modal" data-target="#sacarDeEquipoModal" class="glyphicon glyphicon-remove close" style="display: none; color:black;" aria-hidden="true"></button>
-                    {{/if}}
+                    <button type="button" id="lanzaIdJugador" data-toggle="modal" data-target="#sacarDeEquipoModal" class="glyphicon glyphicon-remove close" style="color:black;" aria-hidden="true"></button>
                     {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                 </li>
                 {{/each}}
+                {{else}} 
+                {{#each equipoB}}
+                <li> 
+                    <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                    {{> starsRating rating=promGeneral class="estrella" size='lg'}}
+                </li>
+                {{/each}}
+                {{/if}}
                 
             </ul>
         </div>

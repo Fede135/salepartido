@@ -159,7 +159,8 @@ Template.confirmarPartido.helpers({
 
     
     isHost: function () {
-        return Roles.userIsInRole( Meteor.userId(), 'host', this._id);
+        var user = Meteor.users.findOne({_id: Meteor.userId()});
+        return Roles.userIsInRole( user._id, 'host', this._id);
     },
     isHostHostSecundario: function () {
         return Roles.userIsInRole( Meteor.userId(), ['host', 'hostSecundario'], this._id);
