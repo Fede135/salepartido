@@ -33,6 +33,18 @@ Template.confirmarPartido.helpers({
     return grav;
     },
 
+    gravatarShowId:function(){
+    var user = Meteor.users.findOne({_id:this._id});    
+    if (! user.emails){
+      var grav = Gravatar.imageUrl("salepartido2016@gmail.com");
+    } else {
+      var grav = Gravatar.imageUrl(_.first(user.emails).address, {
+      default : Gravatar.imageUrl("salepartido2016@gmail.com")
+      });    
+    }    
+    return grav;
+    },
+
     reservaSeleccionada: function () {
 
         var partido = Partido.findOne(this._id);

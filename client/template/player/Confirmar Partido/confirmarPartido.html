@@ -156,7 +156,7 @@
                       {{#if isHost}}
                       {{#each equipoA}}                                            
                       <li>
-                          <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                          <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-responsive img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
                           <button type="button" id="lanzaIdJugador" data-toggle="modal" data-target="#sacarDeEquipoModal" class="glyphicon glyphicon-remove close" style="color:black;" aria-hidden="true"></button>
                           {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                       </li>
@@ -164,14 +164,14 @@
                       {{else}}
                       {{#each equipoA}}
                       <li>
-                          <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                          <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-responsive img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
                           {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                       </li>
                       {{/each}}
                       {{/if}}
                       {{else}}
                       {{#each equipoA}}
-                      <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                        <a href ="{{pathFor 'showProfile' _id=this.userId}}"> <img src="{{gravatarShow}}" width="50px" height="50px" class="img-responsive img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
                       {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                       {{/each}}
                       {{/if}}
@@ -218,7 +218,7 @@
                 {{#if isHost}}
                 {{#each equipoB}}
                 <li> 
-                    <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                    <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-responsive img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
                     <button type="button" id="lanzaIdJugador" data-toggle="modal" data-target="#sacarDeEquipoModal" class="glyphicon glyphicon-remove close" style="color:black;" aria-hidden="true"></button>
                     {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                 </li>
@@ -226,14 +226,14 @@
                 {{else}} 
                 {{#each equipoB}}
                 <li> 
-                    <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                    <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-responsive img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
                     {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                 </li>
                 {{/each}}
                 {{/if}}
                 {{else}}
                 {{#each equipoB}}
-                <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
+                <a href ="{{pathFor 'showProfile' _id=this.userId}}"><img src="{{gravatarShow}}" width="50px" height="50px" class="img-responsive img-rounded">  <strong>{{this.nombre}}</strong></a>--{{position}}
                 {{> starsRating rating=promGeneral class="estrella" size='lg'}}
                 {{/each}}
                 {{/if}}
@@ -284,7 +284,9 @@
         </legend>
         {{#if suplente}}
         {{#each suplente}}
-         <a href ="{{pathFor 'showProfile' _id=this._id}}">{{this.profile.name}}</a>,{{this.profile.player.position}}<br>
+        <ul>
+            <a href ="{{pathFor 'showProfile' _id=this._id}}"> <img src="{{gravatarShowId}}" width="50px" height="50px" class="img-responsive img-rounded"> {{this.profile.name}}</a>,{{this.profile.player.position}}<br>
+        </ul>
         {{/each}}
         {{else}}
         <h4 align="left">Sin suplentes</h4>                        
@@ -320,7 +322,7 @@
 
       <div class="checkbox" style="margin-left: 20px;">
         <h4>
-            <input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> {{this.profile.name}}--{{this.profile.player.position}}{{> starsRating rating=this.profile.promedioGeneral class="estrella" size='sm'}}
+            <input type="checkbox" name="user" data-toggle-target="{{_id}}" value="{{#each this.emails}}{{this.address}}{{/each}}"> <a href ="{{pathFor 'showProfile' _id=this._id}}"> <img src="{{gravatarShowId}}" width="50px" height="50px" class="img-responsive img-rounded"> {{this.profile.name}}</a>--{{this.profile.player.position}}{{> starsRating rating=this.profile.promedioGeneral class="estrella" size='sm'}}
         </h4>
     </div>    
     
