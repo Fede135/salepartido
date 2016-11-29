@@ -142,6 +142,7 @@ Template.organizarPartido.events({
 
     var recinto=Recintos.findOne({'_id':($item.data('forId'))});
     $('input[name=nombreCancha]').val('');
+    Session.set('datosCancha', null); 
     Session.set('recinto', recinto);
     
   },
@@ -151,7 +152,9 @@ Template.organizarPartido.events({
     var $item=$(event.currentTarget);
     var $target=$($item.data('forCancha'));
 
-    $target.val($item.text()); 
+    $target.val($item.text());
+
+    Session.set('datosCancha', $item.text()); 
     
   },
 
@@ -182,7 +185,15 @@ Template.organizarPartido.helpers({
       return canchas;
   },
 
-   amigos: function () { 
+  datosCancha:function(){
+    var datosCancha = Session.get('datosCancha');
+    var recinto = datosCancha && Session.get('recinto');
+    var recinto_Id = recinto && recinto._id;
+    var cancha = recinto_Id && Canchas.findOne({'recintoId':recinto_Id,'estado_cancha.estado_de_cancha':'Habilitada','numero': +datosCancha});
+    return cancha;
+  },
+
+  amigos: function () { 
     var usuario = Meteor.users.findOne({_id: Meteor.userId()});
     var array = usuario.profile.friends;          
     if(array){
@@ -200,7 +211,7 @@ Template.organizarPartido.helpers({
       return false;
     }       
 
-     },
+  },
 
   errorMessage: function(field) {
     return Session.get('reservaErrors')[field];
