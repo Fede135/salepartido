@@ -55,9 +55,11 @@ Template.gestionarReserva.events({
     var reservaId = Session.get('idReservaDeleted');
     Reserva.update({_id: reservaId}, {$set: {'estado': "Cancelada"}});
     var partido = Partido.findOne({reserva_id: reservaId});
-    var nojugaron = Roles.getUsersInRole(['invitado', 'confirmado', 'suplente'], partido._id)
+    var nojugaron = Roles.getUsersInRole(['invitado', 'confirmado', 'suplente'], partido._id);
+    var nojugaronId = [];
     nojugaron.forEach(function(element) {
       var nojugoId = element._id;
+      cancelacionReservaPlayersNotificationDeleteOwner2 (partido._id, nojugoId);
       Roles.setUserRoles(nojugoId, 'noJugo', partido._id);
     });
     $('#alertReservaEliminada').show();
