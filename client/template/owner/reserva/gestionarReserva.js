@@ -54,6 +54,11 @@ Template.gestionarReserva.events({
   'click #deleteReserva': function(event){
     var reservaId = Session.get('idReservaDeleted');
     Reserva.update({_id: reservaId}, {$set: {'estado': "Cancelada"}});
+    var reserva = Reserva.findOne({_id: reservaId});
+    var hora = reserva.hora_de_juego;
+    var dia = reserva.fecha_de_juego;
+    var recinto = reserva.nom_recinto;
+    var cancha = reserva.num_cancha;
     var partido = Partido.findOne({reserva_id: reservaId});
     var nojugaron = Roles.getUsersInRole(['invitado', 'confirmado', 'suplente'], partido._id);
     var nojugaronId = [];
@@ -61,7 +66,9 @@ Template.gestionarReserva.events({
       var nojugoId = element._id;
       cancelacionReservaPlayersNotificationDeleteOwner2 (partido._id, nojugoId);
       Roles.setUserRoles(nojugoId, 'noJugo', partido._id);
+      nojugaronId.push(nojugoId);
     });
+    Meteor.call('mailCancelar',nojugaronId, hora, dia, recinto, cancha);
     $('#alertReservaEliminada').show();
   },
 
